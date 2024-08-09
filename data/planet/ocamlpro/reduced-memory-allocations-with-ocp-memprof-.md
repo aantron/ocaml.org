@@ -5,8 +5,8 @@ description: In this blog post, we explain how ocp-memprof helped us identify a 
   two maps was performing a lot of unnecessary allocations, negatively impacting the
   garbage collector's activity. A simple patch allowed us to pr...
 url: https://ocamlpro.com/blog/2015_05_18_reduced_memory_allocations_with_ocp_memprof
-date: 2015-05-18T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2015-05-18T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    \xC7agdas Bozman\n  "
 source:
@@ -14,7 +14,7 @@ source:
 
 <p>In this blog post, we explain how <code>ocp-memprof</code> helped us identify a piece of code in Alt-Ergo that needed to be improved. Simply put, a function that merges two maps was performing a lot of unnecessary allocations, negatively impacting the garbage collector's activity. A simple patch allowed us to prevent these allocations, and thus speed up Alt-Ergo's execution.</p>
 <h3>The Story</h3>
-<p>Il all started with a challenging example coming from an industrial user of <a href="https://alt-ergo.ocamlpro.com/">Alt-Ergo</a>, our SMT solver. It was proven by Alt-Ergo in approximately 70 seconds. This seemed abnormnally long and needed to be investigated. Unfortunately, all our tests with different options (number of triggers, case-split analysis, &hellip;) and different plugins (satML plugin, profiling plugin, fm-simplex plugin) of Alt-Ergo failed to improve the resolution time. We then profiled an execution using <code>ocp-memprof</code> to understand the memory behavior of this example.</p>
+<p>Il all started with a challenging example coming from an industrial user of <a href="https://alt-ergo.ocamlpro.com/">Alt-Ergo</a>, our SMT solver. It was proven by Alt-Ergo in approximately 70 seconds. This seemed abnormnally long and needed to be investigated. Unfortunately, all our tests with different options (number of triggers, case-split analysis, …) and different plugins (satML plugin, profiling plugin, fm-simplex plugin) of Alt-Ergo failed to improve the resolution time. We then profiled an execution using <code>ocp-memprof</code> to understand the memory behavior of this example.</p>
 <h3>Profiling an Execution with <code>ocp-memprof</code></h3>
 <p>As usual, profiling an OCaml application with <code>ocp-memprof</code> is very simple (see the <a href="https://memprof.typerex.org/free-version.php?action=documentation">user manual</a> for more details). We just compiled Alt-Ergo in the OPAM switch for <code>ocp-memprof</code> (version <code>4.01.0+ocp1</code>) and executed the following command:</p>
 <pre><code class="language-shell-session">$ ocp-memprof -exec ./ae-4.01.0+ocp1-public-without-patch pb-many-GCs.why
@@ -29,13 +29,13 @@ source:
 <p>We are not able to precisely identify the allocation origins of the maps in this graph (maps are generic structures that are intensively used in Alt-Ergo). To investigate further, we wanted to know if some global value was abnormally retaining a lot of memory, or if some (non recursive-terminal) iterator was causing some trouble when applied on huge data structures. For that, we extended the analysis with the <code>--per-root</code> option to focus on the memory graph of the last dump. This is done by executing the following command, where 4242 is the PID of the process launched by <code>ocp-memprof --exec</code> in the previous command:</p>
 <pre><code class="language-shell-session">$ ocp-memprof -load 4242 -per-root 611
 </code></pre>
-<p><img src="https://ocamlpro.com/blog/assets/img/graph_before_mini.png" alt=""/>
-<img src="https://ocamlpro.com/blog/assets/img/screenshot_per_root_before_mini.png" alt=""/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/graph_before_mini.png" alt="">
+<img src="https://ocamlpro.com/blog/assets/img/screenshot_per_root_before_mini.png" alt=""></p>
 <p>The per-root graph (above, on the right) gives more interesting information. When expanding the <code>stack</code> node and sorting the sixth column in decreasing order, we notice that:</p>
 <ul>
 <li>a bunch of these maps are still in the stack: the item <code>Map_at_192_offset_1</code> in the first column means that most of the memory is retained by the <code>fold</code> function, at line 192 of the <code>Map</code> module (resolution of stack frames is only available in the commercial version of <code>ocp-memprof</code>);
 </li>
-<li>the &quot;kind&quot; column corresponding to <code>Map_at_192_offset_1</code> gives better information. It provides the signature of the function passed to fold. This information is already provided by <a href="https://memprof.typerex.org/">the online version</a>.
+<li>the "kind" column corresponding to <code>Map_at_192_offset_1</code> gives better information. It provides the signature of the function passed to fold. This information is already provided by <a href="https://memprof.typerex.org/">the online version</a>.
 </li>
 </ul>
 <pre><code class="language-cpp">Uf.Make(Uf.??Make.X).LX.t -&gt;;
@@ -66,23 +66,23 @@ MapX.add r2 mapl (MapX.add r1 mapl env.neqs)
 <p>Roughly speaking, the function above retrieves two maps <code>nq_r1</code> and <code>nq_r2</code> from <code>env</code>, and folds on the first one while providing the second map as an accumulator. The local function <code>merge_disjoint_maps</code> (passed to fold) raises <code>Exception.Inconsistent</code> if the original maps were not disjoint. Otherwise, it adds the current binding (after updating the corresponding value) to the accumulator. Finally, the result <code>mapl</code> of the fold is used to update the values of <code>r1</code> and <code>r2</code> in <code>env.neqs</code>.</p>
 <p>After further debugging, we observed that one of the maps (<code>nq_r1</code> and <code>nq_r2</code>) is always empty in our situation. A straightforward fix consists in testing whether one of these two maps is empty. If it is the case, we simply return the other map. Here is the corresponding code:</p>
 <pre><code class="language-ocaml">(*** first patch: testing if one of the maps is empty ***)
-&hellip;
+…
 let mapl =
 if MapL.is_empty nq_r1 then nq_r2
 else
 if MapL.is_empty nq_r2 then nq_r1
 else MapL.fold_merge merge_disjoint_maps nq_r1 nq_r2
-&hellip;
+…
 </code></pre>
 <p>Of course, a more generic solution should not just test for emptiness, but should fold on the smallest map. In the second patch below, we used a slightly modified version of OCaml's maps that exports the <code>height</code> function (implemented in constant time). This way, we always fold on the smallest map while providing the biggest one as an accumulator.</p>
 <pre><code class="language-ocaml">(*** second (better) patch : folding on the smallest map ***)
-&hellip;
+…
 let small, big =
 if MapL.height nq_r1 &gt; MapL.height nq_r2 then nq_r1, nq_r2
 else nq_r2, nq_r1
 in
 let mapl = MapL.fold merge_disjoint_maps small big in
-&hellip;
+…
 </code></pre>
 <h3>Checking the Efficiency of our Patch</h3>
 <p>Curious to see the result of the patch ? We regenerate the evolution and memory graphs of the patched code (fix 1), and we noticed:</p>
@@ -94,8 +94,8 @@ let mapl = MapL.fold merge_disjoint_maps small big in
 <li>a smaller memory footprint : from 26 MB to 24 MB;
 </li>
 </ul>
-<p><img src="https://ocamlpro.com/blog/assets/img/graph_after_mini.png" alt=""/>
-<img src="https://ocamlpro.com/blog/assets/img/screenshot_per_root_after_mini.png" alt=""/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/graph_after_mini.png" alt="">
+<img src="https://ocamlpro.com/blog/assets/img/screenshot_per_root_after_mini.png" alt=""></p>
 <h3>Conclusion</h3>
 <p>We show in this post that <code>ocp-memprof</code> can also be used to optimize your code, not only by decreasing memory usage, but by improving the speed of your application. The interactive graphs are online in our gallery of examples if you want to see and explore them (<a href="https://memprof.typerex.org/users/5a198a7f26b9b9d6f402276e16818a66/2015-05-15_15-32-21_48c9e783500e896444f998eb001fff4c_4242/">without the patch</a> and <a href="https://memprof.typerex.org/users/5a198a7f26b9b9d6f402276e16818a66/2015-05-15_16-13-22_4174baa4b9b5d8845653e04307b010a9_4530/">with the patch</a>).</p>
 <table class="tableau2">
@@ -124,7 +124,7 @@ let mapl = MapL.fold merge_disjoint_maps small big in
 <th>dumps generation</th>
 <td>114.3 secs (+49%)</td>
 <td>17.6 secs (+2.8%)</td>
-<td>(important) overhead when dumping<br/>
+<td>(important) overhead when dumping<br>
 memory snapshots</td>
 </tr>
 <tr>
@@ -134,18 +134,18 @@ memory snapshots</td>
 <td>impressive GC activity without the patch</td>
 </tr>
 <tr>
-<th>dumps analysis<br/>
+<th>dumps analysis<br>
 (online ocp-memprof)</th>
 <td>759 secs</td>
 <td>24.3 secs</td>
 <td></td>
 </tr>
 <tr>
-<th>dumps analysis<br/>
+<th>dumps analysis<br>
 (commercial ocp-memprof)</th>
 <td>153 secs</td>
 <td>3.7 secs</td>
-<td>analysis with commercial ocp-memprof is<br/>
+<td>analysis with commercial ocp-memprof is<br>
 **~ x5 faster** than public version (above)</td>
 </tr>
 <tr>

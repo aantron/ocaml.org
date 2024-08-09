@@ -64,11 +64,11 @@ The following table shows the compile and run times of a couple of tests in the
 DDC test suite compiling via the C and the LLVM backend.
 </p>
 
-<br/>
+<br>
 
 <center>
 <table class="simple">
-	<tr>
+	<tbody><tr>
 		<th>Test name</th>
 			<th>C Build Time</th>
 			<th>LLVM Build Time</th>
@@ -118,10 +118,10 @@ DDC test suite compiling via the C and the LLVM backend.
 			<td align="right">8.527s</td>
 	</tr>
 
-</table>
+</tbody></table>
 </center>
 
-<br/>
+<br>
 
 <p>
 Although there is a small increase in compile times when compiling via LLVM, the

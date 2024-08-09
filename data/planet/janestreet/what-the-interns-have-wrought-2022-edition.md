@@ -11,7 +11,7 @@ authors:
 source:
 ---
 
-<p>We&rsquo;re once again at the end of our internship season, and it&rsquo;s my task
+<p>We’re once again at the end of our internship season, and it’s my task
 to provide a few highlights of what the interns accomplished while
 they were here.</p>
 

@@ -13,7 +13,7 @@ source:
         
         
         
-        <p>I&rsquo;m happy to announce that I successfully defended my PhD Thesis!</p>
+        <p>I’m happy to announce that I successfully defended my PhD Thesis!</p>
 
 
         

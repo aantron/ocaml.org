@@ -11,17 +11,16 @@ authors:
 source:
 ---
 
-<p><a href="http://pgocaml.forge.ocamlcore.org/">PG&rsquo;OCaml</a> is a type-safe macro binding to PostgreSQL from OCaml that I wrote many moons ago.</p>
+<p><a href="http://pgocaml.forge.ocamlcore.org/">PG’OCaml</a> is a type-safe macro binding to PostgreSQL from OCaml that I wrote many moons ago.</p>
 <p>You can write code like:</p>
-<pre>
-let hostid = 33 in
-let name = &quot;john.smith&quot; in
+<pre>let hostid = 33 in
+let name = "john.smith" in
 let rows = PGSQL(dbh)
-    &quot;select id, subject from contacts
-     where hostid = $hostid and name = $name&quot;
+    "select id, subject from contacts
+     where hostid = $hostid and name = $name"
 </pre>
-<p>and the compiler checks (at compile time) that <code>hostid</code> and <code>name</code> have the correct types in the program to match the database schema.  And it&rsquo;ll ensure that the type of <code>rows</code> is something like <code>(int * string) list</code>, and integrate that with type inference in the rest of the program.</p>
-<p>The program won&rsquo;t compile if you use the wrong types.  It integrates OCaml&rsquo;s type safety and type inference with the PostgreSQL database engine.</p>
+<p>and the compiler checks (at compile time) that <code>hostid</code> and <code>name</code> have the correct types in the program to match the database schema.  And it’ll ensure that the type of <code>rows</code> is something like <code>(int * string) list</code>, and integrate that with type inference in the rest of the program.</p>
+<p>The program won’t compile if you use the wrong types.  It integrates OCaml’s type safety and type inference with the PostgreSQL database engine.</p>
 <p>It also avoids SQL injection by automatically creating a safe prepared statement.  What is executed when the program runs will have: <code>... where hostid = ? and name = ?</code>.</p>
 <p>As a side-effect of the type checking, it also verifies that the SQL code is syntactically correct.</p>
 

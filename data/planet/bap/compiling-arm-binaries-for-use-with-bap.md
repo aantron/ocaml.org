@@ -16,17 +16,17 @@ with BAP, see
 
 <ol>
   <li>
-    <p>You&rsquo;ll need to install an ARM compiler toolchain. Depending on your needs,
+    <p>You’ll need to install an ARM compiler toolchain. Depending on your needs,
 you can choose to use either the default toolchains included with the Ubuntu
 package repository, or a third-party toolchain based off of mainline gcc
 (e.g.  CodeSourcery, Linode, etc).</p>
 
-    <p>For our purposes, we&rsquo;ll stick with Ubuntu 14.04, which provides five
+    <p>For our purposes, we’ll stick with Ubuntu 14.04, which provides five
 different varieties: <code class="language-plaintext highlighter-rouge">gcc-arm-linux-gnueabi</code>, <code class="language-plaintext highlighter-rouge">gcc-arm-linux-gnueabihf</code>,
 <code class="language-plaintext highlighter-rouge">gcc-aarch64-linux-gnu</code>, <code class="language-plaintext highlighter-rouge">gcc-arm-linux-androideabi</code>, and <code class="language-plaintext highlighter-rouge">gcc-none-eabi</code>.
-Of these, you probably won&rsquo;t be using the latter three, since they are for
+Of these, you probably won’t be using the latter three, since they are for
 64-bit ARM, Android on ARM, and raw ARM binaries (e.g. without Linux). Of
-the remaining two, the former is soft-float, meaning it doesn&rsquo;t use Thumb
+the remaining two, the former is soft-float, meaning it doesn’t use Thumb
 instructions or a hardware floating-point unit, whereas the latter uses
 both, so we want to pick <code class="language-plaintext highlighter-rouge">gcc-arm-linux-gnueabi</code>. This should
 automatically add in associated dependencies such as
@@ -37,13 +37,13 @@ you will need to specify it manually as follows:</p>
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>A simple &ldquo;Hello World&rdquo; program can be compiled in the familiar gcc fashion:</p>
+    <p>A simple “Hello World” program can be compiled in the familiar gcc fashion:</p>
 
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arm-linux-gnueabi-gcc hello.c -O0 -o hello_gccarm_O0
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>To run this (should you be interested), you&rsquo;ll need <code class="language-plaintext highlighter-rouge">qemu-arm</code> from <code class="language-plaintext highlighter-rouge">qemu-user</code>:</p>
+    <p>To run this (should you be interested), you’ll need <code class="language-plaintext highlighter-rouge">qemu-arm</code> from <code class="language-plaintext highlighter-rouge">qemu-user</code>:</p>
 
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install qemu-user
 </code></pre></div>    </div>
@@ -54,7 +54,7 @@ you will need to specify it manually as follows:</p>
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>qemu-user hello_gccarm_O0 # wrong!
 </code></pre></div>    </div>
 
-    <p>results in: <code class="language-plaintext highlighter-rouge">&quot;/lib/ld-linux.so.3: No such file or directory&quot;</code>.</p>
+    <p>results in: <code class="language-plaintext highlighter-rouge">"/lib/ld-linux.so.3: No such file or directory"</code>.</p>
 
     <p>We will need these shared libraries built for arm. These are available after
 installing the arm compiler toolchain. To successfully run
@@ -74,7 +74,7 @@ our binary, the command is:</p>
 <h2>Extras</h2>
 
 <p>You might like to debug your ARM binary with gdb. To do so, use qemu-arm to set
-up a gdb server which you&rsquo;ll be able to connect:</p>
+up a gdb server which you’ll be able to connect:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>qemu-arm -L /usr/arm-linux-gnueabi/ -g 1111 hello_gccarm_O0
 </code></pre></div></div>

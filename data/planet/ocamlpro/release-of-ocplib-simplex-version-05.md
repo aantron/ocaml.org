@@ -7,8 +7,8 @@ description: 'On last November, we released version 0.5 of ocplib-simplex, a gen
 
   What Changed in 0.5 ? ] The simplex algorithm The S...'
 url: https://ocamlpro.com/blog/2022_11_25_ocplib-simplex-0.5
-date: 2023-01-05T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2023-01-05T13:31:53-00:00
+preview_image: https://www.ocamlpro.com/blog/assets/img/ocplib-simplex.jpg
 authors:
 - "\n    Steven de Oliveira\n  "
 source:
@@ -21,30 +21,30 @@ source:
 Algorithm</a> in OCaml. It is a key component of the <a href="https://alt-ergo.ocamlpro.com">Alt-Ergo</a> automatic
 theorem prover that we keep developing at OCamlPro.</p>
 <p></p><div>
-<strong>Table of contents</strong>
+<strong>Table of contents</strong><p></p>
 <ul>
 <li><a href="https://ocamlpro.com/blog/feed#simplex">The Simplex Algorithm</a>
 </li>
 <li><a href="https://ocamlpro.com/blog/feed#changes">What Changed in 0.5 ?</a>
+</li></ul></div>
 
-</li>
-</ul>
+
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/ocplib-simplex.jpg">
       <img src="https://ocamlpro.com/blog/assets/img/ocplib-simplex.jpg" alt="Try ocplib-simplex before implementing
-your own library !"/>
+your own library !">
     </a>
     </p><div class="caption">
       Try ocplib-simplex before implementing
 your own library !
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <h2>
-<a class="anchor"></a>The simplex algorithm<a href="https://ocamlpro.com/blog/feed#simplex">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#simplex" class="anchor-link">The simplex algorithm</a>
           </h2>
 <p>The <a href="https://en.wikipedia.org/wiki/Simplex_algorithm">Simplex Algorithm</a> is well known among linear optimization
 enthusiasts. Let's say you own a manufacture producing two kinds of
@@ -64,7 +64,7 @@ If you are interested in the detail of the algorithm, you shoud definitely watch
 While the base algorithm is EXP-time, it is generally very efficient in
 practice.</p>
 <h2>
-<a class="anchor"></a>What Changed in 0.5 ?<a href="https://ocamlpro.com/blog/feed#changes">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#changes" class="anchor-link">What Changed in 0.5 ?</a>
           </h2>
 <p>Among the main changes in this new version of <a href="https://github.com/OCamlPro/ocplib-simplex">ocplib-simplex</a>:</p>
 <ul>
@@ -87,4 +87,4 @@ this library more easily in your projects!</p>
 can find it on <a href="https://github.com/OCamlPro/ocplib-simplex">GitHub</a>.</p>
 <p>Please do not hesitate to contact us at OCamlPro:
 <a href="mailto:alt-ergo@ocamlpro.com">alt-ergo@ocamlpro.com</a>.</p>
-</div>
+

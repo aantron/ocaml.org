@@ -5,8 +5,8 @@ description: As announced some time ago, I am working on a new intermediate lang
   squashing, I prepared a testable version of the patchset, available either on Github
   (branch flambda_experiments), or through OPAM, in the follow...
 url: https://ocamlpro.com/blog/2013_07_11_better_inlining_progress_report
-date: 2013-07-11T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2013-07-11T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Chambart\n  "
 source:

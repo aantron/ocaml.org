@@ -7,8 +7,8 @@ description: 'In a previous blogpost, we presented the RPCs used by tezos-client
   How to sign a binary operation In this post, we will reply to these questions. We
   are still assum...'
 url: https://ocamlpro.com/blog/2018_11_21_an_introduction_to_tezos_rpcs_signing_operations
-date: 2018-11-21T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2018-11-21T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Fabrice Le Fessant\n  "
 source:
@@ -30,18 +30,18 @@ a node running and waiting for RPCs on address 127.0.0.1:9731. Since
 we will ask this node to forge a request, we really need to trust it,
 as a malicious node could send a different binary transaction from the
 one we sent him.</p>
-<p>Let&rsquo;s take back our first operation:</p>
+<p>Let’s take back our first operation:</p>
 <pre><code class="language-json">{
-  &quot;branch&quot;: &quot;BMHBtAaUv59LipV1czwZ5iQkxEktPJDE7A9sYXPkPeRzbBasNY8&quot;,
-  &quot;contents&quot;: [
-    { &quot;kind&quot;: &quot;transaction&quot;,
-      &quot;source&quot;: &quot;tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx&quot;,
-      &quot;fee&quot;: &quot;50000&quot;,
-      &quot;counter&quot;: &quot;3&quot;,
-      &quot;gas_limit&quot;: &quot;200&quot;,
-      &quot;storage_limit&quot;: &quot;0&quot;,
-      &quot;amount&quot;: &quot;100000000&quot;,
-      &quot;destination&quot;: &quot;tz1gjaF81ZRRvdzjobyfVNsAeSC6PScjfQwN&quot;
+  "branch": "BMHBtAaUv59LipV1czwZ5iQkxEktPJDE7A9sYXPkPeRzbBasNY8",
+  "contents": [
+    { "kind": "transaction",
+      "source": "tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx",
+      "fee": "50000",
+      "counter": "3",
+      "gas_limit": "200",
+      "storage_limit": "0",
+      "amount": "100000000",
+      "destination": "tz1gjaF81ZRRvdzjobyfVNsAeSC6PScjfQwN"
    } ]
 }
 </code></pre>
@@ -49,33 +49,33 @@ one we sent him.</p>
 amenable for signature. For that, we use a new RPC to forge
 operations. Under Linux, we can use the tool <code>curl</code> to send the
 request to the node:</p>
-<pre><code class="language-shell-session">$ curl -v -X POST http://127.0.0.1:9731/chains/main/blocks/head/helpers/forge/operations -H &quot;Content-type: application/json&quot; --data '{
-  &quot;branch&quot;: &quot;BMHBtAaUv59LipV1czwZ5iQkxEktPJDE7A9sYXPkPeRzbBasNY8&quot;,
-  &quot;contents&quot;: [
-    { &quot;kind&quot;: &quot;transaction&quot;,
-      &quot;source&quot;: &quot;tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx&quot;,
-      &quot;fee&quot;: &quot;50000&quot;,
-      &quot;counter&quot;: &quot;3&quot;,
-      &quot;gas_limit&quot;: &quot;200&quot;,
-      &quot;storage_limit&quot;: &quot;0&quot;,
-      &quot;amount&quot;: &quot;100000000&quot;,
-      &quot;destination&quot;: &quot;tz1gjaF81ZRRvdzjobyfVNsAeSC6PScjfQwN&quot;
+<pre><code class="language-shell-session">$ curl -v -X POST http://127.0.0.1:9731/chains/main/blocks/head/helpers/forge/operations -H "Content-type: application/json" --data '{
+  "branch": "BMHBtAaUv59LipV1czwZ5iQkxEktPJDE7A9sYXPkPeRzbBasNY8",
+  "contents": [
+    { "kind": "transaction",
+      "source": "tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx",
+      "fee": "50000",
+      "counter": "3",
+      "gas_limit": "200",
+      "storage_limit": "0",
+      "amount": "100000000",
+      "destination": "tz1gjaF81ZRRvdzjobyfVNsAeSC6PScjfQwN"
   } ]
 }'
 </code></pre>
 <p>Note that we use a POST request (request with content), with a
 <code>Content-type</code> header indicating that the content is in JSON format. We
 get the following body in the reply :</p>
-<pre><code class="language-json">&quot;ce69c5713dac3537254e7be59759cf59c15abd530d10501ccf9028a5786314cf08000002298c03ed7d454a101eb7022bc95f7e5f41ac78d0860303c8010080c2d72f0000e7670f32038107a59a2b9cfefae36ea21f5aa63c00&quot;
+<pre><code class="language-json">"ce69c5713dac3537254e7be59759cf59c15abd530d10501ccf9028a5786314cf08000002298c03ed7d454a101eb7022bc95f7e5f41ac78d0860303c8010080c2d72f0000e7670f32038107a59a2b9cfefae36ea21f5aa63c00"
 </code></pre>
 <p>This is the binary representation of our operation, in hexadecimal
 format, exactly what we were looking for to be able to include
 operations on the blockchain. However, this representation is not yet
 complete, since we also need the operation to be signed by the
 manager.</p>
-<p>To sign this operation, we will first use <code>tezos-client</code>. That&rsquo;s
+<p>To sign this operation, we will first use <code>tezos-client</code>. That’s
 something that we can do if we want, for example, to sign an operation
-offline, for better security. Let&rsquo;s assume that we have saved the
+offline, for better security. Let’s assume that we have saved the
 content of the string (<code>ce69...3c00</code> without the quotes) in a file
 <code>operation.hex</code>, we can ask <code>tezos-client</code> to sign it with:</p>
 <pre><code class="language-shell-session">$ tezos-client --addr 127.0.0.1 --port 9731 sign bytes 0x03$(cat operation.hex) for bootstrap1
@@ -89,7 +89,7 @@ representation is hexadecimal (<code>0x</code>), and (2) that it should start wi
 <pre><code class="language-shell-session">Signature: edsigtkpiSSschcaCt9pUVrpNPf7TTcgvgDEDD6NCEHMy8NNQJCGnMfLZzYoQj74yLjo9wx6MPVV29CvVzgi7qEcEUok3k7AuMg
 </code></pre>
 <p>Wonderful, we have a signature, in <code>base58check</code> format ! We can use
-this signature in the <code>run_operation</code> and <code>preapply</code> RPCs&hellip; but not in
+this signature in the <code>run_operation</code> and <code>preapply</code> RPCs… but not in
 the <code>injection</code> RPC, which requires a binary format. So, to inject the
 operation, we need to convert to the hexadecimal version of the
 signature. For that, we will use the <code>base58check</code> package of Python
@@ -110,13 +110,13 @@ signature for the injection, and put them into a string, and send that
 to the server for injection. If we have stored the hexadecimal
 representation of the signature in a file <code>signature.hex</code>, then we can
 use :</p>
-<pre><code class="language-shell-session">$ curl -v -H &quot;Content-type: application/json&quot; 'http://127.0.0.1:9731/injection/operation?chain=main' --data '&quot;'$(cat operation.hex)$(cat signature.hex)'&quot;'
+<pre><code class="language-shell-session">$ curl -v -H "Content-type: application/json" 'http://127.0.0.1:9731/injection/operation?chain=main' --data '"'$(cat operation.hex)$(cat signature.hex)'"'
 </code></pre>
 <p>and we receive the hash of this new operation:</p>
-<pre><code class="language-json">&quot;oo1iWZDczV8vw3XLunBPW6A4cjmdekYTVpRxRh77Fd1BVv4HV2R&quot;
+<pre><code class="language-json">"oo1iWZDczV8vw3XLunBPW6A4cjmdekYTVpRxRh77Fd1BVv4HV2R"
 </code></pre>
 <p>Again, we cheated a little, by using <code>tezos-client</code> to generate the
-signature. Let&rsquo;s try to do it in Python, too !</p>
+signature. Let’s try to do it in Python, too !</p>
 <p>First, we will need the secret key of bootstrap1. We can export from
 <code>tezos-client</code> to use it directly:</p>
 <pre><code class="language-shell-session">$ tezos-client show address bootstrap1 -S
@@ -135,13 +135,13 @@ value:</p>
 </code></pre>
 <p>This time, we directly extracted the key, by removing the first 8 hexa
 chars, and keeping only 64 hexa chars (using <code>[8:72]</code>), since the key
-is 32-bytes long. Let&rsquo;s suppose that we save this value in a file
+is 32-bytes long. Let’s suppose that we save this value in a file
 <code>bootstrap1.hex</code>.</p>
 <p>Now, we will use the following script to compute the signature:</p>
 <pre><code class="language-python">import binascii
 
-operation=binascii.unhexlify(open(&quot;operation.hex&quot;,&quot;rb&quot;).readline()[:-1])
-seed = binascii.unhexlify(open(&quot;bootstrap1.hex&quot;,&quot;rb&quot;).readline()[:-1])
+operation=binascii.unhexlify(open("operation.hex","rb").readline()[:-1])
+seed = binascii.unhexlify(open("bootstrap1.hex","rb").readline()[:-1])
 
 from pyblake2 import blake2b
 h = blake2b(digest_size=32)
@@ -169,7 +169,7 @@ that we print in hexadecimal. We obtain:</p>
 <pre><code class="language-json">637e08251cae646a42e6eb8bea86ece5256cf777c52bc474b73ec476ee1d70e84c6ba21276d41bc212e4d878615f4a31323d39959e07539bc066b84174a8ff0d
 </code></pre>
 <p>This result is exactly the same as what we got using tezos-client !</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/SignTransaction-791x1024.jpg" alt="SignTransaction-791x1024.jpg"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/SignTransaction-791x1024.jpg" alt="SignTransaction-791x1024.jpg"></p>
 <p>We now have a complete wallet, i.e. the ability to create transactions
 and sign them without tezos-client. Of course, there are several
 limitations to this work: first, we have exposed the private key in
@@ -181,7 +181,7 @@ a mobile phone or an external device (Ledger, etc.).</p>
 <h1>Comments</h1>
 <p>Anthony (28 November 2018 at 2 h 01 min):</p>
 <blockquote>
-<p>Fabrice, you talk about signing the operation using tezos-client, which can then be used with the run_operation, however when . you talk about doing it in a script, it doesn&rsquo;t include the edsig or checksum or converted back into a usable form for run_operations. Can you explain how this is done in a script?</p>
+<p>Fabrice, you talk about signing the operation using tezos-client, which can then be used with the run_operation, however when . you talk about doing it in a script, it doesn’t include the edsig or checksum or converted back into a usable form for run_operations. Can you explain how this is done in a script?</p>
 <p>Thanks
 Anthony</p>
 </blockquote>
@@ -234,7 +234,7 @@ Anthony</p>
 </blockquote>
 <p>Mark Robson (9 February 2020 at 23 h 51 min):</p>
 <blockquote>
-<p>Great information, but can the article be updated to include the things discussed in the comments? As I can&rsquo;t see the private key of bootstrap1 I can&rsquo;t replicate locally. Been going around in circles on that point</p>
+<p>Great information, but can the article be updated to include the things discussed in the comments? As I can’t see the private key of bootstrap1 I can’t replicate locally. Been going around in circles on that point</p>
 </blockquote>
 <p>stacey roberts (7 May 2020 at 13 h 53 min):</p>
 <blockquote>

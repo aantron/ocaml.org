@@ -12,7 +12,7 @@ source:
 
 
 <div>
-  <b>A performance test</b><br/>&nbsp;
+  <b>A performance test</b><br>&nbsp;
 </div>
 
 <div>
@@ -36,7 +36,7 @@ This article is also available in other languages:
 </dd></dl>
 </div>
 <p>
-I would not call this test a &quot;benchmark&quot;. Amazon EC2 is not a
+I would not call this test a "benchmark". Amazon EC2 is not a
 controlled environment, as you always only get partial machines, and
 you don't know how much resources are consumed by other users on the
 same machines.  Also, you cannot be sure how far the nodes are off
@@ -105,13 +105,13 @@ of 0.6).
 
 </p><p>
 </p><table>
-  <tr>
+  <tbody><tr>
     <td><b>Hadoop:</b></td>     <td><b>2265 seconds</b> (37 min, 45 s)</td>
   </tr>
   <tr>
     <td><b>Plasma:</b></td>     <td><b>1975 seconds</b> (32 min. 55 s)</td>
   </tr>
-</table>
+</tbody></table>
 
 <p>
 Given the uncertainty of the environment, this is no big difference.
@@ -124,10 +124,10 @@ In the following I took simply one of the datanodes, and created
 diagrams (with kSar):
 
 <p>
-<img src="http://blog.camlcity.org/files/img/blog/edited_hadoop_cpu_all.png" width="799" height="472"/>
+<img src="http://blog.camlcity.org/files/img/blog/edited_hadoop_cpu_all.png" width="799" height="472">
 
 </p><p>
-<img src="http://blog.camlcity.org/files/img/blog/edited_plasma_cpu_all.png" width="800" height="471"/>
+<img src="http://blog.camlcity.org/files/img/blog/edited_plasma_cpu_all.png" width="800" height="471">
 
 </p><p>
 Note that kSar does not draw graphs for %iowait and %steal, although 
@@ -148,10 +148,10 @@ black. The first curve shows packets per second, and the second bytes
 per second:
 
 <p>
-<img src="http://blog.camlcity.org/files/img/blog/edited_hadoop_eth0.png" width="800" height="333"/>
+<img src="http://blog.camlcity.org/files/img/blog/edited_hadoop_eth0.png" width="800" height="333">
 
 </p><p>
-<img src="http://blog.camlcity.org/files/img/blog/edited_plasma_eth0.png" width="800" height="319"/>
+<img src="http://blog.camlcity.org/files/img/blog/edited_plasma_eth0.png" width="800" height="319">
 
 Summing reads and writes up, Hadoop uses only around 7MB/s on average
 whereas Plasma transmits around 25MB/s, more than three times as
@@ -183,16 +183,16 @@ value to 80.)
 These diagrams depict the disk reads and writes in KB/second:
 
 <p>
-<img src="http://blog.camlcity.org/files/img/blog/edited_hadoop_md0.png" width="800" height="332"/>
+<img src="http://blog.camlcity.org/files/img/blog/edited_hadoop_md0.png" width="800" height="332">
 
 </p><p>
-<img src="http://blog.camlcity.org/files/img/blog/edited_plasma_md0.png" width="800" height="332"/>
+<img src="http://blog.camlcity.org/files/img/blog/edited_plasma_md0.png" width="800" height="332">
 
 The average numbers are (directly taken from sar):
 
 </p><p>
 </p><table>
-  <tr>
+  <tbody><tr>
     <td>&nbsp;</td>
     <th>Hadoop</th>
     <th>Plasma</th>
@@ -207,7 +207,7 @@ The average numbers are (directly taken from sar):
     <td>30.8 MB/s</td>
     <td>33.9 MB/s</td>
   </tr>
-</table>
+</tbody></table>
 
 <p>
 Obviously, Plasma reads data around twice as often from disk than
@@ -276,7 +276,7 @@ lot of headroom.
 
 </p><p>
 
-<img src="http://blog.camlcity.org/files/img/blog/plasma6_bug.gif" width="1" height="1"/>
+<img src="http://blog.camlcity.org/files/img/blog/plasma6_bug.gif" width="1" height="1">
 
 </p>
 </div>

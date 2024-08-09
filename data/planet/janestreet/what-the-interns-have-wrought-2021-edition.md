@@ -11,7 +11,7 @@ authors:
 source:
 ---
 
-<p>It&rsquo;s the end of another dev internship season, and this one marked
+<p>It’s the end of another dev internship season, and this one marked
 something of a transition, since halfway through the season, NY-based
 interns were invited back to the recently reinvigorated office.  Which
 means that many more of us got the chance to meet and hang out with

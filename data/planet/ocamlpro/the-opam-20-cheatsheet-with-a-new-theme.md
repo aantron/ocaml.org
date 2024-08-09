@@ -7,14 +7,14 @@ description: 'The Opam 2.0 cheatsheet, with a new theme! Earlier, we dusted-off 
 
   Installation, Configuration, ...'
 url: https://ocamlpro.com/blog/2020_01_10_opam_2.0_cheat_sheet
-date: 2020-01-10T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2020-01-10T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Thomas Blanc\n  "
 source:
 ---
 
-<p><a href="https://ocamlpro.com/blog/2020_01_10_opam_2.0_cheat_sheet"><img src="https://ocamlpro.com/blog/assets/img/logo_opam_blue.png" alt="The Opam 2.0 cheatsheet, with a new theme!"/></a></p>
+<p><a href="https://ocamlpro.com/blog/2020_01_10_opam_2.0_cheat_sheet"><img src="https://ocamlpro.com/blog/assets/img/logo_opam_blue.png" alt="The Opam 2.0 cheatsheet, with a new theme!"></a></p>
 <p><a href="https://ocamlpro.com/blog/2019_09_13_updated_cheat_sheets_language_stdlib_2">Earlier</a>, we dusted-off our Language and Stdlib cheatsheets, for teachers and students. With more time, we managed to design an Opam 2.0 cheat-sheet we are proud of. It is organized into two pages:</p>
 <ul>
 <li>The everyday average Opam use:
@@ -39,11 +39,11 @@ source:
 </ul>
 <p>In any case do not hesitate to send us your suggestions on <a href="https://github.com/OCamlPro/ocaml-cheat-sheets">github</a>:</p>
 <ul>
-<li>Louis and Raja, the lead Opam developers, designed this cheatsheet so as to shed light on some important features (some I even discovered even though I speak daily with them!). If a command <em>you</em> find useful is not mentioned, let us know and we&rsquo;ll add it. Feel free to ask for clarification and/or expansion of the manual!
+<li>Louis and Raja, the lead Opam developers, designed this cheatsheet so as to shed light on some important features (some I even discovered even though I speak daily with them!). If a command <em>you</em> find useful is not mentioned, let us know and we’ll add it. Feel free to ask for clarification and/or expansion of the manual!
 </li>
 </ul>
 <p>Happy hacking!</p>
 <blockquote>
-<p>Note: If you come to one of our <a href="https://training.ocamlpro.com/">training sessions</a>, you&rsquo;ll get a free cheatsheet! Isn&rsquo;t that a bargain?</p>
+<p>Note: If you come to one of our <a href="https://training.ocamlpro.com/">training sessions</a>, you’ll get a free cheatsheet! Isn’t that a bargain?</p>
 </blockquote>
 

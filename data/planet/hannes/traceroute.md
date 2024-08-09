@@ -58,7 +58,7 @@ modem. You can see various hops on the public Internet: the packets pass from
 my Internet provider's backbone across some exchange points to the destination
 Internet provider somewhere in Sweden.</p>
 <p>The implementation of traceroute relies mainly on the time-to-live (ttl) field
-(in IPv6 lingua it is &quot;hop limit&quot;) of IP packets, which is meant to avoid route
+(in IPv6 lingua it is "hop limit") of IP packets, which is meant to avoid route
 cycles that would infinitely forward IP packets in circles. Every router, when
 forwarding an IP packet, first checks that the ttl field is greater than zero,
 and then forwards the IP packet where the ttl is decreased by one. If the ttl
@@ -127,7 +127,7 @@ ttl expected to be at most 31, ts a int64 expressed in nanoseconds.</p>
 let log_one now ttl sent ip =
   let now = Int64.(mul (logand (div now 100L) 0x7FFFFFFL) 100L) in
   let duration = Mtime.Span.of_uint64_ns (Int64.sub now sent) in
-  Logs.info (fun m -&gt; m &quot;%2d  %a  %a&quot; ttl Ipaddr.V4.pp ip Mtime.Span.pp duration)
+  Logs.info (fun m -&gt; m "%2d  %a  %a" ttl Ipaddr.V4.pp ip Mtime.Span.pp duration)
 </code></pre>
 <p>The most logic is when a ICMP packet is received:</p>
 <pre><code class="language-OCaml">module Icmp = struct
@@ -147,7 +147,7 @@ let log_one now ttl sent ip =
     (* Decode the received buffer (the IP header has been cut off already). *)
     match Unmarshal.of_cstruct buf with
     | Error s -&gt;
-      Lwt.fail_with (Fmt.strf &quot;ICMP: error parsing message from %a: %s&quot; Ipaddr.V4.pp src s)
+      Lwt.fail_with (Fmt.strf "ICMP: error parsing message from %a: %s" Ipaddr.V4.pp src s)
     | Ok (message, payload) -&gt;
       let open Icmpv4_wire in
       (* There are two interesting cases: Time exceeded (-&gt; send next packet),
@@ -172,17 +172,17 @@ let log_one now ttl sent ip =
             t.log ttl sent src;
             (* Sent out the next UDP packet with an increased ttl. *)
             let ttl' = succ ttl in
-            Logs.debug (fun m -&gt; m &quot;ICMP time exceeded from %a to %a, now sending with ttl %d&quot;
+            Logs.debug (fun m -&gt; m "ICMP time exceeded from %a to %a, now sending with ttl %d"
                            Ipaddr.V4.pp src Ipaddr.V4.pp dst ttl');
             t.send ttl'
           | Ok (pkt, _) -&gt;
             (* Some stray ICMP packet. *)
-            Logs.debug (fun m -&gt; m &quot;unsolicited time exceeded from %a to %a (proto %X dst %a)&quot;
+            Logs.debug (fun m -&gt; m "unsolicited time exceeded from %a to %a (proto %X dst %a)"
                            Ipaddr.V4.pp src Ipaddr.V4.pp dst pkt.Ipv4_packet.proto Ipaddr.V4.pp pkt.Ipv4_packet.dst);
             Lwt.return_unit
           | Error e -&gt;
             (* Decoding error. *)
-            Logs.warn (fun m -&gt; m &quot;couldn't parse ICMP time exceeded payload (IPv4) (%a -&gt; %a) %s&quot;
+            Logs.warn (fun m -&gt; m "couldn't parse ICMP time exceeded payload (IPv4) (%a -&gt; %a) %s"
                           Ipaddr.V4.pp src Ipaddr.V4.pp dst e);
             Lwt.return_unit
         end
@@ -202,12 +202,12 @@ let log_one now ttl sent ip =
             Lwt.return_unit
           | Error e -&gt;
             (* Decoding error. *)
-            Logs.warn (fun m -&gt; m &quot;couldn't parse ICMP unreachable payload (IPv4) (%a -&gt; %a) %s&quot;
+            Logs.warn (fun m -&gt; m "couldn't parse ICMP unreachable payload (IPv4) (%a -&gt; %a) %s"
                           Ipaddr.V4.pp src Ipaddr.V4.pp dst e);
             Lwt.return_unit
         end
       | ty -&gt;
-        Logs.debug (fun m -&gt; m &quot;ICMP unknown ty %s from %a to %a: %a&quot;
+        Logs.debug (fun m -&gt; m "ICMP unknown ty %s from %a to %a: %a"
                        (ty_to_string ty) Ipaddr.V4.pp src Ipaddr.V4.pp dst
                        Cstruct.hexdump_pp payload);
         Lwt.return_unit
@@ -242,7 +242,7 @@ end
       let cancel =
         Lwt.catch (fun () -&gt;
             Time.sleep_ns (Duration.of_ms (Key_gen.timeout ())) &gt;&gt;= fun () -&gt;
-            Logs.info (fun m -&gt; m &quot;%2d  *&quot; ttl);
+            Logs.info (fun m -&gt; m "%2d  *" ttl);
             send_udp udp (succ ttl))
           (function Lwt.Canceled -&gt; Lwt.return_unit | exc -&gt; Lwt.fail exc)
       in
@@ -254,7 +254,7 @@ end
       (* Send packet via UDP. *)
       UDP.write ~ttl ~src_port ~dst:(Key_gen.host ()) ~dst_port udp Cstruct.empty &gt;&gt;= function
       | Ok () -&gt; Lwt.return_unit
-      | Error e -&gt; Lwt.fail_with (Fmt.strf &quot;while sending udp frame %a&quot; UDP.pp_error e)
+      | Error e -&gt; Lwt.fail_with (Fmt.strf "while sending udp frame %a" UDP.pp_error e)
 
   (* The main unikernel entry point. *)
   let start () () () net =
@@ -293,7 +293,7 @@ end
     Lwt.async (fun () -&gt;
         N.listen net ~header_size:Ethernet_wire.sizeof_ethernet ethif_listener &gt;|= function
         | Ok () -&gt; ()
-        | Error e -&gt; Logs.err (fun m -&gt; m &quot;netif error %a&quot; N.pp_error e));
+        | Error e -&gt; Logs.err (fun m -&gt; m "netif error %a" N.pp_error e));
     (* Send the initial UDP packet with a ttl of 1. This entails the domino
        effect to receive ICMP packets, send out another UDP packet with ttl
        increased by one, etc. - until a destination unreachable is received,
@@ -306,37 +306,37 @@ end
 <pre><code class="language-OCaml">open Mirage
 
 let host =
-  let doc = Key.Arg.info ~doc:&quot;The host to trace.&quot; [&quot;host&quot;] in
-  Key.(create &quot;host&quot; Arg.(opt ipv4_address (Ipaddr.V4.of_string_exn &quot;141.1.1.1&quot;) doc))
+  let doc = Key.Arg.info ~doc:"The host to trace." ["host"] in
+  Key.(create "host" Arg.(opt ipv4_address (Ipaddr.V4.of_string_exn "141.1.1.1") doc))
 
 let timeout =
-  let doc = Key.Arg.info ~doc:&quot;Timeout (in millisecond)&quot; [&quot;timeout&quot;] in
-  Key.(create &quot;timeout&quot; Arg.(opt int 1000 doc))
+  let doc = Key.Arg.info ~doc:"Timeout (in millisecond)" ["timeout"] in
+  Key.(create "timeout" Arg.(opt int 1000 doc))
 
 let ipv4 =
-  let doc = Key.Arg.info ~doc:&quot;IPv4 address&quot; [&quot;ipv4&quot;] in
-  Key.(create &quot;ipv4&quot; Arg.(required ipv4 doc))
+  let doc = Key.Arg.info ~doc:"IPv4 address" ["ipv4"] in
+  Key.(create "ipv4" Arg.(required ipv4 doc))
 
 let ipv4_gateway =
-  let doc = Key.Arg.info ~doc:&quot;IPv4 gateway&quot; [&quot;ipv4-gateway&quot;] in
-  Key.(create &quot;ipv4-gateway&quot; Arg.(required ipv4_address doc))
+  let doc = Key.Arg.info ~doc:"IPv4 gateway" ["ipv4-gateway"] in
+  Key.(create "ipv4-gateway" Arg.(required ipv4_address doc))
 
 let main =
   let packages = [
-    package ~sublibs:[&quot;ipv4&quot;; &quot;udp&quot;; &quot;icmpv4&quot;] &quot;tcpip&quot;;
-    package &quot;ethernet&quot;;
-    package &quot;arp-mirage&quot;;
-    package &quot;mirage-protocols&quot;;
-    package &quot;mtime&quot;;
+    package ~sublibs:["ipv4"; "udp"; "icmpv4"] "tcpip";
+    package "ethernet";
+    package "arp-mirage";
+    package "mirage-protocols";
+    package "mtime";
   ] in
   foreign
     ~keys:[Key.abstract ipv4 ; Key.abstract ipv4_gateway ; Key.abstract host ; Key.abstract timeout]
     ~packages
-    &quot;Unikernel.Main&quot;
+    "Unikernel.Main"
     (random @-&gt; mclock @-&gt; time @-&gt; network @-&gt; job)
 
 let () =
-  register &quot;traceroute&quot;
+  register "traceroute"
     [ main $ default_random $ default_monotonic_clock $ default_time $ default_network ]
 </code></pre>
 <p>And voila, that's all the code. If you copy it together (or download the two

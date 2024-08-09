@@ -11,11 +11,10 @@ authors:
 source:
 ---
 
-<p>After using OCaml for around 10 years it is still my favourite language, and it&rsquo;s amazing how far ahead of other programming languages it remains to this day.</p>
-<p><a href="https://sympa.inria.fr/sympa/arc/caml-list/2013-09/msg00173.html">OCaml 4.01.0 was released on Thursday</a> and I&rsquo;m putting it into Fedora Rawhide over this weekend.</p>
+<p>After using OCaml for around 10 years it is still my favourite language, and it’s amazing how far ahead of other programming languages it remains to this day.</p>
+<p><a href="https://sympa.inria.fr/sympa/arc/caml-list/2013-09/msg00173.html">OCaml 4.01.0 was released on Thursday</a> and I’m putting it into Fedora Rawhide over this weekend.</p>
 <p>Debuginfo is now (partially) enabled.  <a href="http://www.ocamlpro.com/blog/2012/08/20/ocamlpro-and-4.00.0.html">The OCaml code generator has produced good quality DWARF information for a while</a>, and now you are able to debug OCaml programs in gdb under Fedora:</p>
-<pre>
-$ <b>sudo debuginfo-install ocaml ocaml-findlib</b>
+<pre>$ <b>sudo debuginfo-install ocaml ocaml-findlib</b>
 $ <b>gdb /usr/bin/ocamlfind</b>
 [...]
 Reading symbols from /usr/bin/ocamlfind...
@@ -48,9 +47,9 @@ Breakpoint 1, camlFrontend__query_package_1199 () at frontend.ml:469
 469	let query_package () =
 470	
 471	  let long_format =
-472	    &quot;package:     %p\ndescription: %D\nversion:     %v\narchive(s):  %A\nlinkopts:    %O\nlocation:    %d\n&quot; in
+472	    "package:     %p\ndescription: %D\nversion:     %v\narchive(s):  %A\nlinkopts:    %O\nlocation:    %d\n" in
 473	  let i_format =
 </pre>
-<p>GDB only understands location data at the moment, so you can&rsquo;t yet query variables (although I understand OCaml generates the correct DWARF info for this, GDB just doesn&rsquo;t know how to print OCaml expressions).</p>
-<p>There will also be some limitations on the debuginfo built at first.  At the moment it doesn&rsquo;t include debuginfo for OCaml libraries called from an OCaml program, because of problems that need to be worked out with the toolchain.  Mixed OCaml binary / C library debuginfo does work.</p>
+<p>GDB only understands location data at the moment, so you can’t yet query variables (although I understand OCaml generates the correct DWARF info for this, GDB just doesn’t know how to print OCaml expressions).</p>
+<p>There will also be some limitations on the debuginfo built at first.  At the moment it doesn’t include debuginfo for OCaml libraries called from an OCaml program, because of problems that need to be worked out with the toolchain.  Mixed OCaml binary / C library debuginfo does work.</p>
 

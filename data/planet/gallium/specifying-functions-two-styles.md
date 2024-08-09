@@ -60,7 +60,7 @@ about the function invocation process: the callee, or the caller?</p>
 <p>In the first style, <em>callee-side reasoning</em>, one publishes a
 specification of <em>the function</em>; whereas in the second style,
 <em>caller-side reasoning</em>, one publishes a specification of <em>the
-function&rsquo;s body</em>.</p>
+function’s body</em>.</p>
 <h4>Callee-Side Reasoning</h4>
 <p>It may seem more natural to let the callee reason about the function
 invocation process. Indeed, this process is then analyzed just once, at
@@ -71,12 +71,12 @@ along the following lines:</p>
 <li><p>After the definition <code>let f = fun (x1, x2) -&gt; e</code>,
 the name <code>f</code> is bound to some value <code>v</code> such that,
 for all values <code>v1</code> and <code>v2</code>, the application of
-<code>v</code> to the pair <code>(v1, v2)</code> results in &hellip;</p></li>
+<code>v</code> to the pair <code>(v1, v2)</code> results in …</p></li>
 <li><p>After the definition
 <code>let g = fun x1 -&gt; x2 -&gt; e</code>, the name <code>g</code> is
 bound to some value <code>v</code> such that, for all values
 <code>v1</code> and <code>v2</code>, the application of <code>v</code>
-to the values <code>v1</code> and <code>v2</code> result in &hellip;</p></li>
+to the values <code>v1</code> and <code>v2</code> result in …</p></li>
 </ul>
 <p>In these specifications, the value <code>v</code> remains abstract.
 It is a runtime representation of a function (presumably a code pointer
@@ -93,12 +93,12 @@ must write a more complex specification. This is possible, but slightly
 cumbersome.</p>
 <h4>Caller-Side Reasoning</h4>
 <p>The other, less common, approach is to publish a specification of the
-function&rsquo;s <em>body</em>, along the following lines:</p>
+function’s <em>body</em>, along the following lines:</p>
 <ul>
 <li>For all values <code>v1</code> and <code>v2</code>, if the names
 <code>x1</code> and <code>x2</code> are bound to the values
 <code>v1</code> and <code>v2</code>, then the execution of the
-expression <code>e</code> results in &hellip;</li>
+expression <code>e</code> results in …</li>
 </ul>
 <p>Then, the functions <code>f</code> and <code>g</code> can be
 described in a concrete manner, along the following lines:</p>

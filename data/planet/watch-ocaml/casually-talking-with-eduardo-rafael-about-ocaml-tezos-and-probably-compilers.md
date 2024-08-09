@@ -11,7 +11,7 @@ authors:
 source:
 ---
 
-<p>Eduardo is a streamer and a tech lead at @Marigold_Dev.<br/>
+<p>Eduardo is a streamer and a tech lead at @Marigold_Dev.<br>
 Join us in this episode to casually talk about OCaml, Tezos and probably compilers</p>
 <p>If you'd like to support the show for more content about OCaml, Reason and ReScript you can now do so at <a href="https://www.patreon.com/emelletv" target="_blank" rel="noopener noreferrer">https://www.patreon.com/emelletv</a> or by sending any tez amount to emelletv.tez (tz1bQHQKT4BSoEreWKHuR3H5mme6fV3XCcvX)</p>
 <p>Watch live at <a href="https://www.twitch.tv/emelletv" target="_blank" rel="noopener noreferrer">https://www.twitch.tv/emelletv</a></p>

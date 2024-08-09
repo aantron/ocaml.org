@@ -10,8 +10,8 @@ description: 'We are pleased to announce the minor release of opam 2.0.6. This n
 
   Lock: add warni...'
 url: https://ocamlpro.com/blog/2020_01_16_opam_2.0.6_release
-date: 2020-01-16T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2020-01-16T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Raja Boujbel\n  "
 source:
@@ -62,15 +62,15 @@ tracking [<a href="https://github.com/ocaml/opam/pull/4038">#4038</a> <a href="h
 <blockquote>
 <p>Note: To homogenise macOS name on system detection, we decided to keep <code>macos</code>, and convert <code>darwin</code> to <code>macos</code> in opam. For the moment, to not break jobs &amp; CIs, we keep uploading <code>darwin</code> &amp; <code>macos</code> binaries, but from the 2.1.0 release, only <code>macos</code> ones will be kept.</p>
 </blockquote>
-<hr/>
+<hr>
 <p>Installation instructions (unchanged):</p>
 <ol>
 <li>From binaries: run
 </li>
 </ol>
-<pre><code class="language-sheel-session">bash -c &quot;sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.0.6&quot;
+<pre><code class="language-sheel-session">bash -c "sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.0.6"
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.6">the Github &quot;Releases&quot; page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update you sandbox script.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.6">the Github "Releases" page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update you sandbox script.</p>
 <ol start="2">
 <li>From source, using opam:
 </li>

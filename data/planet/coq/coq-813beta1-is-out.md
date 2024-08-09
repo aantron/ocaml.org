@@ -44,7 +44,7 @@ We encourage our users to test this beta release, in particular:
   regression.
 </li>
 </ul>
-
+<p></p>
 
 <p>
 The 8.13.0 release is expected to occur about one month from now.

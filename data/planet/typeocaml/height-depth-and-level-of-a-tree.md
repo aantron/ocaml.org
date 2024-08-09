@@ -10,7 +10,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2014/11/groot_tree2.jpg#hero" alt="tree"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/11/groot_tree2.jpg#hero" alt="tree"></p>
 
 <p>This is a post on the three important properties of trees: <em>height</em>, <em>depth</em> and <em>level</em>, together with <em>edge</em> and <em>path</em>. I bet that most people already know what they are and <a href="http://en.wikipedia.org/wiki/Tree_(data_structure)">tree (data structure) on wiki</a> also explains them briefly. </p>
 
@@ -21,20 +21,20 @@ source:
 <h1>Edge</h1>
 
 <blockquote>
-  <p>Edge &ndash; connection between one node to another. </p>
+  <p>Edge – connection between one node to another. </p>
 </blockquote>
 
-<p><img src="http://typeocaml.com/content/images/2014/11/edge-1.jpg#small" alt="edge"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/11/edge-1.jpg#small" alt="edge"></p>
 
 <p>An example of edge is shown above between <em>A</em> and <em>B</em>. Basically, an edge is a line between two nodes, <strong>or a node and a leaf</strong>. </p>
 
 <h1>Path</h1>
 
 <blockquote>
-  <p>Path &ndash; a sequence of nodes and edges connecting a node with a descendant.</p>
+  <p>Path – a sequence of nodes and edges connecting a node with a descendant.</p>
 </blockquote>
 
-<p><img src="http://typeocaml.com/content/images/2014/11/path-1.jpg#small" alt="path"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/11/path-1.jpg#small" alt="path"></p>
 
 <p>A path starts from a node and ends at another node or a leaf. Please don't look over the following points:</p>
 
@@ -46,12 +46,12 @@ source:
 <h1>Height</h1>
 
 <blockquote>
-  <p>Height of node &ndash; The height of a node is the number of edges on the longest downward path between that node and a leaf.</p>
+  <p>Height of node – The height of a node is the number of edges on the longest downward path between that node and a leaf.</p>
 </blockquote>
 
 <p>At first, we can see the above wiki definition has a redundant term - <em>downward</em> - inside. As we already know from previous section, path can only be downward. </p>
 
-<p><img src="http://typeocaml.com/content/images/2014/11/height-3.jpg#small" alt="height"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/11/height-3.jpg#small" alt="height"></p>
 
 <p>When looking at height:</p>
 
@@ -64,7 +64,7 @@ source:
 <p><strong>The height of the root is 1.</strong></p>
 
 <blockquote>
-  <p>Height of tree &ndash;The height of a tree is the number of edges on the longest downward path between the root and a leaf.</p>
+  <p>Height of tree –The height of a tree is the number of edges on the longest downward path between the root and a leaf.</p>
 </blockquote>
 
 <p>So <strong>the height of a tree is the height of its root</strong>. </p>
@@ -83,10 +83,10 @@ source:
 <h1>Depth</h1>
 
 <blockquote>
-  <p>Depth &ndash;The depth of a node is the number of edges from the node to the tree's root node.</p>
+  <p>Depth –The depth of a node is the number of edges from the node to the tree's root node.</p>
 </blockquote>
 
-<p><img src="http://typeocaml.com/content/images/2014/11/depth-1.jpg#small" alt="depth"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/11/depth-1.jpg#small" alt="depth"></p>
 
 <p>We don't care about path any more when depth pops in. We just count how many edges between the targeting node and the root, ignoring directions. For example, <em>D</em>'s depth is 2.</p>
 
@@ -97,16 +97,16 @@ source:
 <h1>Level</h1>
 
 <blockquote>
-  <p>Level &ndash; The level of a node is defined by 1 + the number of connections between the node and the root.</p>
+  <p>Level – The level of a node is defined by 1 + the number of connections between the node and the root.</p>
 </blockquote>
 
-<p><img src="http://typeocaml.com/content/images/2014/11/level.jpg#small" alt="level"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/11/level.jpg#small" alt="level"></p>
 
 <p>Simply, <strong>level is depth plus 1.</strong></p>
 
 <p>The important thing to remember is when talking about level, it <strong>starts from 1</strong> and <strong>the level of the root is 1</strong>. We need to be careful about this when solving problems related to level. </p>
 
-<hr/>
+<hr>
 
 <p><strong>[1]</strong> Although point 2 stands, sometimes some problems may talk about paths in an arbitrary way, like <em>the path between B and F</em>. We have to live with that while deep in our hearts remembering the precise definition.</p>
 

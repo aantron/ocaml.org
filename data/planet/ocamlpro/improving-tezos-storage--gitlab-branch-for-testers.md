@@ -5,8 +5,8 @@ description: This article is the third post of a series of posts on improving Te
   beta testers, wanting to test our storage and garbage collector. Today, we are glad
   to announce that we rebased our code on the latest version of ...
 url: https://ocamlpro.com/blog/2019_02_04_improving_tezos_storage_gitlab_branch_for_testers
-date: 2019-02-04T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2019-02-04T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Fabrice Le Fessant\n  "
 source:
@@ -38,8 +38,8 @@ Thank you!</p>
 </blockquote>
 <p>Fabrice Le Fessant (10 February 2019 at 15 h 47 min):</p>
 <blockquote>
-<p>By default, garbage collection will keep 9 cycles of blocks (~36000 blocks). If you have fewer blocks, or if you are using Irontez on a former Tezos database, and fewer than 9 cycles have been stored in Irontez, nothing will happen. If you want to force a garbage collection, you should tell Irontez to keep fewer block (but more than 100, that&rsquo;s the minimum that we enforce):</p>
-<p>~/tezos/tezos-client rpc get &lsquo;/storage/context/gc?keep=120&rsquo;</p>
+<p>By default, garbage collection will keep 9 cycles of blocks (~36000 blocks). If you have fewer blocks, or if you are using Irontez on a former Tezos database, and fewer than 9 cycles have been stored in Irontez, nothing will happen. If you want to force a garbage collection, you should tell Irontez to keep fewer block (but more than 100, that’s the minimum that we enforce):</p>
+<p>~/tezos/tezos-client rpc get ‘/storage/context/gc?keep=120’</p>
 <p>should trigger a GC if the node has been running on Irontez for at least 2 hours.</p>
 </blockquote>
 <p>AppaDude (10 February 2019 at 16 h 04 min):</p>
@@ -60,12 +60,12 @@ Thank you!</p>
 </blockquote>
 <p>Fabrice Le Fessant (10 February 2019 at 20 h 51 min):</p>
 <blockquote>
-<p>Yes, normally. Don&rsquo;t forget it is still under beta-testing&hellip;</p>
+<p>Yes, normally. Don’t forget it is still under beta-testing…</p>
 <p>Note that <code>/storage/context/revert</code> works even if you remove <code>context.backup</code>.</p>
 </blockquote>
 <p>Jack (23 February 2019 at 0 h 24 min):</p>
 <blockquote>
-<p>Have there been any issues reported with missing endorsements or missing bakings with this patch? We have been using this gc version (https://gitlab.com/tezos/tezos/merge_requests/720) for the past month and ever since we switched we have been missing endorsements and missing bakings. The disk space savings is amazing, but if we keep missing ends/bakes, it&rsquo;s going to hurt our reputation as a baking service.</p>
+<p>Have there been any issues reported with missing endorsements or missing bakings with this patch? We have been using this gc version (https://gitlab.com/tezos/tezos/merge_requests/720) for the past month and ever since we switched we have been missing endorsements and missing bakings. The disk space savings is amazing, but if we keep missing ends/bakes, it’s going to hurt our reputation as a baking service.</p>
 </blockquote>
 <p>Fabrice Le Fessant (23 February 2019 at 6 h 58 min):</p>
 <blockquote>
@@ -78,13 +78,13 @@ Thank you!</p>
 </blockquote>
 <p>Jack (25 February 2019 at 15 h 51 min):</p>
 <blockquote>
-<p>Is there no way to convert a &ldquo;standard node&rdquo; to IronTez? I was running the official tezos-node, and my datadir is around 90G. I compiled IronTez and started it up on that same dir, then ran <code>rpc get /storage/context/gc</code> and nothing is happening. I thought this was supposed to convert my datadir to irontez? If not, what is the RPC to do this? Or must I start from scratch to be 100% irontez?</p>
+<p>Is there no way to convert a “standard node” to IronTez? I was running the official tezos-node, and my datadir is around 90G. I compiled IronTez and started it up on that same dir, then ran <code>rpc get /storage/context/gc</code> and nothing is happening. I thought this was supposed to convert my datadir to irontez? If not, what is the RPC to do this? Or must I start from scratch to be 100% irontez?</p>
 </blockquote>
 <p>Fabrice Le Fessant (25 February 2019 at 16 h 24 min):</p>
 <blockquote>
 <p>There are two ways to get a full Irontez DB:</p>
 <ul>
-<li>Start a node from scratch and wait for one or two days&hellip;
+<li>Start a node from scratch and wait for one or two days…
 </li>
 <li>Use an existing node, run Irontez on it for 2 hours, and then call <code>rpc get /storage/context/gc?keep=100</code> . 100 is the number of blocks to be kept. After 2 hours, the last 120 blocks should be stored in the IronTez DB, so the old DB will not be used anymore. Note that Irontez will not delete the old DB, just rename it. You should go there and remove the file to recover the disk space.
 </li>

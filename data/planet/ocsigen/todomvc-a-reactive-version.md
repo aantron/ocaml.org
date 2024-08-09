@@ -89,7 +89,7 @@ parts.</p>
 the application, <em>e.g.,</em> by adding a new task, or by clicking on a
 checkbox to select a specific task:</p>
 
-<p><img src="https://ocsigen.org/img/posts/2015/react-example-todomvc-steps.png" alt="MVC with `React`"/></p>
+<p><img src="https://ocsigen.org/img/posts/2015/react-example-todomvc-steps.png" alt="MVC with `React`"></p>
 
 <ol>
   <li>
@@ -146,8 +146,8 @@ argument. Here we use <code class="language-plaintext highlighter-rouge">React.S
 <figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">css_visibility</span> <span class="n">m</span> <span class="o">=</span>
   <span class="k">let</span> <span class="n">tasks</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="nn">Model</span><span class="p">.</span><span class="n">tasks</span> <span class="k">in</span>
   <span class="k">match</span> <span class="n">tasks</span> <span class="k">with</span>
-  <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="s2">&quot;visibility: hidden;&quot;</span>
-  <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="s2">&quot;visibility: visible;&quot;</span></code></pre></figure>
+  <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="s2">"visibility: hidden;"</span>
+  <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="s2">"visibility: visible;"</span></code></pre></figure>
 
 <p>As you can see, <code class="language-plaintext highlighter-rouge">css_visibility</code> receives a model <code class="language-plaintext highlighter-rouge">m</code> as its
 argument. When wrapped by <code class="language-plaintext highlighter-rouge">React.S.map</code> as above, <code class="language-plaintext highlighter-rouge">css_visibility</code>
@@ -173,11 +173,11 @@ example.</a>) It
 is a list of <code class="language-plaintext highlighter-rouge">&lt;li&gt;</code> nodes contained in a <code class="language-plaintext highlighter-rouge">&lt;ul&gt;</code> node. We accordingly
 have a reactive node, as follows:</p>
 
-<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="nn">R</span><span class="p">.</span><span class="nn">Html5</span><span class="p">.</span><span class="n">ul</span> <span class="o">~</span><span class="n">a</span><span class="o">:</span><span class="p">[</span><span class="n">a_class</span> <span class="p">[</span><span class="s2">&quot;todo-list&quot;</span><span class="p">]]</span> <span class="n">rl</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="nn">R</span><span class="p">.</span><span class="nn">Html5</span><span class="p">.</span><span class="n">ul</span> <span class="o">~</span><span class="n">a</span><span class="o">:</span><span class="p">[</span><span class="n">a_class</span> <span class="p">[</span><span class="s2">"todo-list"</span><span class="p">]]</span> <span class="n">rl</span></code></pre></figure>
 
 <p>As before, we use the <code class="language-plaintext highlighter-rouge">R.Html5</code> module. This time we do not use
 <code class="language-plaintext highlighter-rouge">R.Html5</code> to build an attribute, but rather a (<code class="language-plaintext highlighter-rouge">&lt;ul&gt;</code>) node. <code class="language-plaintext highlighter-rouge">rl</code>
-contains the node&rsquo;s children:</p>
+contains the node’s children:</p>
 
 <figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">rl</span> <span class="o">=</span> <span class="nn">ReactList</span><span class="p">.</span><span class="n">list</span> <span class="p">(</span><span class="nn">React</span><span class="p">.</span><span class="nn">S</span><span class="p">.</span><span class="n">map</span> <span class="n">visible_tasks</span> <span class="n">r</span><span class="p">)</span></code></pre></figure>
 

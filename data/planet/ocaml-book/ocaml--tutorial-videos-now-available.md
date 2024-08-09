@@ -4,7 +4,7 @@ description: 'I''ve made a few little tutorial videos to go with the book. Just 
   for now, covering the first four chapters, but more to come:   Evaluating an expression  True
   and false  Making decisions  Names and functions  Patterns  Lists  Take and drop  Appending
   two lists   They''re not really a substitute'
-url: http://ocaml-book.com/blog/2013/9/27/ocaml-tutorial-videos-now-available
+url: https://ocaml-book.com/blog/2013/9/27/ocaml-tutorial-videos-now-available
 date: 2013-09-27T14:04:48-00:00
 preview_image:
 authors:

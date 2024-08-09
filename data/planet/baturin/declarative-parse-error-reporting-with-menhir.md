@@ -11,6 +11,6 @@ source:
 
 
     Many parsers for custom formats aren't very user friendly when it comes to error handling.
-At best you get the line and column where the error is, at worst a &ldquo;Parse error&rdquo;
+At best you get the line and column where the error is, at worst a “Parse error”
 message is all you get. Can we do better? With right tools, we definitely can and it's not that hard.
     

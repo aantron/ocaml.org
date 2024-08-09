@@ -9,4 +9,4 @@ authors:
 source:
 ---
 
-Announcment of our MirageVPN server.
+Announcement of our MirageVPN server.

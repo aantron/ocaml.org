@@ -11,9 +11,9 @@ source:
 
 
 <h3>Call for papers</h3>
-<p>The Coq workshop will bring together Coq users, developers and<br/>
-contributors. The workshop will be organized from submitted papers,<br/>
-invited talks and a plenary discussion on the evolution and design of<br/>
+<p>The Coq workshop will bring together Coq users, developers and<br>
+contributors. The workshop will be organized from submitted papers,<br>
+invited talks and a plenary discussion on the evolution and design of<br>
 Coq. Topics for submitting a paper include:</p>
 <ul>
 <li>Language or tactics features</li>
@@ -24,13 +24,13 @@ Coq. Topics for submitting a paper include:</p>
 <li>Interfacing with Coq</li>
 <li>Formalization tricks and Coq pearls</li>
 </ul>
-<p>Authors should send their papers to <a href="mailto:Hugo.Herbelin@inria.fr">Hugo.Herbelin@inria.fr</a>. Submitted<br/>
-papers should be in (postscript or) portable document format. Papers<br/>
-should not exceed 12 pages in length in single-column full-page 11pt A4<br/>
+<p>Authors should send their papers to <a href="mailto:Hugo.Herbelin@inria.fr">Hugo.Herbelin@inria.fr</a>. Submitted<br>
+papers should be in (postscript or) portable document format. Papers<br>
+should not exceed 12 pages in length in single-column full-page 11pt A4<br>
 style.</p>
-<p>If there is sufficient demand, we will try to organize a time slot for<br/>
-demonstrations. Similarly, we may also organize a session on the lessons<br/>
-learned from teaching Coq. If you are interested, please send a brief<br/>
+<p>If there is sufficient demand, we will try to organize a time slot for<br>
+demonstrations. Similarly, we may also organize a session on the lessons<br>
+learned from teaching Coq. If you are interested, please send a brief<br>
 proposal.</p>
 <h3>Venue:</h3>
 <p> <a href="http://itp2013.inria.fr/history.html">TPHOLs 2009</a>, Munich, Germany</p>
@@ -43,9 +43,9 @@ proposal.</p>
 <h3>Program committee:</h3>
 <ul>
 <li>Yves Bertot</li>
-<li>Fr&eacute;d&eacute;ric Blanqui</li>
-<li>Jacek Chrz&#261;czsz</li>
-<li>Eduardo Gim&eacute;nez</li>
+<li>Frédéric Blanqui</li>
+<li>Jacek Chrzączsz</li>
+<li>Eduardo Giménez</li>
 <li>Georges Gonthier</li>
 <li>Hugo Herbelin (chair)</li>
 <li>Greg Morrisett</li>

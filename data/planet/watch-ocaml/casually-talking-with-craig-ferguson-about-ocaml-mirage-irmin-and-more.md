@@ -13,6 +13,6 @@ source:
 
 <p>Craig Ferguson is a software developer at Tarides. Join us in this episode to talk more about OCaml, MirageOS, Irmin and much more!</p>
 <p>We are looking for sponsors! If you'd like to support more content for Ocaml, Reason and ReScript just send us a message at <a target="_blank" rel="noopener noreferrer">emelletvshow@gmail.com</a> -- Watch live at <a href="https://www.twitch.tv/emelletv" target="_blank" rel="noopener noreferrer">https://www.twitch.tv/emelletv</a></p>
-<p>0:00 Welcome<br/>
+<p>0:00 Welcome<br>
 1:57 Interview starts</p>
 

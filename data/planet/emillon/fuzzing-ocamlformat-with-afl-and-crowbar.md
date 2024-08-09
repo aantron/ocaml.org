@@ -8,7 +8,7 @@ authors:
 - Etienne Millon
 source:
 ---
-    
+
 <p><em>This article has been first published on the <a href="https://tarides.com/blog/2020-08-03-fuzzing-ocamlformat-with-afl-and-crowbar/">Tarides blog</a>.</em></p>
 <p><a href="https://lcamtuf.coredump.cx/afl/">AFL</a> (and fuzzing in general) is often used
 to find bugs in low-level code like parsers, but it also works very well to find
@@ -17,11 +17,11 @@ technique to feed random programs to OCamlFormat and found many formatting bugs.
 <p>OCamlFormat is a tool to format source code. To do so, it parses the source code
 to an Abstract Syntax Tree (AST) and then applies formatting rules to the AST.</p>
 <p>It can be tricky to correctly format the output. For example, say we want to
-format <code>(a+b)*c</code>. The corresponding AST will look like <code>Apply(&quot;*&quot;, Apply (&quot;+&quot;, Var &quot;a&quot;, Var &quot;b&quot;), Var &quot;c&quot;)</code>. A naive formatter would look like this:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span><a href="http://blog.emillon.org/feeds/ocaml.xml#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">rec</span> format = <span class="kw">function</span></span>
+format <code>(a+b)*c</code>. The corresponding AST will look like <code>Apply("*", Apply ("+", Var "a", Var "b"), Var "c")</code>. A naive formatter would look like this:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span><a href="http://blog.emillon.org/feeds/ocaml.xml#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">rec</span> <span class="dt">format</span> = <span class="kw">function</span></span>
 <span><a href="http://blog.emillon.org/feeds/ocaml.xml#cb1-2" aria-hidden="true" tabindex="-1"></a>  | Var s -&gt; s</span>
 <span><a href="http://blog.emillon.org/feeds/ocaml.xml#cb1-3" aria-hidden="true" tabindex="-1"></a>  | Apply (op, e1, e2) -&gt;</span>
-<span><a href="http://blog.emillon.org/feeds/ocaml.xml#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">Printf</span>.sprintf <span class="st">&quot;%s %s %s&quot;</span> (format e1) op (format e2)</span></code></pre></div>
+<span><a href="http://blog.emillon.org/feeds/ocaml.xml#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">Printf</span>.sprintf <span class="st">"%s %s %s"</span> (<span class="dt">format</span> e1) op (<span class="dt">format</span> e2)</span></code></pre></div>
 <p>But this is not correct, as it will print <code>(a+b)*c</code> as <code>a+b*c</code>, which is a
 different program. In this particular case, the common solution would be to
 track the relative precedence of the expressions and to emit only necessary
@@ -65,16 +65,16 @@ it is possible to generate random values for an external type like
 <a href="https://github.com/yomimono/ocaml-test-omp/blob/d086037027537ba4e23ce027766187979c85aa3d/test/parsetree_405.ml">somebody already did the work</a>. Thanks, Mindy!</p>
 <p>This approach works really well: it generates 5k-10k programs per second, which
 is very good performance (AFL starts complaining below 100/s).</p>
-<p>Quickly, AFL was able to find crashes related to attributes. These are &ldquo;labels&rdquo;
+<p>Quickly, AFL was able to find crashes related to attributes. These are “labels”
 attached to various nodes of the AST. For example the expression <code>(x || y) [@a]</code>
-(logical or between <code>x</code> and <code>y</code>, attach attribute <code>a</code> to the &ldquo;or&rdquo; expression)
+(logical or between <code>x</code> and <code>y</code>, attach attribute <code>a</code> to the “or” expression)
 would get formatted as <code>x || y [@a]</code> (attribute <code>a</code> is attached to the <code>y</code>
 variable). Once again, there is a check in place in OCamlFormat to make sure
 that it does not save the file in this case, but it would exit with an error.</p>
 <p>After the fuzzer has run for a bit longer, it found crashes where comments would
 jump around in expressions like <code>f (*a*) (*bb*) x</code>. Wait, what? We never told
 the program generator how to generate comments. Inspecting the intermediate AST,
-the part in the middle is actually an integer literal with value <code>&quot;(*a*) (*bb*)&quot;</code> (integer literals are represented as strings so that <a href="https://github.com/Drup/Zarith-ppx">a third party
+the part in the middle is actually an integer literal with value <code>"(*a*) (*bb*)"</code> (integer literals are represented as strings so that <a href="https://github.com/Drup/Zarith-ppx">a third party
 library could add literals for arbitrary precision numbers</a> for
 example).</p>
 <p>AFL comes with a program called <code>afl-tmin</code> that is used to minimize a crash. It

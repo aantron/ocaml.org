@@ -5,8 +5,8 @@ description: From the very start OCamlPro has been trying to help ease the learn
   of Computer Science domains, from algorithmic to calculus, or functional programming
   and compilation. The language had been long taught in Acade...
 url: https://ocamlpro.com/blog/2023_12_13_learn_ocaml_gateway_to_the_ocaml_world
-date: 2023-12-13T16:49:04-00:00
-preview_image: https://ocamlpro.com/assets/img/logo_ocp_icon.svg
+date: 2023-12-13T13:31:53-00:00
+preview_image: https://ocamlpro.com/blog/assets/img/dalle_camel_on_the_road.png
 authors:
 - "\n    Dario Pinto\n  "
 source:
@@ -17,14 +17,14 @@ source:
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/dalle_camel_on_the_road.png">
-      <img src="https://ocamlpro.com/blog/assets/img/dalle_camel_on_the_road.png" alt="Camels are known to be able to walk long distances. They have adapted to an unhospitable environment and help Humanity daily."/>
+      <img src="https://ocamlpro.com/blog/assets/img/dalle_camel_on_the_road.png" alt="Camels are known to be able to walk long distances. They have adapted to an inhospitable environment and help Humanity daily.">
     </a>
     </p><div class="caption">
-      Camels are known to be able to walk long distances. They have adapted to an unhospitable environment and help Humanity daily.
+      Camels are known to be able to walk long distances. They have adapted to an inhospitable environment and help Humanity daily.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>From the very start OCamlPro has been trying to help ease the learning of the
 OCaml language. OCaml has been used around the world to teach about a variety
 of Computer Science domains, from algorithmic to calculus, or functional
@@ -44,7 +44,7 @@ project steadily grew into a fully fledged tool used by teachers and students
 around the world to this day.</p>
 <p><em>Kudos to all OCaml teachers around the world, and to the LearnOCaml team, shepherded by Louis Gesbert</em></p>
 <h2>
-<a class="anchor"></a>Learn-OCaml v1.0<a href="https://ocamlpro.com/blog/feed#loc">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#loc" class="anchor-link">Learn-OCaml v1.0</a>
           </h2>
 <blockquote>
 <p><strong>What is Learn-OCaml today?</strong></p>
@@ -59,7 +59,7 @@ give assignments, get grades, etc.</p>
 over the years on <code>Learn-OCaml</code> is finally bearing its fruits in the form of a
 long-awaited soon-to-be-released <code>v1.0</code>!</p>
 </blockquote>
-<hr/>
+<hr>
 <p>For all details relative to the upcoming <code>1.0</code> release, do refer to <a href="https://discuss.ocaml.org/t/learn-ocaml-1-0-approaching-call-for-testers/13621/1">Louis' post
 on OCaml Discuss</a>.</p>
 <p>For all historical intents and purposes, do refer to the <a href="https://files.ocamlpro.com/uploads/ocaml-2016-learn-ocaml.pdf">original 2016 OCaml

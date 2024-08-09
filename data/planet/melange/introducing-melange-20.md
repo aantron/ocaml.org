@@ -15,7 +15,7 @@ compatibility with the OCaml Platform. Melange 2.0 unifies the compiler
 attributes and libraries under the Melange brand and it improves developer
 experience across the ecosystem. We're also publishing a few battle-tested
 libraries to&nbsp;<a href="https://github.com/ocaml/opam-repository" target="_blank" rel="noreferrer">OPAM</a>.</p>
-<hr/>
+<hr>
 <p>Everything we have included in this release has been designed to enhance your
 experience writing Reason / OCaml for modern JS workflows. Here's a
 comprehensive look at what's new.</p>

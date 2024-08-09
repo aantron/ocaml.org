@@ -4,7 +4,7 @@ description: Also, quasicrystals . Have you ever found yourself wanting to do ge
   animations but didn't know how to visualize them? Since I couldn'...
 url: https://alaska-kamtchatka.blogspot.com/2011/10/first-principles-gif-encoder.html
 date: 2011-10-28T19:58:00-00:00
-preview_image: //2.bp.blogspot.com/-T0tvKxVPtBA/TqsJCUxziaI/AAAAAAAAAQk/JvmSxw0GNac/w1200-h630-p-k-no-nu/quasicrystal.gif
+preview_image: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgOxmfHRcDqnFjpz6B_FGSt1ODobGQjzy5CmGj0-Ip3n3osr22E6ZNlIyykvjElnKQwLoss7OETUt2QXYEOUdSqZkCqas6oIwv2RprW9p76trrxXQtUoCzB6B6NT5zHerIlqTG7CHIEUY8/w1200-h630-p-k-no-nu/quasicrystal.gif
 authors:
 - "Mat\xEDas Giovannini"
 source:

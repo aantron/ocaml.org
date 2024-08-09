@@ -10,6 +10,6 @@ source:
 ---
 
 
-<p>Version 8.3pl2 of Coq fixes several bugs of version 8.3pl1. In particular, it provides compatibility for compiling Coq from sources with the latest versions of Objective Caml and Camlp5. More information to be found in the <a href="https://coq.inria.fr/distrib/8.3pl2/CHANGES">CHANGES</a> file.</p>
+<p>Version 8.3pl2 of Coq fixes several bugs of version 8.3pl1. In particular, it provides compatibility for compiling Coq from sources with the latest versions of Objective Caml and Camlp5. More information to be found in the <a href="https://coq-distrib.s3-website.fr-par.scw.cloud/8.3pl2/CHANGES">CHANGES</a> file.</p>
 
  

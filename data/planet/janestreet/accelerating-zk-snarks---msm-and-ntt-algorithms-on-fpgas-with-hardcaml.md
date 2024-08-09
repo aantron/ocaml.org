@@ -13,7 +13,7 @@ source:
 
 <p>In 2022 a consortium of companies ran an international competition,
 called the <a href="https://www.zprize.io/">ZPrize</a>, to advance the state of
-the art in &ldquo;zero-knowledge&rdquo; cryptography. We decided to have a go in
+the art in “zero-knowledge” cryptography. We decided to have a go in
 our free time at submitting solutions to both the Multi-Scalar
 Multiplication (MSM) and Number Theoretic Transform (NTT) tracks,
 using the same open source <a href="https://hardcaml.com/">Hardcaml</a> libraries

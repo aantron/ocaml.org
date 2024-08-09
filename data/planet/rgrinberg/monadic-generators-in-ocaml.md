@@ -10,7 +10,7 @@ source:
 ---
 
 <p>Generators are one of those features that have been heavily popularized by
-today&rsquo;s fashionable languages such as Python and ES6. So it&rsquo;s not the first time
-I&rsquo;ve encountered programmers who are curious about OCaml bring up with questions
+today’s fashionable languages such as Python and ES6. So it’s not the first time
+I’ve encountered programmers who are curious about OCaml bring up with questions
 along the lines of:</p>
 

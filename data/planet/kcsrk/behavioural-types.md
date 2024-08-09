@@ -25,7 +25,7 @@ available
 <a href="http://www.di.unito.it/~padovani/Software/FuSe/FuSe.html">FuSe</a>, which is a
 simple library implementation of binary sessions in OCaml. Similar to FuSe
 linear use of resources is enforced through dynamic checks in the following
-examples. We&rsquo;ll raise <code class="language-plaintext highlighter-rouge">LinearityViolation</code> when linearity is violated.</p>
+examples. We’ll raise <code class="language-plaintext highlighter-rouge">LinearityViolation</code> when linearity is violated.</p>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">exception</span> <span class="nc">LinearityViolation</span>
 </code></pre></div></div>
@@ -112,11 +112,11 @@ reference. Incompatible references are rejected statically. For example,</p>
 </code></pre></div></div>
 
 <p>is accepted and runs forever. It is (sometimes) useful to write programs that
-don&rsquo;t always run forever such as <code class="language-plaintext highlighter-rouge">foo3</code>:</p>
+don’t always run forever such as <code class="language-plaintext highlighter-rouge">foo3</code>:</p>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="k">rec</span> <span class="n">foo3</span> <span class="n">r</span> <span class="o">=</span> <span class="k">function</span>
   <span class="o">|</span> <span class="mi">0</span> <span class="o">-&gt;</span>
-      <span class="n">print_endline</span> <span class="s2">&quot;done&quot;</span><span class="p">;</span>
+      <span class="n">print_endline</span> <span class="s2">"done"</span><span class="p">;</span>
       <span class="nn">Ref</span><span class="p">.</span><span class="n">read</span> <span class="n">r</span>
   <span class="o">|</span> <span class="n">n</span> <span class="o">-&gt;</span>
       <span class="k">let</span> <span class="n">r</span> <span class="o">=</span> <span class="nn">Ref</span><span class="p">.</span><span class="n">write</span> <span class="n">r</span> <span class="mi">20</span> <span class="k">in</span>
@@ -144,7 +144,7 @@ always of the form <code class="language-plaintext highlighter-rouge">fun x -&gt
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="k">rec</span> <span class="n">foo3</span> <span class="n">r</span> <span class="o">=</span> <span class="k">function</span>
   <span class="o">|</span> <span class="mi">0</span> <span class="o">-&gt;</span>
-      <span class="n">print_endline</span> <span class="s2">&quot;done&quot;</span><span class="p">;</span>
+      <span class="n">print_endline</span> <span class="s2">"done"</span><span class="p">;</span>
       <span class="nn">Ref</span><span class="p">.</span><span class="n">write</span> <span class="p">(</span><span class="nn">Ref</span><span class="p">.</span><span class="n">branch</span> <span class="n">r</span> <span class="p">(</span><span class="k">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="nt">`Zero</span> <span class="n">x</span><span class="p">))</span> <span class="mi">0</span>
   <span class="o">|</span> <span class="n">n</span> <span class="o">-&gt;</span>
       <span class="k">let</span> <span class="n">r</span> <span class="o">=</span> <span class="nn">Ref</span><span class="p">.</span><span class="n">write</span> <span class="p">(</span><span class="nn">Ref</span><span class="p">.</span><span class="n">branch</span> <span class="n">r</span> <span class="p">(</span><span class="k">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="nt">`Succ</span> <span class="n">x</span><span class="p">))</span> <span class="mi">20</span> <span class="k">in</span>
@@ -337,10 +337,10 @@ dictated by the flags supplied. For example, with <code class="language-plaintex
 file descriptor obtained should be <code class="language-plaintext highlighter-rouge">([`Close | `Read of 'a] as 'a) t</code>. The
 types of standard streams are also restricted. For example,</p>
 
-<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">open_stderr</span> <span class="bp">()</span> <span class="o">|&gt;</span> <span class="k">fun</span> <span class="n">fd</span> <span class="o">-&gt;</span> <span class="n">write</span> <span class="n">fd</span> <span class="s2">&quot;hello</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="mi">0</span> <span class="mi">6</span><span class="p">;;</span>
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">open_stderr</span> <span class="bp">()</span> <span class="o">|&gt;</span> <span class="k">fun</span> <span class="n">fd</span> <span class="o">-&gt;</span> <span class="n">write</span> <span class="n">fd</span> <span class="s2">"hello</span><span class="se">\n</span><span class="s2">"</span> <span class="mi">0</span> <span class="mi">6</span><span class="p">;;</span>
 <span class="n">hello</span>
 <span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="p">([</span> <span class="nt">`Close</span> <span class="o">|</span> <span class="nt">`Write</span> <span class="k">of</span> <span class="k">'</span><span class="n">a</span> <span class="p">]</span> <span class="k">as</span> <span class="k">'</span><span class="n">a</span><span class="p">)</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="o">,</span> <span class="o">&lt;</span><span class="n">abstr</span><span class="o">&gt;</span><span class="p">)</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="n">open_stdin</span> <span class="bp">()</span> <span class="o">|&gt;</span> <span class="k">fun</span> <span class="n">fd</span> <span class="o">-&gt;</span> <span class="n">write</span> <span class="n">fd</span> <span class="s2">&quot;hello</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="mi">0</span> <span class="mi">6</span><span class="p">;;</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="n">open_stdin</span> <span class="bp">()</span> <span class="o">|&gt;</span> <span class="k">fun</span> <span class="n">fd</span> <span class="o">-&gt;</span> <span class="n">write</span> <span class="n">fd</span> <span class="s2">"hello</span><span class="se">\n</span><span class="s2">"</span> <span class="mi">0</span> <span class="mi">6</span><span class="p">;;</span>
 <span class="nc">Error</span><span class="o">:</span> <span class="nc">This</span> <span class="n">expression</span> <span class="n">has</span> <span class="k">type</span> <span class="p">([</span> <span class="nt">`Close</span> <span class="o">|</span> <span class="nt">`Read</span> <span class="k">of</span> <span class="k">'</span><span class="n">a</span> <span class="p">]</span> <span class="k">as</span> <span class="k">'</span><span class="n">a</span><span class="p">)</span> <span class="n">t</span>
        <span class="n">but</span> <span class="n">an</span> <span class="n">expression</span> <span class="n">was</span> <span class="n">expected</span> <span class="k">of</span> <span class="k">type</span> <span class="p">[</span><span class="o">&gt;</span> <span class="nt">`Write</span> <span class="k">of</span> <span class="p">[</span><span class="o">&gt;</span>  <span class="p">]</span> <span class="p">]</span> <span class="n">t</span>
        <span class="nc">The</span> <span class="n">first</span> <span class="n">variant</span> <span class="k">type</span> <span class="n">does</span> <span class="n">not</span> <span class="n">allow</span> <span class="n">tag</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="nt">`Write</span>
@@ -349,9 +349,9 @@ types of standard streams are also restricted. For example,</p>
 <p>File descriptors can also be made read or write only.</p>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">foo</span> <span class="n">fd</span> <span class="o">=</span>
-         <span class="k">let</span> <span class="n">_</span><span class="o">,</span> <span class="n">fd</span> <span class="o">=</span> <span class="n">write</span> <span class="n">fd</span>  <span class="s2">&quot;hello</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="mi">0</span> <span class="mi">6</span> <span class="k">in</span>
+         <span class="k">let</span> <span class="n">_</span><span class="o">,</span> <span class="n">fd</span> <span class="o">=</span> <span class="n">write</span> <span class="n">fd</span>  <span class="s2">"hello</span><span class="se">\n</span><span class="s2">"</span> <span class="mi">0</span> <span class="mi">6</span> <span class="k">in</span>
          <span class="k">let</span> <span class="n">fd</span> <span class="o">=</span> <span class="n">mk_read_only</span> <span class="n">fd</span> <span class="k">in</span>
-         <span class="n">write</span> <span class="n">fd</span> <span class="s2">&quot;hello</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="mi">0</span> <span class="mi">6</span><span class="p">;;</span>
+         <span class="n">write</span> <span class="n">fd</span> <span class="s2">"hello</span><span class="se">\n</span><span class="s2">"</span> <span class="mi">0</span> <span class="mi">6</span><span class="p">;;</span>
 <span class="nc">Error</span><span class="o">:</span> <span class="nc">This</span> <span class="n">expression</span> <span class="n">has</span> <span class="k">type</span> <span class="p">([</span> <span class="nt">`Close</span> <span class="o">|</span> <span class="nt">`Read</span> <span class="k">of</span> <span class="k">'</span><span class="n">a</span> <span class="p">]</span> <span class="k">as</span> <span class="k">'</span><span class="n">a</span><span class="p">)</span> <span class="n">t</span>
        <span class="n">but</span> <span class="n">an</span> <span class="n">expression</span> <span class="n">was</span> <span class="n">expected</span> <span class="k">of</span> <span class="k">type</span> <span class="p">[</span><span class="o">&gt;</span> <span class="nt">`Write</span> <span class="k">of</span> <span class="p">[</span><span class="o">&gt;</span>  <span class="p">]</span> <span class="p">]</span> <span class="n">t</span>
        <span class="nc">The</span> <span class="n">first</span> <span class="n">variant</span> <span class="k">type</span> <span class="n">does</span> <span class="n">not</span> <span class="n">allow</span> <span class="n">tag</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="nt">`Write</span>

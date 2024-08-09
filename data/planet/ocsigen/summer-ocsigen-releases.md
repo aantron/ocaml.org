@@ -49,7 +49,7 @@ is:</p>
 
 <ul>
   <li>
-    <p>Replace Server&rsquo;s internals with cohttp, as part of our
+    <p>Replace Server’s internals with cohttp, as part of our
 move towards Mirage-compatible libraries. See <a href="https://github.com/ocsigen/ocsigenserver/issues/54">here</a>.</p>
   </li>
   <li>

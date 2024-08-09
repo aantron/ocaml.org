@@ -11,4 +11,4 @@ source:
 ---
 
 
-The four nines puzzle asks which positive numbers can be obtained from arithmetic expressions involving four &quot;9&quot; digits and an assortment of operations, minimally &quot;+&quot;, &quot;-&quot; (binary and unary), &quot;&times;&quot; and &quot;/&quot;, also frequently &quot;&radic;&quot; and sometimes &quot;!&quot; (factorial). I'll show how to find them by brute force. In this case, I'll forgo using factorials; this means that not every number under 100 can be so 
+The four nines puzzle asks which positive numbers can be obtained from arithmetic expressions involving four "9" digits and an assortment of operations, minimally "+", "-" (binary and unary), "×" and "/", also frequently "√" and sometimes "!" (factorial). I'll show how to find them by brute force. In this case, I'll forgo using factorials; this means that not every number under 100 

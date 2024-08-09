@@ -12,7 +12,7 @@ source:
 
 <html><head>
 
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <title>Bucket Sort</title>
 </head>
 <body>
@@ -32,7 +32,7 @@ The idea of bucket sort is to divide <i>[0, 1)</i> into <i>n</i> equal-sized sub
 </code></pre>
 <p></p>
 <p>
-</p><p>This code for bucket sort assumes the input is an <i>n</i>-element array <code class="code">a</code> and that each element <i>0 &le; <code class="code">a.(i)</code> &lt; 1</i>. The code requires an auxillary array <code class="code">b</code>.(<i>0 .. n - 1</i>) of lists (buckets).
+</p><p>This code for bucket sort assumes the input is an <i>n</i>-element array <code class="code">a</code> and that each element <i>0 ≤ <code class="code">a.(i)</code> &lt; 1</i>. The code requires an auxillary array <code class="code">b</code>.(<i>0 .. n - 1</i>) of lists (buckets).
 </p>
 <pre><code class="code"><span class="keyword">let</span> bucket_sort a =
   <span class="keyword">let</span> n = <span class="constructor">Array</span>.length a <span class="keyword">in</span>
@@ -57,12 +57,12 @@ bucket_sort [| 0.78; 0.17; 0.39; 0.26; 0.72; 0.94
 Bucket sort runs in linear time on the average.
 <p></p>
 <p>
-</p><hr/>
+</p><hr>
 <p>
-References:<br/>
-[1] &quot;Introduction to Algorithms&quot; Section 9.4:Bucket Sort -- Cormen et. al. (Second ed.) 2001.<br/>
+References:<br>
+[1] "Introduction to Algorithms" Section 9.4:Bucket Sort -- Cormen et. al. (Second ed.) 2001.<br>
 </p>
 
 
-</body></html>
 
+</body></html>

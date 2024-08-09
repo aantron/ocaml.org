@@ -15,7 +15,7 @@ source:
 real financial data. If you like ML projects, or think you might,
 <a href="https://www.kaggle.com/c/jane-street-market-prediction" target="_blank">head over and check it
 out</a>.
-We think it&rsquo;s a pretty fun one. The prizes are pretty good too, with a
+We think it’s a pretty fun one. The prizes are pretty good too, with a
 total $100K being paid out.</p>
 
 

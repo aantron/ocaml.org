@@ -2,14 +2,14 @@
 title: Two new doctors!
 description:
 url: http://math.andrej.com/2022/01/12/two-new-doctors/
-date: 2022-01-12T08:00:00-00:00
+date: 2022-01-11T23:00:00-00:00
 preview_image:
 authors:
 - Andrej Bauer
 source:
 ---
 
-<p>Within a month two of my students defended their theses: <a href="https://anjapetkovic.com">Dr. Anja Petkovi&#263; Komel</a> just before Christmas, and <a href="https://haselwarter.org">Dr. Philipp Haselwarter</a> just yesterday. I am very proud of them. Congratulations!</p>
+<p>Within a month two of my students defended their theses: <a href="https://anjapetkovic.com">Dr. Anja Petković Komel</a> just before Christmas, and <a href="https://haselwarter.org">Dr. Philipp Haselwarter</a> just yesterday. I am very proud of them. Congratulations!</p>
 
 
 

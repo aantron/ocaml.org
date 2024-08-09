@@ -5,8 +5,8 @@ description: OCamlPro started working on blockchains in 2014, when Arthur Breitm
   with a lot of innovations. So, we collaborated with him to write a specification,
   and to turn the specification into OCaml code. Since then...
 url: https://ocamlpro.com/blog/2019_04_29_blockchains_at_ocamlpro_an_overview
-date: 2019-04-29T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2019-04-29T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Fabrice Le Fessant\n  "
 source:
@@ -22,11 +22,11 @@ and to professionals, advised a dozen projects, developed tools and
 libraries, made some improvements and extensions to the official Tezos
 node, and conducted several private deployments of the Tezos ledger.</p>
 <blockquote>
-<p>For an overview of OCamlPro&rsquo;s blockchain activities see <a href="https://ocamlpro.com/blog/category/blockchains">here</a></p>
+<p>For an overview of OCamlPro’s blockchain activities see <a href="https://ocamlpro.com/blog/category/blockchains">here</a></p>
 </blockquote>
 <h2>TzScan: A complete Block Explorer for Tezos</h2>
 <p><a href="https://tzscan.io">TzScan</a> is considered today to be the best block
-explorer for Tezos. It&rsquo;s made of three main components:</p>
+explorer for Tezos. It’s made of three main components:</p>
 <ul>
 <li>an indexer that queries the Tezos node and fills a relational
 database,
@@ -44,7 +44,7 @@ within our TzScan.io instance. Our deployment spans on multiple Tezos
 nodes, multiple API servers and a distributed database to scale and
 reply to millions of queries per day. We also regularly release open
 source versions under the GPL license, that can be easily deployed on
-private Tezos networks. TzScan&rsquo;s development has been initiated in
+private Tezos networks. TzScan’s development has been initiated in
 September 2017. It represents today an enormous investment, that the
 Tezos Foundation helped partially fund in July 2018.</p>
 <blockquote>
@@ -57,11 +57,11 @@ language for Tezos over Michelson. Its development began in April
 today the most advanced language for Tezos: it offers OCaml-like and
 ReasonML-like syntaxes for writing smart contracts, compilation and
 de-compilation to/from Michelson, multiple-entry points, static
-type-checking &agrave; la ML, etc. Its
+type-checking à la ML, etc. Its
 <a href="https://www.liquidity-lang.org/edit">online editor</a> allows to develop smart
 contracts and to deploy them directly into the alphanet or
 mainnet. Liquidity has been used before the mainnet launch to
-de-compile the Foundation&rsquo;s vesting smart contracts in order to review
+de-compile the Foundation’s vesting smart contracts in order to review
 them. This smart contract language represents more than two years of
 work, and is fully funded by OCamlPro. It has been developed with
 formal verification in mind, formal verification being one of the
@@ -89,7 +89,7 @@ post</a>.</p>
 Tezos. Among its additional features, the node adds some useful RPCs,
 improves storage, enables garbage collection and context pruning,
 allows an easy configuration of the private network, provides
-additional Michelson instructions (GET_STORAGE, CATCH&hellip;). One of its
+additional Michelson instructions (GET_STORAGE, CATCH…). One of its
 nice features is the ability to enable adaptive baking in private /
 proof-of-authority setting (eg. baking every 5 seconds in presence of
 transactions and every 10 minutes otherwise, etc.).</p>
@@ -97,13 +97,13 @@ transactions and every 10 minutes otherwise, etc.).</p>
 testing its <a href="https://ocamlpro.com/blog/2019_02_04_improving_tezos_storage_gitlab_branch_for_testers">improved storage system,
 Ironmin</a>,
 showing a 10x reduction in storage. Some TzScan.io nodes are also
-using versions of IronTez. We&rsquo;ve also successfully deployed it along
+using versions of IronTez. We’ve also successfully deployed it along
 with TzScan for a big foreign company to experiment with private
 blockchains. We are searching for projects and funding opportunities
 to keep developing and maintaining this optimized version of the Tezos
 node.</p>
 <blockquote>
-<p>Don&rsquo;t hesitate to contact us if you want to deploy a blockchain with IronTez, or for more information !</p>
+<p>Don’t hesitate to contact us if you want to deploy a blockchain with IronTez, or for more information !</p>
 </blockquote>
 <h1>Comments</h1>
 <p>Kristen (3 May 2019 at 0 h 30 min):</p>

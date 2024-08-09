@@ -21,7 +21,7 @@ people show up to hear our two presenters.
 <p>
 First up we had Shane Stephens with a presentation titled
 	<a href="https://docs.google.com/present/edit?id=0AarxCNC60L1qZGYzNHdoOXJfNDJndmtzeDhoag&amp;hl=en">
-	&quot;Exploring 3D Graphics with Togra&quot;</a>.
+	"Exploring 3D Graphics with Togra"</a>.
 Togra
 	<a href="http://github.com/shans/togra">
 	(code available here)</a>
@@ -46,7 +46,7 @@ does think that Arrows are the right solution.
 Our second presenter for the evening was Anthony Sloane of Macquarie University
 on the subject of the
 	<a href="http://code.google.com/p/kiama/wiki/Research">
-	&quot;Launchbury's Natural Semantics for Lazy Evaluation&quot;</a>
+	"Launchbury's Natural Semantics for Lazy Evaluation"</a>
 with Scala code available on the same page.
 Tony set up a simple language and then walked us through the reduction rules
 for the language.

@@ -19,13 +19,13 @@ source:
 
 <p class="noindent">Step back: first compile and install OCaml from sources. This time I say no, because the whole point of OPAM is to get an up and running OCaml environment in a few minutes, which is <strong>actually true</strong> in most cases.</p>
 
-<p class="noindent">I decide to install OCaml using <a href="https://godi.camlcity.org/godi/get_godi.html" title="Get GODI">GODI</a>, the &ldquo;old&rdquo; OCaml source distribution, the one everybody used before OPAM was born. So the fastest steps to have an OPAM and OCaml environment on a CentOS server are:</p>
+<p class="noindent">I decide to install OCaml using <a href="https://godi.camlcity.org/godi/get_godi.html" title="Get GODI">GODI</a>, the “old” OCaml source distribution, the one everybody used before OPAM was born. So the fastest steps to have an OPAM and OCaml environment on a CentOS server are:</p>
 
 <ul>
   <li>download and install GODI;</li>
-  <li>clone the <a href="https://github.com/ocaml/opam" title="GITHUB - ocaml/opam">OPAM repository</a>, compile and install it; it will find a &ldquo;system&rdquo; compiler provided by GODI;</li>
+  <li>clone the <a href="https://github.com/ocaml/opam" title="GITHUB - ocaml/opam">OPAM repository</a>, compile and install it; it will find a “system” compiler provided by GODI;</li>
   <li><code>$ opam switch 4.01.0</code> will recompile a new environment;</li>
-  <li><code>$ opam switch remove system</code> to delete the &ldquo;system&rdquo; environment;</li>
+  <li><code>$ opam switch remove system</code> to delete the “system” environment;</li>
   <li><code>$ rm -Rf ~/godi</code>.</li>
 </ul>
 

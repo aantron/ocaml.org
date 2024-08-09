@@ -10,9 +10,9 @@ authors:
 source:
 ---
 
-<p>We&rsquo;ve been doing a bunch of work recently on improving the responsiveness of
-OCaml&rsquo;s garbage collector. I thought it would be worth discussing these
+<p>We’ve been doing a bunch of work recently on improving the responsiveness of
+OCaml’s garbage collector. I thought it would be worth discussing these
 developments publicly to see if there was any useful feedback to be had on the
-ideas that we&rsquo;re investigating.</p>
+ideas that we’re investigating.</p>
 
 

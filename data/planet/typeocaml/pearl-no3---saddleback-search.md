@@ -9,7 +9,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2015/03/pearl_3_easter_1-2.jpg#hero" alt=""/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/pearl_3_easter_1-2.jpg#hero" alt=""></p>
 
 <h1>Happy Easter</h1>
 
@@ -53,7 +53,7 @@ source:
 
 <p>From first 4 points, if we pick a value $ X $ for $ x $, we know we can descrease $ x $ from $ X $ at most $ X $ times. It is also true for $ y $ and $ z $.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/x_descrease.jpg" alt="decrease_x"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/x_descrease.jpg" alt="decrease_x"></p>
 
 <p>Then let's assume $ X $ and $ Y $ makes $ f $ equal to $ Z $ ($ X, Y, Z $ are assumed to be values), i.e., </p>
 
@@ -105,17 +105,17 @@ source:
 
 <p>We also know $ 0 &lt;= x, y &lt;= Z $; thus, we can create a matrix that has $ z + 1 $ rows and $ z + 1 $ columns. And each cell will be the result of $ f (x, y) $, where $ x $ is the row number and $ y $ is the column number.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/matrix-1.jpg" alt="matrix"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/matrix-1.jpg" alt="matrix"></p>
 
 <p>The best thing from this matrix is that <strong>all rows are sorted and so are all columns</strong>. The reason is that $ f $ is a strictly increasing function on $ x $ and $ y $.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/sorted_matrix.jpg" alt="sorted_matrix"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/sorted_matrix.jpg" alt="sorted_matrix"></p>
 
 <p>This matrix converts the original problem to the one that <strong>now we have a board of unrevealed cards and we need to seek for an efficient strategy to find all cards that we want</strong>. </p>
 
 <p>The trivial solution in the previous section has a simplest strategy: simply reveal all cards one by one and collect all that are satisfying.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/trivial.jpg" alt="trivial"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/trivial.jpg" alt="trivial"></p>
 
 <h1>Zig-zag</h1>
 
@@ -123,10 +123,10 @@ source:
 
 <p>If we employ the trivial solution, then of course we will find all cards we want.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/zig_zag_1.jpg" alt="zig_zag_1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/zig_zag_1.jpg" alt="zig_zag_1"></p>
 
-<p>However, we can see that we need to reveal $ 36 $ cards for $ 4 $ targets. <br/>
-<img src="http://typeocaml.com/content/images/2015/03/zig_zag_2.jpg" alt="zig_zag_2"/></p>
+<p>However, we can see that we need to reveal $ 36 $ cards for $ 4 $ targets. <br>
+<img src="http://typeocaml.com/content/images/2015/03/zig_zag_2.jpg" alt="zig_zag_2"></p>
 
 <p>What a waste! But how can we improve it?</p>
 
@@ -136,7 +136,7 @@ source:
 
 <p>Let's just try starting from the most natural place - the top-left corn, where $ x = 0, y = 0 $.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/zig_zag_3-2.jpg" alt="zig_zag_3"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/zig_zag_3-2.jpg" alt="zig_zag_3"></p>
 
 <ol>
 <li>We get $ R $.  </li>
@@ -160,17 +160,17 @@ source:
 
 <p>Since sorted list is the fundamental condition for <em>merge</em>, how about we try to do something similar? Let's put two sorted lists in parallel and for the first two elements $ 1 $ and $ 3 $, we know $ 1 + 3 = 4 &lt; 21 $. </p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/sorted_list_1-3.jpg" alt="1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/sorted_list_1-3.jpg" alt="1"></p>
 
 <p>It is too small at this moment, what should we do? We know we should move rightwards to increase, but do we move along <code>list 1</code> or <code>list 2</code> or both? </p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/sorted_list_2-2.jpg" alt="2"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/sorted_list_2-2.jpg" alt="2"></p>
 
 <p>We don't know actually, because each possible movement may give us chances to find good pairs. If we just take all possible movements, then it makes no sense as in the end as it will just try every possible pair. Hence, we just need to find a way to restrict our choices of movements.</p>
 
 <p>How about we put one list in its natural order and put the other in its reversed order?</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/sorted_list_3-3.jpg" alt="3"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/sorted_list_3-3.jpg" alt="3"></p>
 
 <p>Now, $ 1 + 19 = 20 &lt; 21 $. It is again too small. What shall we do? Can we move along <code>list 2</code>? We cannot, because the next element there is definitely smaller and if we move along, we will get even smaller sum. So moving along <code>list 1</code> is our only option.</p>
 
@@ -178,7 +178,7 @@ source:
 
 <p>What if <code>i + j &gt; k</code>? It is easy to see that the only option for us is the next element in <code>list 2</code>.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/sorted_list_4-1.jpg" alt="4"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/sorted_list_4-1.jpg" alt="4"></p>
 
 <h2>One ascending and the other descending, always</h2>
 
@@ -192,15 +192,15 @@ source:
 
 <p>We can use an example to explain why we want the <em>ceiling</em> (similarly explaining why the <em>floor</em>).</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/zigzag_binarysearch_y.jpg" alt="binary_search_1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/zigzag_binarysearch_y.jpg" alt="binary_search_1"></p>
 
 <p>When we reach the <em>ceiling</em>, we know all cells on its left can be dicarded because those are definitely smaller than $ z $.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/zig_zag_4.jpg" alt="start_point"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/zig_zag_4.jpg" alt="start_point"></p>
 
 <p>In this way, the card revealing process for $ f (x, y) = x * y $ looks like this:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/matrix_example.jpg" alt="example"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/matrix_example.jpg" alt="example"></p>
 
 <h2>Code</h2>
 
@@ -309,6 +309,6 @@ let find_all_zigzag_bs f z =
 
 <p>For example, if we plot $ f (x, y) = x * y $ , we can see <a href="http://www.livephysics.com/tools/mathematical-tools/online-3-d-function-grapher/?xmin=-1&amp;xmax=1&amp;ymin=-1&amp;ymax=1&amp;zmin=Auto&amp;zmax=Auto&amp;f=x*y">this</a></p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/plot.jpg" alt="plot"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/plot.jpg" alt="plot"></p>
 
 <p>Does it look like a saddle?</p>

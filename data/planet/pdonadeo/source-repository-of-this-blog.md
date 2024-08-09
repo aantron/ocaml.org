@@ -10,7 +10,7 @@ source:
 ---
 
 <div><p class="noindent">
-Following my previous post, some people <a href="https://www.donadeo.net/post/2010/my-new-blog-in-objective-caml#commentary">asked me</a> to show the source code of this blog, so here it is:<br/>
+Following my previous post, some people <a href="https://www.donadeo.net/post/2010/my-new-blog-in-objective-caml#commentary">asked me</a> to show the source code of this blog, so here it is:<br>
 
 <a href="https://github.com/pdonadeo/personal_blog">https://github.com/pdonadeo/personal_blog</a>.</p>
 

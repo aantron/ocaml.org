@@ -39,7 +39,7 @@ while [ $# -gt 0 ] ; do
             REV=$2
             shift 2
         else
-            echo &quot;$USAGE&quot; &gt;&amp;2
+            echo "$USAGE" &gt;&amp;2
             exit 1
         fi
         ;;
@@ -47,13 +47,13 @@ while [ $# -gt 0 ] ; do
         SIM=y
         shift
         ;;
-    *)  ARGS[${#ARGS[*]}]=&quot;$1&quot;
+    *)  ARGS[${#ARGS[*]}]="$1"
         shift 1
         ;;
     esac
 done
-if [ &quot;$REV&quot; = &quot;&quot; ]; then
-    echo &quot;$USAGE&quot; &gt;&amp;2
+if [ "$REV" = "" ]; then
+    echo "$USAGE" &gt;&amp;2
     exit 1
 fi
 
@@ -70,27 +70,27 @@ n)  PLT=$HIDEOUT/Platforms/iPhoneOS.platform
     ;;
 esac
 
-$OCAMLC -ccopt -isysroot -ccopt &quot;$PLT$SDK&quot; &quot;${ARGS[@]}&quot;</code></pre>
+$OCAMLC -ccopt -isysroot -ccopt "$PLT$SDK" "${ARGS[@]}"</code></pre>
 
 <p>To compile for the iOS Simulator, specify <code>-sim</code> along with <code>-rev M.N</code>.</p>
 
-<p>Let&rsquo;s make a tiny OCaml program for testing:</p>
+<p>Let’s make a tiny OCaml program for testing:</p>
 
-<pre><code>$ Q=&quot;Do you know what it's like on the outside?\\n&quot;
-$ echo &quot;Printf.printf \&quot;$Q\&quot;&quot; &gt; ny1941.ml</code></pre>
+<pre><code>$ Q="Do you know what it's like on the outside?\\n"
+$ echo "Printf.printf \"$Q\"" &gt; ny1941.ml</code></pre>
 
-<p>Here&rsquo;s what happens if you compile with the current OCamlXSim on a
+<p>Here’s what happens if you compile with the current OCamlXSim on a
 system with the iOS 8.1 SDK:</p>
 
 <pre><code>$ /usr/local/ocamlxsim/bin/ocamlopt -o ny1941 ny1941.ml
 clang: warning: no such sysroot directory: '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk'
 ld: library not found for -lSystem
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
-File &quot;caml_startup&quot;, line 1:
+File "caml_startup", line 1:
 Error: Error during linking</code></pre>
 
-<p>As you can see, it&rsquo;s trying and failing to use the default iOS Simulator
-7.1 SDK. Here&rsquo;s how to use <code>ocamloptrev</code> (the above script):</p>
+<p>As you can see, it’s trying and failing to use the default iOS Simulator
+7.1 SDK. Here’s how to use <code>ocamloptrev</code> (the above script):</p>
 
 <pre><code>$ ocamloptrev -sim -rev 8.1 -o ny1941 ny1941.ml
 $ ls -l ny1941
@@ -100,7 +100,7 @@ ny1941: Mach-O executable i386
 $</code></pre>
 
 <p>You can actually run an iOS simulator app from the OS X command line,
-though there are many things that don&rsquo;t work properly.</p>
+though there are many things that don’t work properly.</p>
 
 <pre><code>$ ny1941
 Do you know what it's like on the outside?
@@ -110,7 +110,7 @@ $</code></pre>
 description of some differences between the OS X and the iOS Simulator
 environments.</p>
 
-<p>If you don&rsquo;t specify <code>-sim</code>, the script compiles for an iOS device as
+<p>If you don’t specify <code>-sim</code>, the script compiles for an iOS device as
 before:</p>
 
 <pre><code>$ ocamloptrev -rev 8.1 -o ny1941 ny1941.ml -cclib -Wl,-no_pie
@@ -118,13 +118,13 @@ $ file ny1941
 ny1941: Mach-O executable arm
 $ </code></pre>
 
-<p>When not working in the subbasement of my alma mater, I&rsquo;m working in my
+<p>When not working in the subbasement of my alma mater, I’m working in my
 cluttered underground workroom on several OCaml-on-iOS projects. Along
 with holiday joys and the delights of coding in node.js during the day,
-I&rsquo;ll keep working through them as fast as I can.</p>
+I’ll keep working through them as fast as I can.</p>
 
 <p>I hope this script will be useful for folks who want to try OCaml on the
-iOS Simulator while I&rsquo;m updating my humble patches to the latest
+iOS Simulator while I’m updating my humble patches to the latest
 versions of everything and keeping all the irons in the fire.</p>
 
 <p>If you have any trouble (or success) with the script, or have any other

@@ -9,12 +9,12 @@ authors:
 source:
 ---
 
-<p>&#8203;Our Autumn Compiler Hacking event will be held at Pembroke College! We are also inviting MirageOS users and devs to prepare for Mirage 3.0.</p>
+<p>​Our Autumn Compiler Hacking event will be held at Pembroke College! We are also inviting MirageOS users and devs to prepare for Mirage 3.0.</p>
 
 <p>If you're planning to come along, it'd be helpful if you could <a href="http://doodle.com/poll/fsy7gue9xvbvvdm8">indicate interest via Doodle</a> and <a href="http://lists.ocaml.org/admin/cam-compiler-hacking">sign up to the mailing list</a> to receive updates.</p>
 
-<p><em><strong>Where</strong></em>_: N7 Pembroke College<br/>
-Cambridge&#8203;<br/>
+<p><em><strong>Where</strong></em>_: N7 Pembroke College<br>
+Cambridge​<br>
 CB2 1RF  </p>
 
 <p>N7 is through the second arch and on the left.</p>
@@ -29,7 +29,7 @@ CB2 1RF  </p>
 
 <p>Wiki: https://github.com/ocamllabs/compiler-hacking/wiki</p>
 
-<p>We're defining &quot;compiler&quot; pretty broadly, to include anything that's part of the standard distribution, which means at least the
+<p>We're defining "compiler" pretty broadly, to include anything that's part of the standard distribution, which means at least the
  <a href="https://github.com/ocaml/ocaml/tree/trunk/stdlib">standard library</a>,
  <a href="https://github.com/ocaml/ocaml/tree/trunk/byterun">run</a><a href="https://github.com/ocaml/ocaml/tree/trunk/asmrun">time</a>, tools
     (<a href="http://caml.inria.fr/pub/docs/manual-ocaml/depend.html">ocamldep</a>,

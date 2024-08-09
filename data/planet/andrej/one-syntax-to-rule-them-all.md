@@ -2,14 +2,14 @@
 title: One syntax to rule them all
 description:
 url: http://math.andrej.com/2022/05/20/one-syntax-to-rule-them-all/
-date: 2022-05-20T07:00:00-00:00
+date: 2022-05-19T22:00:00-00:00
 preview_image:
 authors:
 - Andrej Bauer
 source:
 ---
 
-<p>I am at the <a href="https://europroofnet.github.io/wg6-kickoff-stockholm/">Syntax and Semantics of Type Theory</a> workshop in Stockholm, a kickoff meeting for <a href="https://europroofnet.github.io/wg6/">WG6</a> of the <a href="https://europroofnet.github.io">EuroProofNet</a> COST network, where I am giving a talk &ldquo;One syntax to rule them all&rdquo; based on joint work with <a href="https://danel.ahman.ee">Danel Ahman</a>.</p>
+<p>I am at the <a href="https://europroofnet.github.io/wg6-kickoff-stockholm/">Syntax and Semantics of Type Theory</a> workshop in Stockholm, a kickoff meeting for <a href="https://europroofnet.github.io/wg6/">WG6</a> of the <a href="https://europroofnet.github.io">EuroProofNet</a> COST network, where I am giving a talk “One syntax to rule them all” based on joint work with <a href="https://danel.ahman.ee">Danel Ahman</a>.</p>
 
 
 
@@ -34,10 +34,10 @@ I have the beginning of a formalization of the higher-rank syntax, but it hits a
    special cases:
 
    * order 1: ordinary variables and substitutions, for example those of
-     &lambda;-calculus
+     λ-calculus
    * order 2: meta-variables and their instantiations
    * order 3: symbols (term formers) in dependent type theory, such as
-     &Pi;, &Sigma;, W, and syntactic transformations between theories
+     Π, Σ, W, and syntactic transformations between theories
 
    The syntax is parameterized by a type Class of syntactic classes. For
    example, in dependent type theory there might be two syntactic
@@ -46,7 +46,7 @@ I have the beginning of a formalization of the higher-rank syntax, but it hits a
 
 module Syntax (Class : Set) where
 
-  {- Shapes can also be called &ldquo;syntactic variable contexts&rdquo;, as they assign to
+  {- Shapes can also be called “syntactic variable contexts”, as they assign to
      each variable its syntactic arity, but no typing information.
 
      An arity is a binding shape with a syntactic class. The shape specifies
@@ -59,37 +59,37 @@ module Syntax (Class : Set) where
      which case one has to append lists.
   -}
 
-  infixl 6 _&oplus;_
+  infixl 6 _⊕_
 
   data Shape : Set where
-    &#120792; : Shape -- the empty shape
-    [_,_] : &forall; (&gamma; : Shape) (cl : Class) &rarr; Shape -- the shape with precisely one variable
-    _&oplus;_ : &forall; (&gamma; : Shape) (&delta; : Shape) &rarr; Shape -- disjoint sum of shapes
+    𝟘 : Shape -- the empty shape
+    [_,_] : ∀ (γ : Shape) (cl : Class) → Shape -- the shape with precisely one variable
+    _⊕_ : ∀ (γ : Shape) (δ : Shape) → Shape -- disjoint sum of shapes
 
-  infix 5 [_,_]&isin;_
+  infix 5 [_,_]∈_
 
   {- The de Bruijn indices are binary numbers because shapes are binary
-     trees. [ &delta; , cl ]&isin; &gamma; is the set of variable indices in &gamma; whose arity
-     is (&delta;, cl). -}
+     trees. [ δ , cl ]∈ γ is the set of variable indices in γ whose arity
+     is (δ, cl). -}
 
-  data [_,_]&isin;_ : Shape &rarr; Class &rarr; Shape &rarr; Set where
-    var-here : &forall; {&theta;} {cl} &rarr; [ &theta; , cl ]&isin;  [ &theta; , cl ]
-    var-left :  &forall; {&theta;} {cl} {&gamma;} {&delta;} &rarr; [ &theta; , cl ]&isin; &gamma; &rarr; [ &theta; , cl ]&isin; &gamma; &oplus; &delta;
-    var-right : &forall; {&theta;} {cl} {&gamma;} {&delta;} &rarr; [ &theta; , cl ]&isin; &delta; &rarr; [ &theta; , cl ]&isin; &gamma; &oplus; &delta;
+  data [_,_]∈_ : Shape → Class → Shape → Set where
+    var-here : ∀ {θ} {cl} → [ θ , cl ]∈  [ θ , cl ]
+    var-left :  ∀ {θ} {cl} {γ} {δ} → [ θ , cl ]∈ γ → [ θ , cl ]∈ γ ⊕ δ
+    var-right : ∀ {θ} {cl} {γ} {δ} → [ θ , cl ]∈ δ → [ θ , cl ]∈ γ ⊕ δ
 
   {- Examples:
 
   postulate ty : Class -- type class
   postulate tm : Class -- term class
 
-  ordinary-variable-arity : Class &rarr; Shape
-  ordinary-variable-arity c = [ &#120792; , c ]
+  ordinary-variable-arity : Class → Shape
+  ordinary-variable-arity c = [ 𝟘 , c ]
 
   binary-type-metavariable-arity : Shape
-  binary-type-metavariable-arity = [ [ &#120792; , tm ] &oplus; [ &#120792; , tm ] , ty ]
+  binary-type-metavariable-arity = [ [ 𝟘 , tm ] ⊕ [ 𝟘 , tm ] , ty ]
 
-  &Pi;-arity : Shape
-  &Pi;-arity = [ [ &#120792; , ty ] &oplus; [ [ &#120792; , tm ] , ty ] , ty ]
+  Π-arity : Shape
+  Π-arity = [ [ 𝟘 , ty ] ⊕ [ [ 𝟘 , tm ] , ty ] , ty ]
 
   -}
 
@@ -101,55 +101,55 @@ module Syntax (Class : Set) where
 
   infix 9 _`_
 
-  data Expr : Shape &rarr; Class &rarr; Set where
-    _`_ : &forall; {&gamma;} {&delta;} {cl} (x : [ &delta; , cl ]&isin; &gamma;) &rarr;
-            (ts : &forall; {&theta;} {B} (y : [ &theta; , B ]&isin; &delta;) &rarr; Expr (&gamma; &oplus; &theta;) B) &rarr; Expr &gamma; cl
+  data Expr : Shape → Class → Set where
+    _`_ : ∀ {γ} {δ} {cl} (x : [ δ , cl ]∈ γ) →
+            (ts : ∀ {θ} {B} (y : [ θ , B ]∈ δ) → Expr (γ ⊕ θ) B) → Expr γ cl
 
   -- Renamings
 
-  infix 5 _&rarr;&#691;_
+  infix 5 _→ʳ_
 
-  _&rarr;&#691;_ : Shape &rarr; Shape &rarr; Set
-  &gamma; &rarr;&#691; &delta; = &forall; {&theta;} {cl} (x : [ &theta; , cl ]&isin; &gamma;) &rarr; [ &theta; , cl ]&isin; &delta;
+  _→ʳ_ : Shape → Shape → Set
+  γ →ʳ δ = ∀ {θ} {cl} (x : [ θ , cl ]∈ γ) → [ θ , cl ]∈ δ
 
   -- identity renaming
 
-  &#120793;&#691; : &forall; {&gamma;} &rarr; &gamma; &rarr;&#691; &gamma;
-  &#120793;&#691; x = x
+  𝟙ʳ : ∀ {γ} → γ →ʳ γ
+  𝟙ʳ x = x
 
   -- composition of renamings
 
-  infixl 7 _&#8728;&#691;_
+  infixl 7 _∘ʳ_
 
-  _&#8728;&#691;_ : &forall; {&gamma;} {&delta;} {&eta;} &rarr; (&delta; &rarr;&#691; &eta;) &rarr; (&gamma; &rarr;&#691; &delta;) &rarr; (&gamma; &rarr;&#691; &eta;)
-  (r &#8728;&#691; s) x =  r (s x)
+  _∘ʳ_ : ∀ {γ} {δ} {η} → (δ →ʳ η) → (γ →ʳ δ) → (γ →ʳ η)
+  (r ∘ʳ s) x =  r (s x)
 
   -- renaming extension
 
-  &uArr;&#691; : &forall; {&gamma;} {&delta;} {&Theta;} &rarr; (&gamma; &rarr;&#691; &delta;) &rarr; (&gamma; &oplus; &Theta; &rarr;&#691; &delta; &oplus; &Theta;)
-  &uArr;&#691; r (var-left x) =  var-left (r x)
-  &uArr;&#691; r (var-right y) = var-right y
+  ⇑ʳ : ∀ {γ} {δ} {Θ} → (γ →ʳ δ) → (γ ⊕ Θ →ʳ δ ⊕ Θ)
+  ⇑ʳ r (var-left x) =  var-left (r x)
+  ⇑ʳ r (var-right y) = var-right y
 
   -- the action of a renaming on an expression
 
-  infixr 6 [_]&#691;_
+  infixr 6 [_]ʳ_
 
-  [_]&#691;_ : &forall; {&gamma;} {&delta;} {cl} (r : &gamma; &rarr;&#691; &delta;) &rarr; Expr &gamma; cl &rarr; Expr &delta; cl
-  [ r ]&#691; (x ` ts) = r x ` &lambda; { y &rarr; [ &uArr;&#691; r ]&#691; ts y }
+  [_]ʳ_ : ∀ {γ} {δ} {cl} (r : γ →ʳ δ) → Expr γ cl → Expr δ cl
+  [ r ]ʳ (x ` ts) = r x ` λ { y → [ ⇑ʳ r ]ʳ ts y }
 
   -- substitution
-  infix 5 _&rarr;&#738;_
+  infix 5 _→ˢ_
 
-  _&rarr;&#738;_ : Shape &rarr; Shape &rarr; Set
-  &gamma; &rarr;&#738; &delta; = &forall; {&Theta;} {cl} (x : [ &Theta; , cl ]&isin; &gamma;) &rarr; Expr (&delta; &oplus; &Theta;) cl
+  _→ˢ_ : Shape → Shape → Set
+  γ →ˢ δ = ∀ {Θ} {cl} (x : [ Θ , cl ]∈ γ) → Expr (δ ⊕ Θ) cl
 
   -- side-remark: notice that the ts in the definition of Expr is just a substituition
 
   -- We now hit a problem when trying to define the identity substitution in a naive
   -- fashion. Agda rejects the definition, as it is not structurally recursive.
   -- {-# TERMINATING #-}
-  &#120793;&#738; : &forall; {&gamma;} &rarr; &gamma; &rarr;&#738; &gamma;
-  &#120793;&#738; x = var-left x ` &lambda; y &rarr;  [ &uArr;&#691; var-right ]&#691; &#120793;&#738; y
+  𝟙ˢ : ∀ {γ} → γ →ˢ γ
+  𝟙ˢ x = var-left x ` λ y →  [ ⇑ʳ var-right ]ʳ 𝟙ˢ y
 
   {- What is the best way to deal with the non-termination problem? I have tried:
 

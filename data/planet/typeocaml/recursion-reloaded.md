@@ -10,7 +10,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2014/12/infinity-cubes-room.jpg#hero" alt="recursion_reloaded"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/12/infinity-cubes-room.jpg#hero" alt="recursion_reloaded"></p>
 
 <p>One essential of computer programming is <em>repeating some operations</em>. This repetition has two forms: <em>for / while loop</em> and <em>recursion</em>. </p>
 
@@ -86,7 +86,7 @@ let sum = function
 <li>Next one is <code>6</code>, ...</li>
 </ol>
 
-<p><img src="http://typeocaml.com/content/images/2014/12/linear.jpg#small" alt="linear"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/12/linear.jpg#small" alt="linear"></p>
 
 <p>If we look closer into the diagram above, we will find out that at any single step, we need to care only <code>S</code> and can forget anything happened before. For example, in step 1, we get 2 numbers from the list, calculate, store it to <code>S</code> and forget the 2 numbers; then go to step 2, we need to retrieve from <code>S</code>, get the 3rd number, then update <code>S</code> with new result and forget anything else...</p>
 
@@ -98,7 +98,7 @@ let sum = function
 
 <p>If we try to analyse the recursive <code>sum</code>, we get</p>
 
-<p><img src="http://typeocaml.com/content/images/2014/12/recursive.jpg#small" alt="recursive"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/12/recursive.jpg#small" alt="recursive"></p>
 
 <p>After we retrieve the first number, 9, from the list, we cannot do anything yet and have to continue to retrieve 14 without forgetting 9, and so on so forth. It is easy to see that we need to remember <strong>4 things</strong> (marked as red square) if we use our brain to track the flow. It might be fine if there are only 4 numbers. Yet if the list has 100 random numbers, we need to remember <strong>100 things</strong> and our brains would be fried.</p>
 
@@ -209,7 +209,7 @@ let sum = function
 
 <p>The idea can be demonstrated by the diagram below:</p>
 
-<p><img src="http://typeocaml.com/content/images/2014/12/merge.jpg" alt="merge"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/12/merge.jpg" alt="merge"></p>
 
 <h2>Mergesort</h2>
 
@@ -249,7 +249,7 @@ let rec mergesort l =
 
 <p>Again, remember, when dealing with recursion, don't try to follow the execution flow. Instead, focus on splitting the problem into smaller ones and try to combine the results. This is also called <em>divide and conquer</em> and actually it is the true nature of recursion. After all, no matter the size of the problem can be, it is anyway the same function that solve the cases of <code>size = 0</code>, <code>size = 1</code>, and <code>size = n &gt; 2</code>, right?</p>
 
-<hr/>
+<hr>
 
 <p><strong>[1]</strong> OCaml allows imperative style, but it is not encouraged. We should use imperative programming in OCaml only if we have to.</p>
 

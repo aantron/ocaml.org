@@ -10,7 +10,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2015/05/permutation3.jpg#hero" alt="hero"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/permutation3.jpg#hero" alt="hero"></p>
 
 <p>In this post, we will talk about producing permuations using OCaml. Generating permutations was actually one of my first self-homeworks when I started to learn OCaml years ago. It can be a good exercise to train our skills on <em>list</em>, <em>recursion</em>, foundamental <em>fold</em>, <em>map</em>, etc, in OCaml. Also it shows the conciseness of the OCaml as a language.</p>
 
@@ -24,25 +24,25 @@ source:
 
 <p>We can generate permutations using <em>recursion</em> technique. As we descriped in <a href="http://typeocaml.com/2014/12/04/recursion-reloaded/">Recursion Reloaded</a>, let's first assume we already get a function that can produce all permuations. </p>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/permutations_function0.jpg" alt="permutation_function0"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/permutations_function0.jpg" alt="permutation_function0"></p>
 
 <p>What exactly <code>f</code> will generate is not our concern for now, but we are sure that given a list (say 3 distinct elements), <code>f</code> will produce a list of permutations (totally 6 in this example). </p>
 
 <p>So now what if our original list has one more new element?</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/permutations_function1.jpg" alt="permutation_function1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/permutations_function1.jpg" alt="permutation_function1"></p>
 
 <p>What should we do to combine the new element together with the old list of permutations, in order to generate a new list of permuatations?</p>
 
 <p>Let's first take a look at how to combine the new element with one permutation.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/permutations_function2-1.jpg" alt="permutation_function2"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/permutations_function2-1.jpg" alt="permutation_function2"></p>
 
 <p>A good way, like shown above, is to insert the new element into all possible positions. Easy, right?</p>
 
 <p>So for the new list of permutations, we just insert the new element into all possible positions of all old permutations.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/permutations_function3.jpg" alt="permutation_function3"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/permutations_function3.jpg" alt="permutation_function3"></p>
 
 <h2>code</h2>
 
@@ -71,7 +71,7 @@ let ins_all_positions x l =
 
 <p>There is another way to look at the permutations.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/permutations_function4.jpg" alt="permutation_function4"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/permutations_function4.jpg" alt="permutation_function4"></p>
 
 <p>For a list of 3 elements, each element can be the head of all permutations of the rest elements. For example, <em>blue</em> is the head of the permutations of <em>green</em> and <em>yellow</em>.</p>
 
@@ -84,7 +84,7 @@ let ins_all_positions x l =
 <li>We repeat all above until we all elements have got their chances to be heads</li>
 </ol>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/permutations_function5-1.jpg" alt="permutation_function5"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/permutations_function5-1.jpg" alt="permutation_function5"></p>
 
 <h2>Code</h2>
 
@@ -144,7 +144,7 @@ let ins_all_positions x l =
 
 <p>For simplicity, we will have an example array <code>[|1; 2; 3; 4|]</code>, which is already sorted.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/johnson1.jpg" alt="1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/johnson1.jpg" alt="1"></p>
 
 <h2>Direction: L or R</h2>
 
@@ -156,7 +156,7 @@ let ins_all_positions x l =
   <p>So we will attach a <em>direction</em> - <em>L</em> (initially) or <em>R</em> - to every element.</p>
 </blockquote>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/johnson2.jpg" alt="johnson2"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/johnson2.jpg" alt="johnson2"></p>
 
 <h2>Movable</h2>
 
@@ -164,7 +164,7 @@ let ins_all_positions x l =
 
 <p>For example,</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/johnson3_0-1.jpg" alt="jonhson3_0"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/johnson3_0-1.jpg" alt="jonhson3_0"></p>
 
 <p><code>4</code> and <code>2</code> are movable, because the neighbours on their <em>left</em> are smaller.</p>
 
@@ -186,13 +186,13 @@ let ins_all_positions x l =
 
 <p>For example, </p>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/johnson4-2.jpg" alt="johnson4"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/johnson4-2.jpg" alt="johnson4"></p>
 
 <p>Although in the above case, <code>2</code>, <code>3</code> and <code>4</code> are all movable, we will move only <code>4</code> since it is largest.</p>
 
 <p>The whole process will end if no element is movable.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/johnson4_0.jpg" alt="johnson4_0"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/johnson4_0.jpg" alt="johnson4_0"></p>
 
 <p>Note that <strong>this scan is before the movement</strong>.</p>
 
@@ -200,11 +200,11 @@ let ins_all_positions x l =
 
 <p><strong>After we make a movement</strong>, immediately we need to scan the whole array and flip the directions of elements that are larger than the element which is just moved.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/johnson5.jpg" alt="johnson5"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/johnson5.jpg" alt="johnson5"></p>
 
 <h2>A complete example</h2>
 
-<p><img src="http://typeocaml.com/content/images/2015/05/johnson6.jpg" alt="johnson6"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/05/johnson6.jpg" alt="johnson6"></p>
 
 <h2>Code</h2>
 
@@ -232,7 +232,7 @@ let move a i =
       | L -&gt; swap a i (i-1)
       | R -&gt; swap a i (i+1)
   else
-    failwith &quot;not movable&quot;
+    failwith "not movable"
 </code></pre>
 
 <p><strong>Scan for the larget movable element</strong></p>
@@ -317,6 +317,6 @@ let generator = permutations_generator [1;2;3]
   Stream.from (fun _ -&gt; generator())
 </code></pre>
 
-<hr/>
+<hr>
 
 <p><strong>[1]</strong>. The array can be descending order, which means later on we need to put all initial directions as <em>R</em>.</p>

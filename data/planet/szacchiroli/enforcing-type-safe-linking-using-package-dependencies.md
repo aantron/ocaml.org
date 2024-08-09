@@ -28,7 +28,7 @@ compatibility very often</strong>, due to the need of ensuring type
 safety across different libraries at link time. Other similar
 strongly typed languages, such as Haskell, behave similarly. This
 is at odds with the implicit assumption of forward-compatibility
-(unless otherwise &quot;stated&quot;, e.g. with soname changes) that is
+(unless otherwise "stated", e.g. with soname changes) that is
 relied upon by versioned dependencies in distributions like
 Debian.</p>
 <p>This discussion, the analysis of possible solutions, and the
@@ -37,7 +37,7 @@ dh-ocaml (called <strong>ABI approximation</strong>) turned out to
 be interesting for the French functional programming academic
 community: the <a href="http://upsilon.cc/~zack/research/publications/jfla10-dh-ocaml.pdf"><strong>paper on
 dh-ocaml</strong></a> has been accepted at forthcoming <a href="http://jfla.inria.fr/2010/">JFLA 2010</a>.</p>
-<p>It is no rocket science <img src="http://upsilon.cc/~zack/smileys/smile.png" alt=":-)"/> , but people maintaining programs and libraries written in
+<p>It is no rocket science <img src="http://upsilon.cc/~zack/smileys/smile.png" alt=":-)"> , but people maintaining programs and libraries written in
 languages with concerns similar to OCaml's (e.g. Haskell, hello
 <a href="http://www.joachim-breitner.de/blog/">nomeata</a>) might
 want to have a look.</p>

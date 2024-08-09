@@ -35,7 +35,7 @@ available.</p>
 <h2>Shared reactive programming</h2>
 
 <p>Recent versions of Eliom provided client-side support for (functional)
-reactive programming. Eliom 5.0 additionally supports <a href="http://ocsigen.org/eliom/5.0/manual/clientserver-react">&ldquo;shared&rdquo;
+reactive programming. Eliom 5.0 additionally supports <a href="http://ocsigen.org/eliom/5.0/manual/clientserver-react">“shared”
 (client-server) reactive
 programming</a>,
 where the reactive signals have meaning both on the server and the

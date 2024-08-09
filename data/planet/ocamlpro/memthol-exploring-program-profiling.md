@@ -5,19 +5,19 @@ description: "Memthol is a visualizer and analyzer for program profiling. It wor
   part of the allocations performed by some execution of a program. For information
   regarding building memthol, features, browser compatibility\u2026 refer..."
 url: https://ocamlpro.com/blog/2020_12_01_memthol_exploring_program_profiling
-date: 2020-12-01T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2020-12-01T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Adrien Champion\n  "
 source:
 ---
 
-<p><img src="https://ocamlpro.com/blog/assets/img/banner_memprof_banniere_blue.png" alt=""/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/banner_memprof_banniere_blue.png" alt=""></p>
 <p><em>Memthol</em> is a visualizer and analyzer for program profiling. It works on memory <em>dumps</em> containing information about the size and (de)allocation date of part of the allocations performed by some execution of a program.</p>
 <blockquote>
-<p>For information regarding building memthol, features, browser compatibility&hellip; refer to the <a href="https://github.com/OCamlPro/memthol">memthol github repository</a>. *Please note that Memthol, as a side project, is a work in progress that remains in beta status for now. *</p>
+<p>For information regarding building memthol, features, browser compatibility… refer to the <a href="https://github.com/OCamlPro/memthol">memthol github repository</a>. *Please note that Memthol, as a side project, is a work in progress that remains in beta status for now. *</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/OCamlPro/memthol/master/rsc/example.png" alt=""/></p>
+<p><img src="https://raw.githubusercontent.com/OCamlPro/memthol/master/rsc/example.png" alt=""></p>
 <h4>Memthol's background</h4>
 <p>The Memthol work was started more than a year ago (we had published a short introductory paper at the <a href="https://jfla.inria.fr/jfla2020.html">JFLA2020</a>). The whole idea was to use the previous work originally achieved on <a href="https://memprof.typerex.org/">ocp-memprof</a>, and look for some extra funding to achieve a usable and industrial version.Then came the excellent <a href="https://blog.janestreet.com/finding-memory-leaks-with-memtrace/">memtrace profiler</a> by Jane Street's team (congrats!)Memthol is a self-funded side project, that we think it still is worth giving to the OCaml community. Its approach is valuable, and can be complementary. It is released under the free GPL licence v3.</p>
 <h4>Memthol's versatility: supporting memtrace's dump format</h4>
@@ -63,7 +63,7 @@ rsc/dumps/ctf/flamba.ctf
 </code></pre>
 <h2>Basics</h2>
 <p>Our running example in this section will be <code>rsc/dumps/mini_ae.ctf</code>:</p>
-<pre><code class="language-shell-session">&#10095; memthol --filter_gen none rsc/dumps/ctf/mini_ae.ctf
+<pre><code class="language-shell-session">❯ memthol --filter_gen none rsc/dumps/ctf/mini_ae.ctf
 |===| Starting
 | url: http://localhost:7878
 | target: `rsc/dumps/ctf/mini_ae.ctf`
@@ -71,9 +71,9 @@ rsc/dumps/ctf/flamba.ctf
 </code></pre>
 <p>Notice the odd <code>--filter_gen none</code> passed to memthol. Ignore it for now, it will be discussed later in this section.</p>
 <p>Once memthol is running, <code>http://localhost:7878/</code> (here) will lead you to memthol's BUI, which should look something like this:</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/default.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/default.png" alt=""></p>
 <p>Click on the orange <strong>everything</strong> tab at the bottom left of the screen.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/three_parts.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/three_parts.png" alt=""></p>
 <p>Memthol's interface is split in three parts:</p>
 <ul>
 <li>the central, main part displays charts. There is only one here, showing the evolution of the program's total memory size over time based on the memory dump.
@@ -83,17 +83,17 @@ rsc/dumps/ctf/flamba.ctf
 </ul>
 <h3>Filters</h3>
 <p><em>Filters</em> allow to split allocations and display them separately. A filter is essentially a set of allocations. Memthol has two built-in filters. The first one is the <strong>everything</strong> filter. You cannot really do anything with it except for changing its name and color using the filter settings in the footer.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/everything_name_color.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/everything_name_color.png" alt=""></p>
 <p>Notice that when a filter is modified, two buttons appear in the top-left part of the footer. The first reverts the changes while the second one saves them. Let's save these changes.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/everything_saved.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/everything_saved.png" alt=""></p>
 <p>The <strong>everything</strong> filter always contains all allocations in the memory dump. It cannot be changed besides the cosmetic changes we just did. These changes are reverted in the rest of the section.</p>
 <h3>Custom Filters</h3>
 <p>Let's create a new filter using the <code>+</code> add button in the top-right part of the footer.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/new_filter.png" alt=""/></p>
-<p>Notice that, unlike <strong>everything</strong>, the settings for our new filter have a <strong>Catch allocation if &hellip;</strong> (empty) section with a <code>+</code> add button. Let's click on that.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/new_sub_filter.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/new_filter.png" alt=""></p>
+<p>Notice that, unlike <strong>everything</strong>, the settings for our new filter have a <strong>Catch allocation if …</strong> (empty) section with a <code>+</code> add button. Let's click on that.</p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/new_sub_filter.png" alt=""></p>
 <p>This adds a criterion to our filter. Let's modify it so that the our filter catches everything of size greater than zero machine words, rename the filter, and save these changes.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/new_filter_1.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/new_filter_1.png" alt=""></p>
 <p>The tab for our filter now shows <strong>(3)</strong> next to its name, indicating that this filter catches 3 allocations, which is all the allocations of the (tiny) dump.</p>
 <p>Now, create a new filter and modify it so that it catches allocations made in file <code>weak.ml</code>. This requires</p>
 <ul>
@@ -109,8 +109,8 @@ rsc/dumps/ctf/flamba.ctf
 </li>
 </ul>
 <p>After saving it, you should get the following.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/new_filter_2.png" alt=""/></p>
-<p>Sadly, this filter does not match anything, although some allocations fit this filter. This is because a <strong>custom filter</strong> <code>F</code> &ldquo;catches&quot; an allocation if</p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/new_filter_2.png" alt=""></p>
+<p>Sadly, this filter does not match anything, although some allocations fit this filter. This is because a <strong>custom filter</strong> <code>F</code> “catches" an allocation if</p>
 <ul>
 <li>all of the criteria of <code>F</code> are true for this allocation, and
 </li>
@@ -119,11 +119,11 @@ rsc/dumps/ctf/flamba.ctf
 </ul>
 <p>In other words, all allocations go through the list of custom filters from left to right, and are caught by the first filter such that all of its criteria are true for this allocation. As such, it is similar to switch/case and pattern matching.</p>
 <p>Let's move our new filter to the left by clicking the left arrow next to it, and save the change.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/new_filter_3.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/new_filter_3.png" alt=""></p>
 <p>Nice.</p>
 <p>You can remove a filter by selecting it and clicking the <code>-</code> remove button in the top-right part of the footer, next to the <code>+</code> add filter button. This only works for <strong>custom</strong> filters, you cannot remove built-in filters.</p>
-<p>Now, remove the first filter we created (size &ge; 0), which should give you this:</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/new_filter_4.png" alt=""/></p>
+<p>Now, remove the first filter we created (size ≥ 0), which should give you this:</p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/new_filter_4.png" alt=""></p>
 <p>Out of nowhere, we get the second and last built-in filter: <strong>catch-all</strong>. When some allocations are not caught by any of your filters, they will end up in this filter. <strong>Catch-all</strong> is not visible when it does not catch any allocation, which is why it was (mostly) not visible until now. The filter we wrote previously where catching all the allocations.</p>
 <blockquote>
 <p>In the switch/case analogy, <strong>catch-all</strong> is the <code>else</code>/<code>default</code> branch. In pattern matching, it would be a trailing wildcard <code>_</code>.</p>
@@ -138,17 +138,17 @@ rsc/dumps/ctf/flamba.ctf
 <p>For more details, in particular filter generation customization, run <code>memthol --filter_gen help</code>.</p>
 </blockquote>
 <p>If we relaunch the example without <code>--filter_gen none</code></p>
-<pre><code class="language-shell-session">&#10095; memthol rsc/dumps/ctf/mini_ae.ctf
+<pre><code class="language-shell-session">❯ memthol rsc/dumps/ctf/mini_ae.ctf
 |===| Starting
 | url: http://localhost:7878
 | target: `rsc/dumps/ctf/mini_ae.ctf`
 |===|
 </code></pre>
 <p>we get something like this (actual colors may vary):</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/filter_gen.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/basics_pics/filter_gen.png" alt=""></p>
 <h2>Charts</h2>
 <p>This section uses the same running example as the last section.</p>
-<pre><code class="language-shell-session">&#10095; memthol rsc/dumps/ctf/mini_ae.ctf
+<pre><code class="language-shell-session">❯ memthol rsc/dumps/ctf/mini_ae.ctf
 |===| Starting
 | url: http://localhost:7878
 | target: `rsc/dumps/ctf/mini_ae.ctf`
@@ -157,21 +157,21 @@ rsc/dumps/ctf/flamba.ctf
 <h3>Filter Toggling</h3>
 <p>The first way to interact with a chart is to (de)activate filters. Each chart has its own filter tabs allowing to toggle filters on/off.</p>
 <p>From the initial settings</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/init.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/init.png" alt=""></p>
 <p>click on all filters but <strong>everything</strong> to toggle them off.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/only_everything.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/only_everything.png" alt=""></p>
 <p>Let's create a new chart. The only kind of chart that can be constructed currently is total size over time, so click on <strong>create chart</strong> below our current, lone chart.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/two_charts_1.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/two_charts_1.png" alt=""></p>
 <p>Deactivate <strong>everything</strong> in the second chart.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/two_charts_2.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/two_charts_2.png" alt=""></p>
 <p>Nice. We now have the overall total size over time in the first chart, and the details for each filter in the second one.</p>
 <p>Next, notice that both charts have, on the left of their title, a down (first chart) and up (second chart) arrow. This moves the charts up and down.</p>
 <p>On the right of the title, we have a settings <code>...</code> buttons which is discussed <a href="https://ocamlpro.github.io/memthol/mini_tutorial/charts.html#chart-settings">below</a>. The next button collapses the chart. If we click on the <em>collapse</em>* button of the first chart, it collapses and the button turns into an <em>expand</em> button.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/collapsed.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/collapsed.png" alt=""></p>
 <p>The last button in the chart header removes the chart.</p>
 <h3>Chart Settings</h3>
 <p>Clicking the settings <code>...</code> button in the header of any chart display its settings. (Clicking on the button again hides them.)</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/settings_1.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/settings_1.png" alt=""></p>
 <p>Currently, these chart settings only allow to rename the chart and change its <strong>display mode</strong>.</p>
 <h4>Display Mode</h4>
 <p>In memthol, a chart can be displayed in one of three ways:</p>
@@ -184,10 +184,10 @@ rsc/dumps/ctf/flamba.ctf
 </li>
 </ul>
 <p>Here is the second chart from our example displayed as stacked area for instance:</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/settings_stacked.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/charts_pics/settings_stacked.png" alt=""></p>
 <h2>Global Settings</h2>
 <p>This section uses the same running example as the last section.</p>
-<pre><code class="language-shell-session">&#10095; memthol rsc/dumps/ctf/mini_ae.ctf
+<pre><code class="language-shell-session">❯ memthol rsc/dumps/ctf/mini_ae.ctf
 |===| Starting
 | url: http://localhost:7878
 | target: `rsc/dumps/ctf/mini_ae.ctf`
@@ -197,19 +197,19 @@ rsc/dumps/ctf/flamba.ctf
 <h3>Time Window</h3>
 <p>The <em>time window</em> global setting controls the time interval displayed by all the charts.</p>
 <p>In our example,</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/global_settings_pics/init.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/global_settings_pics/init.png" alt=""></p>
 <p>not much is happening before (roughly) <code>0.065</code> seconds. Let's have the time window start at that point:</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/global_settings_pics/time_window_1.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/global_settings_pics/time_window_1.png" alt=""></p>
 <p>Similar to filter edition, we can apply or cancel this change using the two buttons that appeared in the bottom-left corner of the header.</p>
 <p>Saving these changes yields</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/global_settings_pics/time_window_2.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/global_settings_pics/time_window_2.png" alt=""></p>
 <p>Here is the same chart but with the time window upper-bound set at <code>0.074</code>.</p>
-<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/global_settings_pics/time_window_3.png" alt=""/></p>
+<p><img src="https://ocamlpro.github.io/memthol/mini_tutorial/global_settings_pics/time_window_3.png" alt=""></p>
 <h2>Callstack Filters</h2>
 <p>Callstack filters are filters operating over allocation properties that are sequences of strings (potentially with some other data). Currently, this means <strong>allocation callstacks</strong>, where the strings are file names with line/column information.</p>
 <h3>String Filters</h3>
-<p>A string filter can have three shapes: an actual <em>string value</em>, a <em>regex</em>, or a <em>match anything</em> / <em>wildcard</em> filter represented by the string <code>&quot;...&quot;</code>. This wildcard filter is discussed in <a href="https://ocamlpro.github.io/memthol/mini_tutorial/callstack_filters.html#the-wildcard-filter">its own section</a> below.</p>
-<p>A string value is simply given as a value. To match precisely the string <code>&quot;file_name&quot;</code>, one only needs to write <code>file_name</code>. So, a filter that matches precisely the list of strings <code>[ &quot;file_name_1&quot;, &quot;file_name_2&quot; ]</code> will be written</p>
+<p>A string filter can have three shapes: an actual <em>string value</em>, a <em>regex</em>, or a <em>match anything</em> / <em>wildcard</em> filter represented by the string <code>"..."</code>. This wildcard filter is discussed in <a href="https://ocamlpro.github.io/memthol/mini_tutorial/callstack_filters.html#the-wildcard-filter">its own section</a> below.</p>
+<p>A string value is simply given as a value. To match precisely the string <code>"file_name"</code>, one only needs to write <code>file_name</code>. So, a filter that matches precisely the list of strings <code>[ "file_name_1", "file_name_2" ]</code> will be written</p>
 <table>
 <thead>
 <tr>
@@ -229,7 +229,7 @@ rsc/dumps/ctf/flamba.ctf
 </tr>
 </tbody>
 </table>
-<p>A <em>regex</em> on the other hand has to be written between <code>#&quot;</code> and <code>&quot;#</code>. If we want the same filter as above, but want to relax the first string description to be <code>file_name_&lt;i&gt;</code> where <code>&lt;i&gt;</code> is a single digit, we write the filter as</p>
+<p>A <em>regex</em> on the other hand has to be written between <code>#"</code> and <code>"#</code>. If we want the same filter as above, but want to relax the first string description to be <code>file_name_&lt;i&gt;</code> where <code>&lt;i&gt;</code> is a single digit, we write the filter as</p>
 <table>
 <thead>
 <tr>
@@ -245,7 +245,7 @@ rsc/dumps/ctf/flamba.ctf
 <tr>
 <td>string list</td>
 <td>contains</td>
-<td>`[ #&quot;file_name_[0-9]&quot;# file_name_2 ]`</td>
+<td>`[ #"file_name_[0-9]"# file_name_2 ]`</td>
 </tr>
 </tbody>
 </table>
@@ -267,7 +267,7 @@ rsc/dumps/ctf/flamba.ctf
 <tr>
 <td>string list</td>
 <td>contain</td>
-<td>`[ #&quot;file_name_[0-9]&quot;# ... ]`</td>
+<td>`[ #"file_name_[0-9]"# ... ]`</td>
 </tr>
 </tbody>
 </table>
@@ -297,15 +297,15 @@ rsc/dumps/ctf/flamba.ctf
 <tr>
 <td>string list</td>
 <td>contain</td>
-<td>`[ &hellip; #&quot;file_name_[0-9]&quot;# ]`</td>
+<td>`[ … #"file_name_[0-9]"# ]`</td>
 </tr>
 </tbody>
 </table>
 <p>does work as expected. For example, on the string list</p>
-<pre><code class="language-shell-session">[ &quot;some_file_name&quot; &quot;file_name_7&quot; &quot;another_file_name&quot; &quot;file_name_0&quot; ]
+<pre><code class="language-shell-session">[ "some_file_name" "file_name_7" "another_file_name" "file_name_0" ]
 </code></pre>
-<p>a lazy behavior would not match. First, <code>...</code> would match anything up to and excluding a string recognized by <code>#&quot;file_name_[0-9]&quot;#</code>. So <code>...</code> would match <code>some_file_name</code>, but that's it since <code>file_name_7</code> is a match for <code>#&quot;file_name_[0-9]&quot;#</code>. Hence the filter would reject this list of strings, because there should be nothing left after the match for <code>#&quot;file_name_[0-9]&quot;#</code>. But there are still <code>another_file_name</code> and <code>file_name_0</code> left.</p>
-<p>Instead, the filter works as expected. <code>...</code> discards all elements but the last one <code>file_name_0</code>, which is accepted by <code>#&quot;file_name_[0-9]&quot;#</code>.</p>
+<p>a lazy behavior would not match. First, <code>...</code> would match anything up to and excluding a string recognized by <code>#"file_name_[0-9]"#</code>. So <code>...</code> would match <code>some_file_name</code>, but that's it since <code>file_name_7</code> is a match for <code>#"file_name_[0-9]"#</code>. Hence the filter would reject this list of strings, because there should be nothing left after the match for <code>#"file_name_[0-9]"#</code>. But there are still <code>another_file_name</code> and <code>file_name_0</code> left.</p>
+<p>Instead, the filter works as expected. <code>...</code> discards all elements but the last one <code>file_name_0</code>, which is accepted by <code>#"file_name_[0-9]"#</code>.</p>
 <h3>Callstack (Location) Filters</h3>
 <p>Allocation callstack information is a list of tuples containing:</p>
 <ul>
@@ -385,7 +385,7 @@ rsc/dumps/ctf/flamba.ctf
 <td>matches any line of `src/main.ml`</td>
 </tr>
 <tr>
-<td>`#&quot;.*/main.ml&quot;# : 107`</td>
+<td>`#".*/main.ml"# : 107`</td>
 <td>matches line 107 of any `main.ml` file regardless of its path</td>
 </tr>
 </tbody>

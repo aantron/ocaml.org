@@ -5,8 +5,8 @@ description: 'The Alt-Ergo automatic theorem prover developed at OCamlPro has ju
   is now available on the next branch, and will officially be part of the 2.5.0 release,
   coming this year ! Alt-Ergo at a Glance Alt-Ergo is an open ...'
 url: https://ocamlpro.com/blog/2022_11_16_alt-ergo-models
-date: 2022-11-16T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2022-11-16T13:31:53-00:00
+preview_image: https://www.ocamlpro.com/blog/assets/img/alt-ergo-8-colors.png
 authors:
 - "\n    Steven de Oliveira\n  "
 source:
@@ -36,7 +36,7 @@ Alt-Ergo is written in <a href="https://caml.inria.fr/ocaml/index.fr.html">OCaml
 <p>Alt-Ergo has been involved in a qualification process (DO-178C) by <a href="http://www.airbus.com">Airbus Industrie</a>. During this process, a qualification kit has been produced. It was composed of a technical document with tool requirements (TR) that gives a precise description of each part of the prover, a companion document (~ 450 pages) of tests, and an instrumented version of the tool with a TR trace mechanism.</p>
 <h3>Model Generation</h3>
 <p>When a property is false, generating a counterexample is a key that many state-of-the-art SMT-solvers should include by default. However, this is a complex problem in the first place.</p>
-<p>The first obstacle is the decidability of the theories manipulated by the SMT solvers. In general, the complexity class (i.e. the classification of algorithmic problems) is between &quot;NP-Hard&quot; (for the linear arithmetic theory on integers for example) and &quot;Undecidable&quot; (for the polynomial arithmetic on integers for example). Then comes the quantified properties, i.e. properties prefixed with <code>forall</code>s and <code>exists</code>, adding an additional layer of complexity and undecidability. Another challenge was the core algorithm behind Alt-Ergo which does not natively support model generation. At last, an implementation of the models have to take care of Alt-Ergo's support of polymorphism.</p>
+<p>The first obstacle is the decidability of the theories manipulated by the SMT solvers. In general, the complexity class (i.e. the classification of algorithmic problems) is between "NP-Hard" (for the linear arithmetic theory on integers for example) and "Undecidable" (for the polynomial arithmetic on integers for example). Then comes the quantified properties, i.e. properties prefixed with <code>forall</code>s and <code>exists</code>, adding an additional layer of complexity and undecidability. Another challenge was the core algorithm behind Alt-Ergo which does not natively support model generation. At last, an implementation of the models have to take care of Alt-Ergo's support of polymorphism.</p>
 <h3>How to use Model Generation in Alt-Ergo</h3>
 <p>There are two ways to activate model generation on Alt-Ergo.</p>
 <ul>
@@ -76,9 +76,9 @@ does not answer <code>Sat</code> when it outputs a model. In a future version, w
 a mechanism that automatically checks the model generated.</p>
 <p>Godspeed!</p>
 <h3>Acknowledgements</h3>
-<p>We want to thank David Mentr&eacute; and Denis Cousineau at <a href="https://www.mitsubishielectric-rce.eu/merce-in-france/">Mitsubishi Electric R&amp;D Center Europe</a>
+<p>We want to thank David Mentré and Denis Cousineau at <a href="https://www.mitsubishielectric-rce.eu/merce-in-france/">Mitsubishi Electric R&amp;D Center Europe</a>
 for funding the initial work on counterexample.</p>
-<p>Note that MERCE has been a Member of the Alt-Ergo Users&rsquo; Club for 3 years.
+<p>Note that MERCE has been a Member of the Alt-Ergo Users’ Club for 3 years.
 This partnership allowed Alt-Ergo to evolve and we hope that more users
 will join the Club on our journey to make Alt-Ergo a must-have tool.
 Please do not hesitate to contact the Alt-Ergo team at OCamlPro:

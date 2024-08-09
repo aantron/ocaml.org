@@ -5,8 +5,8 @@ description: 'Uncaught exception: Not_found This blog post probably won''t teach
   very basic, yet surprisingly little-known feature of OCaml will give you backtraces
   with source file positions on any uncaught exception. Since i...'
 url: https://ocamlpro.com/blog/2024_04_25_ocaml_backtraces_on_uncaught_exceptions
-date: 2024-04-25T12:44:14-00:00
-preview_image: https://ocamlpro.com/assets/img/logo_ocp_icon.svg
+date: 2024-04-25T13:31:53-00:00
+preview_image: https://ocamlpro.com/blog/assets/img/AIGEN_camel_catching_butterflies.jpeg
 authors:
 - "\n    Louis Gesbert\n  "
 source:
@@ -17,14 +17,14 @@ source:
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/AIGEN_camel_catching_butterflies.jpeg">
-      <img src="https://ocamlpro.com/blog/assets/img/AIGEN_camel_catching_butterflies.jpeg" alt="A mystical Camel using its net to catch all uncaught... Butterflies."/>
+      <img src="https://ocamlpro.com/blog/assets/img/AIGEN_camel_catching_butterflies.jpeg" alt="A mystical Camel using its net to catch all uncaught... Butterflies.">
     </a>
     </p><div class="caption">
       A mystical Camel using its net to catch all uncaught... Butterflies.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <h2>
 <a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#notfound" class="anchor-link">Uncaught exception: Not_found</a>
           </h2>
@@ -44,7 +44,7 @@ good exception management in OCaml.</p>
 module</a>.</p>
 </blockquote>
 <p></p><div>
-<strong>Table of contents</strong>
+<strong>Table of contents</strong><p></p>
 <ul>
 <li><a href="https://ocamlpro.com/blog/feed#notfound">Uncaught exception: Not_found</a>
 </li>
@@ -61,11 +61,11 @@ module</a>.</p>
 <li><a href="https://ocamlpro.com/blog/feed#guidelines">Guidelines for exception handling, and Control-C</a>
 <ul>
 <li><a href="https://ocamlpro.com/blog/feed#backtracesinocaml">Controlling the backtraces from OCaml</a>
+</li></ul></li></ul></div>
 
-</li>
-</ul>
-</li>
-</ul>
+
+
+
 <h2>
 <a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#getyourstacktraces" class="anchor-link">Get your stacktraces!</a>
           </h2>
@@ -73,8 +73,8 @@ module</a>.</p>
 failures.</p>
 <p>Here is a simple (and buggy) program:</p>
 <pre><code class="language-ocaml">let dict = [
-    &quot;foo&quot;, &quot;bar&quot;;
-    &quot;foo2&quot;, &quot;bar2&quot;;
+    "foo", "bar";
+    "foo2", "bar2";
 ]
 
 let rec replace = function
@@ -102,9 +102,9 @@ debugging, just do the following:</p>
 <pre><code class="language-shell-session">$ export OCAMLRUNPARAM=b
 $ ./foo
 Fatal error: exception Not_found
-Raised at Stdlib__List.assoc in file &quot;list.ml&quot;, line 191, characters 10-25
-Called from Foo.replace in file &quot;foo.ml&quot;, line 8, characters 18-35
-Called from Foo in file &quot;foo.ml&quot;, line 12, characters 26-41
+Raised at Stdlib__List.assoc in file "list.ml", line 191, characters 10-25
+Called from Foo.replace in file "foo.ml", line 8, characters 18-35
+Called from Foo in file "foo.ml", line 12, characters 26-41
 </code></pre>
 <p>Much more helpful! In most cases, this will be enough to find and fix the bug.</p>
 <p>If you still don't get the backtrace, you may need to recompile with <code>-g</code> (with
@@ -179,7 +179,7 @@ backtraces with recursive functions and tail-calls. It can be done with <code>op
 <p>Backtraces in this context are a complex matter -- but they can be simulated:
 a good practice is to use <code>ppx_lwt</code> and the <code>let%lwt</code> syntax rather than
 <code>let*</code> or <code>Lwt.bind</code> directly, because the ppx will insert calls that
-reconstruct &quot;fake&quot; backtrace information.</p>
+reconstruct "fake" backtrace information.</p>
 </blockquote>
 <h2>
 <a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#guidelines" class="anchor-link">Guidelines for exception handling, and Control-C</a>
@@ -202,11 +202,11 @@ program !</p>
   try Map.find x m
   with e -&gt;
     let bt = Printexc.get_raw_backtrace () in
-    Printf.eprintf &quot;Error on %s!&quot; (to_string x);
+    Printf.eprintf "Error on %s!" (to_string x);
     Printexc.raise_with_backtrace e bt
 </code></pre>
 <p>This version is OK since it re-raises the exception. If you absolutely need to
-catch all exceptions, a last resort is to explicitely re-raise &quot;uncatchable&quot;
+catch all exceptions, a last resort is to explicitely re-raise "uncatchable"
 exceptions:</p>
 <pre><code class="language-ocaml">let this_is_a_last_resort =
   try .. with
@@ -246,4 +246,4 @@ backtraces)</p>
 following the advice above, you defined your own exceptions with parameters, use
 <code>Printexc.register_printer</code> to have that information available when they are
 uncaught.</p>
-</div>
+

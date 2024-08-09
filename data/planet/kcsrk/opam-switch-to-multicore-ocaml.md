@@ -24,7 +24,7 @@ switch for multicore OCaml.</p>
 
 <h2>Install opam-compiler-conf</h2>
 
-<p>The first step is to install Gabriel Scherer&rsquo;s <a href="https://github.com/gasche/opam-compiler-conf">opam-compiler-conf
+<p>The first step is to install Gabriel Scherer’s <a href="https://github.com/gasche/opam-compiler-conf">opam-compiler-conf
 script</a> which lets you do opam
 switches on local installations:</p>
 

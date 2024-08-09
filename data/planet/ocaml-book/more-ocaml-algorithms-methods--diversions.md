@@ -4,7 +4,7 @@ description: 'More OCaml: Algorithms, Methods &amp; Diversions is now available 
   $39.99 or less, or as a DRM-free PDF eBook for $19.99 at  ocaml-book.com , where
   you will also find sample chapters, and the exercises and examples to download.  Here''s
   the blurb:  &nbsp;  In&nbsp; More OCam'
-url: http://ocaml-book.com/blog/2014/8/27/more-ocaml-algorithms-methods-diversions
+url: https://ocaml-book.com/blog/2014/8/27/more-ocaml-algorithms-methods-diversions
 date: 2014-08-27T12:00:32-00:00
 preview_image:
 authors:

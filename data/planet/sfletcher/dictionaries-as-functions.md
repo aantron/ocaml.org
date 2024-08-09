@@ -10,66 +10,63 @@ authors:
 source:
 ---
 
-&amp;#60;h2&amp;#62;&amp;#60;/h2&amp;#62;
-&amp;#60;p&amp;#62;
-This is an &amp;#34;oldie but a goodie&amp;#34;. It's super easy.
-&amp;#60;/p&amp;#62;
-&amp;#60;p&amp;#62;
+<h2></h2>
+<p>
+This is an "oldie but a goodie". It's super easy.
+</p>
+<p>
 A dictionary is a data structure that represents a map from keys to values. The question is, can this data structure and its characteristic operations be encoded using only functions?
-&amp;#60;/p&amp;#62;
-&amp;#60;p&amp;#62;
+</p>
+<p>
 The answer of course is yes and indeed, here's one such an encoding in OCaml.
-&amp;#60;p&amp;#62;
-&amp;#60;pre class=&amp;#34;prettyprint ml&amp;#34;&amp;#62;
-(*The type of a dictionary with keys of type [&amp;#38;alpha;] and values of type
-  [&amp;#38;beta;]*)
-type (&amp;#38;alpha;, &amp;#38;beta;) dict = &amp;#38;alpha; -&amp;#62; &amp;#38;beta; option
+</p><p>
+</p><pre class="prettyprint ml">(*The type of a dictionary with keys of type [α] and values of type
+  [β]*)
+type (α, β) dict = α -&gt; β option
 
 (*The empty dictionary maps every key to [None]*)
-let empty (k : &amp;#38;alpha;) : &amp;#38;beta; option = None
+let empty (k : α) : β option = None
 
 (*[add d k v] is the dictionary [d] together with a binding of [k] to
   [v]*)
-let add (d : (&amp;#38;alpha;, &amp;#38;beta;) dict) (k : &amp;#38;alpha;) (v : &amp;#38;beta;) : (&amp;#38;alpha;, &amp;#38;beta;) dict = 
-  fun l -&amp;#62; 
+let add (d : (α, β) dict) (k : α) (v : β) : (α, β) dict = 
+  fun l -&gt; 
     if l = k then Some v else d l
 
 (*[find d k] retrieves the value bound to [k]*)
-let find (d : (&amp;#38;alpha;, &amp;#38;beta;) dict) (k : &amp;#38;alpha;) : &amp;#38;beta; option = d k
-&amp;#60;/pre&amp;#62;
+let find (d : (α, β) dict) (k : α) : β option = d k
+</pre>
 Test it like this.
-&amp;#60;pre class=&amp;#34;prettyprint ml&amp;#34;&amp;#62;
-(*e.g.
+<pre class="prettyprint ml">(*e.g.
 
-  Name                            &amp;#38;#124; Age
+  Name                            | Age
   ================================+====
-  &amp;#34;Felonius Gru&amp;#34;                  &amp;#38;#124;  53
-  &amp;#34;Dave the Minion&amp;#34;               &amp;#38;#124; 4.54e9
-  &amp;#34;Dr. Joseph Albert Nefario&amp;#34;     &amp;#38;#124;  80
+  "Felonius Gru"                  |  53
+  "Dave the Minion"               | 4.54e9
+  "Dr. Joseph Albert Nefario"     |  80
 
 *)
 let despicable = 
   add 
     (add 
        (add 
-          empty &amp;#34;Felonius Gru&amp;#34; 53
+          empty "Felonius Gru" 53
        ) 
-       &amp;#34;Dave the Minion&amp;#34; (int_of_float 4.54e9)
+       "Dave the Minion" (int_of_float 4.54e9)
     )
-    &amp;#34;Dr. Nefario&amp;#34; 80 
+    "Dr. Nefario" 80 
 
 let _ = 
-  find despicable &amp;#34;Dave the Minion&amp;#34; &amp;#38;#124;&amp;#62; 
-      function &amp;#38;#124; Some x -&amp;#62; x &amp;#38;#124; _ -&amp;#62; failwith &amp;#34;Not found&amp;#34;
-&amp;#60;/pre&amp;#62;
-&amp;#60;/p&amp;#62;
-&amp;#60;p&amp;#62;Moving on, can we implement this in C++? Sure. Here's one way.
-&amp;#60;pre class=&amp;#34;prettyprint ml&amp;#34;&amp;#62;
-#include &amp;#38;lt;pgs/pgs.hpp&amp;#38;gt;
+  find despicable "Dave the Minion" |&gt; 
+      function | Some x -&gt; x | _ -&gt; failwith "Not found"
+</pre>
+<p></p>
+<p>Moving on, can we implement this in C++? Sure. Here's one way.
+</p><pre class="prettyprint ml">#include &lt;pgs/pgs.hpp&gt;
 
-#include &amp;#38;lt;functional&amp;#38;gt;
-#include &amp;#38;lt;iostream&amp;#38;gt;
-#include &amp;#38;lt;cstdint&amp;#38;gt;
+#include &lt;functional&gt;
+#include &lt;iostream&gt;
+#include &lt;cstdint&gt;
 
 using namespace pgs;
 
@@ -78,49 +75,49 @@ using namespace pgs;
 
 struct None {};
 
-template &amp;#38;lt;class A&amp;#38;gt;
+template &lt;class A&gt;
 struct Some { 
   A val;
-  template &amp;#38;lt;class Arg&amp;#38;gt;
-  explicit Some (Arg&amp;#38;&amp;#38; s) : val { std::forward&amp;#38;lt;Arg&amp;#38;gt; (s) }
+  template &lt;class Arg&gt;
+  explicit Some (Arg&amp;&amp; s) : val { std::forward&lt;Arg&gt; (s) }
   {}
 };
 
-template &amp;#38;lt;class B&amp;#38;gt;
-using option = sum_type&amp;#38;lt;None, Some&amp;#38;lt;B&amp;#38;gt;&amp;#38;gt;;
+template &lt;class B&gt;
+using option = sum_type&lt;None, Some&lt;B&gt;&gt;;
 
-template &amp;#38;lt;class B&amp;#38;gt;
-std::ostream&amp;#38; operator &amp;#38;lt;&amp;#38;lt; (std::ostream&amp;#38; os, option&amp;#38;lt;B&amp;#38;gt; const&amp;#38; o) {
-  return o.match&amp;#38;lt;std::ostream&amp;#38;&amp;#38;gt;(
-    [&amp;#38;](Some&amp;#38;lt;B&amp;#38;gt; const&amp;#38; a) -&amp;#38;gt; std::ostream&amp;#38; { return os &amp;#38;lt;&amp;#38;lt; a.val; },
-    [&amp;#38;](None) -&amp;#38;gt; std::ostream&amp;#38; { return os &amp;#38;lt;&amp;#38;lt; &amp;#34;&amp;#38;lt;empty&amp;#38;gt;&amp;#34;; }
+template &lt;class B&gt;
+std::ostream&amp; operator &lt;&lt; (std::ostream&amp; os, option&lt;B&gt; const&amp; o) {
+  return o.match&lt;std::ostream&amp;&gt;(
+    [&amp;](Some&lt;B&gt; const&amp; a) -&gt; std::ostream&amp; { return os &lt;&lt; a.val; },
+    [&amp;](None) -&gt; std::ostream&amp; { return os &lt;&lt; "&lt;empty&gt;"; }
   );
 }
 
 //-- Encoding of dictionaries as functions
 
-template &amp;#38;lt;class K, class V&amp;#38;gt;
-using dict_type = std::function&amp;#38;lt;option&amp;#38;lt;V&amp;#38;gt;(K)&amp;#38;gt;;
+template &lt;class K, class V&gt;
+using dict_type = std::function&lt;option&lt;V&gt;(K)&gt;;
 
 //`empty` is a dictionary constant (a function that maps any key to
 //`None`)
-template &amp;#38;lt;class A, class B&amp;#38;gt;
-dict_type&amp;#38;lt;A, B&amp;#38;gt; empty = 
-  [](A const&amp;#38;) { 
-    return option&amp;#38;lt;B&amp;#38;gt;{ constructor&amp;#38;lt;None&amp;#38;gt;{} }; 
+template &lt;class A, class B&gt;
+dict_type&lt;A, B&gt; empty = 
+  [](A const&amp;) { 
+    return option&lt;B&gt;{ constructor&lt;None&gt;{} }; 
 };
 
 //`add (d, k, v)` extends `d` with a binding of `k` to `v`
-template &amp;#38;lt;class A, class B&amp;#38;gt;
-dict_type&amp;#38;lt;A, B&amp;#38;gt; add (dict_type&amp;#38;lt;A, B&amp;#38;gt; const&amp;#38; d, A const&amp;#38; k, B const&amp;#38; v) {
-  return [=](A const&amp;#38; l) {
-    return (k == l) ? option&amp;#38;lt;B&amp;#38;gt;{ constructor&amp;#38;lt;Some&amp;#38;lt;B&amp;#38;gt;&amp;#38;gt;{}, v} : d (l);
+template &lt;class A, class B&gt;
+dict_type&lt;A, B&gt; add (dict_type&lt;A, B&gt; const&amp; d, A const&amp; k, B const&amp; v) {
+  return [=](A const&amp; l) {
+    return (k == l) ? option&lt;B&gt;{ constructor&lt;Some&lt;B&gt;&gt;{}, v} : d (l);
   };
 }
 
 //`find (d, k)` searches for a binding in `d` for `k`
-template &amp;#38;lt;class A, class B&amp;#38;gt;
-option&amp;#38;lt;B&amp;#38;gt; find (dict_type&amp;#38;lt;A, B&amp;#38;gt; const&amp;#38; d, A const&amp;#38; k) {
+template &lt;class A, class B&gt;
+option&lt;B&gt; find (dict_type&lt;A, B&gt; const&amp; d, A const&amp; k) {
   return d (k);
 }
 
@@ -128,25 +125,25 @@ option&amp;#38;lt;B&amp;#38;gt; find (dict_type&amp;#38;lt;A, B&amp;#38;gt; cons
 
 int main () {
 
-  using dict_t = dict_type&amp;#38;lt;std::string, std::int64_t&amp;#38;gt;;
+  using dict_t = dict_type&lt;std::string, std::int64_t&gt;;
 
-  auto nil = empty&amp;#38;lt;std::string, std::int64_t&amp;#38;gt;;
-  dict_t(*insert)(dict_t const&amp;#38;, std::string const&amp;#38;, std::int64_t const&amp;#38;) = &amp;#38;add;
+  auto nil = empty&lt;std::string, std::int64_t&gt;;
+  dict_t(*insert)(dict_t const&amp;, std::string const&amp;, std::int64_t const&amp;) = &amp;add;
 
 
   dict_t despicable = 
     insert (
       insert (
         insert (nil
-           , std::string {&amp;#34;Felonius Gru&amp;#34;}, std::int64_t{53})
-           , std::string {&amp;#34;Dave the Minion&amp;#34;}, std::int64_t{4530000000})
-          , std::string {&amp;#34;Dr. Joseph Albert Nefario&amp;#34;}, std::int64_t{80})
+           , std::string {"Felonius Gru"}, std::int64_t{53})
+           , std::string {"Dave the Minion"}, std::int64_t{4530000000})
+          , std::string {"Dr. Joseph Albert Nefario"}, std::int64_t{80})
      ;
 
-  std::cout &amp;#38;lt;&amp;#38;lt; 
-    find (despicable, std::string {&amp;#34;Dave the Minion&amp;#34;}) &amp;#38;lt;&amp;#38;lt; std::endl;
+  std::cout &lt;&lt; 
+    find (despicable, std::string {"Dave the Minion"}) &lt;&lt; std::endl;
 
   return 0;
 }
-&amp;#60;/pre&amp;#62;
-&amp;#60;/p&amp;#62;
+</pre>
+<p></p>

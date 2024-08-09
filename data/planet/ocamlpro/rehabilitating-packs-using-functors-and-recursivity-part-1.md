@@ -5,23 +5,23 @@ description: OCamlPro has a long history of dedicated efforts to support the dev
   Team. An important one is the Flambda intermediate representation designed for optimizations,
   and in the future its next iteration Flambda 2. Th...
 url: https://ocamlpro.com/blog/2020_09_24_rehabilitating_packs_using_functors_and_recursivity_part_1
-date: 2020-09-24T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2020-09-24T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Pierrick Couderc\n  "
 source:
 ---
 
-<p><img src="https://ocamlpro.com/blog/assets/img/train.jpg" alt=""/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/train.jpg" alt=""></p>
 <p>OCamlPro has a long history of dedicated efforts to support the development of the OCaml compiler, through sponsorship or direct contributions from <em>Flambda Team</em>. An important one is the Flambda intermediate representation designed for optimizations, and in the future its next iteration Flambda 2. This work is funded by JaneStreet.</p>
 <p>Packs in the OCaml ecosystem are kind of an outdated concept (options <code>-pack</code> and <code>-for-pack</code> in the <a href="https://caml.inria.fr/pub/docs/manual-ocaml/comp.html">OCaml manual</a>), and their main utility has been overtaken by the introduction of <a href="https://caml.inria.fr/pub/docs/manual-ocaml/modulealias.html">module aliases</a> in OCaml 4.02. What if we tried to redeem them and give them a new youth and utility by adding the possibility to generate functors or recursive packs?</p>
 <p>This blog post covers the <a href="https://github.com/ocaml/RFCs/pull/11">functor units and functor packs</a>, while the next one will be centered around <a href="https://github.com/ocaml/RFCs/pull/20">recursive packs</a>. Both RFCs are currently developed by JaneStreet and OCamlPro. This idea was initially introduced by <a href="https://ocamlpro.com/blog/2011_08_10_packing_and_functors">functor packs</a> (Fabrice Le Fessant) and later generalized by <a href="https://ocaml.org/meetings/ocaml/2014/ocaml2014_8.pdf">functorized namespaces</a> (Pierrick Couderc et al.).</p>
 <h2>Packs for the masses</h2>
 <p>First of all let's take a look at what packs are, and how they fixed some issues that arose when the ecosystem started to grow and the number of libraries got quite large.</p>
 <p>One common problem in any programming language is how names are treated and disambiguated. For example, look at this small piece of code:</p>
-<pre><code class="language-Ocaml">let x = &quot;something&quot;
+<pre><code class="language-Ocaml">let x = "something"
 
-let x = &quot;something else&quot;
+let x = "something else"
 </code></pre>
 <p>We declare two variables <code>x</code>, but actually the first one is shadowed by the second, and is now unavailable for the rest of the program. It is perfectly valid in OCaml. Let's try to do the same thing with modules:</p>
 <pre><code class="language-Ocaml">module M = struct end
@@ -29,7 +29,7 @@ let x = &quot;something else&quot;
 module M = struct end
 </code></pre>
 <p>The compiler rejects it with the following error:</p>
-<pre><code class="language-shell-session">File &quot;m.ml&quot;, line 3, characters 0-21:
+<pre><code class="language-shell-session">File "m.ml", line 3, characters 0-21:
 3 | module M = struct end
     ^^^^^^^^^^^^^^^^^^^^^
 Error: Multiple definition of the module name M.
@@ -37,7 +37,7 @@ Error: Multiple definition of the module name M.
 </code></pre>
 <p>This also applies with programs linking two compilation units of the same name. Imagine you are using two libraries (here <code>lib_a</code> and <code>lib_b</code>), that both define a module named <code>Misc</code>.</p>
 <pre><code class="language-shell-session">ocamlopt -o prog.asm -I lib_a -I lib_b lib_a.cmxa lib_b.cmxa prog.ml 
-File &quot;prog.ml&quot;, line 1:
+File "prog.ml", line 1:
 Error: The files lib_a/a.cmi and lib_b/b.cmi make inconsistent assumptions
 over interface Misc
 </code></pre>
@@ -64,15 +64,15 @@ end
 </code></pre>
 <p>will compile <code>m.ml</code> as a functor that has a parameter <code>P</code> whose interface is described in <code>p.cmi</code> in the compilation path. Similarly, our pack <code>Mylib</code> can be produced by the following compilation steps:</p>
 <pre><code class="language-shell-session">ocamlopt -c -parameter-of Mylib p.mli
-ocamlopt -c -for-pack &quot;Mylib(P)&quot; a.ml
-ocamlopt -c -for-pack &quot;MyLib(P)&quot; b.ml
+ocamlopt -c -for-pack "Mylib(P)" a.ml
+ocamlopt -c -for-pack "MyLib(P)" b.ml
 ocamlopt -pack -o mylib.cmx -parameter P a.cmx b.cmx
 </code></pre>
 <p>In details:</p>
 <ul>
 <li>The parameter is compiled with the flag <code>-parameter-of Mylib</code>, as such it won't be used as the interface of an implementation.
 </li>
-<li>The two modules packed are compiled with the flag <code>-for-pack &quot;MyLib(P)&quot;</code>. Expressing the parameter of the pack is mandatory since <code>P</code> must be known as a functor parameter (we will see why in the next section).
+<li>The two modules packed are compiled with the flag <code>-for-pack "MyLib(P)"</code>. Expressing the parameter of the pack is mandatory since <code>P</code> must be known as a functor parameter (we will see why in the next section).
 </li>
 <li>The pack is compiled with <code>-parameter P</code>, which will indeed produce a functorized compilation unit.
 </li>
@@ -136,11 +136,11 @@ end
 <p>Packs were an old concept mainly outdated by module aliases. They were not practical as they are some sort of monolithic libraries shaped into a unique module containing sub modules. While they perfectly use the module system for its namespacing properties, their usage enforces the compiler to link an entire library even if only one module is actually used. This improvement allows programmers to define big functors, functors that are split among multiple files, resulting in what we can view as a way to implement some form of parameterized libraries.</p>
 <p>In the second part, we will cover another aspect of the rehabilitation of packs: using packs to implement mutually recursive compilation units.</p>
 <h1>Comments</h1>
-<p>Fran&ccedil;ois Bobot (25 September 2020 at 9 h 16 min):</p>
+<p>François Bobot (25 September 2020 at 9 h 16 min):</p>
 <blockquote>
 <p>I believe there is a typo</p>
 </blockquote>
-<pre><code class="language-ocaml">module Mylib&rsquo; (P : P_SIG) = struct
+<pre><code class="language-ocaml">module Mylib’ (P : P_SIG) = struct
 module A = A_funct(P)
 module B = A_funct(P)
 end
@@ -154,6 +154,6 @@ end
 </blockquote>
 <p>Cyrus Omar (8 February 2021 at 3 h 49 min):</p>
 <blockquote>
-<p>This looks very useful! Any updates on this work? I&rsquo;d like to be able to use it from dune.</p>
+<p>This looks very useful! Any updates on this work? I’d like to be able to use it from dune.</p>
 </blockquote>
 

@@ -12,7 +12,7 @@ source:
 ---
 
 <p>In my <a href="https://blog.janestreet.com/flambda">previous post</a> I wrote about Flambda, which is the single
-biggest feature coming to OCaml in this release. In this post, I&rsquo;ll review the
+biggest feature coming to OCaml in this release. In this post, I’ll review the
 other features of 4.03 that caught my eye.</p>
 
 

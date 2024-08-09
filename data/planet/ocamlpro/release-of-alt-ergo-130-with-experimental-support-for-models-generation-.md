@@ -5,14 +5,14 @@ description: "We have recently released a new (public up-to-date) version of Alt
   generation. This work has been done with Fr\xE9d\xE9ric Lang, an intern at OCamlPro
   from February to July 2016. The idea behind models generation The..."
 url: https://ocamlpro.com/blog/2016_11_21_release_of_alt_ergo_1_30_with_experimental_support_for_models_generation
-date: 2016-11-21T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2016-11-21T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Mohamed Iguernlala\n  "
 source:
 ---
 
-<p>We have recently released a new (public up-to-date) version of Alt-Ergo. We focus in this article on its main new feature: experimental support for models generation. This work has been done with <em>Fr&eacute;d&eacute;ric Lang</em>, an intern at OCamlPro from February to July 2016.</p>
+<p>We have recently released a new (public up-to-date) version of Alt-Ergo. We focus in this article on its main new feature: experimental support for models generation. This work has been done with <em>Frédéric Lang</em>, an intern at OCamlPro from February to July 2016.</p>
 <h3>The idea behind models generation</h3>
 <p>The idea behind this feature is the following: when Alt-Ergo fails to prove the validity of a given formula <code>F</code>, it tries to compute and exhibit values for the terms of the problem that make the negation of <code>F</code> satisfiable. For instance, for the following example, written in Alt-Ergo's syntax,</p>
 <pre><code class="language-ocaml">logic f : int -&gt; int
@@ -34,7 +34,7 @@ false
 </ul>
 <p>For the two latest strategies, the model will be displayed at the end of the execution if the given formula is not proved. Note that a negative argument (-1, -2, or -3) will enable model computation as explained above, but the result will not be displayed (useful for automatic testing). In addition, if Alt-Ergo timeouts, the latest computed model, if any, will be shown.</p>
 <h3>Advanced usage</h3>
-<p>If you are not on Windows, you will also be able to use option <code>-interpretation-timelimit</code> to try to get a candidate model even when Alt-Ergo hits a given time limit (set with option <code>-timelimit</code>). The idea is simple: if Alt-Ergo fails to prove validity during the time allocated for &quot;proof search&quot;, it will activate models generation and tries to get a counter example during the time allocated for that.</p>
+<p>If you are not on Windows, you will also be able to use option <code>-interpretation-timelimit</code> to try to get a candidate model even when Alt-Ergo hits a given time limit (set with option <code>-timelimit</code>). The idea is simple: if Alt-Ergo fails to prove validity during the time allocated for "proof search", it will activate models generation and tries to get a counter example during the time allocated for that.</p>
 <h3>Form of produced models</h3>
 <p>Currently, models are printed in a syntax similar to SMT2's. We made this choice because Why3 already parses models in this format. For instance, Alt-Ergo outputs the following model for the example above:</p>
 <pre><code class="language-ocaml">(

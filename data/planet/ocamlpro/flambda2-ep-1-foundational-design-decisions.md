@@ -5,8 +5,8 @@ description: Welcome to The Flambda2 Snippets! In this first post of The Flambda
   the Flambda2 optimizer, which was one of the main motivation to move on from the
   former Flambda optimizer. Credit goes to Andrew Kennedy's paper Comp...
 url: https://ocamlpro.com/blog/2024_03_19_the_flambda2_snippets_1
-date: 2024-03-19T12:13:29-00:00
-preview_image: https://ocamlpro.com/assets/img/logo_ocp_icon.svg
+date: 2024-03-19T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Pierre Chambart\n  "
 source:
@@ -28,7 +28,7 @@ Research &amp; Development and Compilation; with many more years of expertise in
 all aspects of Computer Science and Formal Methods.</p>
 </blockquote>
 <p></p><div>
-<strong>Table of contents</strong>
+<strong>Table of contents</strong><p></p>
 <ul>
 <li><a href="https://ocamlpro.com/blog/feed#cps">CPS (Continuation Passing Style)</a>
 </li>
@@ -37,10 +37,10 @@ all aspects of Computer Science and Formal Methods.</p>
 <li><a href="https://ocamlpro.com/blog/feed#term">The Flambda2 Term Language</a>
 </li>
 <li><a href="https://ocamlpro.com/blog/feed#roadmap">Following up</a>
+</li></ul></div>
 
-</li>
-</ul>
-<hr/>
+
+<hr>
 <h2>
 <a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#cps" class="anchor-link">CPS (Continuation Passing Style)</a>
           </h2>
@@ -112,14 +112,14 @@ these cases each branch is a call to a (potentially different) continuation;
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/flambda2_snippets2_ep1_figure1.png">
-      <img src="https://ocamlpro.com/blog/assets/img/flambda2_snippets2_ep1_figure1.png" alt="This image shows the previous code represented as a graph."/>
+      <img src="https://ocamlpro.com/blog/assets/img/flambda2_snippets2_ep1_figure1.png" alt="This image shows the previous code represented as a graph.">
     </a>
     </p><div class="caption">
       This image shows the previous code represented as a graph.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <blockquote>
 <p>Notice that some boxes are nested to represent scoping relations: variables
 defined in the outer boxes are available in the inner ones.</p>
@@ -265,4 +265,4 @@ optimisations</p>
 <p>Most of the following snippets will detail one or several parts of these
 optimisations.</p>
 <p><strong>Stay tuned, and thank you for reading!</strong></p>
-</div>
+

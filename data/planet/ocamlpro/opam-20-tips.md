@@ -5,8 +5,8 @@ description: This blog post looks back on some of the improvements in opam 2.0, 
   Opam 2.0 has been vastly improved to handle locally defined packages. Assuming you
   have a project ~/projects/foo, defining two packages foo-lib...
 url: https://ocamlpro.com/blog/2019_03_12_opam_2.0_tips
-date: 2019-03-12T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2019-03-12T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:
@@ -50,7 +50,7 @@ for your OS upon failure).</p>
 add <code>--working-dir</code> so that your uncommitted changes are taken into account.</p>
 <h2>Local switches</h2>
 <blockquote>
-<p>Opam 2.0 introduced a new feature called &quot;local switches&quot;. This section
+<p>Opam 2.0 introduced a new feature called "local switches". This section
 explains what it is about, why, when and how to use them.</p>
 </blockquote>
 <p>Opam <em>switches</em> allow to maintain several separate development environments,
@@ -58,7 +58,7 @@ each with its own set of packages installed. This is particularly useful when
 you need different OCaml versions, or for working on projects with different
 dependency sets.</p>
 <p>It can sometimes become tedious, though, to manage, or remember what switch to
-use with what project. Here is where &quot;local switches&quot; come in handy.</p>
+use with what project. Here is where "local switches" come in handy.</p>
 <h3>How local switches are handled</h3>
 <p>A local switch is simply stored inside a <code>_opam/</code> directory, and will be
 selected automatically by opam whenever your current directory is below its
@@ -102,9 +102,9 @@ two projects.</p>
 <h4>Pinnings</h4>
 <p>If your package depends on development versions of some dependencies (e.g. you
 had to push a fix upstream), add to your opam file:</p>
-<pre><code class="language-shell-session">depends: [ &quot;some-package&quot; ] # Remember that pin-depends are depends too
+<pre><code class="language-shell-session">depends: [ "some-package" ] # Remember that pin-depends are depends too
 pin-depends: [
-  [ &quot;some-package.version&quot; &quot;git+https://gitfoo.com/blob.git#mybranch&quot; ]
+  [ "some-package.version" "git+https://gitfoo.com/blob.git#mybranch" ]
 ]
 </code></pre>
 <p>This will have no effect when your package is published in a repository, but

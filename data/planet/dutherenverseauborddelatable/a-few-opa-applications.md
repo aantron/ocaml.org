@@ -13,11 +13,11 @@ source:
 
 <p style="text-align:justify;">A few open-source Opa applications, written by beta testers or Opa team members, have been open-sourced in the past few days. Expect a few other releases in the upcoming days/weeks:</p>
 <ul>
-<li><a href="https://github.com/Yoric/OpaChat">OpaChat</a> &ndash; simple real-time web chat (works)</li>
-<li><a href="https://github.com/Yoric/OpaStorage">OpaStorage</a> &ndash; simple distributed key/value store (works)</li>
-<li><a href="https://github.com/mattgu74/opaCas">opaCAS</a> &ndash; single sign-on (in progress)</li>
-<li><a href="https://github.com/AltGr/Contre-jour">Contre-Jour</a> &ndash; thumbnail viewer (works)</li>
-<li><a href="https://github.com/mattgu74/OpaTetris">OpaTetris</a> &ndash; I&rsquo;m sure you can guess what it&rsquo;s about &ndash; based on HTML5 canvas (works) <img src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" alt="&#128578;" class="wp-smiley" style="height: 1em; max-height: 1em;"/></li>
+<li><a href="https://github.com/Yoric/OpaChat">OpaChat</a> – simple real-time web chat (works)</li>
+<li><a href="https://github.com/Yoric/OpaStorage">OpaStorage</a> – simple distributed key/value store (works)</li>
+<li><a href="https://github.com/mattgu74/opaCas">opaCAS</a> – single sign-on (in progress)</li>
+<li><a href="https://github.com/AltGr/Contre-jour">Contre-Jour</a> – thumbnail viewer (works)</li>
+<li><a href="https://github.com/mattgu74/OpaTetris">OpaTetris</a> – I’m sure you can guess what it’s about – based on HTML5 canvas (works) <img src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;"></li>
 </ul>
 <p>Know of any other open-source Opa app? Then let me know!</p>
 

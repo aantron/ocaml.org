@@ -8,7 +8,7 @@ authors:
 - GaGallium
 source:
 ---
-    
+
 
 
   <p>This series of blog post aims to give a short weekly glimpse into my
@@ -31,10 +31,10 @@ of pretty ad-hoc rules</a>. The result of this effort is a <a href="https://gith
 json change file</a>, available with few analysis tools and plot scripts
 at <a href="https://github.com/Octachron/ocaml-changelog-analyzer">https://github.com/Octachron/ocaml-changelog-analyzer</a>.</p>
 <p>Starting from this file, it is possible to extract some interesting
-titbit&rsquo;s about the history of OCaml 4 and 5. For instance, in term of
+titbit’s about the history of OCaml 4 and 5. For instance, in term of
 raw numbers, from OCaml 4.00.0 to OCaml 5.1.0, the changelog increased
 by 2930 entries. Filtering patch release, we have an average of 151.5
-contributions by release, with a standard deviation of 48.84, <img src="http://gallium.inria.fr/blog/number_of_contributions_by_release.svg"/></p>
+contributions by release, with a standard deviation of 48.84, <img src="http://gallium.inria.fr/blog/number_of_contributions_by_release.svg"></p>
 <p>With 208 changes, the OCaml 5.1 release is the third release in term
 of contributions behind OCaml 4.03 (277 changes, with a one year release
 cycle and introduced flambda), and OCaml 4.08 (226 changes with many
@@ -42,7 +42,7 @@ standard library changes after the introduction of the
 <code>Stdlib</code> namespacing in OCaml 4.07.0).</p>
 <p>Similarly, OCaml 5.1.0 with 78 authors has the largest number of
 authors, followed by OCaml 4.03.0 and OCaml 4.08:</p>
-<p><img src="http://gallium.inria.fr/blog/authors_by_release.svg"/></p>
+<p><img src="http://gallium.inria.fr/blog/authors_by_release.svg"></p>
 <p>We have an average of 49 authors by release, with a standard
 deviation around 11.8. Maybe more importantly, we can see that we still
 a flux of a dozen of new contributors every releases Unfortunately, I am
@@ -63,7 +63,7 @@ the number of authored change entries since OCaml 4.01, we have:</p>
 <p>If we represent each contributors by the number of authored
 contributions and the number of reviews on a two dimensional log plot,
 we have a quite wide cloud of points:</p>
-<p><img src="http://gallium.inria.fr/blog/cloud.svg"/></p>
+<p><img src="http://gallium.inria.fr/blog/cloud.svg"></p>
 <p>It is reassuring to see that there are contributors spending a
 significant amount of their time on reviews.</p>
 <p>It is also fun to visualize the influx of new contributors by

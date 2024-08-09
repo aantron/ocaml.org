@@ -5,8 +5,8 @@ description: "This article is cross-posted on Origin Labs\u2019 Dune Network blo
   using Menhir. This is a joint effort with Origin Labs, the company dedicated to
   blockchain challenges, to implement a full interpreter for the Solidity..."
 url: https://ocamlpro.com/blog/2020_05_19_ocaml_solidity_parser_with_menhir
-date: 2020-05-19T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2020-05-19T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    David Declerck\n  "
 source:
@@ -14,25 +14,25 @@ source:
 
 <p align="center">
 <a href="https://ocamlpro.com/blog/2020_05_19_ocaml_solidity_parser_with_menhir">
-<img src="https://ocamlpro.com/blog/assets/img/solidity-cover.png" width="420" height="420" alt="Solidity Logo" title="A Solidity parser in OCaml with Menhir"/>
+<img src="https://ocamlpro.com/blog/assets/img/solidity-cover.png" width="420" height="420" alt="Solidity Logo" title="A Solidity parser in OCaml with Menhir">
 </a>
 </p>
-<br/>
+<br>
 <blockquote>
-<p>This article is cross-posted on Origin Labs&rsquo; Dune Network <a href="https://medium.com/dune-network/a-solidity-parser-in-ocaml-with-menhir-e1064f94e76b">blog</a></p>
+<p>This article is cross-posted on Origin Labs’ Dune Network <a href="https://medium.com/dune-network/a-solidity-parser-in-ocaml-with-menhir-e1064f94e76b">blog</a></p>
 </blockquote>
-<p>We are happy to announce the first release of <a href="https://gitlab.com/o-labs/solidity-parser-ocaml">our Solidity parser</a>, written in OCaml using <a href="http://gallium.inria.fr/~fpottier/menhir/">Menhir</a>. This is a joint effort with <a href="https://www.origin-labs.com/">Origin Labs</a>, the company dedicated to blockchain challenges, to implement a full interpreter for the <a href="https://solidity.readthedocs.io/en/v0.6.8/">Solidity language</a> directly in a blockchain.</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/logo_solidity_title.png" alt="Solidity Logo"/></p>
+<p>We are happy to announce the first release of <a href="https://github.com/OCamlPro/ocaml-solidity">our Solidity parser</a>, written in OCaml using <a href="http://gallium.inria.fr/~fpottier/menhir/">Menhir</a>. This is a joint effort with <a href="https://www.origin-labs.com/">Origin Labs</a>, the company dedicated to blockchain challenges, to implement a full interpreter for the <a href="https://solidity.readthedocs.io/en/v0.6.8/">Solidity language</a> directly in a blockchain.</p>
+<p><img src="https://ocamlpro.com/blog/assets/img/logo_solidity_title.png" alt="Solidity Logo"></p>
 <p>Solidity is probably the most popular language for smart-contracts, small pieces of code triggered when accounts receive transactions on a blockchain.Solidity is an object-oriented strongly-typed language with a Javascript-like syntax.</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/logo_ethereum_title.png" alt="Ethereum Logo"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/logo_ethereum_title.png" alt="Ethereum Logo"></p>
 <p>Solidity was first implemented for the <a href="https://ethereum.org/">Ethereum</a> blockchain, with a compiler to the EVM, the Ethereum Virtual Machine.</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/logo_dune_title.png" alt="Dune Network Logo"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/logo_dune_title.png" alt="Dune Network Logo"></p>
 <p>Dune Network takes a different approach, as Solidity smart-contracts will be executed natively, after type-checking. Solidity will be the third native language on Dune Network, with <a href="https://dune.network/docs/dune-node-mainnet/whitedoc/michelson.html">Michelson</a>, a low-level strongly-typed language inherited from Tezos, and <a href="https://dune.network/docs/dune-node-mainnet/love-doc/introduction.html">Love</a>, an higher-level strongly-typed language, also implemented jointly by OCamlPro and Origin Labs.</p>
 <p>A first step has been accomplished, with the completion of the Solidity parser and printer, written in OCaml with Menhir.</p>
 <p>This parser (and its printer companion) is now available as a standalone library under the LGPLv3 license with Linking Exception, allowing its integration in all projects. The source code is available at https://gitlab.com/o-labs/solidity-parser-ocaml.</p>
 <p>Our parser should support all of Solidity 0.6, with the notable exception of inline assembly (may be added in a future release).</p>
 <h2>Example contract</h2>
-<p>Here is an example of a very simple contract that stores an integer value and allows the contract&rsquo;s owner to add an arbitrary value to this value, and any other contract to read this value:</p>
+<p>Here is an example of a very simple contract that stores an integer value and allows the contract’s owner to add an arbitrary value to this value, and any other contract to read this value:</p>
 <pre><code class="language-solidity">pragma solidity &gt;=0.6.0 &lt;0.7.0;
 
 contract C {
@@ -61,7 +61,7 @@ contract C {
 </code></pre>
 <p>This will parse the file <code>contract.sol</code> and reprint it on the terminal.</p>
 <h3>Library</h3>
-<p>To use our parser as a library, add it to your program&rsquo;s dependencies and use the following function:</p>
+<p>To use our parser as a library, add it to your program’s dependencies and use the following function:</p>
 <pre><code class="language-ocaml">Solidity_parser.parse_contract_file : string -&gt; Solidity_parser.Solidity_types.module_
 </code></pre>
 <p>It takes a filename and returns a Solidity AST.</p>

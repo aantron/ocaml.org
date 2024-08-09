@@ -11,6 +11,6 @@ source:
 
 
 <p>Version 8.3pl3 of Coq fixes several bugs of version 8.3pl2. At the same time, new patch-level releases of 8.1 and 8.2 have been released to fix critical bugs related to sort-polymorphism of inductive types.</p>
-<p>For 8.3pl3, see the <a href="https://coq.inria.fr/distrib/V8.3pl3/CHANGES.updated">CHANGES</a> file for a selected list of changes since 8.3pl2.</p>
+<p>For 8.3pl3, see the <a href="https://coq-distrib.s3-website.fr-par.scw.cloud/V8.3pl3/CHANGES.updated">CHANGES</a> file for a selected list of changes since 8.3pl2.</p>
 
  

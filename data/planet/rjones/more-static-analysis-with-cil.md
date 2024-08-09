@@ -11,11 +11,10 @@ authors:
 source:
 ---
 
-<p>Years ago I <a href="http://people.redhat.com/~rjones/cil-analysis-of-libvirt/">played around</a> with <a href="http://www.cs.berkeley.edu/~necula/cil/">CIL</a> to analyze <a href="http://libvirt.org">libvirt</a>.  More recently <a href="https://rwmj.wordpress.com/2009/05/15/dan-uses-ocaml-cil-to-analyze-libvirts-locking-patterns/">Dan used CIL to analyze libvirt&rsquo;s locking code</a>.</p>
-<p>We didn&rsquo;t get so far either time, but I&rsquo;ve been taking a deeper look at CIL in an attempt to verify error handling in <a href="http://libguestfs.org/">libguestfs</a>.</p>
+<p>Years ago I <a href="http://people.redhat.com/~rjones/cil-analysis-of-libvirt/">played around</a> with <a href="http://www.cs.berkeley.edu/~necula/cil/">CIL</a> to analyze <a href="http://libvirt.org">libvirt</a>.  More recently <a href="https://rwmj.wordpress.com/2009/05/15/dan-uses-ocaml-cil-to-analyze-libvirts-locking-patterns/">Dan used CIL to analyze libvirt’s locking code</a>.</p>
+<p>We didn’t get so far either time, but I’ve been taking a deeper look at CIL in an attempt to verify error handling in <a href="http://libguestfs.org/">libguestfs</a>.</p>
 <p>Here is my partly working code so far.</p>
-<pre>
-<tt><i><font color="#9A1900">(*</font></i>
+<pre><tt><i><font color="#9A1900">(*</font></i>
 <i><font color="#9A1900"> * Analyse libguestfs APIs to find error overwriting.</font></i>
 <i><font color="#9A1900"> * Copyright (C) 2008-2013 Red Hat, Inc.</font></i>
 <i><font color="#9A1900"> *</font></i>
@@ -74,7 +73,7 @@ source:
 <i><font color="#9A1900">(* Module used to analyze the paths through each function. *)</font></i>
 <b><font color="#0000FF">module</font></b> <font color="#009900">ErrorCounter</font> <font color="#990000">=</font>
 <b><font color="#0000FF">struct</font></b>
-  <b><font color="#0000FF">let</font></b> name <font color="#990000">=</font> <font color="#FF0000">&quot;ErrorCounter&quot;</font>
+  <b><font color="#0000FF">let</font></b> name <font color="#990000">=</font> <font color="#FF0000">"ErrorCounter"</font>
   <b><font color="#0000FF">let</font></b> debug <font color="#990000">=</font> debug
 
   <i><font color="#9A1900">(* Our current state is very simple, just the number of error</font></i>
@@ -87,7 +86,7 @@ source:
   <i><font color="#9A1900">(* Start data for each statement. *)</font></i>
   <b><font color="#0000FF">let</font></b> stmtStartData <font color="#990000">=</font> <b><font color="#000080">Inthash</font></b><font color="#990000">.</font>create <font color="#993399">97</font>
 
-  <b><font color="#0000FF">let</font></b> printable errcalls <font color="#990000">=</font> sprintf <font color="#FF0000">&quot;(errcalls=%d)&quot;</font> errcalls
+  <b><font color="#0000FF">let</font></b> printable errcalls <font color="#990000">=</font> sprintf <font color="#FF0000">"(errcalls=%d)"</font> errcalls
 
   <b><font color="#0000FF">let</font></b> pretty <font color="#990000">()</font> t <font color="#990000">=</font> <b><font color="#000080">Pretty</font></b><font color="#990000">.</font>text <font color="#990000">(</font>printable t<font color="#990000">)</font>
 
@@ -148,28 +147,28 @@ source:
 <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">rec</font></b> main <font color="#990000">()</font> <font color="#990000">=</font>
   <i><font color="#9A1900">(* Read the list of input C files. *)</font></i>
   <b><font color="#0000FF">let</font></b> files <font color="#990000">=</font>
-    <b><font color="#0000FF">let</font></b> chan <font color="#990000">=</font> open_process_in <font color="#FF0000">&quot;find src -name '*.i' | sort&quot;</font> <b><font color="#0000FF">in</font></b>
+    <b><font color="#0000FF">let</font></b> chan <font color="#990000">=</font> open_process_in <font color="#FF0000">"find src -name '*.i' | sort"</font> <b><font color="#0000FF">in</font></b>
     <b><font color="#0000FF">let</font></b> files <font color="#990000">=</font> input_chan chan <b><font color="#0000FF">in</font></b>
     <b><font color="#0000FF">if</font></b> close_process_in chan <font color="#990000">&lt;&gt;</font> <font color="#009900">WEXITED</font> <font color="#993399">0</font> <b><font color="#0000FF">then</font></b>
-      failwith <font color="#FF0000">&quot;failed to read input list of files&quot;</font><font color="#990000">;</font>
+      failwith <font color="#FF0000">"failed to read input list of files"</font><font color="#990000">;</font>
     <b><font color="#0000FF">if</font></b> files <font color="#990000">=</font> <font color="#990000">[]</font> <b><font color="#0000FF">then</font></b>
-      failwith <font color="#FF0000">&quot;no input files; is the program running from the top directory? did you compile with make -C src CFLAGS=\&quot;-save-temps\&quot;?&quot;</font><font color="#990000">;</font>
+      failwith <font color="#FF0000">"no input files; is the program running from the top directory? did you compile with make -C src CFLAGS=\"-save-temps\"?"</font><font color="#990000">;</font>
     files <b><font color="#0000FF">in</font></b>
 
   <i><font color="#9A1900">(* Load and parse each input file. *)</font></i>
   <b><font color="#0000FF">let</font></b> files <font color="#990000">=</font>
     <b><font color="#000080">List</font></b><font color="#990000">.</font>map <font color="#990000">(</font>
       <b><font color="#0000FF">fun</font></b> filename <font color="#990000">-&gt;</font>
-        printf <font color="#FF0000">&quot;loading %s\n%!&quot;</font> filename<font color="#990000">;</font>
+        printf <font color="#FF0000">"loading %s\n%!"</font> filename<font color="#990000">;</font>
         <b><font color="#000080">Frontc</font></b><font color="#990000">.</font>parse filename <font color="#990000">()</font>
     <font color="#990000">)</font> files <b><font color="#0000FF">in</font></b>
 
   <i><font color="#9A1900">(* Merge the files. *)</font></i>
-  printf <font color="#FF0000">&quot;merging files\n%!&quot;</font><font color="#990000">;</font>
-  <b><font color="#0000FF">let</font></b> sourcecode <font color="#990000">=</font> <b><font color="#000080">Mergecil</font></b><font color="#990000">.</font>merge files <font color="#FF0000">&quot;libguestfs&quot;</font> <b><font color="#0000FF">in</font></b>
+  printf <font color="#FF0000">"merging files\n%!"</font><font color="#990000">;</font>
+  <b><font color="#0000FF">let</font></b> sourcecode <font color="#990000">=</font> <b><font color="#000080">Mergecil</font></b><font color="#990000">.</font>merge files <font color="#FF0000">"libguestfs"</font> <b><font color="#0000FF">in</font></b>
 
   <i><font color="#9A1900">(* CFG analysis. *)</font></i>
-  printf <font color="#FF0000">&quot;computing control flow\n%!&quot;</font><font color="#990000">;</font>
+  printf <font color="#FF0000">"computing control flow\n%!"</font><font color="#990000">;</font>
   <b><font color="#000080">Cfg</font></b><font color="#990000">.</font>computeFileCFG sourcecode<font color="#990000">;</font>
 
   <b><font color="#0000FF">let</font></b> functions <font color="#990000">=</font>
@@ -177,12 +176,12 @@ source:
       sourcecode<font color="#990000">.</font>globals <b><font color="#0000FF">in</font></b>
 
   <i><font color="#9A1900">(* Examine which functions directly call which other functions. *)</font></i>
-  printf <font color="#FF0000">&quot;computing call graph\n%!&quot;</font><font color="#990000">;</font>
+  printf <font color="#FF0000">"computing call graph\n%!"</font><font color="#990000">;</font>
   <b><font color="#0000FF">let</font></b> call_graph <font color="#990000">=</font> make_call_graph functions <b><font color="#0000FF">in</font></b>
   <i><font color="#9A1900">(*</font></i>
 <i><font color="#9A1900">  FunctionDigraph.iter_edges (</font></i>
 <i><font color="#9A1900">    fun caller callee -&gt;</font></i>
-<i><font color="#9A1900">      printf &quot;%s calls %s\n&quot; caller.vname callee.vname</font></i>
+<i><font color="#9A1900">      printf "%s calls %s\n" caller.vname callee.vname</font></i>
 <i><font color="#9A1900">  ) call_graph;</font></i>
 <i><font color="#9A1900">  *)</font></i>
 
@@ -191,12 +190,12 @@ source:
 <i><font color="#9A1900">   * all global functions (ie. 'functions') and turn them into the</font></i>
 <i><font color="#9A1900">   * corresponding varinfo structures.</font></i>
 <i><font color="#9A1900">   *)</font></i>
-  <b><font color="#0000FF">let</font></b> error_function_names <font color="#990000">=</font> <font color="#990000">[</font> <font color="#FF0000">&quot;guestfs_error_errno&quot;</font><font color="#990000">;</font>
-                               <font color="#FF0000">&quot;guestfs_perrorf&quot;</font> <font color="#990000">]</font> <b><font color="#0000FF">in</font></b>
+  <b><font color="#0000FF">let</font></b> error_function_names <font color="#990000">=</font> <font color="#990000">[</font> <font color="#FF0000">"guestfs_error_errno"</font><font color="#990000">;</font>
+                               <font color="#FF0000">"guestfs_perrorf"</font> <font color="#990000">]</font> <b><font color="#0000FF">in</font></b>
 
   <b><font color="#0000FF">let</font></b> find_function name <font color="#990000">=</font>
     <b><font color="#0000FF">try</font></b> <b><font color="#000080">List</font></b><font color="#990000">.</font>find <font color="#990000">(</font><b><font color="#0000FF">fun</font></b> <font color="#990000">(</font><font color="#FF0000">{</font> svar <font color="#990000">=</font> <font color="#FF0000">{</font> vname <font color="#990000">=</font> n <font color="#FF0000">}}</font><font color="#990000">,</font> _<font color="#990000">)</font> <font color="#990000">-&gt;</font> n <font color="#990000">=</font> name<font color="#990000">)</font> functions
-    <b><font color="#0000FF">with</font></b> <font color="#009900">Not_found</font> <font color="#990000">-&gt;</font> failwith <font color="#990000">(</font><font color="#FF0000">&quot;function '&quot;</font> <font color="#990000">^</font> name <font color="#990000">^</font> <font color="#FF0000">&quot;' does not exist&quot;</font><font color="#990000">)</font>
+    <b><font color="#0000FF">with</font></b> <font color="#009900">Not_found</font> <font color="#990000">-&gt;</font> failwith <font color="#990000">(</font><font color="#FF0000">"function '"</font> <font color="#990000">^</font> name <font color="#990000">^</font> <font color="#FF0000">"' does not exist"</font><font color="#990000">)</font>
   <b><font color="#0000FF">in</font></b>
   <b><font color="#0000FF">let</font></b> error_function_names <font color="#990000">=</font> <b><font color="#000080">List</font></b><font color="#990000">.</font>map <font color="#990000">(</font>
     <b><font color="#0000FF">fun</font></b> f <font color="#990000">-&gt;</font> <font color="#990000">(</font>fst <font color="#990000">(</font>find_function f<font color="#990000">)).</font>svar
@@ -210,11 +209,11 @@ source:
 
   <i><font color="#9A1900">(*</font></i>
 <i><font color="#9A1900">  List.iter (</font></i>
-<i><font color="#9A1900">    fun f -&gt; printf &quot;%s can call an error function\n&quot; f.vname</font></i>
+<i><font color="#9A1900">    fun f -&gt; printf "%s can call an error function\n" f.vname</font></i>
 <i><font color="#9A1900">  ) error_functions;</font></i>
 
 <i><font color="#9A1900">  List.iter (</font></i>
-<i><font color="#9A1900">    fun f -&gt; printf &quot;%s can NOT call an error function\n&quot; f.vname</font></i>
+<i><font color="#9A1900">    fun f -&gt; printf "%s can NOT call an error function\n" f.vname</font></i>
 <i><font color="#9A1900">  ) non_error_functions;</font></i>
 <i><font color="#9A1900">  *)</font></i>
 
@@ -229,7 +228,7 @@ source:
 <i><font color="#9A1900">   * function exactly once on error paths, and never on normal return</font></i>
 <i><font color="#9A1900">   * paths.</font></i>
 <i><font color="#9A1900">   *)</font></i>
-  printf <font color="#FF0000">&quot;analyzing correctness of error paths\n%!&quot;</font><font color="#990000">;</font>
+  printf <font color="#FF0000">"analyzing correctness of error paths\n%!"</font><font color="#990000">;</font>
   <b><font color="#000080">List</font></b><font color="#990000">.</font>iter compute_error_paths functions<font color="#990000">;</font>
 
   <font color="#990000">()</font>
@@ -289,7 +288,7 @@ source:
 <i><font color="#9A1900">           * is completely disconnected from the other part of the graph</font></i>
 <i><font color="#9A1900">           * that contains the endpoint.</font></i>
 <i><font color="#9A1900">           *)</font></i>
-          <font color="#990000">|</font> <font color="#009900">Invalid_argument</font> <font color="#FF0000">&quot;[ocamlgraph] iter_succ&quot;</font> <font color="#990000">-&gt;</font> <b><font color="#0000FF">false</font></b>
+          <font color="#990000">|</font> <font color="#009900">Invalid_argument</font> <font color="#FF0000">"[ocamlgraph] iter_succ"</font> <font color="#990000">-&gt;</font> <b><font color="#0000FF">false</font></b>
       <font color="#990000">)</font> endpoints
   <font color="#990000">)</font> functions
 
@@ -321,29 +320,29 @@ source:
         <i><font color="#9A1900">(* return -1; *)</font></i>
         <font color="#990000">|</font> <font color="#FF0000">{</font> skind <font color="#990000">=</font> <font color="#009900">Return</font> <font color="#990000">(</font><font color="#009900">Some</font> i<font color="#990000">,</font> loc<font color="#990000">)</font> <font color="#FF0000">}</font> <b><font color="#0000FF">when</font></b> is_literal_minus_one i <font color="#990000">-&gt;</font>
           <b><font color="#0000FF">if</font></b> errcalls <font color="#990000">=</font> <font color="#993399">0</font> <b><font color="#0000FF">then</font></b>
-            printf <font color="#FF0000">&quot;%s:%d: %s: may return an error code without calling error/perrorf\n&quot;</font>
+            printf <font color="#FF0000">"%s:%d: %s: may return an error code without calling error/perrorf\n"</font>
               loc<font color="#990000">.</font>file loc<font color="#990000">.</font>line svar<font color="#990000">.</font>vname
           <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b> errcalls <font color="#990000">&gt;</font> <font color="#993399">1</font> <b><font color="#0000FF">then</font></b>
-            printf <font color="#FF0000">&quot;%s:%d: %s: may call error/perrorf %d times (more than once) along an error path\n&quot;</font>
+            printf <font color="#FF0000">"%s:%d: %s: may call error/perrorf %d times (more than once) along an error path\n"</font>
           loc<font color="#990000">.</font>file loc<font color="#990000">.</font>line svar<font color="#990000">.</font>vname errcalls
 
         <i><font color="#9A1900">(* return 0; *)</font></i>
         <font color="#990000">|</font> <font color="#FF0000">{</font> skind <font color="#990000">=</font> <font color="#009900">Return</font> <font color="#990000">(</font><font color="#009900">Some</font> i<font color="#990000">,</font> loc<font color="#990000">)</font> <font color="#FF0000">}</font> <b><font color="#0000FF">when</font></b> is_literal_zero i <font color="#990000">-&gt;</font>
           <b><font color="#0000FF">if</font></b> errcalls <font color="#990000">&gt;=</font> <font color="#993399">1</font> <b><font color="#0000FF">then</font></b>
-            printf <font color="#FF0000">&quot;%s:%d: %s: may call error/perrorf along a non-error return path\n&quot;</font>
+            printf <font color="#FF0000">"%s:%d: %s: may call error/perrorf along a non-error return path\n"</font>
               loc<font color="#990000">.</font>file loc<font color="#990000">.</font>line svar<font color="#990000">.</font>vname
 
         <i><font color="#9A1900">(* return; (void return) *)</font></i>
         <font color="#990000">|</font> <font color="#FF0000">{</font> skind <font color="#990000">=</font> <font color="#009900">Return</font> <font color="#990000">(</font><font color="#009900">None</font><font color="#990000">,</font> loc<font color="#990000">)</font> <font color="#FF0000">}</font> <font color="#990000">-&gt;</font>
           <b><font color="#0000FF">if</font></b> errcalls <font color="#990000">&gt;=</font> <font color="#993399">1</font> <b><font color="#0000FF">then</font></b>
-            printf <font color="#FF0000">&quot;%s:%d: %s: may call error/perrorf and return void\n&quot;</font>
+            printf <font color="#FF0000">"%s:%d: %s: may call error/perrorf and return void\n"</font>
               loc<font color="#990000">.</font>file loc<font color="#990000">.</font>line svar<font color="#990000">.</font>vname
 
         <font color="#990000">|</font> _ <font color="#990000">-&gt;</font> <font color="#990000">()</font>
 
       <b><font color="#0000FF">with</font></b>
         <font color="#009900">Not_found</font> <font color="#990000">-&gt;</font>
-          printf <font color="#FF0000">&quot;%s:%d: %s: may contain unreachable code\n&quot;</font>
+          printf <font color="#FF0000">"%s:%d: %s: may contain unreachable code\n"</font>
             loc<font color="#990000">.</font>file loc<font color="#990000">.</font>line svar<font color="#990000">.</font>vname
   <font color="#990000">)</font> f<font color="#990000">.</font>sallstmts
 

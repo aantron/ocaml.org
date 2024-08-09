@@ -11,7 +11,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2014/12/Immutable.jpg#hero" alt="immutable"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/12/Immutable.jpg#hero" alt="immutable"></p>
 
 <p>In <strong>pure functional programming</strong>, everything is immutable. Strings, lists, values of customised types etc cannot be changed once being created. For example, a list such as <code>[1;2;3]</code> does not have any operation that can alter its elements. If you want the stuff inside to be changed, you need to create a new list based on it. Suppose you want to change the first element of <code>[1;2;3]</code> to be <code>4</code>, then you have to <code>let new_list = 4::List.tl [1;2;3]</code> or directly <code>let new_list = [4;2;3]</code>, however, you don't have ways to do something like <code>old_list.first_element = 4</code>.  </p>
 
@@ -33,7 +33,7 @@ source:
 
 <p>Basically, the two <code>y</code>s are different. After the binding of second <code>y</code> is defined, the first <code>y</code> is still there for the time being. Just because it happens to have the same name as second <code>y</code>, it is in the shadow and can never be accessed later in the term of <a href="http://www.cs.cornell.edu/Courses/cs3110/2014sp/lectures/3/lec03.html">scope</a>. Thus we should not say <code>y</code> is mutated and in OCaml <em>variable</em> / <em>binding</em> is indeed immutable.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/shadow-1.jpg#small" alt="shadowed"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/shadow-1.jpg#small" alt="shadowed"></p>
 
 <h1>Mutable Variables and Values</h1>
 
@@ -74,7 +74,7 @@ a[0] = 0;
 
 <p>A <em>immutable</em> value does not provide such as way. We can check immutable type <em>String</em> in Java to confirm this.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/immutable_mutable-1.jpg#small" alt="immutable_mutable"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/immutable_mutable-1.jpg#small" alt="immutable_mutable"></p>
 
 <p>To summarise, when dealing with <em>mutable</em>, especially when we test our imperative code, we should not forget possible changes of both <em>variable</em> and <em>value</em>.</p>
 
@@ -119,7 +119,7 @@ let median_mul_hd =
 
 <p>With immutables, the burden of cautions on unexpected modification of values are  relieved for us. Hence, for OCaml, we do not need to spend time on studying materials such as <em>Item 39: Make defensive copies when needed</em> in <a href="http://www.amazon.co.uk/Effective-Java-Edition-Joshua-Bloch/dp/0321356683">Effective Java</a>. </p>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/extra_safety-2.jpg#small" alt="extra_safety"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/extra_safety-2.jpg#small" alt="extra_safety"></p>
 
 <p>Being immutable brings extra safety to our code and helps us to avoid possibly many trivial bugs like the ones described before. However, this is not free of charge. We may feel more restrictive and lose much flexibilities (<em>[1]</em>). Moreover, because we cannot alter anything, pure functional programming forces us to adapt to a new style, which will be illustrated next. </p>
 
@@ -185,11 +185,11 @@ end while
 
 <p>I bet you imagined this diagram as below:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/state_true.jpg#small" alt="state_true"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/state_true.jpg#small" alt="state_true"></p>
 
 <p>But NOT </p>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/state_false.jpg#small" alt="state_false"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/state_false.jpg#small" alt="state_false"></p>
 
 <p>When we were really thinking of the trivial process, there must be two separate states in our mind and an explicit arrow would be there to clearly indicate the transition. This is much more nature than imagining just one state and the two situations inside. Afterall, this is called landscape and we often need it when we design something. </p>
 
@@ -222,7 +222,7 @@ end while
 
 <p>I bet you imagined or wrote down the flow similar as below:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/quicksort-1.jpg#small" alt="quicksort"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/quicksort-1.jpg#small" alt="quicksort"></p>
 
 <p>The mechanism of <em>partition</em> is not complicated. We get the <em>pivot</em> out first. Then get an element out of the rest of elements one by one. For each element, we compare it with the <em>pivot</em>. If it is smaller, then it goes to the left; otherwise, goes to the right. The whole process ends when no element remains. Simple enough? I believe even for non-developers, they would mannually do the <em>partition</em> like shown in the diagram. </p>
 
@@ -234,7 +234,7 @@ end while
 
 <p>There are a number of ways to implement <em>partition</em> in Java and here the one presented in the book of <a href="http://algs4.cs.princeton.edu/23quicksort/">Algorithms, Robert Sedgewick and Kevin Wayne</a> is briefly presented as a diagram below:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/quicksort_imperative-1.jpg#small" alt="quicksort_imperative"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/quicksort_imperative-1.jpg#small" alt="quicksort_imperative"></p>
 
 <p>We do not have <em>smaller bag</em> or <em>larger bag</em> any more. We do not do <em>throwing element into according bag</em> either. We have to maintain two additional pointers <code>i</code> and <code>j</code>. <code>i</code> is used to indicate the next element in action. If an element is smaller than the pivot, swapping it with the pivot will put it to the left. If an element is larger, then we swap it with <code>j</code>'s element. <code>j</code> can now decrease while <code>i</code> stays put because <code>i</code> now is a new element that was just swapped from <code>j</code>. The whole process stops when <code>i &gt; j</code>. </p>
 
@@ -330,7 +330,7 @@ let partition_fold pivot l =
 
 <p>Anyhow, OCaml is still a functional programming language and we should not forget that. Especially for beginners, please do pure functional programming in OCaml as much as possible. Do not bow to your imperative habit. For the question of <em>when should I bring up imperative style in OCaml</em> will be answered in the next post <a href="http://typeocaml.com/2015/01/20/mutable/">Mutable</a>. </p>
 
-<hr/>
+<hr>
 
 <p><strong>[1].</strong> </p>
 
@@ -340,17 +340,17 @@ let partition_fold pivot l =
 
 <p>OCaml and other functional programming languages are on the opposite side - they are very restrictive, but restrictions are for the great of good. For example, we cannot freely use the best excuse of <em>sorry I can't return you a valid answer</em> - <strong>return null;</strong>. Instead, we have the <em>None</em>, which is part of <em>option</em>, to explicitly tell you that nothing can be returned. The elegant reward of using <em>option</em> is that when we try to access it, <strong>we have to deal with the <em>None</em></strong>. Thus <em>NullPointerException</em> does not exist in OCaml (<em>[2]</em>). </p>
 
-<p><img src="http://typeocaml.com/content/images/2014/12/null.jpg#small" alt="null"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/12/null.jpg#small" alt="null"></p>
 
 <p>For <em>if</em> and <em>pattern matching</em>, OCaml forces us to cover all possible cases. It sounds troublesome during coding as we sometimes know that we don't care about some cases or some cases will never happen. Yes, we may ignore those cases in our working code in Java or Python, but later do we have to consider them in testing code? Often we do, right? </p>
 
 <p>OCaml cuts off some flexibilities. As an outcome, to achieve a goal, we have quite limited number of ways and occasionally even just one way and that way might be very tough (we will see it in later posts on functional pearls). But trust me, after mastering OCaml at a certain level and looking at the very robust OCaml code you wrote, you would appreciate OCaml and recall this slogan: </p>
 
 <blockquote>
-  <p>&quot;Less is more&quot; - Andrea del Sarto, Robert Browning. </p>
+  <p>"Less is more" - Andrea del Sarto, Robert Browning. </p>
 </blockquote>
 
-<p><strong>[2].</strong> &quot;Options are important because they are the standard way in OCaml to encode a value that might not be there; there's no such thing as a NullPointerException in OCaml. &quot; - <a href="https://realworldocaml.org/v1/en/html/a-guided-tour.html">Chapter 1 in Real World Ocaml</a></p>
+<p><strong>[2].</strong> "Options are important because they are the standard way in OCaml to encode a value that might not be there; there's no such thing as a NullPointerException in OCaml. " - <a href="https://realworldocaml.org/v1/en/html/a-guided-tour.html">Chapter 1 in Real World Ocaml</a></p>
 
 <p><strong>Ps.</strong></p>
 

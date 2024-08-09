@@ -23,7 +23,7 @@ Highlights:
 <li>Introduction of definitional proof irrelevance for the equality type defined in the SProp sort. </li>
 <li>Many improvements to the handling of notations, including number notations, recursive notations and notations with bindings. A new algorithm chooses the most precise notation available to print an expression, which might introduce changes in printing behavior.</li>
 </ul>
-
+<p></p>
 
 
 <p>Please see <a href="https://coq.github.io/doc/v8.13/refman/changes.html#version-8-13" rel="nofollow">the changelog</a> to learn more about this release.</p>

@@ -10,7 +10,7 @@ authors:
 source:
 ---
 
-<p>I&rsquo;m not sure how I&rsquo;ve managed to use rsync for so many years without ever
+<p>I’m not sure how I’ve managed to use rsync for so many years without ever
 noticing this, but hey, you learn something new every day!</p>
 
 

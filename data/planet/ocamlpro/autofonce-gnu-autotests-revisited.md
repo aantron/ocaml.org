@@ -5,8 +5,8 @@ description: Since 2022, OCamlPro has been contributing to GnuCOBOL, the only fu
   compiler, we developed a new tool, autofonce, to be able to easily run and modify
   the testsuite of the compiler, originally written as a GNU Autoco...
 url: https://ocamlpro.com/blog/2023_03_18_autofonce
-date: 2023-06-27T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2023-06-27T13:31:53-00:00
+preview_image: https://ocamlpro.com/blog/assets/img/autofonce-2023.png
 authors:
 - "\n    Fabrice Le Fessant\n  "
 source:
@@ -20,7 +20,7 @@ to be able to easily run and modify the testsuite of the compiler,
 originally written as a GNU Autoconf testsuite. This article describes
 this tool, that could be useful for other project testsuites.</p>
 <p></p><div>
-<strong>Table of contents</strong>
+<strong>Table of contents</strong><p></p>
 <ul>
 <li><a href="https://ocamlpro.com/blog/feed#introduction">Introduction</a>
 </li>
@@ -29,23 +29,23 @@ this tool, that could be useful for other project testsuites.</p>
 <li><a href="https://ocamlpro.com/blog/feed#autofonce">Main Features of Autofonce</a>
 </li>
 <li><a href="https://ocamlpro.com/blog/feed#conclusion">Conclusion</a>
+</li></ul></div>
 
-</li>
-</ul>
+
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/autofonce-2023.png">
-      <img src="https://ocamlpro.com/blog/assets/img/autofonce-2023.png" alt="Autofonce is a modern runner for GNU Autoconf Testsuite"/>
+      <img src="https://ocamlpro.com/blog/assets/img/autofonce-2023.png" alt="Autofonce is a modern runner for GNU Autoconf Testsuite">
     </a>
     </p><div class="caption">
       Autofonce is a modern runner for GNU Autoconf Testsuite
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <h2>
-<a class="anchor"></a>Introduction<a href="https://ocamlpro.com/blog/feed#introduction">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#introduction" class="anchor-link">Introduction</a>
           </h2>
 <p>Since 2022, OCamlPro has been involved in a big modernization project
 for the French state: the goal is to move a large COBOL application,
@@ -75,7 +75,7 @@ Testsuites, the framework used in GnuCOBOL to manage its
 testsuite. Our tool is available on Github, with Linux and Windows
 binaries on the <a href="https://github.com/OCamlPro/autofonce/releases">release page</a>.</p>
 <h2>
-<a class="anchor"></a>The GNU Autoconf Testsuite of GnuCOBOL<a href="https://ocamlpro.com/blog/feed#gnucobol">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#gnucobol" class="anchor-link">The GNU Autoconf Testsuite of GnuCOBOL</a>
           </h2>
 <p><a href="https://www.gnu.org/software/autoconf/">GNU Autoconf</a> is a set of
 powerful tools, developed to help developers of open-source projects
@@ -166,7 +166,7 @@ within its directory.</p>
 </ul>
 <p>With <code>autofonce</code>, we tried to solve all of these issues...</p>
 <h2>
-<a class="anchor"></a>Main Features of Autofonce<a href="https://ocamlpro.com/blog/feed#autofonce">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#autofonce" class="anchor-link">Main Features of Autofonce</a>
           </h2>
 <p><code>autofonce</code> is written in a modern language, OCaml, so that it can
 handle a large testsuite much faster than GNU Autoconf. Since we do
@@ -229,7 +229,7 @@ failed check), as many iterations as the maximal number of failed
 checks within a test may be needed.</p>
 <p>Also, as for GNU Autoconf, <code>autofonce</code> generates a final log file containing the results with a full log of errors and files needed to reproduce the error. This file can be uploaded into the artefacts of a CI system to easily debug errors after a CI failure.</p>
 <h2>
-<a class="anchor"></a>Conclusion<a href="https://ocamlpro.com/blog/feed#conclusion">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#conclusion" class="anchor-link">Conclusion</a>
           </h2>
 <p>During our work on GnuCOBOL, <code>autofonce</code> improved a lot our user
 experience of running the testsuite, especially using the
@@ -243,4 +243,4 @@ easily check exit codes, standard outputs and error outputs of shell
 commands. <code>autofonce</code> could be used to help using this format in
 projects, that do not want to rely on an old tool like GNU Autoconf,
 and are looking for a much more modern test framework.</p>
-</div>
+

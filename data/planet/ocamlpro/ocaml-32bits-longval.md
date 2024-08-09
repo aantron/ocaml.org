@@ -10,8 +10,8 @@ description: 'You will need OCaml 3.11.2 installed on a i686 linux computer. The
   README The Makefile has two targets: sudo make install will save /usr/bin/ocamlrun
   and /usr/lib/ocaml/libcamlrun.a in the current directory and replace them with ...'
 url: https://ocamlpro.com/blog/2011_05_06_ocaml_32bits_longval
-date: 2011-05-06T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2011-05-06T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Fabrice Le Fessant\n  "
 source:
@@ -38,11 +38,11 @@ source:
 <p>If your install directories are not the default ones, you should modify the Makefile. After installing, you can test it with the standard OCaml top-level:</p>
 <p><code>Objective Caml version 3.11.2</code></p>
 <pre><code class="language-Ocaml">
-# let s = ref &ldquo;&rdquo;;;
-val s : string ref = {contents = &ldquo;&rdquo;}
+# let s = ref “”;;
+val s : string ref = {contents = “”}
 
 # s := String.create 20_000_000;;
-&ndash; : unit = ()
+– : unit = ()
 </code></pre>
 <p>Now you can enjoy big values in all your strings and arrays in
 bytecode. You will need to relink all your custom binaries. If you are

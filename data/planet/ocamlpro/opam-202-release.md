@@ -10,8 +10,8 @@ description: 'We are pleased to announce the release of opam 2.0.2. As sandbox s
 
   reinsert removed ones to print a deprecat...'
 url: https://ocamlpro.com/blog/2018_12_12_opam_2.0.2_release
-date: 2018-12-12T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2018-12-12T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Raja Boujbel\n  "
 source:
@@ -61,7 +61,7 @@ source:
 </li>
 <li>Show: remove pin depends messages
 </li>
-<li>Cudf: Fix closure computation in the presence of cycles to have a complete graph if a cycle is present in the graph (typically <code>ocaml-base-compiler</code> &#8644; <code>ocaml</code>)
+<li>Cudf: Fix closure computation in the presence of cycles to have a complete graph if a cycle is present in the graph (typically <code>ocaml-base-compiler</code> ⇄ <code>ocaml</code>)
 </li>
 <li>List: Fix some cases of listing coinstallable packages
 </li>
@@ -78,7 +78,7 @@ source:
 <li>Update cold compiler to 4.07.1
 </li>
 </ul>
-<hr/>
+<hr>
 <p>Installation instructions (unchanged):</p>
 <ol>
 <li>From binaries: run
@@ -86,7 +86,7 @@ source:
 </ol>
 <pre><code class="language-shell-session">sh &lt;(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.2">the Github &quot;Releases&quot; page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update your sandbox script.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.2">the Github "Releases" page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update your sandbox script.</p>
 <ol start="2">
 <li>From source, using opam:
 </li>

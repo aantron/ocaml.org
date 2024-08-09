@@ -10,15 +10,15 @@ authors:
 source:
 ---
 
-<p>I got a new job where I am hacking some Scala. I thought I would learn something by translating some functional code into Scala, and a friend had recently pointed me to Kiselyov et al.&rsquo;s <a href="http://okmij.org/ftp/Computation/LogicT.pdf">Backtracking, Interleaving, and Terminating Monad Transformers</a>, which provides a foundation for Prolog-style logic programming. Of course, a good translation should use the local idiom. So in this post (and the next) I want to explore an embedded domain-specific language for logic programming in Scala.</p> 
+<p>I got a new job where I am hacking some Scala. I thought I would learn something by translating some functional code into Scala, and a friend had recently pointed me to Kiselyov et al.’s <a href="http://okmij.org/ftp/Computation/LogicT.pdf">Backtracking, Interleaving, and Terminating Monad Transformers</a>, which provides a foundation for Prolog-style logic programming. Of course, a good translation should use the local idiom. So in this post (and the next) I want to explore an embedded domain-specific language for logic programming in Scala.</p> 
 <b>A search problem</b> 
 <p>Here is a problem I sometimes give in interviews:</p> 
  
 <blockquote> 
-<p>Four people need to cross a rickety bridge, which can hold only two people at a time. It&rsquo;s a moonless night, so they need a light to cross; they have one flashlight with a battery which lasts 60 minutes. Each person crosses the bridge at a different speed: Alice takes 5 minutes, Bob takes 10, Candace takes 20 minutes, and Dave 25. How do they get across?</p> 
+<p>Four people need to cross a rickety bridge, which can hold only two people at a time. It’s a moonless night, so they need a light to cross; they have one flashlight with a battery which lasts 60 minutes. Each person crosses the bridge at a different speed: Alice takes 5 minutes, Bob takes 10, Candace takes 20 minutes, and Dave 25. How do they get across?</p> 
 </blockquote> 
  
-<p>I&rsquo;m not interested in the answer&mdash;I&rsquo;m interviewing programmers, not law school applicants&mdash;but rather in how to write a program to find the answer.</p> 
+<p>I’m not interested in the answer—I’m interviewing programmers, not law school applicants—but rather in how to write a program to find the answer.</p> 
  
 <p>The basic shape of the solution is to represent the state of the world (where are the people, where is the flashlight, how much battery is left), write a function to compute from any particular state the set of possible next states, then search for an answer (a path from the start state to the final state) in the tree formed by applying the next state function transitively to the start state. (<a href="http://web.engr.oregonstate.edu/~erwig/papers/Zurg_JFP04.pdf">Here is a paper</a> describing solutions in Prolog and Haskell.)</p> 
  
@@ -49,9 +49,9 @@ source:
   <span class="o">}</span> 
 </code></pre> 
 </div> 
-<p>This function returns the list of pairs of people from the input list. We use <code>foldLeft</code> to do a double loop over the input list, accumulating pairs <code>(p1, p2)</code> where <code>p1 &lt; p2</code>; this avoids returning <code>(Alice, Bob)</code> and also <code>(Bob, Alice)</code>. The use of <code>foldLeft</code> is rather OCamlish, and if you know Scala you will complain that <code>foldLeft</code> is not idiomatic&mdash;we will repair this shortly.</p> 
+<p>This function returns the list of pairs of people from the input list. We use <code>foldLeft</code> to do a double loop over the input list, accumulating pairs <code>(p1, p2)</code> where <code>p1 &lt; p2</code>; this avoids returning <code>(Alice, Bob)</code> and also <code>(Bob, Alice)</code>. The use of <code>foldLeft</code> is rather OCamlish, and if you know Scala you will complain that <code>foldLeft</code> is not idiomatic—we will repair this shortly.</p> 
  
-<p>In Scala, <code>Nil</code> doesn&rsquo;t have type <code>'a list</code> like in OCaml and Haskell, but rather <code>List[Nothing]</code>. The way local type inference works, the type variable in the type of <code>foldLeft</code> is instantiated with the type of the <code>init</code> argument, so you have to ascribe a type to <code>init</code> (or explicitly instantiate the type variable with <code>foldLeft[List[(Person,
+<p>In Scala, <code>Nil</code> doesn’t have type <code>'a list</code> like in OCaml and Haskell, but rather <code>List[Nothing]</code>. The way local type inference works, the type variable in the type of <code>foldLeft</code> is instantiated with the type of the <code>init</code> argument, so you have to ascribe a type to <code>init</code> (or explicitly instantiate the type variable with <code>foldLeft[List[(Person,
 Person)]]</code>) or else you get a type clash between <code>List[Nothing]</code> and <code>List[(Person, Person)]</code>.</p> 
 <div class="highlight"><pre><code class="scala">  <span class="k">def</span> <span class="n">next</span><span class="o">(</span><span class="n">state</span><span class="k">:</span> <span class="kt">State</span><span class="o">)</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">State</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span> 
     <span class="k">if</span> <span class="o">(</span><span class="n">state</span><span class="o">.</span><span class="n">lightOnLeft</span><span class="o">)</span> <span class="o">{</span> 
@@ -82,7 +82,7 @@ Person)]]</code>) or else you get a type clash between <code>List[Nothing]</code
   <span class="o">}</span> 
 </code></pre> 
 </div> 
-<p>Here we compute the set of successor states for a state. We make a heuristic simplification: when the flashlight is on the left (the side where everyone begins) we move two people from the left to the right; when it is on the right we move only one. I don&rsquo;t have a proof that an answer must take this form, but I believe it, and it makes the code shorter.</p> 
+<p>Here we compute the set of successor states for a state. We make a heuristic simplification: when the flashlight is on the left (the side where everyone begins) we move two people from the left to the right; when it is on the right we move only one. I don’t have a proof that an answer must take this form, but I believe it, and it makes the code shorter.</p> 
  
 <p>So when the light is on the left we fold over all the pairs of people still on the left, compute the time remaining if they were to cross, and if it is not negative build a new state where they and the flashlight are moved to the right and the time remaining updated.</p> 
  
@@ -110,7 +110,7 @@ Person)]]</code>) or else you get a type clash between <code>List[Nothing]</code
 </div> 
 <p>Just as before, we do a double loop over the input list, returning pairs where <code>p1 &lt; p2</code>. (However, under the hood the result list is constructed by appending to a <code>ListBuffer</code> rather than with <code>::</code>, so the pairs are returned in the reverse order.)</p> 
  
-<p>The for-comprehension syntax isn&rsquo;t specific to lists. It&rsquo;s syntactic sugar which translates to method calls, so we can use it on any objects which implement the right methods. The methods we need are</p> 
+<p>The for-comprehension syntax isn’t specific to lists. It’s syntactic sugar which translates to method calls, so we can use it on any objects which implement the right methods. The methods we need are</p> 
 <div class="highlight"><pre><code class="scala">  <span class="k">def</span> <span class="n">filter</span><span class="o">(</span><span class="n">p</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> 
   <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> 
   <span class="k">def</span> <span class="n">flatMap</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">T</span><span class="o">[</span><span class="kt">B</span><span class="o">])</span><span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> 
@@ -119,7 +119,7 @@ Person)]]</code>) or else you get a type clash between <code>List[Nothing]</code
 </div> 
 <p>where <code>T</code> is some type constructor, like <code>List</code>. For <code>List</code>, <code>filter</code> and <code>map</code> have their ordinary meaning, and <code>flatMap</code> is a <code>map</code> (where the result type must be a list) which concatenates the resulting lists (that is, it flattens the list of lists).</p> 
  
-<p><code>WithFilter</code> is like <code>filter</code> but should be implemented as a &ldquo;virtual&rdquo; filter for efficiency&mdash;for <code>List</code> it doesn&rsquo;t build a new filtered list, but instead just keeps track of the filter function; this way multiple adjacent filters can be combined and the result produced with a single pass over the list.</p> 
+<p><code>WithFilter</code> is like <code>filter</code> but should be implemented as a “virtual” filter for efficiency—for <code>List</code> it doesn’t build a new filtered list, but instead just keeps track of the filter function; this way multiple adjacent filters can be combined and the result produced with a single pass over the list.</p> 
  
 <p>The details of the translation are in the <a href="http://www.scala-lang.org/docu/files/ScalaReference.pdf">Scala reference manual</a>, section 6.19. Roughly speaking, <code>&lt;-</code> becomes <code>flatMap</code>, <code>if</code> becomes <code>filter</code>, and <code>yield</code> becomes <code>map</code>. So another way to write <code>chooseTwo</code> is:</p> 
 <div class="highlight"><pre><code class="scala">  <span class="k">def</span> <span class="n">chooseTwo</span><span class="o">(</span><span class="n">list</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Person</span><span class="o">])</span><span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">Person</span>,<span class="kt">Person</span><span class="o">)]</span> <span class="k">=</span> 
@@ -223,7 +223,7 @@ Person)]]</code>) or else you get a type clash between <code>List[Nothing]</code
 <span class="o">}</span> 
 </code></pre> 
 </div> 
-<p>In <code>tree</code> we use <code>|</code> to adjoin the input path (previously we gave it in the initial value of <code>foldLeft</code>). In <code>search</code> we need to actually run the <code>Logic.T[A]</code> value rather than returning it, because it&rsquo;s an abstract type and can&rsquo;t escape the module (see the Postscript for an alternative); this is why the other methods must be <code>private</code>.</p> 
+<p>In <code>tree</code> we use <code>|</code> to adjoin the input path (previously we gave it in the initial value of <code>foldLeft</code>). In <code>search</code> we need to actually run the <code>Logic.T[A]</code> value rather than returning it, because it’s an abstract type and can’t escape the module (see the Postscript for an alternative); this is why the other methods must be <code>private</code>.</p> 
 <b>Implementing the logic monad with lists</b> 
 <p>We can recover the original solution by implementing <code>Logic</code> with lists:</p> 
 <div class="highlight"><pre><code class="scala"><span class="k">object</span> <span class="nc">LogicList</span> <span class="k">extends</span> <span class="nc">Logic</span> <span class="o">{</span> 
@@ -247,11 +247,11 @@ Person)]]</code>) or else you get a type clash between <code>List[Nothing]</code
  
 <p>The downside to the <code>List</code> implementation is that we compute all the alternatives, even if we only care about one of them. (In the bridge problem any path to the final state is a satisfactory answer, but our program computes all such paths, even if we pass an argument to <code>search</code> requesting only one answer.) We might even want to solve problems with an infinite number of solutions.</p> 
  
-<p>Next time we&rsquo;ll repair this downside by implementing the backtracking monad from the paper by Kiselyov et al.</p> 
+<p>Next time we’ll repair this downside by implementing the backtracking monad from the paper by Kiselyov et al.</p> 
  
 <p>See the complete code <a href="https://github.com/jaked/ambassadortothecomputers.blogspot.com/tree/master/_code/scala-logic">here</a>.</p> 
 <b>Postscript: modules in Scala</b> 
-<p>I got the idea of implementing the for-comprehension methods as an implict wrapper from Edward Kmett&rsquo;s <a href="https://github.com/ekmett/functorial">functorial</a> library. It&rsquo;s nice that <code>T[A]</code> remains completely abstract, and the for-comprehension notation is just sugar. I also tried an implementation where <code>T[A]</code> is bounded by a trait containing the methods:</p> 
+<p>I got the idea of implementing the for-comprehension methods as an implict wrapper from Edward Kmett’s <a href="https://github.com/ekmett/functorial">functorial</a> library. It’s nice that <code>T[A]</code> remains completely abstract, and the for-comprehension notation is just sugar. I also tried an implementation where <code>T[A]</code> is bounded by a trait containing the methods:</p> 
 <div class="highlight"><pre><code class="scala"><span class="k">trait</span> <span class="nc">Monadic</span><span class="o">[</span><span class="kt">T</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>, <span class="kt">A</span><span class="o">]</span> <span class="o">{</span> 
   <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">f</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> 
   <span class="k">def</span> <span class="n">filter</span><span class="o">(</span><span class="n">p</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> 
@@ -307,9 +307,9 @@ Person)]]</code>) or else you get a type clash between <code>List[Nothing]</code
 </div> 
 <p>instead of baking <code>run</code> into it. Now, if we write <code>val b = new Bridge(LogicList)</code> then <code>b.search</code> has type <code>b.Logic.T[List[b.State]]</code>, and we can call <code>b.Logic.run</code> to evaluate it.</p> 
  
-<p>This is only a modest improvement; what&rsquo;s still missing, compared to the OCaml version, is the fact that <code>LogicList</code> and <code>b.Logic</code> are the same module. So we can&rsquo;t call <code>LogicList.run(b.search)</code> directly. Worse, we can&rsquo;t compose modules which use the same <code>Logic</code> implementation, because they each have their own incompatibly-typed <code>Logic</code> member.</p> 
+<p>This is only a modest improvement; what’s still missing, compared to the OCaml version, is the fact that <code>LogicList</code> and <code>b.Logic</code> are the same module. So we can’t call <code>LogicList.run(b.search)</code> directly. Worse, we can’t compose modules which use the same <code>Logic</code> implementation, because they each have their own incompatibly-typed <code>Logic</code> member.</p> 
  
-<p>I thought there might be a way out of this using singleton types&mdash;the idea is that a match of a value <code>v</code> against a typed pattern where the type is <code>w.type</code> succeeds when <code>v eq w</code> (section 8.2 in the reference manual). So we can define</p> 
+<p>I thought there might be a way out of this using singleton types—the idea is that a match of a value <code>v</code> against a typed pattern where the type is <code>w.type</code> succeeds when <code>v eq w</code> (section 8.2 in the reference manual). So we can define</p> 
 <div class="highlight"><pre><code class="scala"><span class="k">def</span> <span class="n">run</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span> 
   <span class="nc">Logic</span><span class="k">:</span> <span class="kt">Logic</span><span class="o">,</span> 
   <span class="n">b</span><span class="k">:</span> <span class="kt">Bridge</span><span class="o">,</span> 

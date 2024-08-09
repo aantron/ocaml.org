@@ -12,7 +12,7 @@ source:
 
 
 <div>
-  <b>Faster builds with omake, part 2: Linux</b><br/>&nbsp;
+  <b>Faster builds with omake, part 2: Linux</b><br>&nbsp;
 </div>
 
 <div>
@@ -88,7 +88,7 @@ Mac OS X, even implement posix_spawn directly as system call.
 On Linux, posix_spawn is a library function of glibc. By default,
 however, it is no real help because it uses fork/exec (being very
 conservative).  If you pass the flag POSIX_SPAWN_USEVFORK, though, it
-switches to a fast alternate implementation. I was pointed (by T&ouml;r&ouml;k
+switches to a fast alternate implementation. I was pointed (by Török
 Edwin) to a few emails showing that the quality in glibc is not yet
 optimal. In particular, there are weaknesses in signal handling and in
 thread cancellation. Fortunately, these weaknesses do not matter for
@@ -130,7 +130,7 @@ that writes the data to a temporary file, as if the pipeline would read
 
 </p><blockquote>
 <code><small>
-$(OCAMLFIND) $(OCAMLDEP) ... -modules $(src_file) &gt;$(tmpfile);<br/>
+$(OCAMLFIND) $(OCAMLDEP) ... -modules $(src_file) &gt;$(tmpfile);<br>
 ocamldep-postproc &lt;$(tmpfile)
 </small></code>
 </blockquote>
@@ -191,7 +191,7 @@ parallelization that the real pipeline allows.
 The next part will be published on Tuesday, 6/23.
 </div>
 
-<img src="http://blog.camlcity.org/files/img/blog/omake2_bug.gif" width="1" height="1"/>
+<img src="http://blog.camlcity.org/files/img/blog/omake2_bug.gif" width="1" height="1">
 
 
 </div>

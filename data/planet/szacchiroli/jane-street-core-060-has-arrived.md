@@ -9,11 +9,11 @@ authors:
 source:
 ---
 
-<h1>Debian &quot;Core&quot; 0.6.0 packages ready</h1>
+<h1>Debian "Core" 0.6.0 packages ready</h1>
 <p>I've completed the packaging of the new release of <a href="http://www.janestreet.com/ocaml"><strong>(Jane Street)
 Core</strong></a>, version <strong>0.6.0</strong>. Core is (yet
 another) extended / alternative standard library for OCaml,
-integrating not only the much needed &quot;everyday functions&quot; but also
+integrating not only the much needed "everyday functions" but also
 offering consistent abstractions throughout all stdlib modules
 (with a lot of inspiration from well-known type classes from the
 Haskell stdlib), consistent naming conventions (e.g. all functions
@@ -37,7 +37,7 @@ programmers are not forced to reinvent wheels, stand. Core fills
 such a gap properly. I was preferring Batteries to it due to its
 more open development process, but in spite of that Core is a
 pretty damn good stdlib. Long life to Jane Street that currently
-maintains it <img src="http://upsilon.cc/~zack/smileys/smile.png" alt=":-)"/></p>
+maintains it <img src="http://upsilon.cc/~zack/smileys/smile.png" alt=":-)"></p>
 <p>Now, back to the main topic of this post, <strong>Debian
 packages for Core 0.6.0 are now available</strong>; you will be
 able to get it from the main/unstable archive soon (some manual NEW

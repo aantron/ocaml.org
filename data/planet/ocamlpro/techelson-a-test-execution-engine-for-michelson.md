@@ -5,8 +5,8 @@ description: We are pleased to announce the first release of Techelson, availabl
   properties of Michelson smart contracts. Make sure to check the user documentation
   to get a sense of Techelson's workflow and features. For Liq...
 url: https://ocamlpro.com/blog/2019_03_06_techelson_a_test_execution_engine_for_michelson
-date: 2019-03-06T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2019-03-06T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Adrien Champion\n  "
 source:

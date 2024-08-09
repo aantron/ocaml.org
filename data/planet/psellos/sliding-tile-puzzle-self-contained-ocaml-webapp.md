@@ -13,18 +13,18 @@ source:
 
 <p>I just finished coding up another webapp in OCaml. I thought it would be
 cool to publish the sources of a small, completely self-contained app.
-It&rsquo;s a sliding tile puzzle coded entirely in OCaml, using a few of the
+It’s a sliding tile puzzle coded entirely in OCaml, using a few of the
 BuckleScript extensions. There are no dependencies on any frameworks or
 the like aside from the Js modules of BuckleScript. The app itself
-consists of just one JavaScript file&mdash;no images, nothing else.</p>
+consists of just one JavaScript file—no images, nothing else.</p>
 
 <table class="morelikealist" style="margin-top: 0.4em;">
-<tr><td>
+<tbody><tr><td>
 <a href="http://psellos.com/ocaml/example-app-slide24.html">
-<img src="http://psellos.com/images/slide242-220.png"/><br/>
+<img src="http://psellos.com/images/slide242-220.png"><br>
 </a>
 </td></tr>
-</table>
+</tbody></table>
 
 <p>You can try out the puzzle or get the sources at the
 <a href="http://psellos.com/ocaml/example-app-slide24.html">Slide24</a> page.</p>
@@ -53,7 +53,7 @@ subtypes of <code>node</code>, <code>canvas</code> is a subtype of <code>element
 <code>node</code> is the supertype of all the document content types.</p>
 
 <p>What this means is that you can pass a canvas or a button to a function
-that expects an element, and so on. I don&rsquo;t find the necessity to use
+that expects an element, and so on. I don’t find the necessity to use
 explicit supertype coercion to be too much trouble when working with
 non-parameterized types.</p>
 
@@ -62,12 +62,12 @@ non-parameterized types.</p>
 
 <p>It seems to me this captures pretty much everything that I want from the
 object-oriented approach without the usual complicated baggage. I think
-inheritance is more often a hindrance than a help. It&rsquo;s too dependent on
+inheritance is more often a hindrance than a help. It’s too dependent on
 implementation details, and is associated with too many informal
 (unenforceable) descriptions of how to write subclasses of each class
 without messing up the semantics.</p>
 
-<p>I&rsquo;ve never used <code>private</code> declarations before, but they seem to have
+<p>I’ve never used <code>private</code> declarations before, but they seem to have
 created exactly the structure I was hoping for.</p>
 
 <p>Posted by: <a href="http://psellos.com/aboutus.html#jeffreya.scofieldphd">Jeffrey</a></p>

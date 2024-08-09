@@ -9,9 +9,9 @@ authors:
 source:
 ---
 
-<p>In 1890 Giuseppe Peano <a href="https://doi.org/10.1007%2FBF01199438">discovered a square-filling curve</a>, and a year later David Hilbert <a href="https://doi.org/10.1007/BF01199431">published his variation</a>. In those days people did not waste readers' attention with dribble &ndash; Peano explained it all on 3 pages, and Hilbert on just 2 pages, with a picture!</p>
+<p>In 1890 Giuseppe Peano <a href="https://doi.org/10.1007%2FBF01199438">discovered a square-filling curve</a>, and a year later David Hilbert <a href="https://doi.org/10.1007/BF01199431">published his variation</a>. In those days people did not waste readers' attention with dribble – Peano explained it all on 3 pages, and Hilbert on just 2 pages, with a picture!</p>
 
-<p><img src="http://math.andrej.com/asset/data/hilbert/hilbert-curve-original-picture.png" style="width: 75%; display: block; margin: auto"/></p>
+<p><img src="http://math.andrej.com/asset/data/hilbert/hilbert-curve-original-picture.png" style="width: 75%; display: block; margin: auto"></p>
 
 <p>But are these <em>constructive</em> square-filling curves?</p>
 
@@ -20,7 +20,7 @@ source:
 <p>There's no doubt that the curves themselves are defined constructively, for instance as limits of uniformly continuous maps. A while ago I even made a video showing the limiting process for Hilbert curve:</p>
 
 <video style="display:block; margin:auto" width="512" height="512" controls="">
-  <source src="../../../../asset/data/hilbert/hilbert-folding.mp4" type="video/mp4"></source>
+  <source src="../../../../asset/data/hilbert/hilbert-folding.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -35,19 +35,19 @@ Your browser does not support the video tag.
 <p>Given a scaling factor $\alpha$, let us define the generalized Hilbert curve $\gamma^\alpha : [0,1] \to [0,1]^2$ constructed just like the usual Hilbert curve, but with scaling factor $\alpha$. Instead of writing down formulas in LaTeX, it is more fun to program the curve in Mathematica and draw some pictures (see <a href="http://math.andrej.com/asset/data/hilbert/IntuitionisticHilbert.nb">IntuitionisticHilbert.nb</a>).</p>
 
 <p>At $\alpha = 0.5$ we recover the usual Hilbert curve:
-<img src="http://math.andrej.com/asset/data/hilbert/hilbert-0.5.png" style="display: block; margin: auto"/></p>
+<img src="http://math.andrej.com/asset/data/hilbert/hilbert-0.5.png" style="display: block; margin: auto"></p>
 
 <p>At $\alpha = 0.4$ the curve is not square-filling:
-<img src="http://math.andrej.com/asset/data/hilbert/hilbert-0.4.png" style="display: block; margin: auto"/></p>
+<img src="http://math.andrej.com/asset/data/hilbert/hilbert-0.4.png" style="display: block; margin: auto"></p>
 
 <p>At $\alpha = 0.6$ we obtain a square-filling curve that overlaps itself already at finite stages:
-<img src="http://math.andrej.com/asset/data/hilbert/hilbert-0.6.png" style="display: block; margin: auto"/>
+<img src="http://math.andrej.com/asset/data/hilbert/hilbert-0.6.png" style="display: block; margin: auto">
 This is the one we want.</p>
 
 <p>Just for fun, here's a video the 8-th level curve as $\alpha$ ranges from $0.4$ to $0.8$.</p>
 
 <video style="display:block; margin:auto" width="512" height="512" controls="">
-  <source src="../../../../asset/data/hilbert/hilbert-0.4-to-0.8.mp4" type="video/mp4"></source>
+  <source src="../../../../asset/data/hilbert/hilbert-0.4-to-0.8.mp4" type="video/mp4">
 (Your browser does not support the video tag.)
 </video>
 
@@ -85,9 +85,9 @@ Consider the internal statement that there is a surjection from $I$ onto $I^2$:<
 
 <p>$$\exists \gamma : I \to I^2 .\, \forall p \in I^2 .\, \exists t \in I .\, \gamma(t) = p \tag{1}$$</p>
 
-<p>Working through sheaf semantics (thanks to Andrew Swan for doing it with me over a cup of coffee &ndash; although I claim ownership of all errors), its validity at an open set $U \subseteq [0,1]^2$ amounts to the following condition: there is an open cover $(U_i)_i$ of $U$ with continuous maps $\gamma_i : U_i \times [0,1] \to [0,1]^2$ such that, for every $i$, every open $V \subseteq U_i$ and continuous $p : V \to [0,1]^2$, there is an open cover $(V_j)_j$ of $V$ and continuous maps $t_j : V_j \to [0,1]$, such that $\gamma_i(v, t_j(v)) = p(v)$ for all $j$ and $v \in V_j$.</p>
+<p>Working through sheaf semantics (thanks to Andrew Swan for doing it with me over a cup of coffee – although I claim ownership of all errors), its validity at an open set $U \subseteq [0,1]^2$ amounts to the following condition: there is an open cover $(U_i)_i$ of $U$ with continuous maps $\gamma_i : U_i \times [0,1] \to [0,1]^2$ such that, for every $i$, every open $V \subseteq U_i$ and continuous $p : V \to [0,1]^2$, there is an open cover $(V_j)_j$ of $V$ and continuous maps $t_j : V_j \to [0,1]$, such that $\gamma_i(v, t_j(v)) = p(v)$ for all $j$ and $v \in V_j$.</p>
 
 <p>Instantiate $p : V \to [0,1]^2$ in the stated condition with the inclusion $p(v) = v$ to obtain, for every $j$, that
 $\gamma_i(v, t_j(v)) = v$ holds for all $v \in V_j$. Therefore, the map $\gamma_i{\restriction}_{V_j} : V_j \times [0,1] \to V_j$ has a continuous section, namely the map $v \mapsto (v, t_j(v))$. But there can be no such map, as it would violate <a href="https://en.wikipedia.org/wiki/Invariance_of_domain">invariance of domain</a>, unless $V_j = \emptyset$. Consequently, the only way for (1) to hold at $U$ is for $U$ to be empty. $\Box$</p>
 
-<p>To summarize the argument: in a topos of sheaves &ldquo;$\gamma$ is surjective&rdquo; is a very strong condition, namely that $\gamma$ has local sections &ndash; and these may not exist for topological or geometric reasons. At the same time we still have Theorem 1, so also in a topos of sheaves the usual Hilbert curve leaves no empty space in the unit square.</p>
+<p>To summarize the argument: in a topos of sheaves “$\gamma$ is surjective” is a very strong condition, namely that $\gamma$ has local sections – and these may not exist for topological or geometric reasons. At the same time we still have Theorem 1, so also in a topos of sheaves the usual Hilbert curve leaves no empty space in the unit square.</p>

@@ -1,11 +1,12 @@
 ---
 title: An alternative to camlp4 - Part 1
 description:
-url: http://lpw25.net/2013/01/23/camlp4-alternative-part-1
+url: https://lpw25.net/2013/01/23/camlp4-alternative-part-1
 date: 2013-01-23T00:00:00-00:00
 preview_image:
 authors:
-- lpw25
+- Leo White
+source:
 ---
 
 <p>Since its creation camlp4 has proven to be a very useful tool. People have used
@@ -51,10 +52,10 @@ Type-conv style extensions such as
 <a href="https://github.com/mirage/dyntype">dyntype</a>. 
 These extend the syntax to allow code such as:
 
-<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">t</span> <span class="p">=</span>
-<span class="p">{</span> <span class="n">x</span> <span class="p">:</span> <span class="kt">int</span> <span class="k">with</span> <span class="n">default</span><span class="p">(</span><span class="mi">42</span><span class="o">);</span>
-  <span class="n">y</span> <span class="p">:</span> <span class="kt">int</span> <span class="k">with</span> <span class="n">default</span><span class="p">(</span><span class="mi">3</span><span class="o">),</span> <span class="n">sexp_drop_default</span><span class="p">;</span>
-  <span class="n">z</span> <span class="p">:</span> <span class="kt">int</span> <span class="k">with</span> <span class="n">default</span><span class="p">(</span><span class="mi">3</span><span class="o">),</span> <span class="n">sexp_drop_if</span><span class="p">(</span><span class="n">z_test</span><span class="o">);</span> 
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">t</span> <span class="o">=</span>
+<span class="p">{</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">int</span> <span class="k">with</span> <span class="n">default</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+  <span class="n">y</span> <span class="o">:</span> <span class="kt">int</span> <span class="k">with</span> <span class="n">default</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">,</span> <span class="n">sexp_drop_default</span><span class="p">;</span>
+  <span class="n">z</span> <span class="o">:</span> <span class="kt">int</span> <span class="k">with</span> <span class="n">default</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">,</span> <span class="n">sexp_drop_if</span><span class="p">(</span><span class="n">z_test</span><span class="p">);</span> 
 <span class="p">}</span> <span class="k">with</span> <span class="n">sexp</span></code></pre></figure>
 
 </li>
@@ -62,7 +63,7 @@ These extend the syntax to allow code such as:
 Extensions using camlp4's quotations syntax such as 
 <a href="https://github.com/mirage/ocaml-cow">COW</a>. These look like:
 
-<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="o">&lt;:</span><span class="n">html</span><span class="p">&lt;</span> <span class="p">&lt;</span><span class="n">body</span><span class="p">&gt;</span> <span class="n">hello</span> <span class="n">world</span> <span class="o">&lt;/</span><span class="n">body</span><span class="p">&gt;</span>  <span class="o">&gt;&gt;</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="o">&lt;:</span><span class="n">html</span><span class="o">&lt;</span> <span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span> <span class="n">hello</span> <span class="n">world</span> <span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>  <span class="o">&gt;&gt;</span></code></pre></figure>
 
 </li>
 <li>
@@ -84,7 +85,7 @@ alternative to camlp4 for the majority of its applications.</p>
 
 <p>AST transformers are simply functions that perform transformations on the OCaml
 syntax tree. These can already be implemented using the new
-&ldquo;<a href="http://www.lexifi.com/blog/syntax-extensions-without-camlp4-lets-do-it">-ppx</a>&rdquo;
+“<a href="http://www.lexifi.com/blog/syntax-extensions-without-camlp4-lets-do-it">-ppx</a>”
 command line option that has been included on the OCaml development trunk by
 Alain Frisch. This option accepts a program as an argument, and pipes the syntax
 tree through that program after parsing and before type checking.</p>
@@ -108,28 +109,28 @@ both kinds cannot be supported by the compiler using different syntax.</p>
 <li>
 Simple named quotations for expressions, patterns and type expressions:
 
-<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">x</span> <span class="p">=</span> <span class="o">&lt;:</span><span class="nn">Foo</span><span class="p">.</span><span class="n">foo</span> <span class="p">&lt;</span> <span class="n">some</span> <span class="n">random</span> <span class="n">text</span> <span class="o">&gt;&gt;</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="o">&lt;:</span><span class="nn">Foo</span><span class="p">.</span><span class="n">foo</span> <span class="o">&lt;</span> <span class="n">some</span> <span class="n">random</span> <span class="n">text</span> <span class="o">&gt;&gt;</span></code></pre></figure>
 
 </li>
 <li>
 Type constructor quotation attributes:
 
-<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">x</span><span class="p">:</span> <span class="kt">int</span> <span class="o">%</span><span class="n">foo</span><span class="p">,</span> <span class="kt">float</span> <span class="o">%</span><span class="n">bar</span><span class="p">(</span> <span class="n">some</span> <span class="n">random</span> <span class="n">text</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">.</span><span class="mi">5</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">x</span><span class="o">:</span> <span class="kt">int</span> <span class="o">%</span><span class="n">foo</span><span class="o">,</span> <span class="kt">float</span> <span class="o">%</span><span class="n">bar</span><span class="p">(</span> <span class="n">some</span> <span class="n">random</span> <span class="n">text</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span></code></pre></figure>
 
 </li>
 <li>
 Type-conv style definition attributes:
 
-<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">t</span> <span class="p">=</span> 
-<span class="p">{</span> <span class="n">x</span><span class="p">:</span> <span class="kt">int</span><span class="p">;</span>
-  <span class="n">y</span><span class="p">:</span> <span class="kt">int</span><span class="p">;</span> <span class="p">}</span>
-<span class="k">with</span> <span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">(</span> <span class="c">(* some valid expression *)</span> <span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">t</span> <span class="o">=</span> 
+<span class="p">{</span> <span class="n">x</span><span class="o">:</span> <span class="kt">int</span><span class="p">;</span>
+  <span class="n">y</span><span class="o">:</span> <span class="kt">int</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">with</span> <span class="n">foo</span><span class="o">,</span> <span class="n">bar</span><span class="p">(</span> <span class="c">(* some valid expression *)</span> <span class="p">)</span></code></pre></figure>
 
 </li>
 <li>
 Annotating types with syntactically valid expressions:
 
-<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">x</span><span class="p">:</span> <span class="kt">string</span> <span class="o">@@</span> <span class="c">(* some valid expression *)</span> <span class="p">=</span> <span class="bp">()</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">x</span><span class="o">:</span> <span class="kt">string</span> <span class="o">@@</span> <span class="c">(* some valid expression *)</span> <span class="o">=</span> <span class="bp">()</span></code></pre></figure>
 
 </li>
 </ul>
@@ -139,11 +140,11 @@ the majority of camlp4 applications could be easily converted into AST
 transformers.</p>
 
 <p>In order to make this transition easy, work must also be done to provide tools
-for manipulating OCaml&rsquo;s AST and parsing quotations. It would also be worthwhile
+for manipulating OCaml’s AST and parsing quotations. It would also be worthwhile
 trying to normalise some of the stranger corners of the OCaml syntax tree. This
 will make writing AST transformers simpler and more robust</p>
 
-<p>Finally, the &ldquo;-ppx&rdquo; option must be integrated into the many OCaml build
+<p>Finally, the “-ppx” option must be integrated into the many OCaml build
 systems.</p>
 
 <h4>Join the discussion</h4>

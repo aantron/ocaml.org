@@ -15,7 +15,7 @@ about&nbsp;<a href="https://anmonteiro.substack.com/p/melange-10-is-here" target
 on Q2 2023</a>.</p>
 <p>But we're not done yet: there's more in slate for the next quarter. I'll tell
 you what we're looking to achieve in Q3 2023.</p>
-<hr/>
+<hr>
 <p>We've decided to call the next Melange version 2.0 -- we plan to make a few
 breaking changes. The main goal for this quarter is to release Melange 2.0. We
 will focus across a few different axes.</p>
@@ -78,7 +78,7 @@ analysis tools such as Merlin.</p>
 </li>
 <li>
 <p><code>reason-react-ppx</code>&nbsp;doesn't faithfully respect the JSX node locations. We
-want to fix that so that &quot;go to definition&quot; works better for Reason JSX.</p>
+want to fix that so that "go to definition" works better for Reason JSX.</p>
 </li>
 </ul>
 </li>

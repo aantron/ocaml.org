@@ -10,5 +10,5 @@ source:
 ---
 
 <p><a href="https://github.com/ocaml/ocaml/commit/8f3833c4d0ef656c826359f4137c1eb3d46ea0ef">https://github.com/ocaml/ocaml/commit/8f3833c4d0ef656c826359f4137c1eb3d46ea0ef</a></p>
-<p>We&rsquo;ve been <a href="https://rwmj.wordpress.com/2016/11/19/ocaml-4-04-risc-v-s390-power-and-more/">using this patch in Fedora since Nov 2016</a>.</p>
+<p>We’ve been <a href="https://rwmj.wordpress.com/2016/11/19/ocaml-4-04-risc-v-s390-power-and-more/">using this patch in Fedora since Nov 2016</a>.</p>
 

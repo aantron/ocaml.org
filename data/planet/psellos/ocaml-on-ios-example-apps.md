@@ -11,19 +11,19 @@ source:
 
 <div class="date">January 30, 2016</div>
 
-<p>Through the decades I&rsquo;ve slowly realized that my heroes in the music are
-the bass players. It&rsquo;s not too late for me to take up some kind of bass
+<p>Through the decades I’ve slowly realized that my heroes in the music are
+the bass players. It’s not too late for me to take up some kind of bass
 instrument, but in the meantime the equivalent in the programming
 universe is to help provide languages and systems for others to code on
-top of. Isn&rsquo;t that so?</p>
+top of. Isn’t that so?</p>
 
 <div class="flowaroundimg" style="margin-top: 0.4em;">
-<a href="http://psellos.com/ocaml/example-app-portland.html"><img src="http://psellos.com/images/portland-upside-150.png" alt="image of Portland app"/></a>
-<a href="http://psellos.com/ocaml/example-app-gamut.html"><img src="http://psellos.com/images/gamut2-sky-blue-150.png" alt="image of Gamut app"/></a>
+<a href="http://psellos.com/ocaml/example-app-portland.html"><img src="http://psellos.com/images/portland-upside-150.png" alt="image of Portland app"></a>
+<a href="http://psellos.com/ocaml/example-app-gamut.html"><img src="http://psellos.com/images/gamut2-sky-blue-150.png" alt="image of Gamut app"></a>
 </div>
 
-<p>So, I guess that&rsquo;s what I&rsquo;m doing for OCaml on iOS. Most recently I&rsquo;ve
-updated the two example apps Portland and Gamut. They&rsquo;re packaged up to
+<p>So, I guess that’s what I’m doing for OCaml on iOS. Most recently I’ve
+updated the two example apps Portland and Gamut. They’re packaged up to
 run on iOS devices and in the iOS Simulator, respectively, but of course
 either can run on either.</p>
 
@@ -38,7 +38,7 @@ get the sources here:</p>
 
 <div style="clear: both"></div>
 
-<p>I&rsquo;ve also written out some instructions and principles of operation
+<p>I’ve also written out some instructions and principles of operation
 here:</p>
 
 <blockquote>

@@ -2,8 +2,8 @@
 title: 'Tutorial: Format Module of OCaml'
 description: '...'
 url: https://ocamlpro.com/blog/2021_05_06_tutorial_format_module_of_ocaml
-date: 2021-05-06T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2021-05-06T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    OCamlPro\n  "
 source:

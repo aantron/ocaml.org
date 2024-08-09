@@ -11,5 +11,5 @@ source:
 ---
 
 <p>If you would like to sponsor  the show contact <a href="https://twitter.com/davesnx" target="_blank" rel="noopener noreferrer">https://twitter.com/davesnx</a></p>
-<p>Consider sponsoring Ant&oacute;nio's work: <a href="https://github.com/sponsors/anmonteiro" target="_blank" rel="noopener noreferrer">https://github.com/sponsors/anmonteiro</a></p>
+<p>Consider sponsoring António's work: <a href="https://github.com/sponsors/anmonteiro" target="_blank" rel="noopener noreferrer">https://github.com/sponsors/anmonteiro</a></p>
 

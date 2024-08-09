@@ -53,7 +53,7 @@ $ opam pin add -kgit carcass https://github.com/dbuenzli/carcass
 </code></pre></div>    </div>
   </li>
   <li>Init
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  $ cd mergeable_vector &amp;&amp; git init &amp;&amp; git add . &amp;&amp; git commit -m &quot;First commit.&quot;
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  $ cd mergeable_vector &amp;&amp; git init &amp;&amp; git add . &amp;&amp; git commit -m "First commit."
   $ git remote add origin https://github.com/kayceesrk/mergeable-vector
   $ git push --set-upstream origin master
 </code></pre></div>    </div>

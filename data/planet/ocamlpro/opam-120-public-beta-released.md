@@ -5,8 +5,8 @@ description: It has only been 18 months since the first release of OPAM, but it 
   has helped bring together much of the open-source code in the OCaml community under
   a single umbrella, making it easier to discover, depend on, a...
 url: https://ocamlpro.com/blog/2014_08_14_opam_1.2.0_public_beta_released
-date: 2014-08-14T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2014-08-14T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    OCaml Platform Team\n  "
 source:
@@ -18,7 +18,7 @@ has helped bring together much of the open-source code in the OCaml community
 under a single umbrella, making it easier to discover, depend on, and maintain
 OCaml applications and libraries.  We have seen steady growth in the number
 of new packages, updates to existing code, and a diverse group of contributors.
-<img src="https://ocamlpro.com/blog/assets/img/graph_opam1.2_packages.png"/></p>
+<img src="https://ocamlpro.com/blog/assets/img/graph_opam1.2_packages.png"></p>
 <p>OPAM has turned out to be more than just another package manager. It is also
 increasingly central to the demanding workflow of industrial OCaml development,
 since it supports multiple simultaneous (patched) compiler installations,
@@ -140,9 +140,9 @@ stone       0.3.2  Simple static website generator, useful for a portfolio or do
 </li>
 </ul>
 <pre><code class="language-shell-session">$ opam show cow --raw
-opam-version: &quot;1&quot;
-name: &quot;cow&quot;
-version: &quot;0.10.0&quot;
+opam-version: "1"
+name: "cow"
+version: "0.10.0"
 [...]
 </code></pre>
 <ul>
@@ -178,8 +178,8 @@ with more details of this extended <code>opam pin</code> workflow.</p>
 <p>Packagers can limit dependencies in scope by adding one
 of the keywords <code>build</code>, <code>test</code> or <code>doc</code> in front of their constraints:</p>
 <pre><code class="language-shell-session">depends: [
-  &quot;ocamlfind&quot; {build &amp; &gt;= 1.4.0}
-  &quot;ounit&quot; {test}
+  "ocamlfind" {build &amp; &gt;= 1.4.0}
+  "ounit" {test}
 ]
 </code></pre>
 <p>Here you don't specifically require <code>ocamlfind</code> at runtime, so changing it
@@ -191,12 +191,12 @@ in day-to-day use.</p>
 constraints from the <code>depopts:</code> field: their meaning was <a href="https://github.com/ocaml/opam/issues/200">unclear</a> and confusing.
 The <code>conflicts</code> field is used to indicate versions of the optional dependencies
 that are incompatible with your package to remove all ambiguity:</p>
-<pre><code class="language-shell-session">depopts: [ &quot;async&quot; {&gt;= &quot;109.15.00&quot;} &amp; &quot;async_ssl&quot; {&gt;= &quot;111.06.00&quot;} ]
+<pre><code class="language-shell-session">depopts: [ "async" {&gt;= "109.15.00"} &amp; "async_ssl" {&gt;= "111.06.00"} ]
 </code></pre>
 <p>becomes:</p>
-<pre><code class="language-shell-session">depopts: [ &quot;async&quot; &quot;async_ssl&quot; ]
-conflicts: [ &quot;async&quot; {&lt; &quot;109.15.00&quot;}
-             &quot;async_ssl&quot; {&lt; &quot;111.06.00&quot;} ]
+<pre><code class="language-shell-session">depopts: [ "async" "async_ssl" ]
+conflicts: [ "async" {&lt; "109.15.00"}
+             "async_ssl" {&lt; "111.06.00"} ]
 </code></pre>
 <p>There is an <a href="https://github.com/ocaml/opam/pull/1325" title="PR for preliminary 'features' feature on Github">upcoming <code>features</code> field</a> that will give more
 flexibility in a clearer and consistent way for such complex cases.</p>

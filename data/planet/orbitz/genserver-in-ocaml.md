@@ -34,7 +34,7 @@ While it is not possible to provide all of the Erlang semantics in Ocaml, we can
 <li>Has the concept of process linking, however it is not preemptive.  When a <code>gen_server</code> stops, for any reason, any calls to <code>send</code> will return an error stating the <code>gen_server</code> has closed itself.  This will not force the termination of any other <code>gen_server</code>s in Ocaml, but the termination can at least be detected.</li>
 <li>Any thrown exceptions are handled by the <code>gen_server</code> framework and result in the <code>gen_server</code> being gracefully terminated.</li>
 </ul>
-
+<p></p>
 
 <p>
 Relative to Erlang the Ocaml version isn't very impressive, however it's still a useful technique for encapsulating state in a concurrent environment.
@@ -69,7 +69,7 @@ The interface is only three functions: <code>start</code>, <code>stop</code> and
 <li><code>stop</code> takes a <code>gen_server</code> and returns <code>Ok ()</code> on success and <code>Error `Closed</code> if the <code>gen_server</code> is not running.</li>
 <li><code>send</code> takes a <code>gen_server</code> and a message.  The message must be the same type the <code>gen_server</code> accepts.  It returns <code>Ok msg</code> on success and <code>Error `Closed</code> if the <code>gen_server</code> is not running.</li>
 </ul>
-
+<p></p>
 
 <p>
 The most confusion part is probably the <code>('i, 's, 'm, 'ie, 'he) Server.t</code>.  This is the type that the implementer of the <code>gen_server</code> writes.  It is three callbacks: <code>init</code>, <code>handle_call</code> and <code>terminate</code>.  Let's breakdown the type variables:
@@ -83,7 +83,7 @@ The most confusion part is probably the <code>('i, 's, 'm, 'ie, 'he) Server.t</c
 <li>'ie - This is the type of error that the <code>init</code> callback can return.</li>
 <li>'he - This is the type of error that the <code>handle_call</code> callback can return.</li>
 </ul>
-
+<p></p>
 
 <p>
 While the server type looks complicated, as you can see each variable corresponds to all of the type information needed to understand a <code>gen_server</code>.  So what does a server look like?  While the types are big it's actually not too bad.  Below is an example of a call to <code>start</code>.  The full source code can be found <a href="https://github.com/orbitz/gen_server/blob/master/examples/simple.ml">here</a>.
@@ -118,7 +118,7 @@ And what do the callbacks look like?  Below is a simplified version of what a se
     <b><font color="#000080">Deferred</font></b><font color="#990000">.</font>return <font color="#990000">(</font><b><font color="#000080">Resp</font></b><font color="#990000">.</font><font color="#009900">Error</font> <font color="#990000">(</font>reason<font color="#990000">,</font> state<font color="#990000">))</font>
   <font color="#990000">|</font> <b><font color="#000080">Msg</font></b><font color="#990000">.</font><font color="#009900">Msg3</font> <font color="#990000">-&gt;</font>
     <i><font color="#9A1900">(* Exceptions can be thrown too *)</font></i>
-    failwith <font color="#FF0000">&quot;blowin' up&quot;</font>
+    failwith <font color="#FF0000">"blowin' up"</font>
 
 <i><font color="#9A1900">(* Exceptions thrown from terminate are silently ignored *)</font></i>
 <b><font color="#0000FF">let</font></b> terminate reason state <font color="#990000">=</font>

@@ -22,7 +22,7 @@ Use it to <a href="https://ocsigen.org/tuto/latest/manual/start">learn Web/mobil
 
 <p>Last features include:</p>
 <ul>
-  <li>Demo of &ldquo;Pull to refresh page&rdquo; feature (mobile apps)</li>
+  <li>Demo of “Pull to refresh page” feature (mobile apps)</li>
   <li>Updated template</li>
 </ul>
 

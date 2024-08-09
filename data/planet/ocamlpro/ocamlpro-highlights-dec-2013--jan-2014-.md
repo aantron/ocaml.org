@@ -5,8 +5,8 @@ description: 'Here is a short report of some of our activities in last December 
   working on a new Intel backend for the ocamlopt native code compiler. Currently,
   there are four Intel backends in ocamlopt: amd64/emit.mlp, amd64/em...'
 url: https://ocamlpro.com/blog/2014_02_05_ocamlpro_highlights_dec_2013_jan_2014
-date: 2014-02-05T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2014-02-05T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    \xC7agdas Bozman\n  "
 source:
@@ -17,7 +17,7 @@ source:
 <p>With the support of LexiFi, we started working on a new Intel backend for the <code>ocamlopt</code> native code compiler. Currently, there are four Intel backends in <code>ocamlopt</code>: <code>amd64/emit.mlp</code>, <code>amd64/emit_nt.mlp</code>, <code>i386/emit.mlp</code> and <code>i386/emit_nt.mlp</code>, i.e. support for two processors (amd64 and i386) and two OS variants (Unices and Windows). These backends directly output assembly sources files, on which the platform assembler is called (<code>gas</code> on Unices, and <code>masm</code> on Windows).</p>
 <p>The current organisation makes it hard to maintain these backends: code for a given processor has to be written in two almost identical files (Unix and Windows), with subtle differences in the syntax: for example, the destination operand is the second parameter in <code>gas</code> syntax, while it is the first one in AT&amp;T syntax (<code>masm</code>).</p>
 <p>Our current work aims at merging, for each processor, the Unix and Windows backends, by making them generate an abstract representation of the assembly. This representation is shared between the two processors ('amd64' and 'i386'), so that we only have to develop two printers, one for <code>gas</code> syntax and one for <code>masm</code> syntax. As a consequence, maintenance of the backend will be much easier: while writting the assembly code, the developer does not need to care about the exact syntax. Moreover, the type-checker can verify that each assembler instruction is used with the correct number of well-formatted operands.</p>
-<p>Finally, our hope is that it will be also possible to write optimization passes directly on the assembly representation, such as peephole optimizations or instruction re-scheduling. This work is available in OCaml SVN, in the <a href="https://caml.inria.fr/cgi-bin/viewvc.cgi/ocaml/branches/abstract_x86_asm/asmcomp/intel_proc.ml?view=markup">&quot;abstract_x86_asm&quot; branch</a>.</p>
+<p>Finally, our hope is that it will be also possible to write optimization passes directly on the assembly representation, such as peephole optimizations or instruction re-scheduling. This work is available in OCaml SVN, in the <a href="https://caml.inria.fr/cgi-bin/viewvc.cgi/ocaml/branches/abstract_x86_asm/asmcomp/intel_proc.ml?view=markup">"abstract_x86_asm" branch</a>.</p>
 <h3>OPAM, new Release 1.1.1</h3>
 <p>OPAM has been shifted from the 1.1.0-RC to 1.1.1, with large stability and UI improvements. We put a lot of effort on improving the interface, and on helping to build other tools in the emerging ecosystem around OPAM. Louis visited OCamlLabs, which was a great opportunity to discuss the future of OPAM and the platform, and contribute to their effort towards <a href="https://github.com/ocaml/opam/issues/1035">opam-in-a-box</a>, a new way to generate pre-configured VirtualBox instances with all OCaml packages locally installable by OPAM, particularly convenient for computer classrooms.</p>
 <p>The many plans and objectives on OPAM can be seen and discussed on the work-in-progress <a href="https://github.com/ocaml/opam/wiki/Roadmap">OPAM roadmap</a>. Lots of work is ongoing for the next releases, including Windows support, binary packages, and allowing more flexibility by shifting the compiler descriptions to the packages.</p>
@@ -92,5 +92,5 @@ goal g: 2*x &gt;= 0 -&gt; y &gt;= 0 -&gt; f(x) &lt;&gt; f(y) -&gt; false
 <li>Now, if linear arithmetic suggests, <code>x = 0</code> and <code>y = 1</code>, the theory of uninterpreted functions will agree. The next step is to find integer values for <code>f(0)</code> and <code>f(1)</code> such that <code>f(0) &lt;&gt; f(1)</code>.
 </li>
 </ul>
-<p>After having implemented a brute force technique that tries to construct such models, our main concern now is to find an elegant and more efficient &quot;divide and conquer&quot; strategy that allows each theory to compute its own partial model with guarantees that this model will be coherent with the partial models of the other theories. It would be then immediate to automatically merge these partial solutions into a global one.</p>
+<p>After having implemented a brute force technique that tries to construct such models, our main concern now is to find an elegant and more efficient "divide and conquer" strategy that allows each theory to compute its own partial model with guarantees that this model will be coherent with the partial models of the other theories. It would be then immediate to automatically merge these partial solutions into a global one.</p>
 

@@ -18,7 +18,7 @@ users. This new version is both leaner and more robust. We focused on fixing
 crashes and removing obsolete functionality, improving the developer and
 troubleshooting experience, increasing OCaml compatibility and JavaScript FFI
 integration.</p>
-<hr/>
+<hr>
 <p>Here's a rundown of the key updates in Melange 3. Check the <a href="https://melange.re/v3.0.0/" target="_blank" rel="noreferrer">Melange
 documentation</a> for further resources.</p>
 <h2 tabindex="-1">Major Changes and Removals <a href="https://melange.re/blog/feed.rss#major-changes-and-removals" class="header-anchor" aria-label="Permalink to &quot;Major Changes and Removals&quot;"></a></h2>
@@ -28,7 +28,7 @@ Libraries that depend on the Belt modules will need to include <code>(libraries 
 utilize <code>[@u]</code> for uncurried application and <code>[@mel.*]</code> for FFI attributes.
 Additionally:</p>
 <ul>
-<li><code>[@mel.val]</code> has been removed as it was redundant in the Melange FFI&#8203;&#8203;.</li>
+<li><code>[@mel.val]</code> has been removed as it was redundant in the Melange FFI​​.</li>
 <li><code>[@mel.splice]</code> was removed in favor of <code>[@mel.variadic]</code></li>
 </ul>
 <p>For this release, most modules in the <code>Js</code> namespace had their APIs unified,
@@ -37,7 +37,7 @@ deduplicated and refactored. In cases such as <code>Js.Int</code>, <code>Js.Date
 pipe-last and labeled arguments were added; and incorporating those made others
 obsolete, which we removed. Modules such as <code>Js.List</code>, <code>Js.Null_undefined</code>,
 <code>Js.Option</code>, <code>Js.Result</code> and <code>Js.Cast</code> are also no longer present in Melange 3.
-Alternatives within <code>Stdlib</code> or <code>Belt</code> are instead&#8203;&#8203; recommended.</p>
+Alternatives within <code>Stdlib</code> or <code>Belt</code> are instead​​ recommended.</p>
 <h2 tabindex="-1">New Features and Enhancements <a href="https://melange.re/blog/feed.rss#new-features-and-enhancements" class="header-anchor" aria-label="Permalink to &quot;New Features and Enhancements&quot;"></a></h2>
 <p>Melange 3 includes a few interesting new features and enhancements. From syntax
 and preprocessing to interop with JavaScript, runtime and error messages, here are some
@@ -46,7 +46,7 @@ we chose to highlight:</p>
 <p>A few users have expressed concerns related to Melange having a 1:1 relationship to its
 OCaml version. This limitation exists because we vendor and modify OCaml's typechecker,
 which is usually version-dependent.</p>
-<p>In Melange 1, we made some strides to solve this at the syntax level &ndash; one Melange version
+<p>In Melange 1, we made some strides to solve this at the syntax level – one Melange version
 could work across many compiler switches. But that has a pretty big limitation: editor tooling,
 documentation generation and everything else that reads from <code>.cmt</code> artifact files needed to be
 in the same compiler switch as the version of the typechecker in use.</p>
@@ -70,7 +70,7 @@ derived by the underlying record.</li>
 </ul>
 <h3 tabindex="-1">Error messages &amp; Hints <a href="https://melange.re/blog/feed.rss#error-messages-hints" class="header-anchor" aria-label="Permalink to &quot;Error messages &amp; Hints&quot;"></a></h3>
 <p>Melange 3 provides more informative error messages originating from both the
-<code>melange.ppx</code> and the compiler core&#8203;&#8203;&#8203;&#8203;.</p>
+<code>melange.ppx</code> and the compiler core​​​​.</p>
 <p>In this release, we also introduce a new <code>unprocessed</code> alert to detect code that
 has made it to the Melange compiler without having been processed by the Melange
 PPX. Besides hinting users to add <code>(preprocess (pps melange.ppx))</code> to their <code>dune</code>
@@ -88,13 +88,13 @@ beginners quite often.</p>
 new unicode parsing functions upstream are now available in Melange as well.</p>
 <p>Some keys with legacy names have been updated for consistency, such as renaming
 <code>RE_EXN_ID</code> to <code>MEL_EXN_ID</code> and <code>BS_PRIVATE_NESTED_SOME_NONE</code> to
-<code>MEL_PRIVATE_NESTED_SOME_NONE</code>&#8203;&#8203; in the Melange generated JS runtime.</p>
+<code>MEL_PRIVATE_NESTED_SOME_NONE</code>​​ in the Melange generated JS runtime.</p>
 <p>The team also took a look at unicode strings in this version of Melange. A few
 noteworthy changes:</p>
 <ul>
-<li><code>{j| ... |j}</code> interpolation&#8203;&#8203;&#8203;&#8203; now only allows interpolating strings; other
+<li><code>{j| ... |j}</code> interpolation​​​​ now only allows interpolating strings; other
 usages of interpolation have started to produce type errors.</li>
-<li>Unicode strings such as <code>{js| &hellip; |js}</code> can now be used as <code>Format</code> strings.</li>
+<li>Unicode strings such as <code>{js| … |js}</code> can now be used as <code>Format</code> strings.</li>
 </ul>
 <h2 tabindex="-1">Conclusion <a href="https://melange.re/blog/feed.rss#conclusion" class="header-anchor" aria-label="Permalink to &quot;Conclusion&quot;"></a></h2>
 <p>Melange 3 marks a significant step forward in the OCaml-to-JavaScript

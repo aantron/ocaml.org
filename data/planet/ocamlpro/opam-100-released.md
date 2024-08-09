@@ -5,8 +5,8 @@ description: I am very happy to announce the first official release of OPAM! Man
   for a longer description. 1.0.0 fixes many bugs and add few new features to the
   previously announced beta-release. The most visible new feature, ...
 url: https://ocamlpro.com/blog/2013_03_15_opam_1.0.0_released
-date: 2013-03-15T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2013-03-15T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Thomas Gazagnaire\n  "
 source:
@@ -51,7 +51,7 @@ is available here:</p>
 <p>If you are upgrading from 0.9.* you won't  have anything special to do apart
 installing the new binary. You can then update your package metadata by
 running <code>opam update</code>. If you want to use the auto-setup feature, remove the
-&quot;eval <code>opam config env</code> line you have previously added in your ~/.profile
+"eval <code>opam config env</code> line you have previously added in your ~/.profile
 and run <code>opam config setup --all</code>.</p>
 <p>So everything should be fine. But you never know ... so if something goes
 horribly wrong in the upgrade process (of if your are upgrading from an old
@@ -98,7 +98,7 @@ start again from scratch.</p>
 </li>
 <li>Support arbitrary level of nested subdirectories in packages repositories
 </li>
-<li>Add <code>opam config exec &quot;CMD ARG1 ... ARGn&quot; --switch=SWITCH</code> to execute a command in a subshell
+<li>Add <code>opam config exec "CMD ARG1 ... ARGn" --switch=SWITCH</code> to execute a command in a subshell
 </li>
 <li>Improve the behaviour of <code>opam update</code> wrt. pinned packages
 </li>

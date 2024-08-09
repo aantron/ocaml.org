@@ -10,6 +10,6 @@ source:
 ---
 
 
-    TZComet and CleanNFT Metadata: a generic token-viewer &#9732;
-    Also new domain tzcomet.io &#127776;
+    TZComet and CleanNFT Metadata: a generic token-viewer ☄
+    Also new domain tzcomet.io 🌠
    

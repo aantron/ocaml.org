@@ -9,7 +9,7 @@ authors:
 source:
 ---
 
-<p>The new version of the <a href="http://www.coherentpdf.com/proview.html">Proview PDF Editor</a> for Mac OS X is now available for download. The update is free for existing users &ndash; your license key will still work &ndash; just download and install from the website.</p>
-<p>New features include Visual Crop and the setting of crop and trim boxes on individual pages. It&rsquo;s also about twice as fast as before.</p>
+<p>The new version of the <a href="http://www.coherentpdf.com/proview.html">Proview PDF Editor</a> for Mac OS X is now available for download. The update is free for existing users – your license key will still work – just download and install from the website.</p>
+<p>New features include Visual Crop and the setting of crop and trim boxes on individual pages. It’s also about twice as fast as before.</p>
 
 

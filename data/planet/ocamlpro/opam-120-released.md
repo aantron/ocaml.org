@@ -5,8 +5,8 @@ description: 'We are very proud to announce the availability of OPAM 1.2.0. Upgr
   from your distribution, binary, source, etc.) as documented on the homepage. NOTE:
   There are small changes to the internal repository format (~/.o...'
 url: https://ocamlpro.com/blog/2014_10_23_opam_1.2.0_released
-date: 2014-10-23T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2014-10-23T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:

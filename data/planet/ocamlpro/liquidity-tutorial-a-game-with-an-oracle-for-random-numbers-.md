@@ -5,8 +5,8 @@ description: A Game with an oracle In this small tutorial, we will see how to wr
   which provides random numbers. Principle of the game Rules of the game are handled
   by a smart contract on the Tezos blockchain. When a player decide...
 url: https://ocamlpro.com/blog/2018_11_06_liquidity_tutorial_a_game_with_an_oracle_for_random_numbers
-date: 2018-11-06T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2018-11-06T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Alain Mebsout\n  "
 source:
@@ -25,7 +25,7 @@ source:
 <h2>Architecture of the DApp</h2>
 <p>Everything that happens on the blockchain is deterministic and reproducible which means that smart contracts cannot generate random numbers securely <sup>1</sup> .</p>
 <p>The following smart contract works in this manner. Once a user starts a game, the smart contract is put in a state where it awaits a random number from a trusted off-chain source. This trusted source is our random generator oracle. The oracle monitors the blockchain and generates and sends a random number to the smart contract once it detects that it is waiting for one.</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/draw_game_arch.jpg" alt=""/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/draw_game_arch.jpg" alt=""></p>
 <p>Because the oracle waits for a <code>play</code> transaction to be included in a block and sends the random number in a subsequent block, this means that a game round lasts at least two blocks <sup>2</sup> .</p>
 <p>This technicality forces us to split our smart contract into two distinct entry points:</p>
 <ul>
@@ -61,14 +61,14 @@ type storage = { game : game option; oracle_id : address; }
 <li>Ensure that the number is a valid choice, <em>i.e.</em> is between 0 and 100 (natural numbers are always greater or equal to 0).
 </li>
 </ul>
-<pre><code class="language-ocaml">if number &gt; 100p then  failwith &quot;number must be &lt;= 100&quot;;
+<pre><code class="language-ocaml">if number &gt; 100p then  failwith "number must be &lt;= 100";
 </code></pre>
 <ul>
 <li>Ensure that the contract has enough funds to pay the player in case she wins. The highest paying bet is to play <code>100</code> which means that the user gets payed twice its original bet amount. At this point of the execution, the balance of the contract is already credited with the bet amount, so this check comes to ensuring that the balance is greater than twice the bet.
 </li>
 </ul>
 <pre><code class="language-ocaml">if 2p * Current.amount () &gt; Current.balance () then
-  failwith &quot;I don't have enough money for this bet&quot;;
+  failwith "I don't have enough money for this bet";
 </code></pre>
 <ul>
 <li>Ensure that no other game is currently being played so that a previous game is not erased.
@@ -76,7 +76,7 @@ type storage = { game : game option; oracle_id : address; }
 </ul>
 <pre><code class="language-ocaml">match storage.game with
 | Some&lt;/span&gt; g -&gt;
-  failwith (&quot;Game already started with&quot;, g)
+  failwith ("Game already started with", g)
 | None -&gt;
   (* Actual code of entry point *)
 </code></pre>
@@ -97,11 +97,11 @@ let storage = storage.game &lt;- Some { number; bet; player } in
 </code></pre>
 <p>Smart contracts are public objects on the Tezos blockchain so anyone can decide to call them. This means that permissions must be handled by the logic of the smart contract itself. In particular, we don't want <code>finish</code> to be callable by anyone, otherwise it would mean that the player could choose its own random number. Here we make sure that the call comes from the oracle.</p>
 <pre><code class="language-ocaml">if Current.sender () &lt;&gt; storage.oracle_id then
-  failwith (&quot;Random numbers cannot be generated&quot;);
+  failwith ("Random numbers cannot be generated");
 </code></pre>
 <p>We must also make sure that a game is currently being played otherwise this random number is quite useless.</p>
 <pre><code class="language-ocaml">match storage.game with
-| None -&gt; failwith &quot;No game already started&quot;
+| None -&gt; failwith "No game already started"
 | Some game -&gt; ...
 </code></pre>
 <p>The rest of the code in the entry point decides if the player won or lost, and generates the corresponding operations accordingly.</p>
@@ -148,13 +148,13 @@ let%init storage (oracle_id : address) =
 
 (* Start a new game *)
 let%entry play ((number : nat), (player : key_hash)) storage =
-  if number &gt; 100p then failwith &quot;number must be &lt;= 100&quot;;
-  if Current.amount () = 0tz then failwith &quot;bet cannot be 0tz&quot;;
+  if number &gt; 100p then failwith "number must be &lt;= 100";
+  if Current.amount () = 0tz then failwith "bet cannot be 0tz";
   if 2p * Current.amount () &gt; Current.balance () then
-    failwith &quot;I don't have enough money for this bet&quot;;
+    failwith "I don't have enough money for this bet";
   match storage.game with
   | Some g -&gt;
-    failwith (&quot;Game already started with&quot;, g)
+    failwith ("Game already started with", g)
   | None -&gt;
     let bet = Current.amount () in
     let storage = storage.game &lt;- Some { number; bet; player } in
@@ -167,9 +167,9 @@ let%entry finish (random_number : nat) storage =
     | None -&gt; failwith ()
     | Some (_, r) -&gt; r in
   if Current.sender () &lt;&gt; storage.oracle_id then
-    failwith (&quot;Random numbers cannot be generated&quot;);
+    failwith ("Random numbers cannot be generated");
   match storage.game with
-  | None -&gt; failwith &quot;No game already started&quot;
+  | None -&gt; failwith "No game already started"
   | Some game -&gt;
     let ops =
       if random_number &lt; game.number then
@@ -227,8 +227,8 @@ let%entry fund _ storage =
 </ul>
 <p>An implementation of a random number Oracle in OCaml (which uses the liquidity client to make transactions) can be found in this repository: <a href="https://github.com/OCamlPro/liq_game/blob/master/src/crawler.ml">https://github.com/OCamlPro/liq_game/blob/master/src/crawler.ml</a>.</p>
 <h3>Try a version on the mainnet</h3>
-<p>This contract is deployed on the Tezos mainnet at the following address:<a href="https://tzscan.io/KT1GgUJwMQoFayRYNwamRAYCvHBLzgorLoGo">KT1GgUJwMQoFayRYNwamRAYCvHBLzgorLoGo</a>, with the minor difference that the contract refunds 1 &mu;tz if the player loses to give some sort of feedback. You can try your luck by sending transactions (with a non zero amount) with a parameter of the form <code>Left (Pair 99 &amp;quot;tz1LWub69XbTxdatJnBkm7caDQoybSgW4T3s&amp;quot;)</code> where <code>99</code> is the number you want to play and <code>tz1LWub69XbTxdatJnBkm7caDQoybSgW4T3s</code> is your refund address. You can do so by using either a wallet that supports passing parameters with transactions (like Tezbox) or the command line Tezos client:</p>
-<pre><code>tezos-client transfer 10 from my_account to KT1GgUJwMQoFayRYNwamRAYCvHBLzgorLoGo --fee 0 --arg 'Left (Pair 50 &quot;tz1LWub69XbTxdatJnBkm7caDQoybSgW4T3s&quot;)'
+<p>This contract is deployed on the Tezos mainnet at the following address:<a href="https://tzscan.io/KT1GgUJwMQoFayRYNwamRAYCvHBLzgorLoGo">KT1GgUJwMQoFayRYNwamRAYCvHBLzgorLoGo</a>, with the minor difference that the contract refunds 1 μtz if the player loses to give some sort of feedback. You can try your luck by sending transactions (with a non zero amount) with a parameter of the form <code>Left (Pair 99 &amp;quot;tz1LWub69XbTxdatJnBkm7caDQoybSgW4T3s&amp;quot;)</code> where <code>99</code> is the number you want to play and <code>tz1LWub69XbTxdatJnBkm7caDQoybSgW4T3s</code> is your refund address. You can do so by using either a wallet that supports passing parameters with transactions (like Tezbox) or the command line Tezos client:</p>
+<pre><code>tezos-client transfer 10 from my_account to KT1GgUJwMQoFayRYNwamRAYCvHBLzgorLoGo --fee 0 --arg 'Left (Pair 50 "tz1LWub69XbTxdatJnBkm7caDQoybSgW4T3s")'
 </code></pre>
 <h2>Remarks</h2>
 <ul>
@@ -246,17 +246,17 @@ let%entry fund _ storage =
 <p>The random number could technically be sent in the same block by monitoring the mempool but it is not a good idea because the miner could reorder the transactions which will make both of them fail, or worse she could replace her bet accordingly once she sees a random number in her mempool.</p>
 </li>
 </ul>
-<hr class="featurette-divider"/>
+<hr class="featurette-divider">
 <p><strong>Alain Mebsout</strong>: Alain is a senior engineer at OCamlPro. Alain was involved in Tezos early in 2017, participating in the design of the ICO infrastructure and in particular, the Bitcoin and Ethereum smart contracts. Since then, Alain has been developing the Liquidity language, compiler and online editor, and has started working on the verification of Liquidity smart contracts. Alain also contributed some code in the Tezos node to improve Michelson. Alain holds a PhD in Computer Science on formal verification of programs.</p>
 <h1>Comments</h1>
 <p>Luiz Milfont (14 December 2018 at 17 h 21 min):</p>
 <blockquote>
-<p>Hello Mr. Alain Mebsout. My name is Milfont and I am the author of TezosJ SDK library, that allows to interact with Tezos blockchain through Java programming language.I did&rsquo;t know this game before and got interested. I wonder if you would like me to create an Android version of your game, that would be an Android APP that would create a wallet automatically for the player and then he would pull a jackpot handle, sending the transaction with the parameters to your smart contract. I would like to know if you agree with this, and allow me to do it, using your already deployed game. Thanks in advance. Milfont. Twitter: @luizmilfont</p>
+<p>Hello Mr. Alain Mebsout. My name is Milfont and I am the author of TezosJ SDK library, that allows to interact with Tezos blockchain through Java programming language.I did’t know this game before and got interested. I wonder if you would like me to create an Android version of your game, that would be an Android APP that would create a wallet automatically for the player and then he would pull a jackpot handle, sending the transaction with the parameters to your smart contract. I would like to know if you agree with this, and allow me to do it, using your already deployed game. Thanks in advance. Milfont. Twitter: @luizmilfont</p>
 </blockquote>
 <p>michsell (1 October 2019 at 15 h 29 min):</p>
 <blockquote>
 <p>Hello Alain,</p>
-<p>I just played the game you designed, the problem is I cannot get any feedback even that 1utz for losing the game. Is the game retired? If so, can anyone help to remove it from tzscan dapps page: https://tzscan.io/dapps. Also, by any chance I may get the tezzies back&hellip;</p>
+<p>I just played the game you designed, the problem is I cannot get any feedback even that 1utz for losing the game. Is the game retired? If so, can anyone help to remove it from tzscan dapps page: https://tzscan.io/dapps. Also, by any chance I may get the tezzies back…</p>
 <p>Many thanks!
 Best regards,
 Michshell</p>

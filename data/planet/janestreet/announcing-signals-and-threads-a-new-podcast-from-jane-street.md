@@ -10,9 +10,9 @@ authors:
 source:
 ---
 
-<p>I&rsquo;m excited (and slightly terrified) to announce that Jane Street is
+<p>I’m excited (and slightly terrified) to announce that Jane Street is
 releasing a new podcast, called <a href="https://signalsandthreads.com/">Signals and
-Threads</a>, and I&rsquo;m going to be the
+Threads</a>, and I’m going to be the
 host.</p>
 
 

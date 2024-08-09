@@ -12,7 +12,7 @@ source:
 
 
 <div>
-  <b>Sorry!</b><br/>&nbsp;
+  <b>Sorry!</b><br>&nbsp;
 </div>
 
 <div>

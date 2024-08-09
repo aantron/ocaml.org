@@ -9,8 +9,8 @@ description: 'We are pleased to announce the release of opam 2.0.4. This new ver
 
   pin...'
 url: https://ocamlpro.com/blog/2019_04_10_opam_2.0.4_release
-date: 2019-04-10T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2019-04-10T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Raja Boujbel\n  "
 source:
@@ -35,7 +35,7 @@ source:
 </li>
 <li>opam clean: Ignore errors trying to remove directories [<a href="https://github.com/ocaml/opam/pull/3732">#3732</a> <a href="https://github.com/kit">@kit-ty-kate</a>]
 </li>
-<li>remove wrong &quot;mismatched extra-files&quot; warning [<a href="https://github.com/ocaml/opam/pull/3744">#3744</a> <a href="https://github.com/rjbou">@rjbou</a>]
+<li>remove wrong "mismatched extra-files" warning [<a href="https://github.com/ocaml/opam/pull/3744">#3744</a> <a href="https://github.com/rjbou">@rjbou</a>]
 </li>
 <li>urls: fix hg opam 1.2 url parsing [<a href="https://github.com/ocaml/opam/pull/3754">#3754</a> <a href="https://github.com/rjbou">@rjbou</a>]
 </li>
@@ -61,7 +61,7 @@ source:
 <blockquote>
 <p>Note: To homogenise macOS name on system detection, we decided to keep <code>macos</code>, and convert <code>darwin</code> to <code>macos</code> in opam. For the moment, to not break jobs &amp; CIs, we keep uploading <code>darwin</code> &amp; <code>macos</code> binaries, but from the 2.1.0 release, only <code>macos</code> ones will be kept.</p>
 </blockquote>
-<hr/>
+<hr>
 <p>Installation instructions (unchanged):</p>
 <ol>
 <li>From binaries: run
@@ -69,7 +69,7 @@ source:
 </ol>
 <pre><code class="language-shell-session">sh &lt;(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.4">the Github &quot;Releases&quot; page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update you sandbox script.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.4">the Github "Releases" page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update you sandbox script.</p>
 <ol start="2">
 <li>From source, using opam:
 </li>

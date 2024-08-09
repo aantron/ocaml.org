@@ -6,17 +6,17 @@ description: "An in-depth Look at OCaml\u2019s new \"Best-fit\" Garbage Collecto
   de la plupart des hackers OCaml. Avec l\u2019arriv\xE9e d\u2019OCaml 4.10, il s\u2019enrichit
   d\u2019une nouvel..."
 url: https://ocamlpro.com/blog/2020_03_24_fr_le_nouveau_gc_docaml_4.10_premier_apercu_de_la_strategie_best_fit
-date: 2020-03-24T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2020-03-24T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Thomas Blanc\n  "
 source:
 ---
 
-<p><a href="https://ocamlpro.com/blog/2020_03_23_in_depth_look_at_best_fit_gc"><img src="https://ocamlpro.com/blog/assets/img/logo_round_ocaml_search.png" alt="An in-depth Look at OCaml&rsquo;s new &quot;Best-fit&quot; Garbage Collector Strategy"/></a></p>
-<p>Le GC d&rsquo;OCaml oeuvre discr&egrave;tement &agrave; l&rsquo;efficacit&eacute; de vos allocations m&eacute;moire. Tel un h&eacute;ros de l&rsquo;ombre, il reste m&eacute;connu de la plupart des
-hackers OCaml. Avec l&rsquo;arriv&eacute;e d&rsquo;OCaml 4.10, il s&rsquo;enrichit d&rsquo;une nouvelle strat&eacute;gie apparue dans le <a href="https://ocaml.org/releases/4.10.0.html#Changes">changelog</a>, sign&eacute;e de Damien Doligez.</p>
-<p>Dans cet article nous commen&ccedil;ons &agrave; explorer la nouvelle strat&eacute;gie baptis&eacute;e *best-fit *du nouveau Glaneur de Cellules dans OCaml 4.10.</p>
+<p><a href="https://ocamlpro.com/blog/2020_03_23_in_depth_look_at_best_fit_gc"><img src="https://ocamlpro.com/blog/assets/img/logo_round_ocaml_search.png" alt="An in-depth Look at OCaml’s new &quot;Best-fit&quot; Garbage Collector Strategy"></a></p>
+<p>Le GC d’OCaml oeuvre discrètement à l’efficacité de vos allocations mémoire. Tel un héros de l’ombre, il reste méconnu de la plupart des
+hackers OCaml. Avec l’arrivée d’OCaml 4.10, il s’enrichit d’une nouvelle stratégie apparue dans le <a href="https://ocaml.org/releases/4.10.0.html#Changes">changelog</a>, signée de Damien Doligez.</p>
+<p>Dans cet article nous commençons à explorer la nouvelle stratégie baptisée *best-fit *du nouveau Glaneur de Cellules dans OCaml 4.10.</p>
 <blockquote>
 <p>En savoir plus : <a href="https://ocamlpro.com/2020/03/23/ocaml-new-best-fit-garbage-collector/">article en anglais</a>.</p>
 </blockquote>

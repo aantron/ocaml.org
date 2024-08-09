@@ -24,30 +24,30 @@ such a sequence takes the form <code>bind m1 m2</code>.</p>
 <p>There are several ways of writing this rule. The form that is
 traditionally used in the Hoare logic community has two premises, along
 the following lines:</p>
-<div class="highlight"><pre><span></span><span class="x">  WP m1 </span><span class="cp">{{</span> <span class="err">&phi;</span> <span class="cp">}}</span><span class="x"> -&lowast;</span>
-<span class="x">  (&forall; v, &phi; v -&lowast; WP (m2 v) </span><span class="cp">{{</span> <span class="err">&psi;</span> <span class="cp">}}</span><span class="x">) -&lowast;</span>
-<span class="x">  WP (bind m1 m2) </span><span class="cp">{{</span> <span class="err">&psi;</span> <span class="cp">}}</span><span class="x">.</span>
-</pre></div>
+<div class="highlight"><pre><span><span class="x">  WP m1 </span><span class="cp">{{</span> <span class="err">φ</span> <span class="cp">}}</span><span class="x"> -∗</span>
+<span class="x">  (∀ v, φ v -∗ WP (m2 v) </span><span class="cp">{{</span> <span class="err">ψ</span> <span class="cp">}}</span><span class="x">) -∗</span>
+<span class="x">  WP (bind m1 m2) </span><span class="cp">{{</span> <span class="err">ψ</span> <span class="cp">}}</span><span class="x">.</span>
+</span></pre></div>
 
 <p>This means that, to verify the program <code>bind m1 m2</code>, one
 must first verify the subprogram <code>m1</code> and establish that,
-when <code>m1</code> terminates, some property <code>&phi;</code> holds.
-Then, under the assumption that <code>&phi;</code> holds when the execution
+when <code>m1</code> terminates, some property <code>φ</code> holds.
+Then, under the assumption that <code>φ</code> holds when the execution
 of <code>m2</code> begins, one must prove that it is safe to run
 <code>m2</code>. It is up to the user to choose or guess the logical
-assertion <code>&phi;</code> that describes the intermediate state.</p>
+assertion <code>φ</code> that describes the intermediate state.</p>
 <p>The form that is most often used in the Iris community has only one
 premise:</p>
-<div class="highlight"><pre><span></span><span class="x">  WP m1 </span><span class="cp">{{</span> <span class="err">&lambda;</span> <span class="nv">v</span><span class="o">,</span> <span class="nv">WP</span> <span class="o">(</span><span class="nv">m2</span> <span class="nv">v</span><span class="o">)</span> <span class="o">{{</span> <span class="err">&psi;</span> <span class="cp">}}</span><span class="x"> }} -&lowast;</span>
-<span class="x">  WP (bind m1 m2) </span><span class="cp">{{</span> <span class="err">&psi;</span> <span class="cp">}}</span><span class="x">.</span>
-</pre></div>
+<div class="highlight"><pre><span><span class="x">  WP m1 </span><span class="cp">{{</span> <span class="err">λ</span> <span class="nv">v</span><span class="o">,</span> <span class="nv">WP</span> <span class="o">(</span><span class="nv">m2</span> <span class="nv">v</span><span class="o">)</span> <span class="o">{{</span> <span class="err">ψ</span> <span class="cp">}}</span><span class="x"> }} -∗</span>
+<span class="x">  WP (bind m1 m2) </span><span class="cp">{{</span> <span class="err">ψ</span> <span class="cp">}}</span><span class="x">.</span>
+</span></pre></div>
 
 <p>This means that, to verify the program <code>bind m1 m2</code>, one
 must first verify establish that, when <code>m1</code> terminates, it is
 safe to run <code>m2</code>.</p>
 <p>These two forms of the Bind rule are logically equivalent. The second
-form follows from the first one by instantiating <code>&phi;</code> with
-<code>&lambda; v, WP (m2 v) {{ &psi; }}</code>. Conversely, the first form follows
+form follows from the first one by instantiating <code>φ</code> with
+<code>λ v, WP (m2 v) {{ ψ }}</code>. Conversely, the first form follows
 from the second one and from the Consequence rule of Separation
 Logic.</p>
 <h3>Which form is preferable?</h3>
@@ -55,9 +55,9 @@ Logic.</p>
 interchangeable? Not quite; there are practical reasons for preferring
 one over the other.</p>
 <p>The second form can seem preferable because it does not require
-guessing or choosing a suitable postcondition <code>&phi;</code>. Indeed, it
-automatically uses the most permissive <code>&phi;</code>, which is
-<code>&lambda; v, WP (m2 v) {{ &psi; }}</code>. Thus, this form may seem as though
+guessing or choosing a suitable postcondition <code>φ</code>. Indeed, it
+automatically uses the most permissive <code>φ</code>, which is
+<code>λ v, WP (m2 v) {{ ψ }}</code>. Thus, this form may seem as though
 it is more amenable to automation.</p>
 <p>However, this second form comes with a caveat. If the verification of
 the subprogram <code>m1</code> involves a case analysis, then it is
@@ -76,9 +76,9 @@ analysis while verifying <code>m1</code> ends up having to verify
 <code>if</code> or <code>match</code> construct) then the middle point
 between <code>m1</code> and <code>m2</code> is a <em>join point</em> and
 the first form of the Bind rule, where the user must provide
-<code>&phi;</code>, should be preferred. Otherwise, the second form of the
+<code>φ</code>, should be preferred. Otherwise, the second form of the
 Bind rule can be used and there is no need for the user to provide
-<code>&phi;</code>.</p>
+<code>φ</code>.</p>
 <p>This is not a deep remark. It is just a possibly-useful reminder that
 two logically equivalent statements can have quite different qualities
 in practical usage scenarios.</p>

@@ -5,8 +5,8 @@ description: "Adrien Champion adrien.champion@ocamlpro.com\n This work is licens
   posts broadly discusses induction as a formal verification technique, which here
   really means formal program verification. I will use concrete, runnabl..."
 url: https://ocamlpro.com/blog/2021_10_14_verification_for_dummies_smt_and_induction
-date: 2021-10-14T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2021-10-14T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Adrien Champion\n  "
 source:

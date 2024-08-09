@@ -5,8 +5,8 @@ description: 'After the opam build feature was announced followed a lot of discu
   offered, though, were still widely asked for: a way to work directly with the project
   in the current directory, assuming it contains definitions...'
 url: https://ocamlpro.com/blog/2017_05_04_new_opam_features_opam_install_dir
-date: 2017-05-04T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2017-05-04T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:
@@ -24,7 +24,7 @@ source:
 <h3>Status of <code>opam build</code></h3>
 <p><code>opam build</code>, as described in a <a href="https://ocamlpro.com/blog/2017_03_16_new_opam_features_opam_build">previous post</a> has been dropped. It will be absent from the next Beta, where the following replaces it.</p>
 <h3>Handling a local project</h3>
-<p>Consistently with what was done with local switches, it was decided, where meaningful, to overload the <code>&lt;packages&gt;</code> arguments of the commands, allowing directory names instead, and meaning &quot;all packages defined there&quot;, with some side-effects.</p>
+<p>Consistently with what was done with local switches, it was decided, where meaningful, to overload the <code>&lt;packages&gt;</code> arguments of the commands, allowing directory names instead, and meaning "all packages defined there", with some side-effects.</p>
 <p>For example, the following command is now allowed, and I believe it will be extra convenient to many:</p>
 <pre><code class="language-shell-session">opam install . --deps-only
 </code></pre>
@@ -33,7 +33,7 @@ source:
 <pre><code class="language-shell-session">opam install .
 </code></pre>
 <p>This also retrieves the packages defined at <code>.</code>, <strong>pins them</strong> to the current source (using version-control if present), and installs them. Note that subsequent runs actually synchronise the pinnings, so that packages removed or renamed in the source tree are tracked properly (<em>i.e.</em> removed ones are unpinned, new ones pinned, the other ones upgraded as necessary).</p>
-<p><code>opam upgrade</code>, <code>opam reinstall</code>, and <code>opam remove</code> have also been updated to handle directories as arguments, and will work on &quot;all packages pinned to that target&quot;, <em>i.e.</em> the packages pinned by the previous call to <code>opam install &lt;dir&gt;</code>. In addition, <code>opam remove &lt;dir&gt;</code> unpins the packages, consistently reverting the converse <code>install</code> operation.</p>
+<p><code>opam upgrade</code>, <code>opam reinstall</code>, and <code>opam remove</code> have also been updated to handle directories as arguments, and will work on "all packages pinned to that target", <em>i.e.</em> the packages pinned by the previous call to <code>opam install &lt;dir&gt;</code>. In addition, <code>opam remove &lt;dir&gt;</code> unpins the packages, consistently reverting the converse <code>install</code> operation.</p>
 <p><code>opam show</code> already had a <code>--file</code> option, but has also been extended in the same way, for consistency and convenience.</p>
 <p>This all, of course, works well with a local switch at <code>./</code>, but the two features can be used completely independently. Note also that the directory name must be made unambiguous with a possible package name, so make sure to use <code>./foo</code> rather than just <code>foo</code> for a local project in subdirectory <code>foo</code>.</p>
 <h3>Specifying a destdir</h3>
@@ -68,12 +68,12 @@ source:
 <h1>Comments</h1>
 <p>Hez Carty (4 May 2017 at 21 h 30 min):</p>
 <blockquote>
-<p>Would a command like &ldquo;opam init $DIR&rdquo; and &ldquo;opam init $DIR &ndash;deps-only&rdquo; work for an auto-intialization interface? Ideally creating the equivalent to a bare .opam/ using $DIR as $OPAMROOT + install a local switch + &ldquo;opam install .&rdquo; (with &ndash;deps-only if specified) under the newly created switch.</p>
+<p>Would a command like “opam init $DIR” and “opam init $DIR –deps-only” work for an auto-intialization interface? Ideally creating the equivalent to a bare .opam/ using $DIR as $OPAMROOT + install a local switch + “opam install .” (with –deps-only if specified) under the newly created switch.</p>
 </blockquote>
 <p>Louis Gesbert (5 May 2017 at 7 h 50 min):</p>
 <blockquote>
-<p><code>opam init DIR</code> is currently used and means &ldquo;use DIR as your initial, default package repository&rdquo;.
-Overloading <code>opam init</code> sounds like a good approach though, esp. since the default of the command is already to create an initial switch. But a new flag, e.g. <code>opam init &ndash;here</code>, could be used to mean: do <code>opam init &ndash;bare</code> (it&rsquo;s idempotent), <code>opam switch create .</code> and then <code>opam install .</code>.</p>
-<p>The issue that remains is inherent to compound commands: we would have to port e.g. the <code>&ndash;deps-only</code> option to <code>opam init</code>, making the interface and doc heavier, and it would only make sense in this specific use-case ; either that or limit the expressivity of the compound command, requiring people to fallback to the individual ones when they need some more specific features.</p>
+<p><code>opam init DIR</code> is currently used and means “use DIR as your initial, default package repository”.
+Overloading <code>opam init</code> sounds like a good approach though, esp. since the default of the command is already to create an initial switch. But a new flag, e.g. <code>opam init –here</code>, could be used to mean: do <code>opam init –bare</code> (it’s idempotent), <code>opam switch create .</code> and then <code>opam install .</code>.</p>
+<p>The issue that remains is inherent to compound commands: we would have to port e.g. the <code>–deps-only</code> option to <code>opam init</code>, making the interface and doc heavier, and it would only make sense in this specific use-case ; either that or limit the expressivity of the compound command, requiring people to fallback to the individual ones when they need some more specific features.</p>
 </blockquote>
 

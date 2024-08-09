@@ -18,7 +18,7 @@ source:
 <h3>The front end</h3>
 
 <figure style="float: right; padding: 15px; width: 350px">
-<img src="https://farm3.staticflickr.com/2756/4150220583_57a993cc61_z_d.jpg" style="width: 350px" alt="Camel front end"/><br/>
+<img src="https://farm3.staticflickr.com/2756/4150220583_57a993cc61_z_d.jpg" style="width: 350px" alt="Camel front end"><br>
 <figcaption><center><small>(<a href="https://www.flickr.com/photos/paperpariah/4150220583"><i>today I stared a camel in the face</i></a> by <a href="https://www.flickr.com/photos/paperpariah/">Adam Foster</a>)</small></center></figcaption>
 </figure>
 
@@ -120,7 +120,7 @@ source:
 <h3>The back end</h3>
 
 <figure style="float: right; padding: 15px; width: 350px">
-<img src="http://farm4.staticflickr.com/3157/2877029132_b34943c8d7_z_d.jpg" style="width: 350px" alt="Camel back end"/><br/>
+<img src="http://farm4.staticflickr.com/3157/2877029132_b34943c8d7_z_d.jpg" style="width: 350px" alt="Camel back end"><br>
 <figcaption><center><small>(<a href="http://www.flickr.com/photos/16230215@N08/2877029132"><i>Relief</i></a>
 by <a href="http://www.flickr.com/photos/h-k-d/">Hartwig HKD</a>)</small></center></figcaption>
 </figure>
@@ -165,11 +165,11 @@ by <a href="http://www.flickr.com/photos/h-k-d/">Hartwig HKD</a>)</small></cente
 <h3>Standard library and beyond</h3>
 
 <figure style="float: right; padding: 15px; width: 350px">
-<img src="http://i.imgur.com/KKsM0tu.jpg" style="width: 350px" alt="Camel library"/><br/>
+<img src="http://i.imgur.com/KKsM0tu.jpg" style="width: 350px" alt="Camel library"><br>
 <figcaption><center><small>(Literary advocate <a href="http://www.papertigers.org/wordpress/interview-with-dashdondog-jamba-mongolian-author-and-literacy-advocate/">Dashdondog Jamba</a>, and his mobile library, described in <a href="http://www.bookdepository.com/My-Librarian-Is-a-Camel-Margriet-Ruurs/9781590780930"><i>My librarian is a camel</i></a>)</small></center></figcaption>
 </figure>
 
-<p>Our compiler hacking group defines &quot;compiler&quot; rather broadly.  As a result people often work on improving the standard library and tools as well as the compiler proper.  For example, in recent sessions, David added a small patch to <a href="http://caml.inria.fr/mantis/view.php?id=6105">expose the is_inet6_addr</a> function, and <a href="http://philippewang.info/">Philippe</a> proposed <a href="https://github.com/ocaml/ocaml/pull/15">a patch that eliminates unnecessary bounds checking</a> in the buffer module.  The last session also saw <a href="http://www.cl.cam.ac.uk/~rp452/">Rapha&euml;l</a> and Simon push a <a href="https://github.com/ocaml/opam-repository/pull/1961">number</a> <a href="https://github.com/ocaml/opam-repository/pull/1968">of</a> <a href="https://github.com/ocaml/opam-repository/pull/1972">patches</a> for integrating <a href="https://github.com/the-lambda-church/merlin">merlin</a> with the <a href="http://en.wikipedia.org/wiki/Acme_(text_editor)">acme</a> editor to OPAM, improving OCaml support in Plan 9.</p>
+<p>Our compiler hacking group defines "compiler" rather broadly.  As a result people often work on improving the standard library and tools as well as the compiler proper.  For example, in recent sessions, David added a small patch to <a href="http://caml.inria.fr/mantis/view.php?id=6105">expose the is_inet6_addr</a> function, and <a href="http://philippewang.info/">Philippe</a> proposed <a href="https://github.com/ocaml/ocaml/pull/15">a patch that eliminates unnecessary bounds checking</a> in the buffer module.  The last session also saw <a href="http://www.cl.cam.ac.uk/~rp452/">Raphaël</a> and Simon push a <a href="https://github.com/ocaml/opam-repository/pull/1961">number</a> <a href="https://github.com/ocaml/opam-repository/pull/1968">of</a> <a href="https://github.com/ocaml/opam-repository/pull/1972">patches</a> for integrating <a href="https://github.com/the-lambda-church/merlin">merlin</a> with the <a href="http://en.wikipedia.org/wiki/Acme_(text_editor)">acme</a> editor to OPAM, improving OCaml support in Plan 9.</p>
 
 <h2>Next session</h2>
 

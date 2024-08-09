@@ -11,8 +11,8 @@ authors:
 source:
 ---
 
-<p>In the last few years, we&rsquo;ve spent more and more effort working on developer
+<p>In the last few years, we’ve spent more and more effort working on developer
 tools, to the point where we now have a tools-and-compilers group devoted to the
-area, for which we&rsquo;re actively hiring.</p>
+area, for which we’re actively hiring.</p>
 
 

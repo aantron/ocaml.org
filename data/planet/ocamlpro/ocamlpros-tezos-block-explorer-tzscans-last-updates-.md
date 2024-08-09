@@ -5,8 +5,8 @@ description: 'OCamlPro is pleased to announce the latest update of TZScan (https
   for the protocol update scheduled for tomorrow. In addition to some minor bugfixes,
   the main novelties are: Displaying of obtained and e...'
 url: https://ocamlpro.com/blog/2018_07_20_new_updates_on_tzscan_2
-date: 2018-07-20T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2018-07-20T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    \xC7agdas Bozman\n  "
 source:

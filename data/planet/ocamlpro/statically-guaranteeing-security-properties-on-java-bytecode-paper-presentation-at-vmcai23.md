@@ -6,8 +6,8 @@ description: We are excited to announce that Nicolas will present a paper at the
   the 16th and 17th of January. This year, VMCAI is co-located with the Symposium
   on Principles of Programming Languages (POPL) conference, ...
 url: https://ocamlpro.com/blog/2023_01_12_vmcai_popl
-date: 2023-01-12T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2023-01-12T13:31:53-00:00
+preview_image: https://www.ocamlpro.com/blog/assets/img/popl2023.jpg
 authors:
 - "\n    Nicolas Berthier\n  "
 source:
@@ -22,14 +22,14 @@ It is thus in the vicinity of the MIT and Harvard that we will meet with promine
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/popl2023.jpg">
-      <img src="https://ocamlpro.com/blog/assets/img/popl2023.jpg" alt="This paper will be presented at VMCAI'2023, colocated with POPL'2023 at Boston!"/>
+      <img src="https://ocamlpro.com/blog/assets/img/popl2023.jpg" alt="This paper will be presented at VMCAI'2023, colocated with POPL'2023 at Boston!">
     </a>
     </p><div class="caption">
       This paper will be presented at VMCAI'2023, colocated with POPL'2023 at Boston!
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 
 <h2>A sound technique to statically guarantee security properties on Java bytecode</h2>
 <p>Nicolas will be presenting a novel static program analysis technique dedicated to the discovery of information flows in Java bytecode.

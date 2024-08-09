@@ -5,17 +5,17 @@ description: It is a rainy end of January in Paris, morale is getting soggier by
   screens as the sun seems to have definitively disappeared behind a continuous stream
   of low-hanging clouds. But, all is not lost, the warm rays of c...
 url: https://ocamlpro.com/blog/2023_01_23_Pea_No_Op
-date: 2023-01-23T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2023-01-23T13:31:53-00:00
+preview_image: https://ocamlpro.com/blog/assets/img/forgive_me_father_og.png
 authors:
 - "\n    Arthur Carcano\n  "
 source:
 ---
 
 <p></p>
-<p><img src="https://ocamlpro.com/blog/assets/img/forgive_me_father.png" alt=""/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/forgive_me_father.png" alt=""></p>
 <p>It is a rainy end of January in Paris, morale is getting soggier by the day, and the bulk of our light exposure needs are now fulfilled by our computer screens as the sun seems to have definitively disappeared behind a continuous stream of low-hanging clouds. But, all is not lost, the warm rays of comradeship pierce through the bleak afternoons, and our joyful <a href="https://ocamlpro.com/team">party</a> of adventurers once again embarked on an adventure of curiosity and rabbit-hole depth-first-searching.</p>
-<p>Last week's quest led us to a treasure coveted by a mere handful of enlightened connoisseurs, but a treasure of tremendous nerdy-beauty, known to the academics as &quot;Sub-single-instruction Peano to machine integer conversion&quot; and to the locals as &quot;How to count how many nested <code>Some</code> there are very very fast by leveraging druidic knowledge about unspecified, undocumented, and unstable behavior of the Rust compiler&quot;.</p>
+<p>Last week's quest led us to a treasure coveted by a mere handful of enlightened connoisseurs, but a treasure of tremendous nerdy-beauty, known to the academics as "Sub-single-instruction Peano to machine integer conversion" and to the locals as "How to count how many nested <code>Some</code> there are very very fast by leveraging druidic knowledge about unspecified, undocumented, and unstable behavior of the Rust compiler".</p>
 <h1>Our quest begins</h1>
 <p>Our whole quest started when we wanted to learn more about discriminant elision. Discriminant elision in Rust is part of what makes it practical to use <code>Option&lt;&amp;T&gt;</code> in place of <code>*const T</code>. More precisely it is what allows <code>Option&lt;&amp;T&gt;</code> to fit in as much memory as <code>*const T</code>, and not twice as much. To understand why, let's consider an <code>Option&lt;u64&gt;</code>. An <code>u64</code> is 8 bytes in size. An <code>Option&lt;u64&gt;</code> should have at least one more bit, to indicate whether it is a <code>None</code>, or a <code>Some</code>. But bits are not very practical to deal with for computers, and hence this <em>discriminant</em> value -- indicating which of the two variants (<code>Some</code> or <code>None</code>) the value is -- should take up at least one byte. Because of <a href="https://doc.rust-lang.org/reference/type-layout.html#the-default-representation">alignment requirements</a> (and because the size is always a multiple of the alignment) it actually ends up taking 8 bytes as well, so that the whole <code>Option&lt;u64&gt;</code> occupies twice the size of the wrapped <code>u64</code>.</p>
 <p>In languages like C, it is very common to pass around pointers, and give them a specific meaning if they are null. Typically, a function like <a href="https://linux.die.net/man/3/lfind"><code>lfind</code></a> which searches for an element in a array will return a pointer to the matching element, and this pointer will be null if no such element was found. In Rust however fallibility is expected to be encoded in the type system. Hence, functions like <a href="https://doc.rust-lang.org/core/iter/trait.Iterator.html#method.find"><code>find</code></a> returns a reference, wrapped in a <code>Option</code>. Because this kind of API is so ubiquitous, it would have been a real hindrance to Rust adoption if it took twice as much space as the C version.</p>
@@ -28,9 +28,9 @@ source:
 </ol>
 <p>Discriminant elision remains under-specified, but more information can be found in the <a href="https://rust-lang.github.io/unsafe-code-guidelines/layout/enums.html#discriminant-elision-on-option-like-enums">FFI guidelines</a>. Note that other unspecified situations seem to benefit from niche optimization (e.g. <a href="https://github.com/rust-lang/rust/pull/94075/">PR#94075</a>).</p>
 <h1>Too many options</h1>
-<p>Out of curiosity, we wanted to investigate how the Rust compiler represents a series of nested <code>Option</code>. It turns out that up to 255 nested options can be stored into a byte, which is also the theoretical limit. Because this mechanism is not limited to <code>Option</code>, we can use it with (value-level) <a href="https://en.wikipedia.org/wiki/Peano_axioms">Peano integers</a>. Peano integers are a theoretical encoding of integer in &quot;unary base&quot;, but it is enough for this post to consider them a fun little gimmick. If you want to go further, know that Peano integers are more often used at the type-level, to try to emulate type-level arithmetic.</p>
+<p>Out of curiosity, we wanted to investigate how the Rust compiler represents a series of nested <code>Option</code>. It turns out that up to 255 nested options can be stored into a byte, which is also the theoretical limit. Because this mechanism is not limited to <code>Option</code>, we can use it with (value-level) <a href="https://en.wikipedia.org/wiki/Peano_axioms">Peano integers</a>. Peano integers are a theoretical encoding of integer in "unary base", but it is enough for this post to consider them a fun little gimmick. If you want to go further, know that Peano integers are more often used at the type-level, to try to emulate type-level arithmetic.</p>
 <p>In our case, we are mostly interested in Peano-integers at the value level. We define them as follows:</p>
-<pre><code class="language-rust">#![recursion_limit = &quot;512&quot;]
+<pre><code class="language-rust">#![recursion_limit = "512"]
 #![allow(dead_code)]
 
 /// An empty enum, a type without inhabitants.
@@ -92,13 +92,13 @@ impl&lt;T: IntoU8&gt; IntoU8 for PeanoEncoder&lt;T&gt; {
 </code></pre>
 <p>Here, according to <a href="https://godbolt.org/z/hfdKdxe19">godbolt</a>, <code>Peano255::into_u8</code> gets compiled to more than 900 lines of assembly, which resembles a binary decision tree with jump-tables at the leaves.</p>
 <p>However, we can inspect a bit how rustc represents a few values:</p>
-<pre><code class="language-rust">println!(&quot;Size of Peano255: {} byte&quot;, std::mem::size_of::&lt;Peano255&gt;());
+<pre><code class="language-rust">println!("Size of Peano255: {} byte", std::mem::size_of::&lt;Peano255&gt;());
 for x in [
     Peano255::Zero,
     Peano255::Successor(PeanoEncoder::Zero),
     Peano255::Successor(PeanoEncoder::Successor(PeanoEncoder::Zero)),
 ] {
-    println!(&quot;Machine representation of {:?}: {}&quot;, x, unsafe {
+    println!("Machine representation of {:?}: {}", x, unsafe {
         std::mem::transmute::&lt;_, u8&gt;(x)
     })
 }
@@ -112,14 +112,14 @@ Machine representation of Successor(Successor(Zero)): 253
 <p>A pattern seems to emerge. Rustc chooses to represent <code>Peano255::Zero</code> as 255, and each successor as one less.</p>
 <p>As a brief detour, let's see what happens for <code>PeanoN</code> with other values of N.</p>
 <pre><code class="language-rust">let x = Peano1::Zero;
-println!(&quot;Machine representation of Peano1::{:?}: {}&quot;, x, unsafe {
+println!("Machine representation of Peano1::{:?}: {}", x, unsafe {
     std::mem::transmute::&lt;_, u8&gt;(x)
 });
 for x in [
     Peano2::Successor(PeanoEncoder::Zero),
     Peano2::Zero,
 ] {
-    println!(&quot;Machine representation of Peano2::{:?}: {}&quot;, x, unsafe {
+    println!("Machine representation of Peano2::{:?}: {}", x, unsafe {
         std::mem::transmute::&lt;_, u8&gt;(x)
     })
 }
@@ -148,49 +148,49 @@ retq
 <pre><code class="language-rust">for i in 0_u8..=u8::MAX {
     let x = Peano255::transmute_u8(i);
     if i % 8 == 0 {
-        print!(&quot;{:3} &quot;, i)
+        print!("{:3} ", i)
     } else if i % 8 == 4 {
-        print!(&quot; &quot;)
+        print!(" ")
     }
-    let c = if x.into_u8() == i { '&#10003;' } else { '&#10007;' };
-    print!(&quot;{}&quot;, c);
+    let c = if x.into_u8() == i { '✓' } else { '✗' };
+    print!("{}", c);
     if i % 8 == 7 {
         println!()
     }
 }
 </code></pre>
-<pre><code>  0 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-  8 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
- 16 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
- 24 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
- 32 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
- 40 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
- 48 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
- 56 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
- 64 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
- 72 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
- 80 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
- 88 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
- 96 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-104 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-112 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-120 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-128 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-136 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-144 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-152 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-160 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-168 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-176 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-184 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-192 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-200 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-208 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-216 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-224 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-232 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-240 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
-248 &#10003;&#10003;&#10003;&#10003; &#10003;&#10003;&#10003;&#10003;
+<pre><code>  0 ✓✓✓✓ ✓✓✓✓
+  8 ✓✓✓✓ ✓✓✓✓
+ 16 ✓✓✓✓ ✓✓✓✓
+ 24 ✓✓✓✓ ✓✓✓✓
+ 32 ✓✓✓✓ ✓✓✓✓
+ 40 ✓✓✓✓ ✓✓✓✓
+ 48 ✓✓✓✓ ✓✓✓✓
+ 56 ✓✓✓✓ ✓✓✓✓
+ 64 ✓✓✓✓ ✓✓✓✓
+ 72 ✓✓✓✓ ✓✓✓✓
+ 80 ✓✓✓✓ ✓✓✓✓
+ 88 ✓✓✓✓ ✓✓✓✓
+ 96 ✓✓✓✓ ✓✓✓✓
+104 ✓✓✓✓ ✓✓✓✓
+112 ✓✓✓✓ ✓✓✓✓
+120 ✓✓✓✓ ✓✓✓✓
+128 ✓✓✓✓ ✓✓✓✓
+136 ✓✓✓✓ ✓✓✓✓
+144 ✓✓✓✓ ✓✓✓✓
+152 ✓✓✓✓ ✓✓✓✓
+160 ✓✓✓✓ ✓✓✓✓
+168 ✓✓✓✓ ✓✓✓✓
+176 ✓✓✓✓ ✓✓✓✓
+184 ✓✓✓✓ ✓✓✓✓
+192 ✓✓✓✓ ✓✓✓✓
+200 ✓✓✓✓ ✓✓✓✓
+208 ✓✓✓✓ ✓✓✓✓
+216 ✓✓✓✓ ✓✓✓✓
+224 ✓✓✓✓ ✓✓✓✓
+232 ✓✓✓✓ ✓✓✓✓
+240 ✓✓✓✓ ✓✓✓✓
+248 ✓✓✓✓ ✓✓✓✓
 </code></pre>
 <p>Isn't computer science fun?</p>
 <p><em>Note:</em> The code for this blog post is available <a href="https://github.com/OCamlPro/PeaNoOp">here</a>.</p>

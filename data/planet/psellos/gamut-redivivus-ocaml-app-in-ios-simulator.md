@@ -12,7 +12,7 @@ source:
 <div class="date">April 29, 2015</div>
 
 <div class="screenminiature" style="margin-top: 1.4em;">
-<a href="http://psellos.com/ocaml/example-app-gamut.html"><img src="http://psellos.com/images/gamut2-sky-blue-150.png"/></a>
+<a href="http://psellos.com/ocaml/example-app-gamut.html"><img src="http://psellos.com/images/gamut2-sky-blue-150.png"></a>
 </div>
 
 <p>I recently revitalized an OCaml app from a few years ago, one that runs
@@ -29,14 +29,14 @@ running the app are here:</p>
   <p><a href="http://psellos.com/pub/gamut/gamut-sim-2.0.3.tgz">Gamut 2.0.3, OCaml app for iOS Simulator 8.2 (32 KB)</a></p>
 </blockquote>
 
-<p>Although the app doesn&rsquo;t do anything particularly impressive, I still
+<p>Although the app doesn’t do anything particularly impressive, I still
 find it mesmerizing and fun. But mostly it just shows how to get an
 OCaml app running in the iOS Simulator.</p>
 
 <p>Here are some insights I had while revitalizing the app:</p>
 
 <ul>
-<li><p>When calling OCaml from the Objective C world, don&rsquo;t pass expressions
+<li><p>When calling OCaml from the Objective C world, don’t pass expressions
 as parameters if they cause allocation in OCaml. I wrote about this in
 <a href="http://psellos.com/2015/01/2015.01.gc-disharmony-bis.html">Further OCaml GC Disharmony</a>.</p></li>
 <li><p>The geometry of an iOS app needs to be a lot more fluid than it used

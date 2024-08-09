@@ -11,7 +11,7 @@ authors:
 source:
 ---
 
-<p>I&rsquo;m pleased to announce the release of
+<p>I’m pleased to announce the release of
 <a href="https://github.com/janestreet/incremental">Incremental</a> (well
 commented mli
 <a href="https://github.com/janestreet/incremental/blob/master/src/incremental_intf.ml">here</a>),

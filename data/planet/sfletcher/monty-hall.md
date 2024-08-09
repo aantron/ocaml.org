@@ -10,23 +10,22 @@ authors:
 source:
 ---
 
-<p>Suppose you're on a game show, and you're given the choice of three doors : Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No.3 which has a goat. He then says to you, &quot;Do you want to pick door No. 2?&quot; Is it to your advantage to switch your choice?
+<p>Suppose you're on a game show, and you're given the choice of three doors : Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No.3 which has a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your advantage to switch your choice?
 </p>
 
 <p>What do you think?</p>
 
-<p>This problem is known as the &quot;<a href="https://en.wikipedia.org/wiki/Monty_Hall_problem">Monty Hall</a>&quot; problem. It's named after the host of the American television game show &quot;Let's make a deal&quot;.
+<p>This problem is known as the "<a href="https://en.wikipedia.org/wiki/Monty_Hall_problem">Monty Hall</a>" problem. It's named after the host of the American television game show "Let's make a deal".
 </p>
 
 <p>
-<a href="https://en.wikipedia.org/wiki/Paul_Erd%C5%91s">Paul Erd&#337;s</a>, one of the most prolific mathematicians in history remained unconvinced (of the correct answer to the above problem) until he was shown a computer simulation confirming the predicted result.</p>
+<a href="https://en.wikipedia.org/wiki/Paul_Erd%C5%91s">Paul Erdős</a>, one of the most prolific mathematicians in history remained unconvinced (of the correct answer to the above problem) until he was shown a computer simulation confirming the predicted result.</p>
 
 <p>
 Here's a simulation in OCaml one hopes, may have convinced Paul!
 </p>
 
-<pre class="prettyprint ocaml">
-module Monty = struct
+<pre class="prettyprint ocaml">module Monty = struct
 
   (*[dtr w p n] where [n] is the number of doors, selects which door
     to remain (closed) given the winning door [w] and the player
@@ -49,8 +48,8 @@ module Monty = struct
   let play_game (d : int) (s : strategy) : unit =
     let w, p, r = gen_game d in
     match s with
-    | Hold &rarr; num_wins := !num_wins + if p = w then 1 else 0
-    | Switch &rarr; num_wins := !num_wins + if r = w then 1 else 0
+    | Hold → num_wins := !num_wins + if p = w then 1 else 0
+    | Switch → num_wins := !num_wins + if r = w then 1 else 0
 
   (*Play a set of [n] games*)
   let play_games (d : int) (n : int) (s : strategy ) : unit = 
@@ -72,14 +71,14 @@ let num_doors     = ref 0
 let num_sims      = ref 0
 let read_args () =
   let specification =
-    [(&quot;-v&quot;, Arg.Set version, &quot;Print the version number&quot;);
-     (&quot;-d&quot;, Arg.Set_int num_doors, &quot;Number of doors (&gt;= 3)&quot; );
-     (&quot;-n&quot;, Arg.Set_int num_sims, &quot;Number of simulations (&gt;= 1)&quot;);
+    [("-v", Arg.Set version, "Print the version number");
+     ("-d", Arg.Set_int num_doors, "Number of doors (&gt;= 3)" );
+     ("-n", Arg.Set_int num_sims, "Number of simulations (&gt;= 1)");
     ]
   in Arg.parse specification
-  (fun s &rarr;
-    Printf.printf &quot;Warning : Ignoring unrecognized argument \&quot;%s\&quot;\n&quot; s)
-  &quot;Usage : monty -d &lt;number of doors&gt; -n &lt;number of simulations&gt;&quot;
+  (fun s →
+    Printf.printf "Warning : Ignoring unrecognized argument \"%s\"\n" s)
+  "Usage : monty -d &lt;number of doors&gt; -n &lt;number of simulations&gt;"
 
 (*[fabs e] computes the absolute value of [e]*)
 let fabs (e : float) : float = if e &lt; 0. then ~-.e else e
@@ -88,31 +87,31 @@ let fabs (e : float) : float = if e &lt; 0. then ~-.e else e
 let () = 
   try
     read_args ();
-    if !version then Printf.printf &quot;1.0.0\n&quot;
+    if !version then Printf.printf "1.0.0\n"
     else
       let n = !num_sims and d = !num_doors in
       if d &lt; 3 then
-        raise (Invalid_argument &quot;Number of doors must be &gt;= than 3&quot;);
+        raise (Invalid_argument "Number of doors must be &gt;= than 3");
       if n &lt; 1 then
-        raise (Invalid_argument &quot;Number of simulations must be &gt;= 1&quot;);
+        raise (Invalid_argument "Number of simulations must be &gt;= 1");
       begin
         (*Hold*)
         num_wins := 0;
         play_games d n Hold;
-        Printf.printf &quot;Num wins (hold): %d\n&quot; !num_wins;
+        Printf.printf "Num wins (hold): %d\n" !num_wins;
         let err=fabs (float_of_int (!num_wins) /. 
                     (float_of_int n) -. 1.0 /. (float_of_int d)) in
-        Printf.printf &quot;Error %f\n&quot; err;
+        Printf.printf "Error %f\n" err;
         (*Switch*)
         num_wins := 0;
         play_games d n Switch;
-        Printf.printf &quot;Num wins (switch): %d\n&quot; !num_wins;
+        Printf.printf "Num wins (switch): %d\n" !num_wins;
         let err=fabs (float_of_int (!num_wins) /. 
                    (float_of_int n) -. (float_of_int (d - 1) /. 
                                                 (float_of_int d))) in
-        Printf.printf &quot;Error %f\n&quot; err ;
+        Printf.printf "Error %f\n" err ;
       end
 
   with 
-  | Invalid_argument s &rarr; Printf.printf &quot;%s\n&quot; s
+  | Invalid_argument s → Printf.printf "%s\n" s
 </pre>

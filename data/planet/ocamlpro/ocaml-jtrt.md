@@ -5,8 +5,8 @@ description: 'This time of the year is, just like Christmas time, a time for lau
   not exactly nice, nor beautiful. Let''s say that we are somehow akin to many religions:
   we know magic does exist , but that it is satanic and shouldn''...'
 url: https://ocamlpro.com/blog/2018_04_01_ocaml_jtrt
-date: 2018-04-01T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2018-04-01T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    chambart\n  "
 source:
@@ -18,12 +18,12 @@ source:
 <p>How does the compiler know when that specific good moment occurs? Well, he doesn't, and that's the point: you certainly know far better. In the OCaml world, we like good performances, like any other, but we prefer predictable ones to performances that may sometimes be awesome, and sometimes really slow. And we are ready to trade off some annotations for better predictability (<em>or is it just me trying to give the impression that my opinion is everyone's opinion...</em>). Don't forget that OCaml is a compiled language; hence the average generated code is good enough. Runtime compilation only matters for some subtle situations where a patterns gets repeated a lot, and you don't know about that pattern before receiving some inputs.</p>
 <p>Of course the tradeoff wouldn't be the same in Javascript if you had to write something like that to get your code to perform decently.</p>
 <pre><code class="language-javascript">function fact(n) {
-   &quot;compile this&quot;;
+   "compile this";
    if (n == 0) {
-      &quot;compile this too&quot;;
+      "compile this too";
       return 1
    } else {
-      &quot;Yes, I really want to compile that&quot;;
+      "Yes, I really want to compile that";
       return (n * fact(n - 1););
    }
  }
@@ -109,6 +109,6 @@ let rec eval_expr expr x =
 <p>Just so that you know, I don't really recommend using it. It's buggy, and many details are left unresolved (I suspect that the names you would come up for that kind of <em>details</em> would often sound like 'segfault'). Flambda was not designed to be used that way. In particular, there are some invariants that must be maintained, like the uniqueness of variables and functions... that we completely disregarded. That lead to some 'funny' behaviors (like <code>power 2 8</code> returning <code>512</code>...). It is possible to do that correctly, but that would require far more than a few hours' hacking. This might be a lot easier with the upcoming version of Flambda.</p>
 <p>So this is far from ready, and it's not going to be anytime soon (<em>supposing that this is a good idea, which I'm still not convinced it is</em>).</p>
 <p>But if you still want to play with it: <a href="https://github.com/chambart/ocaml-1/tree/flambda_jit">the sources are available.</a></p>
-<hr/>
+<hr>
 <p><span>[1]</span> Not that it exists in real-world.</p>
 

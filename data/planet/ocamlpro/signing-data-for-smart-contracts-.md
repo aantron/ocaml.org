@@ -5,8 +5,8 @@ description: Smart contracts calls already provide a built-in authentication mec
   of the transaction. This is a guarantee on which programs can rely. However, sometimes
   you may want more involved or flexible authentication sch...
 url: https://ocamlpro.com/blog/2019_03_05_signing_data_for_smart_contracts
-date: 2019-03-05T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2019-03-05T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    \xC7agdas Bozman\n  "
 source:
@@ -24,7 +24,7 @@ source:
 let%entry main ((message : string), (signature : signature)) key =
   let bytes = Bytes.pack message in
   if not (Crypto.check key signature bytes) then
-    failwith &quot;Wrong signature&quot;;
+    failwith "Wrong signature";
   ([] : operation list), key
 </code></pre>
 <p>This smart contract fails if the string <code>message</code> was not signed with the private key corresponding to the public key <code>key</code> stored. Otherwise it does nothing.</p>
@@ -32,7 +32,7 @@ let%entry main ((message : string), (signature : signature)) key =
 <p>The rest of this blog post will focus on various ways to sign data, and on getting signatures that can be used in Tezos and Liquidity directly.</p>
 <h3>Signing Using the Tezos Client</h3>
 <p>One (straightforward) way to sign data is to use the Tezos client directly. You will need to be connected to a Tezos node though as the client makes RPCs to serialize data (this operation is protocol dependent). We can only sign sequences of bytes, so the first thing we need to do is to serialize whichever data we want to sign. This can be done with the command <code>hash data</code> of the client.</p>
-<pre><code class="language-shell-session">$ ./tezos-client -A alphanet-node.tzscan.io -P 80 hash data '&quot;message&quot;' of type string
+<pre><code class="language-shell-session">$ ./tezos-client -A alphanet-node.tzscan.io -P 80 hash data '"message"' of type string
 Raw packed data:
   0x0501000000076d657373616765
 Hash:
@@ -45,7 +45,7 @@ Raw Sha512 hash:
   0xdfa4ea9f77db3a98654f101be1d33d56898df40acf7c2950ca6f742140668a67fefbefb22b592344922e1f66c381fa2bec48aa47970025c7e61e35d939ae3ca0
 Gas remaining: 399918 units remaining
 </code></pre>
-<p>This command gives the result of hashing the data using various algorithms but what we're really interested in is the first item <code>Raw packed data</code> which is the serialized version of our data (<code>&quot;message&quot;</code>) : <code>0x0501000000076d657373616765</code>.</p>
+<p>This command gives the result of hashing the data using various algorithms but what we're really interested in is the first item <code>Raw packed data</code> which is the serialized version of our data (<code>"message"</code>) : <code>0x0501000000076d657373616765</code>.</p>
 <p>We can now sign these bytes using the Tezos client as well. This step can be performed completely offline, for that we need to use the option <code>-p</code> of the client to specify the protocol we want to use (the <code>sign bytes</code> command will not be available without first selecting a valid protocol). Here we use protocol 3, designated by its hash <code>PsddFKi3</code>.</p>
 <pre><code class="language-shell-session">$ ./tezos-client -p PsddFKi3 sign bytes 0x0501000000076d657373616765 for my_account
 Signature:
@@ -56,14 +56,14 @@ Signature:
 <p>In this second section we detail the necessary steps and provide a Python script to sign string messages using an Ed25519 private key. This can be easily adapted for other signing schemes.</p>
 <p>These are the steps that will need to be performed in order to sign a string:</p>
 <ul>
-<li>Assuming that the value you want to sign is a string, you first need to convert its ASCII version to hexa, for the string <code>&quot;message&quot;</code> that is <code>6d657373616765</code>.
+<li>Assuming that the value you want to sign is a string, you first need to convert its ASCII version to hexa, for the string <code>"message"</code> that is <code>6d657373616765</code>.
 </li>
 <li>You need to produce the packed version of the corresponding Michelson expression. The binary representation can vary depending on the types of the values you want to pack but for strings it is:
 </li>
 </ul>
 <pre><code class="language-michelson">| 0x | 0501 | [size of the string on 4 bytes] | [ascii string in hexa] |
 </code></pre>
-<p>for <code>&quot;message&quot;</code> (of length 7), it is</p>
+<p>for <code>"message"</code> (of length 7), it is</p>
 <pre><code class="language-michelson">| 0x | 0501 | 00000007 | 6d657373616765 |
 </code></pre>
 <p>or <code>0x0501000000076d657373616765</code>.</p>
@@ -83,7 +83,7 @@ Signature:
 </code></pre>
 <p>The following Python (3) script will do exactly this, entirely offline. Note that this is just an toy example, and should not be used in production. In particular you need to give your private key on the command line so this might not be secure if the machine you run this on is not secure.</p>
 <pre><code class="language-shell-session">$ pip3 install base58check pyblake2 ed25519
-&gt; python3 ./sign_string.py &quot;message&quot; edsk2gL9deG8idefWJJWNNtKXeszWR4FrEdNFM5622t1PkzH66oH3r
+&gt; python3 ./sign_string.py "message" edsk2gL9deG8idefWJJWNNtKXeszWR4FrEdNFM5622t1PkzH66oH3r
 0x753e013b8515a7d47eaa5424de5efa2f56620ac8be29d08a6952ae414256eac44b8db71f74600275662c8b0c226f3280e9d24e70a5fa83015636b98059b5180c
 </code></pre>
 <h4><code>sign_string.py</code></h4>
@@ -106,6 +106,6 @@ digest = h.digest()
 seed = base58check.b58decode(seed_b58)[4:-4]
 sk = ed25519.SigningKey(seed)
 sig = sk.sign(digest)
-print(&quot;0x&quot; + sig.hex())
+print("0x" + sig.hex())
 </code></pre>
 

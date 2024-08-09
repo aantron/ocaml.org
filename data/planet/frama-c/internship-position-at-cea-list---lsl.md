@@ -1,8 +1,8 @@
 ---
 title: Internship Position at CEA LIST - LSL
 description:
-url: http://frama-c.com/%20/jobs/2022-11-04-internship-ml4eva.html%20
-date: 2022-11-04T00:00:00-00:00
+url: http://frama-c.com/jobs/2023-12-07-internships-refinement.html
+date: 2023-12-07T00:00:00-00:00
 preview_image:
 authors:
 - Frama-C

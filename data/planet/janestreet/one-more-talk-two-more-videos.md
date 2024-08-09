@@ -10,7 +10,7 @@ authors:
 source:
 ---
 
-<p>I&rsquo;m happy to announce our next <a href="https://www.janestreet.com/tech-talks/">public tech
+<p>I’m happy to announce our next <a href="https://www.janestreet.com/tech-talks/">public tech
 talk</a>, called <strong>Seven
 Implementations of Incremental</strong>, on Wednesday, April 5th, presented by yours
 truly. You can register

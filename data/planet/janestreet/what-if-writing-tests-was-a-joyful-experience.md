@@ -11,10 +11,10 @@ authors:
 source:
 ---
 
-<p>At Jane Street we use a pattern/library called &ldquo;expect tests&rdquo; that
+<p>At Jane Street we use a pattern/library called “expect tests” that
 makes test-writing feel like a REPL session, or like exploratory
-programming in a Jupyter notebook&mdash;with feedback cycles so fast and
+programming in a Jupyter notebook—with feedback cycles so fast and
 joyful that it feels almost tactile. Having used them for some time now
-this is the only way I&rsquo;d ever want to write tests.</p>
+this is the only way I’d ever want to write tests.</p>
 
 

@@ -9,5 +9,5 @@ authors:
 source:
 ---
 
-<p>Listen in on Jane Street&rsquo;s Ron Minsky as he has conversations with engineers working on everything from clock synchronization to reliable multicast, build systems to reconfigurable hardware. Get a peek at how Jane Street approaches problems, and how those ideas relate to tech more broadly.</p>
+<p>Listen in on Jane Street’s Ron Minsky as he has conversations with engineers working on everything from clock synchronization to reliable multicast, build systems to reconfigurable hardware. Get a peek at how Jane Street approaches problems, and how those ideas relate to tech more broadly.</p>
 

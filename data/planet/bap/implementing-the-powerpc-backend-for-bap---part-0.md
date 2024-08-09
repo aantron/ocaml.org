@@ -13,11 +13,11 @@ source:
 planning a series of blog posts that will describe the process and
 probably will help others, who will pursue the task of implementing a
 backend for BAP, by either suggesting the right way or discouraging by
-showing an example of how one shouldn&rsquo;t do this.</p>
+showing an example of how one shouldn’t do this.</p>
 
 <p>As you may know, BAP is a platform for program analysis that works
 with compiled binaries. In a sense, BAP is dual to a compiler, since
-we move in the opposite direction &ndash; we start with the binary code,
+we move in the opposite direction – we start with the binary code,
 and then go to the Intermediate Representation (IR). The same as in
 compilers we perform analysis on the IR level, and we also need a
 backend support that will connect IR with the actual instruction set
@@ -36,9 +36,9 @@ effects that occur in a CPU. So we need to represent all updates to
 the status registers and other side effects, that are usually of no
 interest to compiler developers.</p>
 
-<p>In BAP we actually do not use the &ldquo;backend&rdquo; word, when we referring a
+<p>In BAP we actually do not use the “backend” word, when we referring a
 piece of code, that implements the support for a particular
-instruction set. We use the word &ldquo;lifter&rdquo;, since we are lifting
+instruction set. We use the word “lifter”, since we are lifting
 assembly instructions into the intermediate representation. So, from
 now on we will use term lifter. Basically, a lifter is a function,
 that takes the assembly instruction and returns a list of BIL
@@ -51,7 +51,7 @@ intermediate representations that are used in binary analysis and
 reverse engineering, then the <a href="https://softsec.kaist.ac.kr/~soomink/paper/ase17main-mainp491-p.pdf">this paper</a> has a nice
 overview. It also emphasizes how hard it is to write a lifter.</p>
 
-<p>So far, we have three lifters in BAP &ndash; the legacy x86 lifter, that
+<p>So far, we have three lifters in BAP – the legacy x86 lifter, that
 was written long time ago, the modern x86 lifter, and the ARM
 lifter. And we would like to admit, the we are not happy with all of
 them. Neither of them satisfy our goals - to be easily extensible,

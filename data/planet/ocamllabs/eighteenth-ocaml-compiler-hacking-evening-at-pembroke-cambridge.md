@@ -29,5 +29,5 @@ source:
 
 <p>The OCaml 4.06 release featured safe-string as the default rather than optional as per previous releases. The focus of this event will be to work on the opam repository to fix up as many packages as possible, and also to publish a guide on <a href="http://ocamllabs.io/">ocamllabs.io</a> detailing how to migrate your packages for wider use.</p>
 
-<p>The evening will also feature a short (5-10 min) presentation about recent <a href="http://marrakech2017.mirage.io/">MirageOS Marrakech Hack Retreat</a>.&#8203;</p>
+<p>The evening will also feature a short (5-10 min) presentation about recent <a href="http://marrakech2017.mirage.io/">MirageOS Marrakech Hack Retreat</a>.​</p>
 

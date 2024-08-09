@@ -26,7 +26,7 @@ source:
 <h2>History</h2>
 <p>The initial commit of albatross was in May 2017. Back then it replaced the shell scripts and manual <code>scp</code> of unikernel images to the server. Over time it evolved and adapted to new environments. Initially a solo5 unikernel would only know of a single network interface, these days there can be multiple distinguished by name. Initially there was no support for block devices. Only FreeBSD was supported in the early days. Nowadays we built daily packages for Debian, Ubuntu, FreeBSD, and have support for NixOS, and the client side is supported on macOS as well.</p>
 <h3>ASN.1</h3>
-<p>The communication format between the albatross daemons and clients was changed multiple times. I'm glad that albatross uses ASN.1 as communication format, which makes extension with optional fields easy, and also allows &quot;choice&quot; (the sum type) to be not tagged (the binary is the same as no choice type), thus adding choice to an existing grammar, and preserving the old in the default (untagged) case is a decent solution.</p>
+<p>The communication format between the albatross daemons and clients was changed multiple times. I'm glad that albatross uses ASN.1 as communication format, which makes extension with optional fields easy, and also allows "choice" (the sum type) to be not tagged (the binary is the same as no choice type), thus adding choice to an existing grammar, and preserving the old in the default (untagged) case is a decent solution.</p>
 <p>So, if you care about backward and forward compatibility, as we do, since we may be in control of which albatross servers are deployed on our machine, but not what albatross versions the clients are using -- it may be wise to look into ASN.1. Recent efforts (json with schema, ...) may solve similar issues, but ASN.1 is as well very tiny in size.</p>
 <h2>What resources does a unikernel need?</h2>
 <p>A unikernel is just an operating system for a single service, there can't be much it can need.</p>
@@ -48,7 +48,7 @@ source:
 <p>Everyone likes graphs, over time, showing how much traffic or CPU or memory or whatever has been used by your service. Some of these statistics are only available in the host system, and it is also crucial for development purposes to compare whether the bytes sent in the unikernel sum up to the same on the host system's tap interface.</p>
 <p>The albatross-stats daemon collects metrics from three sources: network interfaces, getrusage (of a child process), VMM debug counters (to count VM exits etc.). Since the recent 1.5.3, albatross-stats now connects at startup to the albatross-daemon and then retrieves the information which unikernels are up and running, and starts periodically collecting data in memory.</p>
 <p>Other clients, being it a dump on your console window, a write into an rrd file (good old MRTG times), or a push to influx, can use the stats data to correlate and better analyse what is happening on the grand scale of things. This helped a lot by running several unikernels with different opam package sets to figure out which opam packages leave their hands on memory over time.</p>
-<p>As a side note, if you make the unikernel name also available in the unikernel, it can tag its own metrics with the same identifier, and you can correlate high-level events (such as amount of HTTP requests) with low-level things &quot;allocated more memory&quot; or &quot;consumed a lot of CPU&quot;.</p>
+<p>As a side note, if you make the unikernel name also available in the unikernel, it can tag its own metrics with the same identifier, and you can correlate high-level events (such as amount of HTTP requests) with low-level things "allocated more memory" or "consumed a lot of CPU".</p>
 <h2>Console</h2>
 <p>There's not much to say about the console, just that the albatross-console daemon is running with low privileges, and reading from a FIFO that the unikernel writes to. It never writes anything to disk, but keeps the last 1000 lines in memory, available from a client asking for it.</p>
 <h2>The daemons</h2>
@@ -59,9 +59,9 @@ source:
 <p>The daemon itself has a X.509 certificate to authenticate, but the client is requested to show its certificate chain as well. This by now requires TLS 1.3, so the client certificates are sent over the encrypted channel.</p>
 <p>A step back, X.509 certificate contains a public key and a signature from one level up. When the server knows about the root (or certificate authority (CA)) certificate, and following the chain can verify that the leaf certificate is valid. Additionally, a X.509 certificate is a ASN.1 structure with some fixed fields, but also contains extensions, a key-value store where the keys are object identifiers, and the values are key-dependent data. Also note that this key-value store is cryptographically signed.</p>
 <p>Albatross uses the object identifier, assigned to Camelus Dromedarius (MirageOS - 1.3.6.1.4.1.49836.42) to encode the command to be executed. This means that once the TLS handshake is established, the command to be executed is already transferred.</p>
-<p>In the leaf certificate, there may be the &quot;create unikernel&quot; command with the unikernel image, it's boot parameters, and other resources. Or a &quot;read the console of my unikernel&quot;. In the intermediate certificates (from root to leaf), resource policies are encoded (this path may only have X unikernels running with a total of Y MB memory, and Z MB of block storage, using CPUs A and B, accessing bridges C and D). From the root downwards these policies may only decrease. When a unikernel should be created (or other commands are executed), the policies are verified to hold. If they do not, an error is reported.</p>
+<p>In the leaf certificate, there may be the "create unikernel" command with the unikernel image, it's boot parameters, and other resources. Or a "read the console of my unikernel". In the intermediate certificates (from root to leaf), resource policies are encoded (this path may only have X unikernels running with a total of Y MB memory, and Z MB of block storage, using CPUs A and B, accessing bridges C and D). From the root downwards these policies may only decrease. When a unikernel should be created (or other commands are executed), the policies are verified to hold. If they do not, an error is reported.</p>
 <h2>Fleet management</h2>
-<p>Of course it is very fine to create your locally compiled unikernel to your albatross server, go for it. But in terms of &quot;what is actually running here?&quot; and &quot;does this unikernel need to be updated because some opam package had a security issues?&quot;, this is not optimal.</p>
+<p>Of course it is very fine to create your locally compiled unikernel to your albatross server, go for it. But in terms of "what is actually running here?" and "does this unikernel need to be updated because some opam package had a security issues?", this is not optimal.</p>
 <p>Since we provide <a href="https://builds.robur.coop">daily reproducible builds</a> with the current HEAD of the main opam-repository, and these unikernels have no configuration embedded (but take everything as boot parameters), we just deploy them. They come with the information what opam packages contributed to the binary, which environment variables were set, and which system packages were installed with which versions.</p>
 <p>The whole result of reproducible builds for us means: we have a hash of a unikernel image that we can lookup in our build infrastructure, and take a look whether there is a newer image for the same job. And if there is, we provide a diff between the packages contributed to the currently running unikernel and the new image. That is what the albatross-client update command is all about.</p>
 <p>Of course, your mileage may vary and you want automated deployments where each git commit triggers recompilation and redeployment. The downside would be that sometimes only dependencies are updated and you've to cope with that.</p>
@@ -69,17 +69,17 @@ source:
 <h2>Installation</h2>
 <p>For Debian and Ubuntu systems, we provide package repositories. Browse the dists folder for one matching your distribution, and add it to <code>/etc/apt/sources.list</code>:</p>
 <pre><code>$ wget -q -O /etc/apt/trusted.gpg.d/apt.robur.coop.gpg https://apt.robur.coop/gpg.pub
-$ echo &quot;deb https://apt.robur.coop ubuntu-20.04 main&quot; &gt;&gt; /etc/apt/sources.list # replace ubuntu-20.04 with e.g. debian-11 on a debian buster machine
+$ echo "deb https://apt.robur.coop ubuntu-20.04 main" &gt;&gt; /etc/apt/sources.list # replace ubuntu-20.04 with e.g. debian-11 on a debian buster machine
 $ apt update
 $ apt install solo5 albatross
 </code></pre>
 <p>On FreeBSD:</p>
 <pre><code>$ fetch -o /usr/local/etc/pkg/robur.pub https://pkg.robur.coop/repo.pub # download RSA public key
 $ echo 'robur: {
-  url: &quot;https://pkg.robur.coop/${ABI}&quot;,
-  mirror_type: &quot;srv&quot;,
-  signature_type: &quot;pubkey&quot;,
-  pubkey: &quot;/usr/local/etc/pkg/robur.pub&quot;,
+  url: "https://pkg.robur.coop/${ABI}",
+  mirror_type: "srv",
+  signature_type: "pubkey",
+  pubkey: "/usr/local/etc/pkg/robur.pub",
   enabled: yes
 }' &gt; /usr/local/etc/pkg/repos/robur.conf # Check https://pkg.robur.coop which ABI are available
 $ pkg update

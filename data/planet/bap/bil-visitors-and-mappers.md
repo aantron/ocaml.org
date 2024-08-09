@@ -12,17 +12,17 @@ source:
 <p>During disassembly, BAP lifts native binary instructions to a
 language-agnostic, intermediate representation: the BAP intermediate Language
 (BIL). In this post we look specifically at traversing and transforming BIL
-using BAP&rsquo;s API. Lifted BIL code is represented as an AST data structure that
+using BAP’s API. Lifted BIL code is represented as an AST data structure that
 can be traversed and transformed for the purposes of analysis.</p>
 
 <p>BAP provides a plethora of method hooks for traversing BIL ASTs according to
-the visitor design pattern. OCaml&rsquo;s object-oriented features allow us to
+the visitor design pattern. OCaml’s object-oriented features allow us to
 realize these visitor patterns in an elegant and powerful way; however, for the
 unfamiliar, usage tends to be harder to grasp. This post serves to
 provide self-contained, explanatory examples that eases the introduction to the
 BIL visitor and mapper capabilities.</p>
 
-<p>A full template is provided for each example at the end of this post&ndash;it may be
+<p>A full template is provided for each example at the end of this post–it may be
 used with the same <code class="language-plaintext highlighter-rouge">example</code> binary from previous posts.</p>
 
 <h2>Visitors</h2>
@@ -39,7 +39,7 @@ statement in the list, printing it.</p>
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">visit_each_stmt</span> <span class="n">bil_stmts</span> <span class="o">=</span>
   <span class="p">(</span><span class="k">object</span> <span class="k">inherit</span> <span class="p">[</span><span class="kt">unit</span><span class="p">]</span> <span class="nn">Bil</span><span class="p">.</span><span class="n">visitor</span>
     <span class="n">method</span><span class="o">!</span> <span class="n">enter_stmt</span> <span class="n">stmt</span> <span class="n">state</span> <span class="o">=</span>
-      <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;Visiting %s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="nn">Stmt</span><span class="p">.</span><span class="n">to_string</span> <span class="n">stmt</span><span class="p">)</span>
+      <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"Visiting %s</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="nn">Stmt</span><span class="p">.</span><span class="n">to_string</span> <span class="n">stmt</span><span class="p">)</span>
     <span class="k">end</span><span class="p">)</span><span class="o">#</span><span class="n">run</span> <span class="n">bil_stmts</span> <span class="bp">()</span>
 </code></pre></div></div>
 
@@ -67,7 +67,7 @@ variable <code class="language-plaintext highlighter-rouge">state</code> for <co
   <li>The return type of enter_stmt is that of our state: <code class="language-plaintext highlighter-rouge">unit</code>.</li>
 </ul>
 
-<hr/>
+<hr>
 
 <h4>A visitor with state</h4>
 
@@ -102,7 +102,7 @@ provided
 callback.</li>
 </ul>
 
-<hr/>
+<hr>
 
 <h2>Mappers</h2>
 
@@ -113,11 +113,11 @@ callback.</li>
 </blockquote>
 
 <p>Our previous visitor inherited the BIL <code class="language-plaintext highlighter-rouge">class 'a visitor</code>, where <code class="language-plaintext highlighter-rouge">'a</code> was our
-inherited user-supplied state. But there&rsquo;s also <code class="language-plaintext highlighter-rouge">class mapper</code>. <code class="language-plaintext highlighter-rouge">class mapper</code>
-doesn&rsquo;t carry any user-supplied state with it. With mapper, you can transform
+inherited user-supplied state. But there’s also <code class="language-plaintext highlighter-rouge">class mapper</code>. <code class="language-plaintext highlighter-rouge">class mapper</code>
+doesn’t carry any user-supplied state with it. With mapper, you can transform
 the BIL statements and expressions in the AST.</p>
 
-<p>Let&rsquo;s transform binary operations with some constant offset to an offset of <code class="language-plaintext highlighter-rouge">0x41</code>. For instance:</p>
+<p>Let’s transform binary operations with some constant offset to an offset of <code class="language-plaintext highlighter-rouge">0x41</code>. For instance:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RSP := RSP - 0x8:64
 </code></pre></div></div>
@@ -161,7 +161,7 @@ reconstruct the original expression using the same operator and operands.</li>
   <li>No user-state is passed a long. The return type for each expression is <code class="language-plaintext highlighter-rouge">exp</code>.</li>
 </ul>
 
-<hr/>
+<hr>
 
 <h2>Customization</h2>
 
@@ -171,20 +171,20 @@ reconstruct the original expression using the same operator and operands.</li>
   <p>What is a custom visitor and how can I make one?</p>
 </blockquote>
 
-<p>We can create our own subclassing visitor, i.e., we don&rsquo;t have to use class &lsquo;a visitor or class mapper. For instance, we can pass our own implicit state a long with a custom visitor (and still allow anyone else to define a user-supplied state variable). Here&rsquo;s some quick syntax for defining your own visitor:</p>
+<p>We can create our own subclassing visitor, i.e., we don’t have to use class ‘a visitor or class mapper. For instance, we can pass our own implicit state a long with a custom visitor (and still allow anyone else to define a user-supplied state variable). Here’s some quick syntax for defining your own visitor:</p>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="p">[</span><span class="k">'</span><span class="n">a</span><span class="p">]</span> <span class="n">custom_visitor</span> <span class="o">=</span> <span class="k">object</span>
    <span class="k">inherit</span> <span class="p">[</span><span class="k">'</span><span class="n">a</span> <span class="o">*</span> <span class="kt">int</span> <span class="kt">list</span><span class="p">]</span> <span class="nn">Bil</span><span class="p">.</span><span class="n">visitor</span>
 <span class="k">end</span>
 </code></pre></div></div>
-<p>Let&rsquo;s define a <code class="language-plaintext highlighter-rouge">custom_visit</code> function:</p>
+<p>Let’s define a <code class="language-plaintext highlighter-rouge">custom_visit</code> function:</p>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">custom_visit</span> <span class="n">bil_stmts</span> <span class="o">=</span>
   <span class="p">(</span><span class="k">object</span> <span class="k">inherit</span> <span class="p">[</span><span class="kt">string</span><span class="p">]</span> <span class="n">custom_visitor</span>
     <span class="n">method</span><span class="o">!</span> <span class="n">enter_stmt</span> <span class="n">stmt</span> <span class="n">state</span> <span class="o">=</span>
-      <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;Visiting %s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="nn">Stmt</span><span class="p">.</span><span class="n">to_string</span> <span class="n">stmt</span><span class="p">);</span>
-      <span class="p">(</span><span class="s2">&quot;still-user-defined&quot;</span><span class="o">,</span><span class="p">[</span><span class="mi">3</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">1</span><span class="p">])</span>
-  <span class="k">end</span><span class="p">)</span><span class="o">#</span><span class="n">run</span> <span class="n">bil_stmts</span> <span class="p">(</span><span class="s2">&quot;user-defined&quot;</span><span class="o">,</span><span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">])</span>
+      <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"Visiting %s</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="nn">Stmt</span><span class="p">.</span><span class="n">to_string</span> <span class="n">stmt</span><span class="p">);</span>
+      <span class="p">(</span><span class="s2">"still-user-defined"</span><span class="o">,</span><span class="p">[</span><span class="mi">3</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">1</span><span class="p">])</span>
+  <span class="k">end</span><span class="p">)</span><span class="o">#</span><span class="n">run</span> <span class="n">bil_stmts</span> <span class="p">(</span><span class="s2">"user-defined"</span><span class="o">,</span><span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">])</span>
 </code></pre></div></div>
 
 <p>Output:</p>
@@ -207,7 +207,7 @@ fold over BIL (for instance, for tracking depth in the AST, we might create a
 user having to define their own variable for doing so).</li>
 </ul>
 
-<hr/>
+<hr>
 
 <h2>Wrap-up</h2>
 
@@ -243,14 +243,14 @@ substituter</a>.</li>
 if you want a BIL visitor that searches for specific patterns in the AST.</li>
 </ul>
 
-<hr/>
+<hr>
 
 <h2>Examples template</h2>
 
 <h4>Visitor and mapper examples template</h4>
 
-<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">#</span><span class="n">use</span> <span class="s2">&quot;topfind&quot;</span><span class="p">;;</span>
-<span class="o">#</span><span class="n">require</span> <span class="s2">&quot;bap.top&quot;</span><span class="p">;;</span>
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">#</span><span class="n">use</span> <span class="s2">"topfind"</span><span class="p">;;</span>
+<span class="o">#</span><span class="n">require</span> <span class="s2">"bap.top"</span><span class="p">;;</span>
 <span class="k">open</span> <span class="nn">Core_kernel</span><span class="p">.</span><span class="nc">Std</span>
 <span class="k">open</span> <span class="nn">Bap</span><span class="p">.</span><span class="nc">Std</span>
 <span class="k">open</span> <span class="nc">Or_error</span>
@@ -263,9 +263,9 @@ if you want a BIL visitor that searches for specific patterns in the AST.</li>
       <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="bp">true</span><span class="p">)</span> <span class="k">in</span>
 
   <span class="k">let</span> <span class="n">syms</span> <span class="o">=</span> <span class="nn">Project</span><span class="p">.</span><span class="n">symbols</span> <span class="n">project</span> <span class="k">in</span>
-  <span class="k">let</span> <span class="n">main_fn</span> <span class="o">=</span> <span class="k">match</span> <span class="nn">Symtab</span><span class="p">.</span><span class="n">find_by_name</span> <span class="n">syms</span> <span class="s2">&quot;main&quot;</span> <span class="k">with</span>
+  <span class="k">let</span> <span class="n">main_fn</span> <span class="o">=</span> <span class="k">match</span> <span class="nn">Symtab</span><span class="p">.</span><span class="n">find_by_name</span> <span class="n">syms</span> <span class="s2">"main"</span> <span class="k">with</span>
     <span class="o">|</span> <span class="nc">Some</span> <span class="n">fn</span> <span class="o">-&gt;</span> <span class="n">fn</span>
-    <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">&quot;Could not find function main in symbol table&quot;</span>
+    <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">"Could not find function main in symbol table"</span>
   <span class="k">in</span>
   <span class="k">let</span> <span class="n">entry_block</span> <span class="o">=</span> <span class="nn">Symtab</span><span class="p">.</span><span class="n">entry_of_fn</span> <span class="n">main_fn</span> <span class="k">in</span>
   <span class="k">let</span> <span class="n">block_insns</span> <span class="o">=</span> <span class="nn">Block</span><span class="p">.</span><span class="n">insns</span> <span class="n">entry_block</span> <span class="k">in</span>
@@ -274,7 +274,7 @@ if you want a BIL visitor that searches for specific patterns in the AST.</li>
   <span class="k">let</span> <span class="n">visit_each_stmt</span> <span class="n">bil_stmts</span> <span class="o">=</span>
     <span class="p">(</span><span class="k">object</span> <span class="k">inherit</span> <span class="p">[</span><span class="kt">unit</span><span class="p">]</span> <span class="nn">Bil</span><span class="p">.</span><span class="n">visitor</span>
       <span class="n">method</span><span class="o">!</span> <span class="n">enter_stmt</span> <span class="n">stmt</span> <span class="n">state</span> <span class="o">=</span>
-        <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;Visiting %s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="nn">Stmt</span><span class="p">.</span><span class="n">to_string</span> <span class="n">stmt</span><span class="p">)</span>
+        <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"Visiting %s</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="nn">Stmt</span><span class="p">.</span><span class="n">to_string</span> <span class="n">stmt</span><span class="p">)</span>
     <span class="k">end</span><span class="p">)</span><span class="o">#</span><span class="n">run</span> <span class="n">bil_stmts</span> <span class="bp">()</span>
   <span class="k">in</span>
 
@@ -292,7 +292,7 @@ if you want a BIL visitor that searches for specific patterns in the AST.</li>
   <span class="nn">List</span><span class="p">.</span><span class="n">iter</span> <span class="n">block_insns</span> <span class="o">~</span><span class="n">f</span><span class="o">:</span><span class="p">(</span><span class="k">fun</span> <span class="p">(</span><span class="n">_</span><span class="o">,</span><span class="n">insn</span><span class="p">)</span> <span class="o">-&gt;</span>
       <span class="k">let</span> <span class="n">bil</span> <span class="o">=</span> <span class="nn">Insn</span><span class="p">.</span><span class="n">bil</span> <span class="n">insn</span> <span class="k">in</span>
       <span class="n">collect_jumps</span> <span class="n">bil</span> <span class="o">|&gt;</span> <span class="nn">List</span><span class="p">.</span><span class="n">iter</span>
-        <span class="o">~</span><span class="n">f</span><span class="o">:</span><span class="p">(</span><span class="k">fun</span> <span class="n">word</span> <span class="o">-&gt;</span> <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;Jmp: %a</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="nn">Word</span><span class="p">.</span><span class="n">pp</span> <span class="n">word</span><span class="p">));</span>
+        <span class="o">~</span><span class="n">f</span><span class="o">:</span><span class="p">(</span><span class="k">fun</span> <span class="n">word</span> <span class="o">-&gt;</span> <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"Jmp: %a</span><span class="se">\n</span><span class="s2">"</span> <span class="nn">Word</span><span class="p">.</span><span class="n">pp</span> <span class="n">word</span><span class="p">));</span>
 
   <span class="c">(* offset_41_mapper *)</span>
   <span class="k">let</span> <span class="n">offset_41_mapper</span> <span class="n">bil_stmts</span> <span class="o">=</span>
@@ -310,7 +310,7 @@ if you want a BIL visitor that searches for specific patterns in the AST.</li>
       <span class="k">let</span> <span class="n">bil</span> <span class="o">=</span> <span class="nn">Insn</span><span class="p">.</span><span class="n">bil</span> <span class="n">insn</span> <span class="k">in</span>
       <span class="k">let</span> <span class="n">new_bil</span> <span class="o">=</span>
         <span class="n">offset_41_mapper</span> <span class="n">bil</span> <span class="k">in</span>
-      <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;41-Bil: %s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="nn">Bil</span><span class="p">.</span><span class="n">to_string</span> <span class="n">new_bil</span> <span class="o">|&gt;</span> <span class="n">normalize</span><span class="p">));</span>
+      <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"41-Bil: %s</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="nn">Bil</span><span class="p">.</span><span class="n">to_string</span> <span class="n">new_bil</span> <span class="o">|&gt;</span> <span class="n">normalize</span><span class="p">));</span>
 
   <span class="n">return</span> <span class="bp">()</span>
 
@@ -318,16 +318,16 @@ if you want a BIL visitor that searches for specific patterns in the AST.</li>
     <span class="k">try</span> <span class="n">main</span> <span class="bp">()</span>
         <span class="o">|&gt;</span> <span class="k">function</span>
         <span class="o">|</span> <span class="nc">Ok</span> <span class="n">o</span> <span class="o">-&gt;</span> <span class="bp">()</span>
-        <span class="o">|</span> <span class="nc">Error</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;BAP error: %s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">@@</span> <span class="nn">Error</span><span class="p">.</span><span class="n">to_string_hum</span> <span class="n">e</span>
+        <span class="o">|</span> <span class="nc">Error</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"BAP error: %s</span><span class="se">\n</span><span class="s2">"</span> <span class="o">@@</span> <span class="nn">Error</span><span class="p">.</span><span class="n">to_string_hum</span> <span class="n">e</span>
     <span class="k">with</span>
     <span class="o">|</span> <span class="nc">Invalid_argument</span> <span class="n">_</span> <span class="o">-&gt;</span>
-      <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;Please specify a file on the command line</span><span class="se">\n</span><span class="s2">&quot;</span>
+      <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"Please specify a file on the command line</span><span class="se">\n</span><span class="s2">"</span>
 </code></pre></div></div>
 
 <h4>Custom visitor template</h4>
 
-<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">#</span><span class="n">use</span> <span class="s2">&quot;topfind&quot;</span><span class="p">;;</span>
-<span class="o">#</span><span class="n">require</span> <span class="s2">&quot;bap.top&quot;</span><span class="p">;;</span>
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">#</span><span class="n">use</span> <span class="s2">"topfind"</span><span class="p">;;</span>
+<span class="o">#</span><span class="n">require</span> <span class="s2">"bap.top"</span><span class="p">;;</span>
 <span class="k">open</span> <span class="nn">Core_kernel</span><span class="p">.</span><span class="nc">Std</span>
 <span class="k">open</span> <span class="nn">Bap</span><span class="p">.</span><span class="nc">Std</span>
 <span class="k">open</span> <span class="nc">Or_error</span>
@@ -344,15 +344,15 @@ if you want a BIL visitor that searches for specific patterns in the AST.</li>
   <span class="k">let</span> <span class="n">custom_visit</span> <span class="n">bil_stmts</span> <span class="o">=</span>
     <span class="p">(</span><span class="k">object</span> <span class="k">inherit</span> <span class="p">[</span><span class="kt">string</span><span class="p">]</span> <span class="n">custom_visitor</span>
       <span class="n">method</span><span class="o">!</span> <span class="n">enter_stmt</span> <span class="n">stmt</span> <span class="n">state</span> <span class="o">=</span>
-        <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;Visiting %s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="nn">Stmt</span><span class="p">.</span><span class="n">to_string</span> <span class="n">stmt</span><span class="p">);</span>
-        <span class="p">(</span><span class="s2">&quot;still-user-defined&quot;</span><span class="o">,</span><span class="p">[</span><span class="mi">3</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">end</span><span class="p">)</span><span class="o">#</span><span class="n">run</span> <span class="n">bil_stmts</span> <span class="p">(</span><span class="s2">&quot;user-defined&quot;</span><span class="o">,</span><span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">])</span>
+        <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"Visiting %s</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="nn">Stmt</span><span class="p">.</span><span class="n">to_string</span> <span class="n">stmt</span><span class="p">);</span>
+        <span class="p">(</span><span class="s2">"still-user-defined"</span><span class="o">,</span><span class="p">[</span><span class="mi">3</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">end</span><span class="p">)</span><span class="o">#</span><span class="n">run</span> <span class="n">bil_stmts</span> <span class="p">(</span><span class="s2">"user-defined"</span><span class="o">,</span><span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">])</span>
   <span class="k">in</span>
 
   <span class="k">let</span> <span class="n">syms</span> <span class="o">=</span> <span class="nn">Project</span><span class="p">.</span><span class="n">symbols</span> <span class="n">project</span> <span class="k">in</span>
-  <span class="k">let</span> <span class="n">main_fn</span> <span class="o">=</span> <span class="k">match</span> <span class="nn">Symtab</span><span class="p">.</span><span class="n">find_by_name</span> <span class="n">syms</span> <span class="s2">&quot;main&quot;</span> <span class="k">with</span>
+  <span class="k">let</span> <span class="n">main_fn</span> <span class="o">=</span> <span class="k">match</span> <span class="nn">Symtab</span><span class="p">.</span><span class="n">find_by_name</span> <span class="n">syms</span> <span class="s2">"main"</span> <span class="k">with</span>
     <span class="o">|</span> <span class="nc">Some</span> <span class="n">fn</span> <span class="o">-&gt;</span> <span class="n">fn</span>
-    <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">&quot;Could not find function main in symbol table&quot;</span>
+    <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">"Could not find function main in symbol table"</span>
   <span class="k">in</span>
   <span class="k">let</span> <span class="n">entry_block</span> <span class="o">=</span> <span class="nn">Symtab</span><span class="p">.</span><span class="n">entry_of_fn</span> <span class="n">main_fn</span> <span class="k">in</span>
   <span class="k">let</span> <span class="n">block_insns</span> <span class="o">=</span> <span class="nn">Block</span><span class="p">.</span><span class="n">insns</span> <span class="n">entry_block</span> <span class="k">in</span>
@@ -367,9 +367,9 @@ if you want a BIL visitor that searches for specific patterns in the AST.</li>
     <span class="k">try</span> <span class="n">main</span> <span class="bp">()</span>
         <span class="o">|&gt;</span> <span class="k">function</span>
         <span class="o">|</span> <span class="nc">Ok</span> <span class="n">o</span> <span class="o">-&gt;</span> <span class="bp">()</span>
-        <span class="o">|</span> <span class="nc">Error</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;BAP error: %s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">@@</span> <span class="nn">Error</span><span class="p">.</span><span class="n">to_string_hum</span> <span class="n">e</span>
+        <span class="o">|</span> <span class="nc">Error</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"BAP error: %s</span><span class="se">\n</span><span class="s2">"</span> <span class="o">@@</span> <span class="nn">Error</span><span class="p">.</span><span class="n">to_string_hum</span> <span class="n">e</span>
     <span class="k">with</span>
     <span class="o">|</span> <span class="nc">Invalid_argument</span> <span class="n">_</span> <span class="o">-&gt;</span>
-      <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;Please specify a file on the command line</span><span class="se">\n</span><span class="s2">&quot;</span>
+      <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"Please specify a file on the command line</span><span class="se">\n</span><span class="s2">"</span>
 </code></pre></div></div>
 

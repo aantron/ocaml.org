@@ -24,11 +24,8 @@ end
 satisfying the following laws:
 
 
-Identity:    fmap id      &equiv; id
-Composition: fmap (f &#8728; g) &equiv; fmap f &#8728; fmap g
+Identity:    fmap id      ≡ id
+Composition: fmap (f ∘ g) ≡ fmap f ∘ fmap g
 
 
-An applicative structure or idiom is the signature:
-
-
-module type APPLICATIVE = 
+An applicative structure or idiom is the 

@@ -10,12 +10,12 @@ authors:
 source:
 ---
 
-You don't have to be writing an interpreter or some other kind of abstract code to profit from some phantom types. Suppose you have two or more functions that work by &quot;cooking&quot; a simple value (a float, say) with a lengthy computation before proceeding:
+You don't have to be writing an interpreter or some other kind of abstract code to profit from some phantom types. Suppose you have two or more functions that work by "cooking" a simple value (a float, say) with a lengthy computation before proceeding:
 
 
 let sun_geometric_longitude j =
   let je = to_jcen (to_jde j) in
-  (* &hellip; computation with je &hellip; *)
+  (* … computation with je … *)
 
 let sun_apparent_longitude j =
-  let je = 
+

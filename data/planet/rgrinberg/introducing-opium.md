@@ -10,7 +10,7 @@ source:
 ---
 
 <p>One itch that I usually need to scratch is setting up quick and dirty
-REST API&rsquo;s - preferably in OCaml. OCaml does have a few options for web
+REST API’s - preferably in OCaml. OCaml does have a few options for web
 development but I found them to be not so great fits for my needs. To
 summarize:</p>
 

@@ -17,5 +17,4 @@ void interp0() {
   int offset = 0;
   int yn = 0;
   int yi = 1;
-  for (int i = 0; i &lt; height; i++) {
-
+  for (int i = 0; i &lt; height; i++) 

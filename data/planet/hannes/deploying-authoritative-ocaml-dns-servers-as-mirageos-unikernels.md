@@ -10,7 +10,7 @@ source:
 ---
 
 <h2>Goal</h2>
-<p>Have your domain served by OCaml-DNS authoritative name servers. Data is stored in a git remote, and let's encrypt certificates can be requested to DNS. This software is deployed since more than two years for several domains such as <code>nqsb.io</code> and <code>robur.coop</code>. This present the authoritative server side, and certificate library of the OCaml-DNS implementation formerly known as <a href="https://hannes.robur.coop/Posts/DNS">&micro;DNS</a>.</p>
+<p>Have your domain served by OCaml-DNS authoritative name servers. Data is stored in a git remote, and let's encrypt certificates can be requested to DNS. This software is deployed since more than two years for several domains such as <code>nqsb.io</code> and <code>robur.coop</code>. This present the authoritative server side, and certificate library of the OCaml-DNS implementation formerly known as <a href="https://hannes.robur.coop/Posts/DNS">µDNS</a>.</p>
 <h2>Prerequisites</h2>
 <p>You need to own a domain, and be able to delegate the name service to your own servers.
 You also need two spare public IPv4 addresses (in different /24 networks) for your name servers.
@@ -18,7 +18,7 @@ A git server or remote repository reachable via git over ssh.
 Servers which support <a href="https://github.com/solo5/solo5">solo5</a> guests, and have the corresponding tender installed.
 A computer with <a href="https://opam.ocaml.org">opam</a> (&gt;= 2.0.0) installed.</p>
 <h2>Data preparation</h2>
-<p>Figure out a way to get the DNS entries of your domain in a <a href="https://tools.ietf.org/html/rfc1034">&quot;master file format&quot;</a>, i.e. what bind uses.</p>
+<p>Figure out a way to get the DNS entries of your domain in a <a href="https://tools.ietf.org/html/rfc1034">"master file format"</a>, i.e. what bind uses.</p>
 <p>This is a master file for the <code>mirage</code> domain, defining <code>$ORIGIN</code> to avoid typing the domain name after each hostname (use <code>@</code> if you need the domain name only; if you need to refer to a hostname in a different domain end it with a dot (<code>.</code>), i.e. <code>ns2.foo.com.</code>). The default time to live <code>$TTL</code> is an hour (3600 seconds).
 The zone contains a <a href="https://tools.ietf.org/html/rfc1035#section-3.3.13">start of authority (<code>SOA</code>) record</a> containing the nameserver, hostmaster, serial, refresh, retry, expiry, and minimum.
 Also, a single <a href="https://tools.ietf.org/html/rfc1035#section-3.3.11">name server (<code>NS</code>) record</a> <code>ns1</code> is specified with an accompanying <a href="https://tools.ietf.org/html/rfc1035#section-3.4.1">address (<code>A</code>) records</a> pointing to their IPv4 address.</p>
@@ -115,8 +115,8 @@ begin-base64 644 -
 kJJqipaQHQWqZL31Raar6uPnepGFIdtpjkXot9rv2xg=
 ====
 [..]
-git-repo&gt; echo &quot;personal._update.mirage. DNSKEY 0 3 163 kJJqipaQHQWqZL31Raar6uPnepGFIdtpjkXot9rv2xg=&quot; &gt; mirage._keys
-git-repo&gt; git add mirage._keys &amp;&amp; git commit -m &quot;add hmac secret&quot; &amp;&amp; git push
+git-repo&gt; echo "personal._update.mirage. DNSKEY 0 3 163 kJJqipaQHQWqZL31Raar6uPnepGFIdtpjkXot9rv2xg=" &gt; mirage._keys
+git-repo&gt; git add mirage._keys &amp;&amp; git commit -m "add hmac secret" &amp;&amp; git push
 
 # now we need to restart the primary git to get the git repository with the key
 $ ./primary-git --ssh-key=... # arguments from above, remote git, host key fingerprint, private key seed
@@ -181,7 +181,7 @@ ns2	A	10.0.42.3
 git-repo&gt; cat mirage._keys
 personal._update.mirage. DNSKEY 0 3 163 kJJqipaQHQWqZL31Raar6uPnepGFIdtpjkXot9rv2xg=
 10.0.42.2.10.0.42.3._transfer.mirage. DNSKEY 0 3 163 cDK6sKyvlt8UBerZlmxuD84ih2KookJGDagJlLVNo20=
-git-repo&gt; git commit -m &quot;updates&quot; . &amp;&amp; git push
+git-repo&gt; git commit -m "updates" . &amp;&amp; git push
 </code></pre>
 <p>Ok, the git repository is ready, now we need to compile the unikernels for the virtualisation target (see <a href="https://mirage.io/wiki/hello-world#Building-for-Another-Backend">other targets</a> for further information).</p>
 <pre><code class="language-shell"># back to primary
@@ -208,7 +208,7 @@ $ dig any mirage @10.0.42.3
 
 # testing an update and propagation
 # edit mirage zone, add a new record and increment the serial number
-git-repo&gt; echo &quot;foo A 127.0.0.1&quot; &gt;&gt; mirage
+git-repo&gt; echo "foo A 127.0.0.1" &gt;&gt; mirage
 git-repo&gt; vi mirage &lt;- increment serial
 git-repo&gt; git commit -m 'add foo' . &amp;&amp; git push
 $ onotify 10.0.42.2 mirage --key=personal._update.mirage:SHA256:kJJqipaQHQWqZL31Raar6uPnepGFIdtpjkXot9rv2xg=
@@ -242,7 +242,7 @@ $ dig my-other.mirage @10.0.42.3
 </li>
 <li>A service (<code>ocertify</code>, <code>unikernels/certificate</code>, or the <code>dns-certify.mirage</code> library) demands a TLS certificate, and has a hmac-secret for the primary DNS
 </li>
-<li>The service generates a certificate signing request with the desired hostname(s), and performs an nsupdate with TLSA 255 <der encoded="encoded" signing-request="signing-request">
+<li>The service generates a certificate signing request with the desired hostname(s), and performs an nsupdate with TLSA 255 <der encoded="" signing-request="">
 </der></li>
 <li>The primary accepts the update, pushes the new zone to git, and sends notifies to secondary and let's encrypt unikernels which (incrementally) transfer the zone
 </li>
@@ -254,7 +254,7 @@ $ dig my-other.mirage @10.0.42.3
 </li>
 <li>The let's encrypt servers request the TXT record from either or both authoritative name servers
 </li>
-<li>The let's encrypt unikernel polls for the issued certificate and send an update to the primary TLSA 0 <der encoded="encoded" certificate="certificate">
+<li>The let's encrypt unikernel polls for the issued certificate and send an update to the primary TLSA 0 <der encoded="" certificate="">
 </der></li>
 <li>The primary pushes the certificate to git, notifies secondaries (which transfer the zone)
 </li>

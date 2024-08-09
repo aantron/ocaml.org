@@ -11,12 +11,11 @@ authors:
 source:
 ---
 
-<p>This is the answer to <a href="https://syntaxexclamation.wordpress.com/2014/04/15/big-step-disjunctive-normal-forms/" title="Big-step disjunctive normal forms">last post&rsquo;s puzzle</a>. I gave an algorithm to put a formula in disjunctive normal form, and suggested to prove it correct <i>in OCaml</i>, thanks to GADTs. My solution happens to include a wealth of little exercises that could be reused I think, so here it is.</p>
+<p>This is the answer to <a href="https://syntaxexclamation.wordpress.com/2014/04/15/big-step-disjunctive-normal-forms/" title="Big-step disjunctive normal forms">last post’s puzzle</a>. I gave an algorithm to put a formula in disjunctive normal form, and suggested to prove it correct <i>in OCaml</i>, thanks to GADTs. My solution happens to include a wealth of little exercises that could be reused I think, so here it is.</p>
 <p>I put the code snippets in the order that I think is more pedagogical, and leave to the reader to reorganize them in the right one.</p>
 <p><span></span></p>
 <p>First, as I hinted previously, we are annotating formulas, conjunctions and disjunctions with their corresponding OCaml type, in order to reason on these types:</p>
-<pre class="brush: fsharp; title: ; notranslate">
-type 'a atom = int
+<pre class="brush: fsharp; title: ; notranslate">type 'a atom = int
 
 type 'a form =
   | X : 'a atom -&gt; 'a form
@@ -32,13 +31,11 @@ type 'a disj =
   | Or : 'a conj * 'b disj -&gt; ('a, 'b) union disj
 </pre>
 <p>What we are eventually looking for is a function <code>dnf</code> mapping an <code>'a form&nbsp;</code>to a <code>'b disj</code>, but now these two must be related: they must represent two <i>equivalent</i> formulae. So, correcting what I just said: <code>dnf</code> must return the pair of a <code>'b disj</code> and a proof that <code>'a</code> and <code>'b</code> are equivalent. This pair is an existential type, which is easily coded with a GADT (we do similarly for conjunctions):</p>
-<pre class="brush: fsharp; title: ; notranslate">
-type 'a cnj = Cnj : 'b conj * ('a, 'b) equiv -&gt; 'a cnj
+<pre class="brush: fsharp; title: ; notranslate">type 'a cnj = Cnj : 'b conj * ('a, 'b) equiv -&gt; 'a cnj
 type 'a dsj = Dsj : 'b disj * ('a, 'b) equiv -&gt; 'a dsj
 </pre>
-<p>Let&rsquo;s leave out the definition of <code>equiv</code> for a while. Now the code from the previous post is fairly easily adapted:</p>
-<pre class="brush: fsharp; title: ; notranslate">
-let rec conj : type a b. a conj -&gt; b conj -&gt; (a * b) cnj =
+<p>Let’s leave out the definition of <code>equiv</code> for a while. Now the code from the previous post is fairly easily adapted:</p>
+<pre class="brush: fsharp; title: ; notranslate">let rec conj : type a b. a conj -&gt; b conj -&gt; (a * b) cnj =
   fun xs ys -&gt; match xs with
   | X x -&gt; Cnj (And (x, ys), refl)
   | And (x, xs) -&gt;
@@ -84,14 +81,12 @@ let rec dnf : type a. a form -&gt; a dsj = function
     let Dsj (e, e3) = cart c d in
     Dsj (e, lemma5 e1 e2 e3)
 </pre>
-<p>It seems more verbose, but since the functions now return existentials, we need to deconstruct them and pass them around. I abstracted over the combinators that compose the proofs of equivalence <code>lemma1</code>&hellip;<code>lemma5</code>, we&rsquo;ll deal with them in a moment. For now, you can replace them by <code>Obj.magic</code> and read off their types with <code>C-c C-t</code> to see if they make sense logically. Look at the last function&rsquo;s type. It states, as expected: for any formula <img src="https://s0.wp.com/latex.php?latex=A&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002" srcset="https://s0.wp.com/latex.php?latex=A&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002 1x, https://s0.wp.com/latex.php?latex=A&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002&amp;zoom=4.5 4x" alt="A" class="latex"/>, there exists a disjuctive normal form <img src="https://s0.wp.com/latex.php?latex=B&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002" srcset="https://s0.wp.com/latex.php?latex=B&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002 1x, https://s0.wp.com/latex.php?latex=B&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002&amp;zoom=4.5 4x" alt="B" class="latex"/> such that <img src="https://s0.wp.com/latex.php?latex=A%20%5CLeftrightarrow%20B&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002" srcset="https://s0.wp.com/latex.php?latex=A+%5CLeftrightarrow+B&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002 1x, https://s0.wp.com/latex.php?latex=A+%5CLeftrightarrow+B&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002&amp;zoom=4.5 4x" alt="A \Leftrightarrow B" class="latex"/>.</p>
-<p>Now on this subject, what is it for two types to be equivalent? Well, that&rsquo;s the &ldquo;trick&rdquo;: let&rsquo;s just use our dear old Curry-Howard correspondence! <code>'a</code> and <code>'b</code> are equivalent if there are two functions <code>'a -&gt; 'b</code> and <code>'b -&gt; 'a</code> (provided of course that we swear to use only the purely functional core of OCaml when giving them):</p>
-<pre class="brush: fsharp; title: ; notranslate">
-type ('a, 'b) equiv = ('a -&gt; 'b) * ('b -&gt; 'a)
+<p>It seems more verbose, but since the functions now return existentials, we need to deconstruct them and pass them around. I abstracted over the combinators that compose the proofs of equivalence <code>lemma1</code>…<code>lemma5</code>, we’ll deal with them in a moment. For now, you can replace them by <code>Obj.magic</code> and read off their types with <code>C-c C-t</code> to see if they make sense logically. Look at the last function’s type. It states, as expected: for any formula <img src="https://s0.wp.com/latex.php?latex=A&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002" srcset="https://s0.wp.com/latex.php?latex=A&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002 1x, https://s0.wp.com/latex.php?latex=A&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002&amp;zoom=4.5 4x" alt="A" class="latex">, there exists a disjuctive normal form <img src="https://s0.wp.com/latex.php?latex=B&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002" srcset="https://s0.wp.com/latex.php?latex=B&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002 1x, https://s0.wp.com/latex.php?latex=B&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002&amp;zoom=4.5 4x" alt="B" class="latex"> such that <img src="https://s0.wp.com/latex.php?latex=A%20%5CLeftrightarrow%20B&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002" srcset="https://s0.wp.com/latex.php?latex=A+%5CLeftrightarrow+B&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002 1x, https://s0.wp.com/latex.php?latex=A+%5CLeftrightarrow+B&amp;bg=fff&amp;fg=444444&amp;s=0&amp;c=20201002&amp;zoom=4.5 4x" alt="A \Leftrightarrow B" class="latex">.</p>
+<p>Now on this subject, what is it for two types to be equivalent? Well, that’s the “trick”: let’s just use our dear old Curry-Howard correspondence! <code>'a</code> and <code>'b</code> are equivalent if there are two functions <code>'a -&gt; 'b</code> and <code>'b -&gt; 'a</code> (provided of course that we swear to use only the purely functional core of OCaml when giving them):</p>
+<pre class="brush: fsharp; title: ; notranslate">type ('a, 'b) equiv = ('a -&gt; 'b) * ('b -&gt; 'a)
 </pre>
-<p>Now we can state and prove a number of small results on equivalence with respect to the type constructors we&rsquo;re using (pairs and unions). Just help yourself&nbsp;into these if you&rsquo;re preparing an exercise sheet on Curry-Howard :)</p>
-<pre class="brush: fsharp; title: ; notranslate">
-(* a = a *)
+<p>Now we can state and prove a number of small results on equivalence with respect to the type constructors we’re using (pairs and unions). Just help yourself&nbsp;into these if you’re preparing an exercise sheet on Curry-Howard :)</p>
+<pre class="brush: fsharp; title: ; notranslate">(* a = a *)
 let refl : type a. (a, a) equiv =
   (fun a -&gt; a), (fun a -&gt; a)
 
@@ -143,8 +138,7 @@ let conj_distrib : type a b c. (a * (b, c) union,
           | Inr (a, c) -&gt; a, Inr c)
 </pre>
 <p>Finally, thanks to these primitive combinators, we can prove the lemmas we needed. Again, these are amusing little exercises.</p>
-<pre class="brush: fsharp; title: ; notranslate">
-let lemma0 : type a b c d. (a * b, c) equiv -&gt; ((d * a) * b, d * c) equiv =
+<pre class="brush: fsharp; title: ; notranslate">let lemma0 : type a b c d. (a * b, c) equiv -&gt; ((d * a) * b, d * c) equiv =
   fun e -&gt; trans (conj_morphism e refl) conj_assoc
 
 let lemma1 : type a b c d. ((a, b) union, d) equiv -&gt;
@@ -172,6 +166,6 @@ let lemma5 : type a b c d e. (a, c) equiv -&gt;
 (b, d) equiv -&gt; (c * d, e) equiv -&gt; ((a * b), e) equiv =
   fun e1 e2 e3 -&gt; trans e3 (conj_morphism e2 e1)
 </pre>
-<p>Note that I only needed the previous primitives to prove these lemmas (and as such to define my functions), so we can even make the type <code>equiv</code> abstract, provided that we are giving a complete set of primitives (which is not the case here). Although I&rsquo;m not sure what it would buy us&hellip;</p>
-<p>Anyway. That&rsquo;s my solution! What&rsquo;s yours?</p>
+<p>Note that I only needed the previous primitives to prove these lemmas (and as such to define my functions), so we can even make the type <code>equiv</code> abstract, provided that we are giving a complete set of primitives (which is not the case here). Although I’m not sure what it would buy us…</p>
+<p>Anyway. That’s my solution! What’s yours?</p>
 

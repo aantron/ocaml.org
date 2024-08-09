@@ -22,9 +22,9 @@ source:
 <li>interactive proofs in module types,</li>
 <li>a beautifying coqc option for pretty-printing files</li>
 </ul>
-<p>See the file <a href="https://coq.inria.fr/distrib/V8.3/CHANGES">CHANGES</a> for a full log of changes.</p>
-<p>Even if we try to preserve compatibility as much as possible with Coq 8.2, we had to arbitrate for a break of behavior in some situations. The major incompatibilities can be easily treated by using the new <code>-compat 8.2</code> option or by setting/unsetting adequate options. See <a href="https://coq.inria.fr/distrib/V8.3/COMPATIBILITY">COMPATIBILITY</a> for details and migration recommendations.</p>
-<p>In addition to the &quot;ssreflect&quot; plugin, extension packages we are aware about include the following (but probably there are more):</p>
+<p>See the file <a href="https://coq-distrib.s3-website.fr-par.scw.cloud/V8.3/CHANGES">CHANGES</a> for a full log of changes.</p>
+<p>Even if we try to preserve compatibility as much as possible with Coq 8.2, we had to arbitrate for a break of behavior in some situations. The major incompatibilities can be easily treated by using the new <code>-compat 8.2</code> option or by setting/unsetting adequate options. See <a href="https://coq-distrib.s3-website.fr-par.scw.cloud/V8.3/COMPATIBILITY">COMPATIBILITY</a> for details and migration recommendations.</p>
+<p>In addition to the "ssreflect" plugin, extension packages we are aware about include the following (but probably there are more):</p>
 <ul>
 <li>the <code>Heq</code> library for smooth rewriting using heterogeneous equality by C.-K. Hur;</li>
 <li>the <code>aac_tactics</code> plugin for rewriting modulo associativity and commutativity by T. Braibant and D. Pous.</li>
@@ -33,7 +33,7 @@ source:
 <ul>
 <li>Projective geometry in plane and space (N. Magaud, J. Narboux, P. Schreck)</li>
 <li>Proofs of Quicksort's worst- and average-case complexity (Eelis)</li>
-<li>Tactic that helps to prove inductive lemmas by fixpoint &quot;descente infinie&quot; functions (M. Li)</li>
+<li>Tactic that helps to prove inductive lemmas by fixpoint "descente infinie" functions (M. Li)</li>
 <li>A tactic for deciding Kleene algebras (T. Braibant and D. Pous)</li>
 </ul>
 <p>If you want to try it, go to the <a href="https://coq.inria.fr/download">download</a> page.</p>

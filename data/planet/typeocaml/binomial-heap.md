@@ -11,7 +11,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2015/03/binomial_heap.jpg#hero" alt=""/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/binomial_heap.jpg#hero" alt=""></p>
 
 <p>As we described in the previous post, leftist tree is a binary tree based functional heap. It manipulates the tree structure so that the left branches are always the longest and operations follow the right branches only. It is a clever and simple data structure that fulfills the purpose of heap. </p>
 
@@ -37,25 +37,25 @@ source:
 
 <p>From point 3, we know the base case:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/rank_0.jpg" alt="rank_0"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/rank_0.jpg" alt="rank_0"></p>
 
 <p>Now, how about <em>rank 1</em>? It should be a root node with a sub binomial tree with rank <code>1 - 1 = 0</code>:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/rank_1-1.jpg" alt="rank_1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/rank_1-1.jpg" alt="rank_1"></p>
 
 <p>Let's continue for <em>rank 2</em>, which should have <em>rank 1</em> and <em>rank 0</em>:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/rank_2.jpg" alt="rank_2"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/rank_2.jpg" alt="rank_2"></p>
 
 <p>Finally <em>rank 3</em>, can you draw it?</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/rank_3.jpg" alt="rank_3"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/rank_3.jpg" alt="rank_3"></p>
 
 <h2>$ 2^r $ nodes</h2>
 
 <p>If we pull up the left most child of the root, we can see:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/r_2_r-1-3.jpg" alt="r_2_r-1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/r_2_r-1-3.jpg" alt="r_2_r-1"></p>
 
 <p>This means a binomial tree with rank <em>r</em> can be seen as <em>two</em> binomial trees with the same rank <em>r-1</em>. Furthermore, because that <em>two</em>, and rank <em>0</em> has one node, then in term of the number of nodes, for a binomial tree with <strong>rank <em>r</em>, it must have $ 2^r $ nodes, no more, no less</strong>.</p>
 
@@ -69,7 +69,7 @@ source:
 
 <p>For example, suppose we have a rank <em>1</em> tree, can we insert it to the target tree below for a rank <em>3</em> tree?</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/wrong_way.jpg" alt="wrong"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/wrong_way.jpg" alt="wrong"></p>
 
 <p>Unfortunately we cannot, because the target tree won't be able to exist in the first place and it is not a valid binomial tree, is it?</p>
 
@@ -91,7 +91,7 @@ type 'a binomial_t = Node of 'a * 'a binomial_t list * int
 <p>Then we must have <code>link</code> function which promote two trees with same ranks to a higher rank tree.</p>
 
 <pre><code class="ocaml">let link ((Node (k1, c1, r1)) as t1) ((Node (k2, c2, r2)) as t2) =  
-  if r1 &lt;&gt; r2 then failwith &quot;Cannot link two binomial trees with different ranks&quot;
+  if r1 &lt;&gt; r2 then failwith "Cannot link two binomial trees with different ranks"
   else if k1 &lt; k2 then Node (k1, t2::c1, r1+1)
   else Node (k2, t1::c2, r2+1)
 </code></pre>
@@ -104,12 +104,12 @@ type 'a binomial_t = Node of 'a * 'a binomial_t list * int
 
 <p>We can borrow the idea of <em>merging from bottom to top</em> for this problem.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/from_list_2-1.jpg" alt="from_list"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/from_list_2-1.jpg" alt="from_list"></p>
 
 <pre><code class="ocaml">let link_pair l =  
   let rec aux acc = function
     | [] -&gt; acc
-    | _::[] -&gt; failwith &quot;the number of elements must be 2^r&quot;
+    | _::[] -&gt; failwith "the number of elements must be 2^r"
     | t1::t2::tl -&gt; aux (link t1 t2 :: acc) tl
   in
   aux [] l
@@ -117,7 +117,7 @@ type 'a binomial_t = Node of 'a * 'a binomial_t list * int
 let to_binomial_tree l =  
   let singletons = List.map singleton_tree l in
   let rec aux = function
-    | [] -&gt; failwith &quot;Empty list&quot;
+    | [] -&gt; failwith "Empty list"
     | t::[] -&gt; t
     | l -&gt; aux (link_pair l)
   in
@@ -128,13 +128,13 @@ let to_binomial_tree l =
 
 <p>If we split a binomial tree into levels and pay attention to the number of nodes on each level, we can see:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/binomial_coefficiency.jpg" alt="binomial coefficient"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/binomial_coefficiency.jpg" alt="binomial coefficient"></p>
 
 <p>So from top to bottom, the numbers of nodes on levels are <em>1</em>, <em>3</em>, <em>3</em> and <em>1</em>. It happens to be the coefficients of $ (x+y)^3 $ .</p>
 
 <p>Let's try rank <em>4</em>:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/binomial_coefficiency_2.jpg" alt="binomial_coefficient_2"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/binomial_coefficiency_2.jpg" alt="binomial_coefficient_2"></p>
 
 <p>They are <em>1</em>, <em>4</em>, <em>6</em>, <em>4</em> and <em>1</em>, which are the coefficients of $ (x+y)^4 $ .</p>
 
@@ -153,11 +153,11 @@ let to_binomial_tree l =
 
 <p>As we already knew, a binomial tree with rank <em>r</em> has $ 2^r $ nodes. If we move to the context of binary presentation of numbers, then a rank <em>r</em> tree stands for the case where there is a list of bits with only the <em>rth</em> slot turned on.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/binary.jpg" alt="binary"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/binary.jpg" alt="binary"></p>
 
 <p>Thus, for <em>n</em> number of nodes, it can be expressed as a list of binomial trees with distinct ranks, because the number <em>n</em> is actually a list of bits with various slots being <em>1</em>. For example, suppose we have 5 nodes (ignoring their values for now), mapping to a list of binomial trees, we will have:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/binomial_heap_origin-2.jpg" alt="origin"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/binomial_heap_origin-2.jpg" alt="origin"></p>
 
 <p>This is where binomial heap comes from. </p>
 
@@ -188,9 +188,9 @@ let to_binomial_tree l =
 
 <p>Here are two examples:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/insert.jpg" alt="insert_1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/insert.jpg" alt="insert_1"></p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/insert_2.jpg" alt="insert_2"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/insert_2.jpg" alt="insert_2"></p>
 
 <p>The <em>insert</em> operation is actually the addition between <em>1</em> and <em>n</em> in binary presentation, in a revered order. </p>
 
@@ -241,7 +241,7 @@ let insert' k h = merge [singleton_tree k] h
 <p>We just need to scan all roots and get the min key.</p>
 
 <pre><code class="ocaml">let get_min = function  
-  | [] -&gt; failwith &quot;Empty heap&quot;
+  | [] -&gt; failwith "Empty heap"
   | Node (k1, _, _)::tl -&gt;
     List.fold_left (fun acc (Node (k, _, _)) -&gt; min acc k) k1 tl
 </code></pre>
@@ -272,7 +272,7 @@ let split_by_min h =
       else aux (x::pre) (a, m, b) tl
   in
   match h with 
-    | [] -&gt; failwith &quot;Empty heap&quot;
+    | [] -&gt; failwith "Empty heap"
     | bt::tl -&gt; aux [bt] ([], bt, []) tl
 
 let delete_min h =  
@@ -282,14 +282,13 @@ let delete_min h =
 
 <h1>Binomial Heap vs Leftist Tree</h1>
 
-<pre>
-|               | get_min                                 | insert         | merge   | delete_min |
+<pre>|               | get_min                                 | insert         | merge   | delete_min |
 |---------------|-----------------------------------------|----------------|---------|------------|
 | Leftist tree  | O(1)                                    | O(logn)        | O(logn) | O(logn)    |
 | Binomial heap | O(logn), but can be improved to be O(1) | Amortised O(1) | O(logn) | O(logn)    |
 
 </pre>
 
-<hr/>
+<hr>
 
 <p><strong>[1]</strong> Binomial Heap is also introduced in <a href="http://www.amazon.co.uk/Purely-Functional-Structures-Chris-Okasaki/dp/0521663504/ref=sr_1_1?ie=UTF8&amp;qid=1426283477&amp;sr=8-1&amp;keywords=functional%20data%20structure">Purely Functional Data Structures</a>.</p>

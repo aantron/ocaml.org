@@ -5,8 +5,8 @@ description: We are proud to announce that OPAM 1.1.1 has just been released. Th
   but also focuses on improving the API and tools to be a better base for the platform
   (functions for opam-doc, interface with tools like opamfu and op...
 url: https://ocamlpro.com/blog/2014_01_29_opam_1.1.1_released
-date: 2014-01-29T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2014-01-29T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:

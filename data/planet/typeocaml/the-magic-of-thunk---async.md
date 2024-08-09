@@ -1,8 +1,6 @@
 ---
 title: The Magic of Thunk - Async
-description: Currently in post-production. Sorry, I still haven't finished this post.  As
-  this will be the last post in the magic of thunk series, I really don't want to
-  just introduce the Async library and its API, as janestreet@github and...
+description:
 url: http://typeocaml.com/2014/11/13/magic-of-thunk-async/
 date: 2014-11-13T23:04:59-00:00
 preview_image:
@@ -11,7 +9,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2014/11/async2.jpg#hero" alt="async"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/11/async2.jpg#hero" alt="async"></p>
 
 <p>Currently in post-production.</p>
 

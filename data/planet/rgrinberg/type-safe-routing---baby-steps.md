@@ -9,7 +9,7 @@ authors:
 source:
 ---
 
-<p>Type safe routing means different things to different people. So let&rsquo;s
+<p>Type safe routing means different things to different people. So let’s
 start by clarifying the intended meaning in this post. There are 2
 widely used definitions:</p>
 

@@ -4,7 +4,7 @@ description: After linearizing all array accesses , interpolating ARGB values is
   from the algorithmic side of things; so easy things first. I'll han...
 url: https://alaska-kamtchatka.blogspot.com/2012/06/2d-interpolation-part-4-argb.html
 date: 2012-06-28T15:00:00-00:00
-preview_image: //4.bp.blogspot.com/-y__nUozm2S4/T-XDJWhHuKI/AAAAAAAAAU8/AnMnevHLMC4/w1200-h630-p-k-no-nu/interp3.png
+preview_image: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgqEGMxrsxoDCNr0nAXEJ7gwoexeWh_dvcMv1muP6GtzqhEOo_zr8tvdnMGWUnKymSohe_I0TPl9WNg3KY1ForhGP4SKeh03VIOmyEmeLuQvqxemUgXTx19EJYEKl7Z7HC6qXBmKlO7A1Y/w1200-h630-p-k-no-nu/interp3.png
 authors:
 - "Mat\xEDas Giovannini"
 source:

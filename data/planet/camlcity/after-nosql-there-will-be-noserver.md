@@ -12,7 +12,7 @@ source:
 
 
 <div>
-  <b>An experiment, and a vision</b><br/>&nbsp;
+  <b>An experiment, and a vision</b><br>&nbsp;
 </div>
 
 <div>
@@ -20,7 +20,7 @@ source:
 <p>
 The recent success of NoSQL technologies has not only to do with the
 fact that it is taken advantage of distribution and replication, but
-even more with the &quot;middleware effect&quot; that these features became
+even more with the "middleware effect" that these features became
 relatively easy to use.  Now it is no longer required to be an expert
 for these cluster techniques in order to profit from them. Let's think
 a bit ahead: how could a platform look like that makes distributed
@@ -28,11 +28,11 @@ programming even easier, and that integrates several styles of storing
 data and managing computations?
 
 <cc-field name="maintext">
-<p>
+</cc-field></p><p>
 The starting point for this exploration is a recent experience I made
 with my own attempt in the NoSQL arena,
 the <a href="http://plasma.camlcity.org">Plasma project</a>. Two weeks
-ago, it was &quot;only&quot; a distributed, replicating, and failure-resiliant
+ago, it was "only" a distributed, replicating, and failure-resiliant
 filesystem PlasmaFS, with its own map/reduce implementation on top of
 it. Then I had an idea: is it possible to develop a key/value database
 on top of this filesystem? Which features, and relative
@@ -65,7 +65,7 @@ extremely helpful - in less than 2000 lines of code this library
 provides data distribution and replication, a high degree of data
 safety, almost unlimited scalabilitiy for database reads, and
 reasonable performance for writes. Of course, most of these features
-are just &quot;inherited&quot; from PlasmaFS, and the library just had to
+are just "inherited" from PlasmaFS, and the library just had to
 implement the file format (i.e. a B tree,
 see <a href="http://projects.camlcity.org/projects/dl/plasma-0.5/doc/html/Plasmakv_intro.html">
 this page for details</a>). This is not cheating, but exactly the
@@ -162,7 +162,7 @@ price of weakened consistency guarantees, a system like Cassandra will
 work better.
 
 </p><p>
-Nevertheless, there is the big field of &quot;average deployments&quot; where
+Nevertheless, there is the big field of "average deployments" where
 the number of nodes is not too big and the performance requirements
 are not too special, but the ACID guarantees PlasmaFS gives are
 essential. For this field, the NoServer paradigm could be the ideal
@@ -175,12 +175,12 @@ a lot of documentation, and especially downloads. Also take a look at
 the <a href="http://plasma.camlcity.org/plasma/perf.html">performance
 page</a>, describing a few tests I recently ran.
 
-<img src="http://blog.camlcity.org/files/img/blog/plasma5_bug.gif" width="1" height="1"/>
+<img src="http://blog.camlcity.org/files/img/blog/plasma5_bug.gif" width="1" height="1">
 
 
 
-</cc-field>
-</p>
+
+<p></p>
 </div>
 
 <div>

@@ -5,8 +5,8 @@ description: In a previous post, we presented some work that we did to improve t
   in which upcoming features such as garbage collection and pruning were introduced.
   It also motivated us to keep working on this (hot) topic, and we ...
 url: https://ocamlpro.com/blog/2019_01_30_improving_tezos_storage_update_and_beta_testing
-date: 2019-01-30T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2019-01-30T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Fabrice Le Fessant\n  "
 source:
@@ -25,7 +25,7 @@ when it happens, especially for bakers who might risk losing a baking
 slot), and automatically every 16 cycles in our traces.</p>
 <p>In the following graph, we present the size of the context database
 during a full trace execution (~278 000 blocks):</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/plot_sizes-2.png" alt="plot_size-2.png"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/plot_sizes-2.png" alt="plot_size-2.png"></p>
 <p>There is definitely quite some improvement brought to the current
 Tezos implementation based on Irmin+LMDB, that we reimplemented as
 IronTez0. IronTez0 allows an IronTez node to read a database generated
@@ -37,19 +37,19 @@ from IronTez0 to IronTez3 at block 225 000. The graph shows that,
 after the switch, the size immediately grows much more slowly, and
 finally, after a garbage collection, the storage is reduced to what it
 would have been with IronTez3.</p>
-<p>Now, let&rsquo;s compare the speed of the different storages:</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/plot_times-2.png" alt="plot_times-2.png"/></p>
+<p>Now, let’s compare the speed of the different storages:</p>
+<p><img src="https://ocamlpro.com/blog/assets/img/plot_times-2.png" alt="plot_times-2.png"></p>
 <p>The graph shows that IronTez3 is about 4-5 times faster than
 Tezos/IronTez0. Garbage-collections have an obvious impact on the
 speed, but clearly negligible compared to the current performance of
 Tezos. On our computer used for the traces, a Xeon with an SSD disk,
 the longest garbage collection takes between 1 and 2 minutes, even
 when the database was about 40 GB at the beginning.</p>
-<p>In the former post, we didn&rsquo;t check the amount of memory used by our
+<p>In the former post, we didn’t check the amount of memory used by our
 storage system. It might be expected that the performance improvement
-could be associated with a more costly use of memory&hellip; but such is not
+could be associated with a more costly use of memory… but such is not
 the case :</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/plot_mem.png" alt="plot_mem.png"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/plot_mem.png" alt="plot_mem.png"></p>
 <p>At the top of the graph is our IronTez0 implementation of the current
 storage: it uses a little more memory than the current Tezos
 implementation (about 6 GB), maybe because it shares data structures

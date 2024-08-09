@@ -12,10 +12,10 @@ source:
 <p>This is the end of the tutorial about writing a collaborative Web drawing
 in OCaml. Have a look at
 <a href="http://ocsigen.org/tuto/manual/application">the full tutorial</a>
-if you haven&rsquo;t read the first part or if you want a version with full
+if you haven’t read the first part or if you want a version with full
 colors and links.</p>
 
-<p>In the last part, we&rsquo;ve seen how to create a client-server Web application
+<p>In the last part, we’ve seen how to create a client-server Web application
 in OCaml. The server generates a Web page and sends it together with an
 OCaml program (compiled to JavaScript) to the browser.</p>
 
@@ -46,7 +46,7 @@ line for now.</p>
 <span class="k">module</span> <span class="nc">Graffiti_app</span> <span class="o">=</span>
   <span class="nn">Eliom_registration</span><span class="p">.</span><span class="nc">App</span> <span class="p">(</span>
     <span class="k">struct</span>
-      <span class="k">let</span> <span class="n">application_name</span> <span class="o">=</span> <span class="s2">&quot;graffiti&quot;</span>
+      <span class="k">let</span> <span class="n">application_name</span> <span class="o">=</span> <span class="s2">"graffiti"</span>
     <span class="k">end</span><span class="p">)</span>
     
 <span class="k">let</span><span class="o">%</span><span class="n">shared</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">700</span>
@@ -63,31 +63,31 @@ line for now.</p>
 
 <span class="k">let</span> <span class="n">canvas_elt</span> <span class="o">=</span>
   <span class="n">canvas</span> <span class="o">~</span><span class="n">a</span><span class="o">:</span><span class="p">[</span><span class="n">a_width</span> <span class="n">width</span><span class="p">;</span> <span class="n">a_height</span> <span class="n">height</span><span class="p">]</span>
-    <span class="p">[</span><span class="n">pcdata</span> <span class="s2">&quot;your browser doesn't support canvas&quot;</span><span class="p">]</span>
+    <span class="p">[</span><span class="n">pcdata</span> <span class="s2">"your browser doesn't support canvas"</span><span class="p">]</span>
 
 <span class="k">let</span> <span class="n">page</span> <span class="bp">()</span> <span class="o">=</span>
   <span class="p">(</span><span class="n">html</span>
-     <span class="p">(</span><span class="n">head</span> <span class="p">(</span><span class="n">title</span> <span class="p">(</span><span class="n">pcdata</span> <span class="s2">&quot;Graffiti&quot;</span><span class="p">))</span> <span class="bp">[]</span><span class="p">)</span>
-     <span class="p">(</span><span class="n">body</span> <span class="p">[</span><span class="n">h1</span> <span class="p">[</span><span class="n">pcdata</span> <span class="s2">&quot;Graffiti&quot;</span><span class="p">];</span>
+     <span class="p">(</span><span class="n">head</span> <span class="p">(</span><span class="n">title</span> <span class="p">(</span><span class="n">pcdata</span> <span class="s2">"Graffiti"</span><span class="p">))</span> <span class="bp">[]</span><span class="p">)</span>
+     <span class="p">(</span><span class="n">body</span> <span class="p">[</span><span class="n">h1</span> <span class="p">[</span><span class="n">pcdata</span> <span class="s2">"Graffiti"</span><span class="p">];</span>
             <span class="n">canvas_elt</span><span class="p">]))</span>
 
 <span class="k">let</span><span class="o">%</span><span class="n">client</span> <span class="n">init_client</span> <span class="bp">()</span> <span class="o">=</span>
   <span class="k">let</span> <span class="n">canvas</span> <span class="o">=</span> <span class="nn">Eliom_content</span><span class="p">.</span><span class="nn">Html5</span><span class="p">.</span><span class="nn">To_dom</span><span class="p">.</span><span class="n">of_canvas</span> <span class="o">~%</span><span class="n">canvas_elt</span> <span class="k">in</span>
   <span class="k">let</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">##</span><span class="p">(</span><span class="n">getContext</span> <span class="p">(</span><span class="nn">Dom_html</span><span class="p">.</span><span class="n">_2d_</span><span class="p">))</span> <span class="k">in</span>
-  <span class="n">ctx</span><span class="o">##.</span><span class="n">lineCap</span> <span class="o">:=</span> <span class="nn">Js</span><span class="p">.</span><span class="n">string</span> <span class="s2">&quot;round&quot;</span><span class="p">;</span>
+  <span class="n">ctx</span><span class="o">##.</span><span class="n">lineCap</span> <span class="o">:=</span> <span class="nn">Js</span><span class="p">.</span><span class="n">string</span> <span class="s2">"round"</span><span class="p">;</span>
   <span class="n">draw</span> <span class="n">ctx</span> <span class="p">((</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">,</span> <span class="mi">12</span><span class="o">,</span> <span class="p">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">,</span> <span class="p">(</span><span class="mi">200</span><span class="o">,</span> <span class="mi">100</span><span class="p">))</span>
 
 <span class="k">let</span> <span class="n">main_service</span> <span class="o">=</span>
-  <span class="nn">Graffiti_app</span><span class="p">.</span><span class="n">register_service</span> <span class="o">~</span><span class="n">path</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span> <span class="o">~</span><span class="n">get_params</span><span class="o">:</span><span class="nn">Eliom_parameter</span><span class="p">.</span><span class="n">unit</span>
+  <span class="nn">Graffiti_app</span><span class="p">.</span><span class="n">register_service</span> <span class="o">~</span><span class="n">path</span><span class="o">:</span><span class="p">[</span><span class="s2">""</span><span class="p">]</span> <span class="o">~</span><span class="n">get_params</span><span class="o">:</span><span class="nn">Eliom_parameter</span><span class="p">.</span><span class="n">unit</span>
     <span class="p">(</span><span class="k">fun</span> <span class="bp">()</span> <span class="bp">()</span> <span class="o">-&gt;</span>
-       <span class="c">(* Cf. section &quot;Client side side-effects on the server&quot; *)</span>
+       <span class="c">(* Cf. section "Client side side-effects on the server" *)</span>
        <span class="k">let</span> <span class="n">_</span> <span class="o">=</span> <span class="p">[</span><span class="o">%</span><span class="n">client</span> <span class="p">(</span><span class="n">init_client</span> <span class="bp">()</span> <span class="o">:</span> <span class="kt">unit</span><span class="p">)</span> <span class="p">]</span> <span class="k">in</span>
        <span class="nn">Lwt</span><span class="p">.</span><span class="n">return</span> <span class="p">(</span><span class="n">page</span> <span class="bp">()</span><span class="p">))</span></code></pre></figure>
 
 <h3>JavaScript datatypes in OCaml</h3>
 
 <p>Here we use the function <code class="language-plaintext highlighter-rouge">Js.string</code>
-  from Js_of_ocaml&rsquo;s library to convert an OCaml string
+  from Js_of_ocaml’s library to convert an OCaml string
   into a JS string.</p>
 
 <h3>Client side side-effect on the server</h3>
@@ -115,9 +115,9 @@ line for now.</p>
 with the <em>brush</em> tools of any classical drawing application. One
 solution would be to mimic typical JavaScript code in OCaml; for
 example by using function <code class="language-plaintext highlighter-rouge">Dom_events.listen</code>
-that is the Js_of_ocaml&rsquo;s equivalent of
+that is the Js_of_ocaml’s equivalent of
 <code class="language-plaintext highlighter-rouge">addEventListener</code>. However, this solution is at least as verbose
-as the JavaScript equivalent, hence not satisfactory. Js_of_ocaml&rsquo;s
+as the JavaScript equivalent, hence not satisfactory. Js_of_ocaml’s
 library provides a much easier way to do that with the help of Lwt.</p>
 
 <p>Replace the <code class="language-plaintext highlighter-rouge">init_client</code> of the previous example by the
@@ -127,7 +127,7 @@ following piece of code, then compile and draw!</p>
 
   <span class="k">let</span> <span class="n">canvas</span> <span class="o">=</span> <span class="nn">Eliom_content</span><span class="p">.</span><span class="nn">Html5</span><span class="p">.</span><span class="nn">To_dom</span><span class="p">.</span><span class="n">of_canvas</span> <span class="o">~%</span><span class="n">canvas_elt</span> <span class="k">in</span>
   <span class="k">let</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">##</span><span class="p">(</span><span class="n">getContext</span> <span class="p">(</span><span class="nn">Dom_html</span><span class="p">.</span><span class="n">_2d_</span><span class="p">))</span> <span class="k">in</span>
-  <span class="n">ctx</span><span class="o">##.</span><span class="n">lineCap</span> <span class="o">:=</span> <span class="nn">Js</span><span class="p">.</span><span class="n">string</span> <span class="s2">&quot;round&quot;</span><span class="p">;</span>
+  <span class="n">ctx</span><span class="o">##.</span><span class="n">lineCap</span> <span class="o">:=</span> <span class="nn">Js</span><span class="p">.</span><span class="n">string</span> <span class="s2">"round"</span><span class="p">;</span>
 
   <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="n">ref</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ref</span> <span class="mi">0</span> <span class="k">in</span>
 
@@ -157,7 +157,7 @@ following piece of code, then compile and draw!</p>
 position.  The function <code class="language-plaintext highlighter-rouge">set_coord</code> updates those references from
 mouse event data.  The function <code class="language-plaintext highlighter-rouge">compute_line</code> computes the
 coordinates of a line from the initial (old) coordinates to the new
-coordinates&ndash;the event data sent as a parameter.</p>
+coordinates–the event data sent as a parameter.</p>
 
 <p>The last four lines of code implement the event-handling loop.  They
 can be read as follows: for each <code class="language-plaintext highlighter-rouge">mousedown</code> event on the canvas,
@@ -226,7 +226,7 @@ run.  Cooperative functions return a value in the Lwt monad
 
 <p>In our example, the function <code class="language-plaintext highlighter-rouge">Lwt_js_events.mouseup</code> may introduce
 a cooperation point, because it is unforeseeable when this event
-happens. That&rsquo;s why it returns a value in the Lwt monad.</p>
+happens. That’s why it returns a value in the Lwt monad.</p>
 
 <p>Using cooperative threads has a huge advantage: given that you know
 precisely where the cooperation points are, <em>you need very few
@@ -239,7 +239,7 @@ functions can cause the entre server to hang!</em> Remember:</p>
 <ul>
   <li>Use the functions from module <code class="language-plaintext highlighter-rouge">Lwt_unix</code> instead of module
  <code class="language-plaintext highlighter-rouge">Unix</code>,</li>
-  <li>Use cooperative database libraries (like PG&rsquo;Ocaml for Lwt),</li>
+  <li>Use cooperative database libraries (like PG’Ocaml for Lwt),</li>
   <li>If you want to use a non-cooperative function, detach it in another
 preemptive thread using <code class="language-plaintext highlighter-rouge">Lwt_preemptive.detach</code>,</li>
   <li>If you want to launch a long-running computation, manually insert
@@ -255,8 +255,8 @@ cooperation points using <code class="language-plaintext highlighter-rouge">Lwt_
   DOM element and returns an Lwt thread that will wait until a click
   occures on this element.</p>
 
-<p>Functions with an ending &ldquo;s&rdquo; (<code class="language-plaintext highlighter-rouge">Lwt_js_events.clicks</code>,
-  <code class="language-plaintext highlighter-rouge">Lwt_js_events.mousedowns</code>, &hellip;) start again waiting after the
+<p>Functions with an ending “s” (<code class="language-plaintext highlighter-rouge">Lwt_js_events.clicks</code>,
+  <code class="language-plaintext highlighter-rouge">Lwt_js_events.mousedowns</code>, …) start again waiting after the
   handler terminates.</p>
 
 <p><code class="language-plaintext highlighter-rouge">Lwt.pick</code> behaves as the first thread
@@ -324,8 +324,8 @@ lines are drawn on both windows.</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">Eliom_bus.t</code> are broadcasting channels where
-client and server can participate (see also &laquo;a_api project=&rdquo;eliom&rdquo;
-subproject=&rdquo;client&rdquo; | type Eliom_bus.t&nbsp;&raquo; in the client
+client and server can participate (see also «a_api project=”eliom”
+subproject=”client” | type Eliom_bus.t&nbsp;» in the client
 API).</li>
   <li><code class="language-plaintext highlighter-rouge">Eliom_react</code> allows sending
 <a href="http://erratique.ch/software/react/doc/React">React events</a> from
@@ -356,7 +356,7 @@ of the brush. For the colorpicker we used a widget available in
 opam install ocsigen-widgets
 </code></pre></div></div>
 
-<p>In <code class="language-plaintext highlighter-rouge">Makefile.options</code>, created by Eliom&rsquo;s distillery, add
+<p>In <code class="language-plaintext highlighter-rouge">Makefile.options</code>, created by Eliom’s distillery, add
 <code class="language-plaintext highlighter-rouge">ocsigen-widgets.client</code> to the
 <code class="language-plaintext highlighter-rouge">CLIENT_PACKAGES</code>:</p>
 
@@ -378,7 +378,7 @@ code:</p>
 <figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">slider</span> <span class="o">=</span>
   <span class="nn">Eliom_content</span><span class="p">.</span><span class="nn">Html5</span><span class="p">.</span><span class="nn">D</span><span class="p">.</span><span class="nn">Form</span><span class="p">.</span><span class="n">input</span>
     <span class="o">~</span><span class="n">a</span><span class="o">:</span><span class="p">[</span>
-      <span class="nn">Html5</span><span class="p">.</span><span class="nn">D</span><span class="p">.</span><span class="n">a_id</span> <span class="s2">&quot;slider&quot;</span><span class="p">;</span>
+      <span class="nn">Html5</span><span class="p">.</span><span class="nn">D</span><span class="p">.</span><span class="n">a_id</span> <span class="s2">"slider"</span><span class="p">;</span>
       <span class="nn">Html5</span><span class="p">.</span><span class="nn">D</span><span class="p">.</span><span class="n">a_input_min</span> <span class="mi">1</span><span class="o">.;</span>
       <span class="nn">Html5</span><span class="p">.</span><span class="nn">D</span><span class="p">.</span><span class="n">a_input_max</span> <span class="mi">80</span><span class="o">.</span>
     <span class="p">]</span>
@@ -393,8 +393,8 @@ services taking an integer as parameter.</p>
 
 <figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">page</span> <span class="o">=</span>
   <span class="p">(</span><span class="n">html</span>
-    <span class="p">(</span><span class="n">head</span> <span class="p">(</span><span class="n">title</span> <span class="p">(</span><span class="n">pcdata</span> <span class="s2">&quot;Graffiti&quot;</span><span class="p">))</span> <span class="bp">[]</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">body</span> <span class="p">[</span><span class="n">h1</span> <span class="p">[</span><span class="n">pcdata</span> <span class="s2">&quot;Graffiti&quot;</span><span class="p">];</span>
+    <span class="p">(</span><span class="n">head</span> <span class="p">(</span><span class="n">title</span> <span class="p">(</span><span class="n">pcdata</span> <span class="s2">"Graffiti"</span><span class="p">))</span> <span class="bp">[]</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">body</span> <span class="p">[</span><span class="n">h1</span> <span class="p">[</span><span class="n">pcdata</span> <span class="s2">"Graffiti"</span><span class="p">];</span>
            <span class="n">canvas_elt</span><span class="p">;</span>
            <span class="n">div</span> <span class="p">[</span><span class="n">slider</span><span class="p">]]</span> <span class="p">))</span></code></pre></figure>
 
@@ -412,11 +412,11 @@ easily create the <code class="language-plaintext highlighter-rouge">head</code>
 
 <figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">page</span> <span class="o">=</span>
   <span class="n">html</span>
-    <span class="p">(</span><span class="nn">Eliom_tools</span><span class="p">.</span><span class="nn">F</span><span class="p">.</span><span class="n">head</span> <span class="o">~</span><span class="n">title</span><span class="o">:</span><span class="s2">&quot;Graffiti&quot;</span>
+    <span class="p">(</span><span class="nn">Eliom_tools</span><span class="p">.</span><span class="nn">F</span><span class="p">.</span><span class="n">head</span> <span class="o">~</span><span class="n">title</span><span class="o">:</span><span class="s2">"Graffiti"</span>
        <span class="o">~</span><span class="n">css</span><span class="o">:</span><span class="p">[</span>
-         <span class="p">[</span><span class="s2">&quot;css&quot;</span><span class="p">;</span><span class="s2">&quot;graffiti.css&quot;</span><span class="p">];]</span>
+         <span class="p">[</span><span class="s2">"css"</span><span class="p">;</span><span class="s2">"graffiti.css"</span><span class="p">];]</span>
       <span class="o">~</span><span class="n">js</span><span class="o">:</span><span class="bp">[]</span> <span class="bp">()</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">body</span> <span class="p">[</span><span class="n">h1</span> <span class="p">[</span><span class="n">pcdata</span> <span class="s2">&quot;Graffiti&quot;</span><span class="p">];</span> <span class="n">canvas_elt</span><span class="p">;</span> <span class="n">div</span> <span class="p">[</span><span class="n">slider</span><span class="p">]])</span></code></pre></figure>
+    <span class="p">(</span><span class="n">body</span> <span class="p">[</span><span class="n">h1</span> <span class="p">[</span><span class="n">pcdata</span> <span class="s2">"Graffiti"</span><span class="p">];</span> <span class="n">canvas_elt</span><span class="p">;</span> <span class="n">div</span> <span class="p">[</span><span class="n">slider</span><span class="p">]])</span></code></pre></figure>
 
 <p>You need to install the corresponding stylesheets and images into your
 project. The stylesheet files should go to the directory
@@ -485,9 +485,9 @@ function outputs the PNG image in a string.</p>
 
 <figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">imageservice</span> <span class="o">=</span>
   <span class="nn">Eliom_registration</span><span class="p">.</span><span class="nn">String</span><span class="p">.</span><span class="n">register_service</span>
-    <span class="o">~</span><span class="n">path</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span>
+    <span class="o">~</span><span class="n">path</span><span class="o">:</span><span class="p">[</span><span class="s2">"image"</span><span class="p">]</span>
     <span class="o">~</span><span class="n">get_params</span><span class="o">:</span><span class="nn">Eliom_parameter</span><span class="p">.</span><span class="n">unit</span>
-    <span class="p">(</span><span class="k">fun</span> <span class="bp">()</span> <span class="bp">()</span> <span class="o">-&gt;</span> <span class="nn">Lwt</span><span class="p">.</span><span class="n">return</span> <span class="p">(</span><span class="n">image_string</span> <span class="bp">()</span><span class="o">,</span> <span class="s2">&quot;image/png&quot;</span><span class="p">))</span></code></pre></figure>
+    <span class="p">(</span><span class="k">fun</span> <span class="bp">()</span> <span class="bp">()</span> <span class="o">-&gt;</span> <span class="nn">Lwt</span><span class="p">.</span><span class="n">return</span> <span class="p">(</span><span class="n">image_string</span> <span class="bp">()</span><span class="o">,</span> <span class="s2">"image/png"</span><span class="p">))</span></code></pre></figure>
 
 <h3>Eliom_registration</h3>
 
@@ -522,7 +522,7 @@ creation of the slider:</p>
 <figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="c">(* The initial image: *)</span>
 <span class="k">let</span> <span class="n">img</span> <span class="o">=</span>
   <span class="nn">Eliom_content</span><span class="p">.</span><span class="nn">Html5</span><span class="p">.</span><span class="nn">To_dom</span><span class="p">.</span><span class="n">of_img</span>
-    <span class="p">(</span><span class="n">img</span> <span class="o">~</span><span class="n">alt</span><span class="o">:</span><span class="s2">&quot;canvas&quot;</span>
+    <span class="p">(</span><span class="n">img</span> <span class="o">~</span><span class="n">alt</span><span class="o">:</span><span class="s2">"canvas"</span>
        <span class="o">~</span><span class="n">src</span><span class="o">:</span><span class="p">(</span><span class="n">make_uri</span> <span class="o">~</span><span class="n">service</span><span class="o">:~%</span><span class="n">imageservice</span> <span class="bp">()</span><span class="p">)</span>
        <span class="bp">()</span><span class="p">)</span>
 <span class="k">in</span>
@@ -536,7 +536,7 @@ creation of the slider:</p>
 the packages defined in <code class="language-plaintext highlighter-rouge">SERVER_PACKAGES</code> as an extension in your
 configuration file <code class="language-plaintext highlighter-rouge">local/etc/graffiti/graffiti-test.conf</code>:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;extension findlib-package=&quot;cairo2&quot; /&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;extension findlib-package="cairo2" /&gt;
 </code></pre></div></div>
 
 

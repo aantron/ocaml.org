@@ -14,7 +14,7 @@ source:
         
         
         
-        <p>I&rsquo;m happy to announce the release of <a href="https://github.com/Drup/tyre">Tyre</a>, a library for Typed Regular Expressions.</p>
+        <p>I’m happy to announce the release of <a href="https://github.com/Drup/tyre">Tyre</a>, a library for Typed Regular Expressions.</p>
 
 
         

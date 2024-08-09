@@ -5,8 +5,8 @@ description: Feedback on this post is welcomed on Discuss! The opam team has gre
   for a world with more than one released version of opam (i.e. 2.0.x and 2.1.x).
   The release candidate extends CLI versioning further and, under the ho...
 url: https://ocamlpro.com/blog/2021_06_23_opam_2.1.0_rc2_released
-date: 2021-06-23T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2021-06-23T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    David Allsopp (OCamlLabs)\n  "
 source:
@@ -26,9 +26,9 @@ source:
 <li>Either from binaries: run
 </li>
 </ol>
-<pre><code class="language-shell-session">bash -c &quot;sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.1.0~rc2&quot;
+<pre><code class="language-shell-session">bash -c "sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.1.0~rc2"
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.1.0-rc2">the Github &quot;Releases&quot; page</a> to your PATH.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.1.0-rc2">the Github "Releases" page</a> to your PATH.</p>
 <ol start="2">
 <li>Or from source, manually: see the instructions in the <a href="https://github.com/ocaml/opam/tree/2.1.0-rc2#compiling-this-repo">README</a>.
 </li>

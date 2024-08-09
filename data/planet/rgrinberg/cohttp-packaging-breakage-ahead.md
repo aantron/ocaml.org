@@ -10,6 +10,6 @@ source:
 ---
 
 <p>As a follow up to my <a href="http://rgrinberg.com/posts/optional-dependencies-considered-harmful/" class="reference internal"><span class="doc">previous post</span></a> regarding optional
-dependencies, I&rsquo;d like to expand on how my advice will be followed in practice
+dependencies, I’d like to expand on how my advice will be followed in practice
 in the context of the <a href="https://github.com/mirage/ocaml-cohttp" class="reference external">cohttp</a> library.</p>
 

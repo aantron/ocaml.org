@@ -12,7 +12,7 @@ source:
 
 
 <div>
-  <b>The portability story behind WasiCaml</b><br/>&nbsp;
+  <b>The portability story behind WasiCaml</b><br>&nbsp;
 </div>
 
 <div>
@@ -78,8 +78,8 @@ source:
 </p><blockquote>
 <code style="white-space: pre">
 (module
-  (import &quot;env&quot; &quot;memory&quot; (memory $memory 1))
-  (func $incr (export &quot;incr&quot;) (param $x i32) (result i32)
+  (import "env" "memory" (memory $memory 1))
+  (func $incr (export "incr") (param $x i32) (result i32)
     (local.get $x)
     (i32.load)
     (i32.const 1)
@@ -149,7 +149,7 @@ source:
   code written in different languages into the same executable. This is
   possible because the language-specific runtimes have a common foundation
   (libc), and e.g. memory allocated from one language also counts as
-  &quot;taken&quot; within the other language.
+  "taken" within the other language.
 
 </p><p>
   WASI is still in an early stage. While developing with it I discovered
@@ -276,7 +276,7 @@ Of course, the C library must also be WASI-compatible.
 the resulting file <code>ex</code> can be directly run with
 <code>./ex</code>.
 
-<p>With this trick, <code>configure</code> now &quot;thinks&quot; that the
+<p>With this trick, <code>configure</code> now "thinks" that the
   target is a native target of the operating
   system. <code>configure</code> could also run the tests on the
   existence of the various libc library functions the OCaml runtime
@@ -297,7 +297,7 @@ the resulting file <code>ex</code> can be directly run with
   of FFI functions, and initially LLVM did not like this file, because
   it could not infer the types of the function pointers. The solution
   was <em>not</em> to generate WebAssembly for this single file but
-  to leave it as LLVM IR (&quot;bitcode&quot;). In this format function pointers
+  to leave it as LLVM IR ("bitcode"). In this format function pointers
   can remain untyped, and the LLVM linker is smart enough to fix up
   the problem at link time, and to convert LLVM IR to WebAssembly when
   the types of the FFI functions are known.
@@ -311,13 +311,13 @@ the resulting file <code>ex</code> can be directly run with
 <p>After the bytecode interpreter was running, the second step was to
   directly generate WebAssembly code from OCaml. Actually, there were
   two choices: either to pick up one of the internal formats of OCaml
-  (e.g. &quot;Lambda&quot; or &quot;C--&quot;) and to change the OCaml compiler directly,
+  (e.g. "Lambda" or "C--") and to change the OCaml compiler directly,
   or to take the bytecode as the starting point. I preferred the
   latter because WasiCaml is then an add-on processor that can be
   easily added to existing OCaml projects, and because some
   difficulties could be avoided (e.g. incremental compilation, and
   many many fixups through the whole toolchain). Also, I hoped that
-  the resulting speed would still be &quot;good enough&quot; (at least for the
+  the resulting speed would still be "good enough" (at least for the
   purposes of the DSL compiler we wanted to run with WebAssembly).
 
 </p><p>Also, bytecode made it also a lot easier for me to get started.
@@ -353,7 +353,7 @@ the resulting file <code>ex</code> can be directly run with
   respect - only that the native stack of the operating system can be
   used for storing values because it resides in memory. The details
   are different, though. When a value is moved temporarily to the
-  stack, this is usually called &quot;register spilling&quot;, and this is done
+  stack, this is usually called "register spilling", and this is done
   because (1) there is only a limited amount of registers, but another
   register is needed, or (2) you don't know which register remains
   untouched when you call a function, or (3) you call some code that
@@ -389,7 +389,7 @@ the resulting file <code>ex</code> can be directly run with
   our application we could hide the startup time, and are now quite
   happy with the product.
 
-  </p><hr/>
+  </p><hr>
 
 <p>PS. Interested in WebAssembly and you know OCaml (or another
   functional language like Elm, Scala, Haskell, ...)?

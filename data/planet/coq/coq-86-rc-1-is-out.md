@@ -29,8 +29,8 @@ Coq 8.6 includes:
 <li>Tactic behavior uniformization and specification, generalization of
   intro-patterns by Hugo Herbelin and others.</li>
 <li>A brand new warning system allowing to control warnings, turn them
-  into errors or ignore them selectively by Maxime D&eacute;n&egrave;s, Guillaume
-  Melquiond, Pierre-Marie P&eacute;drot and others.</li>
+  into errors or ignore them selectively by Maxime Dénès, Guillaume
+  Melquiond, Pierre-Marie Pédrot and others.</li>
 <li>Irrefutable patterns in abstractions, by Daniel de Rauglaudre.</li>
 <li>The ssreflect subterm selection algorithm by Georges Gonthier and
   Enrico Tassi, now accessible to tactic writers through the
@@ -39,7 +39,7 @@ Coq 8.6 includes:
   Tassi and Tobias Tebbi.</li>
 </ul>
 
-<p>More information can be found in the <a href="https://coq.inria.fr/distrib/V8.6rc1/CHANGES">CHANGES</a> file. Feedback and
+<p>More information can be found in the <a href="https://coq-distrib.s3-website.fr-par.scw.cloud/V8.6rc1/CHANGES">CHANGES</a> file. Feedback and
 <a href="https://coq.inria.fr/bugs">bug reports</a> are extremely welcome.</p>
 
 <p>Coq 8.6 initiates a time-based release cycle, with a major version being

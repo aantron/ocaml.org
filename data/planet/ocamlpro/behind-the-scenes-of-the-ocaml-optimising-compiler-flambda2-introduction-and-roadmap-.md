@@ -6,7 +6,7 @@ description: Introducing our Flambda2 snippets At OCamlPro, the main ongoing tas
   that we have been doing for quite some time now. Indeed, we are the authors behind
   the Flambda optimisation pass and today we would like to introduc...
 url: https://ocamlpro.com/blog/2024_03_18_the_flambda2_snippets_0
-date: 2024-03-18T12:13:29-00:00
+date: 2024-03-18T13:31:53-00:00
 preview_image: https://www.ocamlpro.com/blog/assets/img/flambda_camel_2023.png
 authors:
 - "\n    Pierre Chambart\n  "
@@ -38,7 +38,7 @@ Workshop</a> ( <a href="https://cambium.inria.fr/seminaires/transparents/2023082
 Warm thanks to Mark Shinwell for shepherding the Flambda project and to Ron
 Minsky for his support.</strong></p>
 <p></p><div>
-<strong>Table of contents</strong>
+<strong>Table of contents</strong><p></p>
 <ul>
 <li><a href="https://ocamlpro.com/blog/feed#introduction">Introduction</a>
 </li>
@@ -47,9 +47,9 @@ Minsky for his support.</strong></p>
 <li><a href="https://ocamlpro.com/blog/feed#roadmap">Snippets Roadmap</a>
 </li>
 <li><a href="https://ocamlpro.com/blog/feed#listing">The F2S Series!</a>
+</li></ul></div>
 
-</li>
-</ul>
+
 <h2>
 <a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#compiling" class="anchor-link">Compiling OCaml</a>
           </h2>
@@ -62,14 +62,14 @@ snippets.</p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/flambda2_snippets_ep0_figure3_1.png">
-      <img src="https://ocamlpro.com/blog/assets/img/flambda2_snippets_ep0_figure3_1.png" alt="The different passes of the OCaml compilers, from sources to executable code, before the addition of &lt;code&gt;Flambda&lt;/code&gt;."/>
+      <img src="https://ocamlpro.com/blog/assets/img/flambda2_snippets_ep0_figure3_1.png" alt="The different passes of the OCaml compilers, from sources to executable code, before the addition of <code>Flambda</code>.">
     </a>
     </p><div class="caption">
       The different passes of the OCaml compilers, from sources to executable code, before the addition of <code>Flambda</code>.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>Indeed, that part of the compiler is quite crowded. Originally, after
 the frontend has type-checked the sources, the <code>Closure</code> pass was in
 charge of transforming the <code>Lambda</code> IR <a href="https://github.com/ocaml/ocaml/blob/34cf5aafcedc2f7895c7f5f0ac27c7e58e4f4adf/lambda/lambda.mli#L279">(see source
@@ -99,14 +99,14 @@ than <code>Closure</code>.</p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/flambda2_snippets_ep0_figure3_2.png">
-      <img src="https://ocamlpro.com/blog/assets/img/flambda2_snippets_ep0_figure3_2.png" alt="&lt;code&gt;Flambda&lt;/code&gt; provides an alternative to the classic &lt;code&gt;Closure&lt;/code&gt; transformation, with additionnal optimizations."/>
+      <img src="https://ocamlpro.com/blog/assets/img/flambda2_snippets_ep0_figure3_2.png" alt="<code>Flambda</code> provides an alternative to the classic <code>Closure</code> transformation, with additionnal optimizations.">
     </a>
     </p><div class="caption">
       <code>Flambda</code> provides an alternative to the classic <code>Closure</code> transformation, with additionnal optimizations.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>Now is time to introduce another choice to both <code>Flambda</code> and <code>Closure</code>:
 <code>Flambda2</code>, which is meant to eventually replace <code>Flambda</code> and potentially
 <code>Closure</code> as well. In fact, Janestreet has been gradually moving from <code>Closure</code>
@@ -124,14 +124,14 @@ Flambda2 Snippets</em> series.</p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/flambda2_snippets_ep0_figure3.png">
-      <img src="https://ocamlpro.com/blog/assets/img/flambda2_snippets_ep0_figure3.png" alt="&lt;code&gt;Flambda2&lt;/code&gt; provides a much extended alternative to Flambda, from &lt;code&gt;Lambda&lt;/code&gt; IR to &lt;code&gt;CMM&lt;/code&gt;."/>
+      <img src="https://ocamlpro.com/blog/assets/img/flambda2_snippets_ep0_figure3.png" alt="<code>Flambda2</code> provides a much extended alternative to Flambda, from <code>Lambda</code> IR to <code>CMM</code>.">
     </a>
     </p><div class="caption">
       <code>Flambda2</code> provides a much extended alternative to Flambda, from <code>Lambda</code> IR to <code>CMM</code>.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>One obvious difference to notice is that <code>Flambda2</code> translates directly to <code>CMM</code>,
 circumventing the <code>Clambda</code> IR, allowing us to lift some limitations inherent
 to <code>Clambda</code> itself.</p>
@@ -170,11 +170,17 @@ transformation is both simple and representative of the philosophy behind all
 the optimisations conducted by the <code>Flambda2</code> compiler.</p>
 </li>
 <li>
-<p>Episode 3: Upward and Downward Traversals</p>
+<p>Episode 3: Speculative Inlining</p>
+<blockquote>
+<p>Coming soon...</p>
+</blockquote>
+</li>
+<li>
+<p>Episode 4: Upward and Downward Traversals</p>
 <blockquote>
 <p>Coming soon...</p>
 </blockquote>
 </li>
 </ul>
 <p>Stay tuned, and thank you for reading!</p>
-</div>
+

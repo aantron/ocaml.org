@@ -14,7 +14,7 @@ source:
 you could use
 <a href="http://www.umut-acar.org/self-adjusting-computation">self adjusting computations</a>,
 or SAC, as embodied by our <a href="https://blog.janestreet.com/introducing-incremental/">Incremental</a> library, to
-incrementalize the computation of virtual dom nodes. In this post, I&rsquo;d like to
+incrementalize the computation of virtual dom nodes. In this post, I’d like to
 discuss how we can extend this approach to more realistic scales, and some of
 the extensions to Incremental itself that are required to get there.</p>
 

@@ -9,18 +9,18 @@ authors:
 source:
 ---
 
-<p>Hello! It&rsquo;s 2016, it&rsquo;s November, and apparently it rhymes with <a href="http://nabomamo.botally.net/">#NaBoMaMo</a> 2016,
+<p>Hello! It’s 2016, it’s November, and apparently it rhymes with <a href="http://nabomamo.botally.net/">#NaBoMaMo</a> 2016,
 the National Bot Making Month. <a href="https://github.com/emillon/rain-bot">I made a bot!</a>.</p>
-<p><em>Full disclosure:</em> it&rsquo;s actually 2017, but I started writing this in 2016 so
-it&rsquo;s OK. Also I&rsquo;m not actually from the US, but I&rsquo;ll relax the definition a bit
-and let&rsquo;s pretend it means International Bot Making Year. Close enough!</p>
-<p>Bots are all the rage - Twitter bots, IRC bots, Telegram bots&hellip; I decided to
+<p><em>Full disclosure:</em> it’s actually 2017, but I started writing this in 2016 so
+it’s OK. Also I’m not actually from the US, but I’ll relax the definition a bit
+and let’s pretend it means International Bot Making Year. Close enough!</p>
+<p>Bots are all the rage - Twitter bots, IRC bots, Telegram bots… I decided to
 make a Slack bot to get more familiar with that API.</p>
 <p>I wanted this to be a small project - write and forget, basically. I started by
 defining some specs and lock those down:</p>
 <ul>
 <li>that bot works on Slack</li>
-<li>it uses the &ldquo;will it rain in the next hour&rdquo; API from M&eacute;t&eacute;o France.</li>
+<li>it uses the “will it rain in the next hour” API from Météo France.</li>
 <li>the bot understands 3 commands:
 <ul>
 <li>tell you whether it will rain or not.</li>
@@ -29,7 +29,7 @@ defining some specs and lock those down:</p>
 </ul></li>
 </ul>
 <p>The next step was choosing the tech stack. For hosting itself I was sold on
-using Heroku from previous projects (or another PaaS host, for what it&rsquo;s worth)</p>
+using Heroku from previous projects (or another PaaS host, for what it’s worth)</p>
 <p>As for the programming language itself, I hesitated between three choices:</p>
 <ol type="1">
 <li>focus on the all-included experience: something that has libraries, tooling,
@@ -42,7 +42,7 @@ something online quickly;</li>
 languages and am pretty sure that there are libraries that can take care of the
 Slack API without me having to ever worry about HTTP endpoints. That means also
 first-class deployment and hosting.</p>
-<p>The second one is about OCaml: it&rsquo;s a programming language I use daily at work,
+<p>The second one is about OCaml: it’s a programming language I use daily at work,
 but the real goal would be to focus on shipping: create a project, write tests,
 write implementation, deploy, repeat for new features, forget.</p>
 <p>The third one means a totally new programming language. I heard a lot of good
@@ -74,7 +74,7 @@ structures directly to my bot object rather than building a cohttp request.</p>
 some sort of CI: have travis run my test suite, and make a binary ready to be
 deployed to Heroku. That way, it is impossible to forget how to make changes,
 test and deploy, since this is all in a script.</p>
-<p>The other part that needed work is the actual Slack integration. The &ldquo;slash&rdquo;
+<p>The other part that needed work is the actual Slack integration. The “slash”
 command API is pretty simple: it is possible to configure a Slack team such that
 typing <code>/rain</code> will hit a particular URL. Some options are passed as <code>POST</code> data
 and whatever is returned is displayed in Slack.</p>

@@ -9,7 +9,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2015/01/pearls2-1.jpg#hero" alt="pears"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/pearls2-1.jpg#hero" alt="pears"></p>
 
 <p><a href="http://www.cs.ox.ac.uk/richard.bird/">Prof. Richard Simpson Bird</a> is a Supernumerary Fellow of Computation at <a href="http://www.lincoln.ox.ac.uk/">Lincoln College, Oxford</a>, England, and former director of <a href="http://www.cs.ox.ac.uk/">the Oxford University Computing Laboratory</a>. His research interests include:</p>
 
@@ -22,7 +22,7 @@ source:
 
 <p>In 2010, he wrote the book <a href="http://www.cambridge.org/gb/academic/subjects/computer-science/programming-languages-and-applied-logic/pearls-functional-algorithm-design">Pearls of Functional Algorithm Design</a>  </p>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/pearls_book.jpeg" alt="book"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/pearls_book.jpeg" alt="book"></p>
 
 <p>This book presents <strong>30 algorithm problems and their functional solutions</strong>. The reason that they are called as <em>pearls</em> is what I quote below:</p>
 
@@ -50,7 +50,7 @@ source:
   <p>O(n) solution is desired.</p>
 </blockquote>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/problem_description-1.jpg" alt="eg"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/problem_description-1.jpg" alt="eg"></p>
 
 <h1>Analysis of the problem description</h1>
 
@@ -91,7 +91,7 @@ source:
 <li>If point 4 never happens, then the result is <code>the last number plus 1</code>.</li>
 </ol>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/easy_solution.jpg" alt="easy_solution"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/easy_solution.jpg" alt="easy_solution"></p>
 
 <pre><code class="ocaml">let min_missing_trivial l =  
   let sl = List.sort compare l in
@@ -113,7 +113,7 @@ source:
 
 <p>So, if we do a sorting, we can obtain the answer but it is too slow. Let's have a look again at what we get after sorting.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/completely_ordered.jpg" alt="completely sorted"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/completely_ordered.jpg" alt="completely sorted"></p>
 
 <p>If the list is sorted, then it provides us a chance where we check the consecutiveness of the numbers and the first gap is what we want. There are two questions though:</p>
 
@@ -125,7 +125,7 @@ source:
 
 <p>For example, even if <code>12</code> is before <code>8</code>, the result won't be affected.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/after_gap.jpg" alt="after gap"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/after_gap.jpg" alt="after gap"></p>
 
 <blockquote>
   <p>Q2. Is the order of all the numbers before the gap important?</p>
@@ -133,7 +133,7 @@ source:
 
 <p>Let's randomly mess up the order of <code>0</code>, <code>1</code>, <code>2</code>, and <code>3</code> a little:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/before_gap-1.jpg" alt="before gap"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/before_gap-1.jpg" alt="before gap"></p>
 
 <p>It seems fine as the messed order of those 4 numbers does not affect the position of <code>4</code> and <code>6</code>. But hang on a minute, something is not right there.</p>
 
@@ -141,23 +141,23 @@ source:
 
 <p>So can we check for the consecutiveness of the numbers without sorting them?</p>
 
-<h1>Hints hidden in &quot;distinct natural numbers&quot;</h1>
+<h1>Hints hidden in "distinct natural numbers"</h1>
 
 <p>Yes, we can, and now it is the time to ask for help from <em>distinct natural numbers</em>. </p>
 
 <p>As we described before, <em>natural numbers</em> are integers euqal to or larger than <code>0</code>. This lower bound <code>0</code> plus the constraint of <em>no duplicates</em> gives us the opportunity to check for consecutiveness without requiring all numbers being sorted. Let's first see a perfect consecutive sequnce (starting from 0) of natural numbers:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/perfect_consecutive_1.jpg" alt="perfect1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/perfect_consecutive_1.jpg" alt="perfect1"></p>
 
 <p>They are sorted of course. Is there any other characteristic? Or say, for a number inside the sequence, how many other numbers are less than it (on its left side)?</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/perfect_consecutive_count.jpg" alt="count"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/perfect_consecutive_count.jpg" alt="count"></p>
 
 <p>For number <code>4</code>, there will exact <code>4</code> natural numbers less than itself. The same thing will apply on any numbers as long as all those belong to a perfect consecutive sequence starting from <code>0</code>. </p>
 
 <p>This is also a two-way mapping, i.e., if we are told that there are <code>4</code> numbers less than <code>4</code> and all of them are before <code>4</code>, we can be sure that all five numbers can form a consecutive sequence. Most importantly, now whether all numbers are in order or not does not matter any more.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/perfect_consecutive_not_ordered.jpg" alt="not ordered again"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/perfect_consecutive_not_ordered.jpg" alt="not ordered again"></p>
 
 <blockquote>
   <p>What does a perfect consecutiveness imply? </p>
@@ -165,7 +165,7 @@ source:
 
 <p>It implies that among the sequence, no one is missing and if anyone is missing, it must be on the right side of the max of the sequence.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/missing_in_right.jpg" alt="in the right"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/missing_in_right.jpg" alt="in the right"></p>
 
 <blockquote>
   <p>What if for a number, the number of smaller ones does not match its own value?</p>
@@ -173,7 +173,7 @@ source:
 
 <p>It means the sequence up to the number won't be consecutive, which implies that there must be at least one a natural number missing, right?</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/in_the_left.jpg" alt="in the left"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/in_the_left.jpg" alt="in the left"></p>
 
 <p>Now we have the weapon we want. In order to check consecutiveness, or say, to know the region where the min missing natural number is, we don't need complete sorting any more. Instead, we just to</p>
 

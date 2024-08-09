@@ -10,8 +10,8 @@ description: 'We are pleased to announce the minor release of opam 2.0.7. This n
 
   Fix dune 2.5.0 promote-install-files...'
 url: https://ocamlpro.com/blog/2020_04_21_opam_2.0.7_release
-date: 2020-04-21T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2020-04-21T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Raja Boujbel\n  "
 source:
@@ -29,15 +29,15 @@ source:
 <li>Fix dune 2.5.0 promote-install-files duplication [<a href="https://github.com/ocaml/opam/pull/4132">#4132</a> <a href="https://github.com/rjbou">@rjbou</a>]
 </li>
 </ul>
-<hr/>
+<hr>
 <p>Installation instructions (unchanged):</p>
 <ol>
 <li>From binaries: run
 </li>
 </ol>
-<pre><code class="language-shell-session">bash -c &quot;sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.0.7&quot;
+<pre><code class="language-shell-session">bash -c "sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.0.7"
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.7">the Github &quot;Releases&quot; page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update you sandbox script.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.7">the Github "Releases" page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update you sandbox script.</p>
 <ol start="2">
 <li>From source, using opam:
 </li>

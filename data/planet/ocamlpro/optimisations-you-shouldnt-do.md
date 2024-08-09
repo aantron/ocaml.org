@@ -5,15 +5,15 @@ description: Doing the compiler's work Working at OCamlPro may have some drawbac
   I have a good glimpse of what the generated assembly will look like. This is nice
   when I want to write performance sensitive code, but as I usually w...
 url: https://ocamlpro.com/blog/2013_05_24_optimisations_you_shouldnt_do
-date: 2013-05-24T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2013-05-24T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    chambart\n  "
 source:
 ---
 
 <h2>Doing the compiler's work</h2>
-<p>Working at OCamlPro may have some drawbacks. I spend a lot of time hacking the OCaml compiler. Hence when I write some code, I have a good glimpse of what the generated assembly will look like. This is nice when I want to write performance sensitive code, but as I usually write code for which execution time doesn't matter much, this mainly tends to torture me. A small voice in my head is telling me &quot;you shouldn't write it like that, you known you could avoid this allocation&quot;. And usually, following that indication would only tend to make the code less readable. But there is a solution to calm that voice: making the compiler smarter than me.</p>
+<p>Working at OCamlPro may have some drawbacks. I spend a lot of time hacking the OCaml compiler. Hence when I write some code, I have a good glimpse of what the generated assembly will look like. This is nice when I want to write performance sensitive code, but as I usually write code for which execution time doesn't matter much, this mainly tends to torture me. A small voice in my head is telling me "you shouldn't write it like that, you known you could avoid this allocation". And usually, following that indication would only tend to make the code less readable. But there is a solution to calm that voice: making the compiler smarter than me.</p>
 <p>OCaml compilation mechanisms are quite predictable. There is no dark magic to replace your ugly code by a well-behaving one, but it always generates reasonably efficient code. This is a good thing in general, as you won't be surprised by code running more slowly than what you usually expect. But it does not behave very well with dumb code. This may not often seem like a problem with code written by humans, but generated code, for example coming from camlp4/ppx, or compiled from another language to OCaml, may fall into that category. In fact, there is another common source for non-human written code: inlining.</p>
 <h2>Inlining</h2>
 <p>Inlining (or inline expansion) is a key optimisation in many compilers and particularly in functional languages. Inlining replaces a function call by the function body. Let's apply inlining to f in this example.</p>

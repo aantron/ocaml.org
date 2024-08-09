@@ -32,7 +32,7 @@ in essence will mean:</p>
 <ol>
 <li>
 <p>linkability ensured by regular Debian dependencies (no longer
-&quot;inconsistent assumptions ...&quot; errors, as long as your package
+"inconsistent assumptions ..." errors, as long as your package
 manager is happy)</p>
 </li>
 <li>
@@ -46,12 +46,12 @@ Glondu; the 3 of them have worked tirelessly during all DebConf on
 the design bits that were needing changes as well as on the
 implementation / revamp of involved tools (e.g.
 <code>dh_ocaml</code>, which I drafted (too) many years ago for not
-being in production yet).<br/>
+being in production yet).<br>
 I guess you'll soon hear from them for more details.</p>
 </li>
 </ul>
 <p>As observed by Stephane, the transition to the new schema and
-tools do not need to be &quot;all or nothing&quot;.<br/>
+tools do not need to be "all or nothing".<br>
 Hence, the current plan is to release in Squeeze most of the
 packages migrated to the new infrastructure, while not necessarily
 all of them.</p>

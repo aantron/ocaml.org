@@ -9,10 +9,10 @@ authors:
 source:
 ---
 
-Maintenant que je travaille un peu dans le domaine de la s&eacute;curit&eacute;, je pense notamment aux g&eacute;n&eacute;rateurs de nombres al&eacute;atoires. Apr&egrave;s quelques lectures <a href="http://en.wikipedia.org/wiki/Pseudorandom_number_generator">sur</a> <a href="http://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator">le sujet</a>, je me suis demand&eacute; comment fonctionnait le module <code>Random</code> de Caml.<br/>
-<br/>
-Il y a s&ucirc;rement beaucoup de choses &agrave; dire, mais mon attention a &eacute;t&eacute; retenue par un truc simple: <code>self_init</code> initialise le g&eacute;n&eacute;rateur de fa&ccedil;on tr&egrave;s simple, &agrave; partir de l'heure et de l'identifiant du processus, donn&eacute;es pour le moins al&eacute;atoires. Il faut donc vraiment se m&eacute;fier de cela si on souhaite utiliser le module <code>Random</code> &agrave; des fins cryptographiques. En pratique, le petit bout de code suivant devine assez rapidement la graine g&eacute;n&eacute;r&eacute;e, en supposant connu l'identifiant du processus (ce n'est pas bien dur &agrave; deviner sinon) et en supposant approximativement connue l'heure de l'initialisation:<br/>
-<br/>
+Maintenant que je travaille un peu dans le domaine de la sécurité, je pense notamment aux générateurs de nombres aléatoires. Après quelques lectures <a href="http://en.wikipedia.org/wiki/Pseudorandom_number_generator">sur</a> <a href="http://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator">le sujet</a>, je me suis demandé comment fonctionnait le module <code>Random</code> de Caml.<br>
+<br>
+Il y a sûrement beaucoup de choses à dire, mais mon attention a été retenue par un truc simple: <code>self_init</code> initialise le générateur de façon très simple, à partir de l'heure et de l'identifiant du processus, données pour le moins aléatoires. Il faut donc vraiment se méfier de cela si on souhaite utiliser le module <code>Random</code> à des fins cryptographiques. En pratique, le petit bout de code suivant devine assez rapidement la graine générée, en supposant connu l'identifiant du processus (ce n'est pas bien dur à deviner sinon) et en supposant approximativement connue l'heure de l'initialisation:<br>
+<br>
 <pre>(** Random.self_init relies on caml_sys_random_seed
   * which returns an int.
   * That integer is sec ^ usec ^ ppid&lt;&lt;16 ^ pid.
@@ -64,14 +64,14 @@ let () =
       Array.init (Array.length valid) random
     in
       Printf.printf
-        &quot;Guessed seed: %d. Validated: %b.\n&quot;
+        "Guessed seed: %d. Validated: %b.\n"
         seed (guess=valid)
   in
     crack leak k ;
-    Printf.printf &quot;Search space exhausted.\n&quot;
-</pre><br/>
-Quand on le lance, on a quelque chose comme &ccedil;a en quelques secondes:<br/>
+    Printf.printf "Search space exhausted.\n"
+</pre><br>
+Quand on le lance, on a quelque chose comme ça en quelques secondes:<br>
 <pre>$ ocamlopt unix.cmxa crack.ml -o crack &amp;&amp; ./crack
 Guessed seed: 262818353. Validated: true.
-Search space exhausted.</pre><br/>
-Il y a diverses variations possible. Ce qui m'int&eacute;resse, et qui est encore assez obscur pour moi, c'est la g&eacute;n&eacute;ration (r&eacute;p&eacute;titive) de graines &agrave; partir d'une partie priv&eacute;e et d'une partie publique, utilis&eacute;e pour &eacute;viter d'avoir des s&eacute;quences g&eacute;n&eacute;r&eacute;es identiques (ce qui exposerait &agrave; des attaques dans certains cas). A quel point on affaiblit ou compromet son secret, en fonction du g&eacute;n&eacute;rateur utilis&eacute;, etc?
+Search space exhausted.</pre><br>
+Il y a diverses variations possible. Ce qui m'intéresse, et qui est encore assez obscur pour moi, c'est la génération (répétitive) de graines à partir d'une partie privée et d'une partie publique, utilisée pour éviter d'avoir des séquences générées identiques (ce qui exposerait à des attaques dans certains cas). A quel point on affaiblit ou compromet son secret, en fonction du générateur utilisé, etc?

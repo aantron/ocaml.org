@@ -10,11 +10,11 @@ source:
 ---
 
 <p>Following last week release,
-I&rsquo;m starting today a series of tutorials about the Ocsigen framework. For the impatient, most of these tutorials are already available on <a href="http://ocsigen.org/tuto">Ocsigen</a>&rsquo;s Web site.</p>
+I’m starting today a series of tutorials about the Ocsigen framework. For the impatient, most of these tutorials are already available on <a href="http://ocsigen.org/tuto">Ocsigen</a>’s Web site.</p>
 
 <p>In this first tutorial, we show how to use the Ocsigen framework (mainly Eliom) to write a lightweight Web site by generating pages using OCaml functions.
 Even though Eliom makes it possible to write complete client-server Web and mobile apps,
-you can still use Eliom even if you don&rsquo;t need all these features (for example if you don&rsquo;t want HTML type checking or client side features). Besides, this will allow you to extend your Web site in a full Web application if you need, later on. This tutorial is also a good overview of the basics of Eliom.</p>
+you can still use Eliom even if you don’t need all these features (for example if you don’t want HTML type checking or client side features). Besides, this will allow you to extend your Web site in a full Web application if you need, later on. This tutorial is also a good overview of the basics of Eliom.</p>
 
 <h2>A service generating a page</h2>
 
@@ -25,11 +25,11 @@ you can still use Eliom even if you don&rsquo;t need all these features (for exa
 <p>Function <code class="language-plaintext highlighter-rouge">f</code> generates HTML as a string, taking as argument the list of URL parameters (GET parameters).</p>
 
 <figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">f</span> <span class="n">_</span> <span class="bp">()</span> <span class="o">=</span>
-  <span class="nn">Lwt</span><span class="p">.</span><span class="n">return</span> <span class="s2">&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;A&lt;/title&gt;&lt;/head&gt;&lt;body&gt;B&lt;/body&gt;&lt;/html&gt;&quot;</span>
+  <span class="nn">Lwt</span><span class="p">.</span><span class="n">return</span> <span class="s2">"&lt;html&gt;&lt;head&gt;&lt;title&gt;A&lt;/title&gt;&lt;/head&gt;&lt;body&gt;B&lt;/body&gt;&lt;/html&gt;"</span>
 
 <span class="k">let</span> <span class="n">main_service</span> <span class="o">=</span>
   <span class="nn">Eliom_registration</span><span class="p">.</span><span class="nn">Html_text</span><span class="p">.</span><span class="n">register_service</span>
-    <span class="o">~</span><span class="n">path</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;aaa&quot;</span><span class="p">;</span> <span class="s2">&quot;bbb&quot;</span><span class="p">]</span>
+    <span class="o">~</span><span class="n">path</span><span class="o">:</span><span class="p">[</span><span class="s2">"aaa"</span><span class="p">;</span> <span class="s2">"bbb"</span><span class="p">]</span>
     <span class="o">~</span><span class="n">get_params</span><span class="o">:</span><span class="nn">Eliom_parameter</span><span class="p">.</span><span class="n">any</span>
     <span class="n">f</span></code></pre></figure>
 
@@ -54,9 +54,9 @@ $ ocsigenserver -c mysite.conf
 
 <h2>POST service</h2>
 
-<p>Services using the POST HTTP method are created using the function <code class="language-plaintext highlighter-rouge">Eliom_service.&#8203;Http.&#8203;post_service</code>. To create a service with POST parameters, first you must create a service without POST parameters, and then the service with POST parameters, with the first service as fallback. The fallback is used if the user comes back later without POST parameters, for example because he put a bookmark on this URL.</p>
+<p>Services using the POST HTTP method are created using the function <code class="language-plaintext highlighter-rouge">Eliom_service.​Http.​post_service</code>. To create a service with POST parameters, first you must create a service without POST parameters, and then the service with POST parameters, with the first service as fallback. The fallback is used if the user comes back later without POST parameters, for example because he put a bookmark on this URL.</p>
 
-<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">g</span> <span class="n">getp</span> <span class="n">postp</span> <span class="o">=</span> <span class="nn">Lwt</span><span class="p">.</span><span class="n">return</span> <span class="s2">&quot;...&quot;</span>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">g</span> <span class="n">getp</span> <span class="n">postp</span> <span class="o">=</span> <span class="nn">Lwt</span><span class="p">.</span><span class="n">return</span> <span class="s2">"..."</span>
 
 <span class="k">let</span> <span class="n">post_service</span> <span class="o">=</span>
   <span class="nn">Eliom_registration</span><span class="p">.</span><span class="nn">Html_text</span><span class="p">.</span><span class="n">register_post_service</span>
@@ -84,7 +84,7 @@ for more information, a comprehensive documentation
 and a more advanced manual
 <a href="http://ocsigen.org/eliom/manual/clientserver-html">here</a>.</p>
 
-<p>Have a look at Eliom&rsquo;s API documentation to see other kinds of services,
+<p>Have a look at Eliom’s API documentation to see other kinds of services,
 for example <a href="http://ocsigen.org/eliom/api/server/Eliom_registration.Redirection"><code class="language-plaintext highlighter-rouge">Eliom_registration.Redirection</code></a>
 to create HTTP redirections.</p>
 

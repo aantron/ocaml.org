@@ -1,12 +1,12 @@
 ---
-title: 'opam 101: the first steps'
+title: 'Opam 101: The First Steps'
 description: Welcome, dear reader, to a new series of blog posts! This series will
   be about everything opam. Each article will cover a specific aspect of the package
   manager, and make sure to dissipate any confusion or misunderstandings on this keystone
   of the OCaml distribution! Each technical article will be t...
 url: https://ocamlpro.com/blog/2024_01_23_opam_101_the_first_steps
-date: 2024-01-23T14:15:10-00:00
-preview_image: https://ocamlpro.com/assets/img/logo_ocp_icon.svg
+date: 2024-01-23T13:31:53-00:00
+preview_image: https://ocamlpro.com/blog/assets/img/opam-banniere-e1600868011587.png
 authors:
 - "\n    Dario Pinto\n  "
 source:
@@ -17,14 +17,14 @@ source:
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/opam-banniere-e1600868011587.png">
-      <img src="https://ocamlpro.com/blog/assets/img/opam-banniere-e1600868011587.png" alt="Opam is like a magic box that allows people to be tidy when they share their work with the world, thus making the environment stable and predictable for everybody!"/>
+      <img src="https://ocamlpro.com/blog/assets/img/opam-banniere-e1600868011587.png" alt="Opam is like a magic box that allows people to be tidy when they share their work with the world, thus making the environment stable and predictable for everybody!">
     </a>
     </p><div class="caption">
       Opam is like a magic box that allows people to be tidy when they share their work with the world, thus making the environment stable and predictable for everybody!
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>Welcome, dear reader, to a new series of blog posts!</p>
 <p>This series will be about everything <code>opam</code>. Each article will cover a specific
 aspect of the package manager, and make sure to dissipate any confusion or
@@ -37,7 +37,7 @@ find answers to some questions about <code>opam</code> right here.</p>
 the smoothest read possible!</p>
 </blockquote>
 <p></p><div>
-<strong>Table of contents</strong>
+<strong>Table of contents</strong><p></p>
 <ul>
 <li><a href="https://ocamlpro.com/blog/feed#onboarding">Walking the path of opam, treading on solid ground</a>
 </li>
@@ -60,17 +60,17 @@ the smoothest read possible!</p>
 <li><a href="https://ocamlpro.com/blog/feed#packages">Installing packages in your current switch</a>
 </li>
 <li><a href="https://ocamlpro.com/blog/feed#conclusion">Conclusion</a>
+</li></ul></div>
 
-</li>
-</ul>
+
 <blockquote>
-<p>New to the expansive OCaml sphere? As said on the official OCaml website,
-<a href="https://opam.ocaml.org/about.html#A-little-bit-of-History">Opam</a> has been a
-game changer for the OCaml distribution, since it first saw the day of light
+<p>New to the expansive OCaml sphere? As said on the official opam website,
+<a href="https://opam.ocaml.org/about.html#A-little-bit-of-History">opam</a> has been a
+game changer for the OCaml distribution, since it first saw the light of day
 here, almost a decade ago.</p>
 </blockquote>
 <h2>
-<a class="anchor"></a>Walking the path of opam, treading on solid ground<a href="https://ocamlpro.com/blog/feed#onboarding">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#onboarding" class="anchor-link">Walking the path of opam, treading on solid ground</a>
           </h2>
 <p>We are aware that it can be quite a daunting task to get on-board with the
 OCaml distribution. Be it because of its decentralised characteristics:
@@ -86,7 +86,7 @@ documentation on speed-dial... You never know when you will have to setup an
 opam installation while off-the-grid, do you ?</p>
 <p>Are you ready to dive in ?</p>
 <h2>
-<a class="anchor"></a>First step: installing opam<a href="https://ocamlpro.com/blog/feed#install">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#install" class="anchor-link">First step: installing opam</a>
           </h2>
 <p>First, let's talk about installing opam.</p>
 <blockquote>
@@ -112,13 +112,13 @@ The cli of <code>opam</code> is made to remain consistent between versions so, u
 have a very old version, or if you read this article in the very distant
 future, you should not have problems by not using the <strong>exact</strong> same version as
 we do. For the sake of consistency though, I will use this specific version.</p>
-<pre><code class="language-shell-session">$ bash -c &quot;sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.1.5&quot;
+<pre><code class="language-shell-session">$ bash -c "sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.1.5"
 </code></pre>
 <p>This script will download the necessary binaries for a proper installation of
 <code>opam</code>. Once done, you can move on to the nitty gritty of having a working
 <code>opam</code> environment with <code>opam init</code>.</p>
 <h2>
-<a class="anchor"></a>Second step: initialisation<a href="https://ocamlpro.com/blog/feed#opaminit">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#opaminit" class="anchor-link">Second step: initialisation</a>
           </h2>
 <p>The first command to launch, after the initial <code>opam</code> binaries have been
 downloaded and <code>opam</code> has been installed on your system, is <code>opam init</code>.</p>
@@ -172,27 +172,27 @@ User configuration:
 [NOTE] Make sure that ~/.profile is well sourced in your ~/.bashrc.
 
 
-&lt;&gt;&lt;&gt; Creating initial switch 'default' (invariant [&quot;ocaml&quot; {&gt;= &quot;4.05.0&quot;}] - initially with ocaml-base-compiler)
+&lt;&gt;&lt;&gt; Creating initial switch 'default' (invariant ["ocaml" {&gt;= "4.05.0"}] - initially with ocaml-base-compiler)
 
 &lt;&gt;&lt;&gt; Installing new switch packages &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-Switch invariant: [&quot;ocaml&quot; {&gt;= &quot;4.05.0&quot;}]
+Switch invariant: ["ocaml" {&gt;= "4.05.0"}]
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&lowast; installed base-bigarray.base
-&lowast; installed base-threads.base
-&lowast; installed base-unix.base
-&lowast; installed ocaml-options-vanilla.1
-&#11015; retrieved ocaml-base-compiler.5.1.0  (https://opam.ocaml.org/cache)
-&lowast; installed ocaml-base-compiler.5.1.0
-&lowast; installed ocaml-config.3
-&lowast; installed ocaml.5.1.0
-&lowast; installed base-domains.base
-&lowast; installed base-nnp.base
+∗ installed base-bigarray.base
+∗ installed base-threads.base
+∗ installed base-unix.base
+∗ installed ocaml-options-vanilla.1
+⬇ retrieved ocaml-base-compiler.5.1.0  (https://opam.ocaml.org/cache)
+∗ installed ocaml-base-compiler.5.1.0
+∗ installed ocaml-config.3
+∗ installed ocaml.5.1.0
+∗ installed base-domains.base
+∗ installed base-nnp.base
 Done.
 </code></pre>
 <p>The main result for an <code>opam init</code> call is to setup what is called your <code>opam root</code>. It does so by creating a <code>~/.opam</code> directory to operate inside of.
 <code>opam</code> modifies and writes in this location <strong>only</strong> as a default.</p>
-<hr/>
+<hr>
 <p>First, <code>opam</code> checks that there is at least one required tool for syncing to
 the <code>opam-repository</code>. Then it checks what backends are available in your
 system. Here all are available: <code>rsync, git, mercurial, and darcs</code>. They will
@@ -206,7 +206,7 @@ Perfect!
 <pre><code class="language-shell-session">&lt;&gt;&lt;&gt; Fetching repository information &gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
 [default] Initialised
 </code></pre>
-<hr/>
+<hr>
 <p>Secondly, <code>opam</code> requires your input in order to configure your shell for the
 smoothest possible experience. For more details about the opam environment,
 refer to the next section.</p>
@@ -242,32 +242,32 @@ User configuration:
 [NOTE] Make sure that ~/.profile is well sourced in your ~/.bashrc.
 
 </code></pre>
-<hr/>
+<hr>
 <p>The next action is the installation of your very first <code>switch</code> alongside a
 version of the OCaml compiler, by default a compiler &gt;= <code>4.05.0</code> to be exact.</p>
 <p>For more information about what is a <code>switch</code> be sure to read <a href="https://ocamlpro.com/blog/feed#switch">the rest of the
 article</a>.</p>
-<pre><code class="language-shell-session">&lt;&gt;&lt;&gt; Creating initial switch 'default' (invariant [&quot;ocaml&quot; {&gt;= &quot;4.05.0&quot;}] - initially with ocaml-base-compiler)
+<pre><code class="language-shell-session">&lt;&gt;&lt;&gt; Creating initial switch 'default' (invariant ["ocaml" {&gt;= "4.05.0"}] - initially with ocaml-base-compiler)
 
 &lt;&gt;&lt;&gt; Installing new switch packages &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-Switch invariant: [&quot;ocaml&quot; {&gt;= &quot;4.05.0&quot;}]
+Switch invariant: ["ocaml" {&gt;= "4.05.0"}]
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&lowast; installed base-bigarray.base
-&lowast; installed base-threads.base
-&lowast; installed base-unix.base
-&lowast; installed ocaml-options-vanilla.1
-&#11015; retrieved ocaml-base-compiler.5.1.0  (https://opam.ocaml.org/cache)
-&lowast; installed ocaml-base-compiler.5.1.0
-&lowast; installed ocaml-config.3
-&lowast; installed ocaml.5.1.0
-&lowast; installed base-domains.base
-&lowast; installed base-nnp.base
+∗ installed base-bigarray.base
+∗ installed base-threads.base
+∗ installed base-unix.base
+∗ installed ocaml-options-vanilla.1
+⬇ retrieved ocaml-base-compiler.5.1.0  (https://opam.ocaml.org/cache)
+∗ installed ocaml-base-compiler.5.1.0
+∗ installed ocaml-config.3
+∗ installed ocaml.5.1.0
+∗ installed base-domains.base
+∗ installed base-nnp.base
 Done.
 </code></pre>
 <p><strong>Great! So let's focus on the actions performed by the <code>opam init</code> call!</strong></p>
 <h2>
-<a class="anchor"></a>Acclimating to the environment<a href="https://ocamlpro.com/blog/feed#opamenv">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#opamenv" class="anchor-link">Acclimating to the environment</a>
           </h2>
 <p>Well, as said previously, the first action was to setup an <code>opam root</code> in your
 <code>$HOME</code> directory, (i.e: <code>~/.opam</code>). This is where <code>opam</code> will operate. <code>opam</code>
@@ -299,7 +299,7 @@ among other things. What it does instead is adding hook at prompt level that
 keeps <code>opam</code> environment synced, updating it every time the user presses
 <code>Enter</code>. Very handy indeed.</p>
 <h2>
-<a class="anchor"></a>Switches, tailoring your workspace to your vision<a href="https://ocamlpro.com/blog/feed#switch">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#switch" class="anchor-link">Switches, tailoring your workspace to your vision</a>
           </h2>
 <p>The second task accomplished by <code>opam init</code> was installing the first <code>switch</code>
 inside your fresh installation.</p>
@@ -315,22 +315,22 @@ depending on your exact use-case but in the case of OCaml, a <code>switch</code>
 <p>In our example, we see that the only packages installed in the process were the
 dependencies for the OCaml compiler version <code>5.1.0</code> inside the <code>switch</code> named
 <code>default</code>.</p>
-<pre><code class="language-shell-session">&lt;&gt;&lt;&gt; Creating initial switch 'default' (invariant [&quot;ocaml&quot; {&gt;= &quot;4.05.0&quot;}] - initially with ocaml-base-compiler)
+<pre><code class="language-shell-session">&lt;&gt;&lt;&gt; Creating initial switch 'default' (invariant ["ocaml" {&gt;= "4.05.0"}] - initially with ocaml-base-compiler)
 
 &lt;&gt;&lt;&gt; Installing new switch packages &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-Switch invariant: [&quot;ocaml&quot; {&gt;= &quot;4.05.0&quot;}]
+Switch invariant: ["ocaml" {&gt;= "4.05.0"}]
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&lowast; installed base-bigarray.base
-&lowast; installed base-threads.base
-&lowast; installed base-unix.base
-&lowast; installed ocaml-options-vanilla.1
-&#11015; retrieved ocaml-base-compiler.5.1.0  (https://opam.ocaml.org/cache)
-&lowast; installed ocaml-base-compiler.5.1.0
-&lowast; installed ocaml-config.3
-&lowast; installed ocaml.5.1.0
-&lowast; installed base-domains.base
-&lowast; installed base-nnp.base
+∗ installed base-bigarray.base
+∗ installed base-threads.base
+∗ installed base-unix.base
+∗ installed ocaml-options-vanilla.1
+⬇ retrieved ocaml-base-compiler.5.1.0  (https://opam.ocaml.org/cache)
+∗ installed ocaml-base-compiler.5.1.0
+∗ installed ocaml-config.3
+∗ installed ocaml.5.1.0
+∗ installed base-domains.base
+∗ installed base-nnp.base
 Done.
 </code></pre>
 <p>You can create an arbitrary amount of parallel <code>switches</code> in opam. This allows
@@ -357,13 +357,13 @@ make it global and name it <code>default</code>.</p>
 default
 $ opam switch
 #  switch   compiler     description
-&rarr;  default  ocaml.5.1.0  default
+→  default  ocaml.5.1.0  default
 </code></pre>
 <p>Now that you have a general understanding of what exactly is a <code>switch</code> and how
 it is used, let's get into how you can go about manually creating your first
 <code>switch</code>.</p>
 <h3>
-<a class="anchor"></a>Creating a global switch<a href="https://ocamlpro.com/blog/feed#createaswitch">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#createaswitch" class="anchor-link">Creating a global switch</a>
           </h3>
 <blockquote>
 <p>NB:
@@ -375,7 +375,7 @@ precious insights on opam's cli.</p>
 </blockquote>
 <p>So how does one create a <code>switch</code> ? The short answer is bafflingly
 straightforward:</p>
-<pre><code class="language-shell-session"># Installs a switch named &quot;my-switch&quot; based OCaml compiler version &gt; 4.05.0
+<pre><code class="language-shell-session"># Installs a switch named "my-switch" based OCaml compiler version &gt; 4.05.0
 # Here 4.05 is the default lower compiler version opam selects when unspecified
 $ opam switch create my-switch
 </code></pre>
@@ -403,7 +403,7 @@ ocaml.4.13.2 --          The OCaml compiler (virtual package)
 ocaml.5.2.0  --          The OCaml compiler (virtual package)
 </code></pre>
 <p>Let's use it for a switch:</p>
-<pre><code class="language-shell-session"># Installs a switch named &quot;my-switch&quot; based OCaml compiler version = 4.13.1
+<pre><code class="language-shell-session"># Installs a switch named "my-switch" based OCaml compiler version = 4.13.1
 $ opam switch create my-switch ocaml.4.13.1
 </code></pre>
 <p>That's it, for the first time, you have manually created your own <code>global switch</code> tailored to your specific needs, congratulations!</p>
@@ -419,7 +419,7 @@ new one.</p>
 </blockquote>
 <p>Now, onto <code>local switches</code>.</p>
 <h3>
-<a class="anchor"></a>Creating a local switch<a href="https://ocamlpro.com/blog/feed#switchlocal">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#switchlocal" class="anchor-link">Creating a local switch</a>
           </h3>
 <p>As said previously, the use of a <code>local switch</code> is to constrain a specific
 OCaml environment to a specific location on your workstation.</p>
@@ -452,19 +452,19 @@ $ cd my-project
 $ opam switch create .
 
 &lt;&gt;&lt;&gt; Installing new switch packages &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-Switch invariant: [&quot;ocaml&quot; {&gt;= &quot;4.05.0&quot;}]
+Switch invariant: ["ocaml" {&gt;= "4.05.0"}]
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&lowast; installed base-bigarray.base
-&lowast; installed base-threads.base
-&lowast; installed base-unix.base
-&lowast; installed ocaml-system.4.14.1
-&lowast; installed ocaml-config.2
-&lowast; installed ocaml.4.14.1
+∗ installed base-bigarray.base
+∗ installed base-threads.base
+∗ installed base-unix.base
+∗ installed ocaml-system.4.14.1
+∗ installed ocaml-config.2
+∗ installed ocaml.4.14.1
 Done.
 $ opam switch
 #  switch                   compiler      description
-&rarr;  /home/ocp/my-project     ocaml.4.14.1  /home/ocp/my-project
+→  /home/ocp/my-project     ocaml.4.14.1  /home/ocp/my-project
    default                  ocaml.5.1.0   default
    my-switch                ocaml.4.13.1  my-switch
 
@@ -474,7 +474,7 @@ $ opam switch
 <p>Here it is, you can now hop into your local switch <code>/home/ocp/my-project</code>
 whenever you have time to deviate from your global environment.</p>
 <h2>
-<a class="anchor"></a>The official opam-repository, the safe for all your packages<a href="https://ocamlpro.com/blog/feed#opamrepo">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#opamrepo" class="anchor-link">The official opam-repository, the safe for all your packages</a>
           </h2>
 <p>Among all the things that <code>opam init</code> did when it was executed, there is still
 one detail we have yet to explain and that's the first action of the process:
@@ -504,42 +504,42 @@ the packages direct dependencies, where to find its source code, the names and
 emails of maintainers and authors, different checksums for each archive release and the
 list goes on.</p>
 <p>Here's a quick example for you to have an idea of what it looks like:</p>
-<pre><code class="language-shell-session">opam-version: &quot;2.0&quot;
-synopsis: &quot;OCaml bindings to Zulip API&quot;
-maintainer: [&quot;Dario Pinto &lt;dario.pinto@ocamlpro.com&gt;&quot;]
-authors: [&quot;Mohamed Hernouf &lt;mohamed.hernouf@ocamlpro.com&gt;&quot;]
-license: &quot;LGPL-2.1-only WITH OCaml-LGPL-linking-exception&quot;
-homepage: &quot;https://github.com/OCamlPro/ozulip&quot;
-doc: &quot;https://ocamlpro.github.io/ozulip&quot;
-bug-reports: &quot;https://github.com/OCamlPro/ozulip/issues&quot;
-dev-repo: &quot;git+https://github.com/OCamlPro/ozulip.git&quot;
-tags: [&quot;zulip&quot; &quot;bindings&quot; &quot;api&quot;]
+<pre><code class="language-shell-session">opam-version: "2.0"
+synopsis: "OCaml bindings to Zulip API"
+maintainer: ["Dario Pinto &lt;dario.pinto@ocamlpro.com&gt;"]
+authors: ["Mohamed Hernouf &lt;mohamed.hernouf@ocamlpro.com&gt;"]
+license: "LGPL-2.1-only WITH OCaml-LGPL-linking-exception"
+homepage: "https://github.com/OCamlPro/ozulip"
+doc: "https://ocamlpro.github.io/ozulip"
+bug-reports: "https://github.com/OCamlPro/ozulip/issues"
+dev-repo: "git+https://github.com/OCamlPro/ozulip.git"
+tags: ["zulip" "bindings" "api"]
 depends: [
-  &quot;ocaml&quot; {&gt;= &quot;4.10&quot;}
-  &quot;dune&quot; {&gt;= &quot;2.0&quot;}
-  &quot;ez_api&quot; {&gt;= &quot;2.0.0&quot;}
-  &quot;re&quot;
-  &quot;base64&quot;
-  &quot;json-data-encoding&quot; {&gt;= &quot;1.0.0&quot;}
-  &quot;logs&quot;
-  &quot;lwt&quot; {&gt;= &quot;5.4.0&quot;}
-  &quot;ez_file&quot; {&gt;= &quot;0.3.0&quot;}
-  &quot;cohttp-lwt-unix&quot;
-  &quot;yojson&quot;
-  &quot;logs&quot;
+  "ocaml" {&gt;= "4.10"}
+  "dune" {&gt;= "2.0"}
+  "ez_api" {&gt;= "2.0.0"}
+  "re"
+  "base64"
+  "json-data-encoding" {&gt;= "1.0.0"}
+  "logs"
+  "lwt" {&gt;= "5.4.0"}
+  "ez_file" {&gt;= "0.3.0"}
+  "cohttp-lwt-unix"
+  "yojson"
+  "logs"
 ]
-build: [ &quot;dune&quot; &quot;build&quot; &quot;-p&quot; name &quot;-j&quot; jobs &quot;@install&quot; ]
+build: [ "dune" "build" "-p" name "-j" jobs "@install" ]
 url {
-  src: &quot;https://github.com/OCamlPro/ozulip/archive/refs/tags/0.1.tar.gz&quot;
+  src: "https://github.com/OCamlPro/ozulip/archive/refs/tags/0.1.tar.gz"
   checksum: [
-    &quot;md5=4173fefee440773dd0f8d7db5a2e01e5&quot;
-    &quot;sha512=cb53870eb8d41f53cf6de636d060fe1eee6c39f7c812eacb803b33f9998242bfb12798d4922e7633aa3035cf2ab98018987b380fb3f380f80d7270e56359c5d8&quot;
+    "md5=4173fefee440773dd0f8d7db5a2e01e5"
+    "sha512=cb53870eb8d41f53cf6de636d060fe1eee6c39f7c812eacb803b33f9998242bfb12798d4922e7633aa3035cf2ab98018987b380fb3f380f80d7270e56359c5d8"
   ]
 }
 </code></pre>
 <p>Okay so now, how do we go about populating a <code>switch</code> with packages and really get started?</p>
 <h2>
-<a class="anchor"></a>Installing packages in your current switch<a href="https://ocamlpro.com/blog/feed#packages">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#packages" class="anchor-link">Installing packages in your current switch</a>
           </h2>
 <p>It's elementary. This simple command will do the trick of <em>trying</em> to install a
 package, <strong>and its dependencies</strong>, in your currently active <code>switch</code>.</p>
@@ -568,9 +568,9 @@ package compatibility in mind.</p>
 $ opam upgrade
 </code></pre>
 <h2>
-<a class="anchor"></a>Conclusion<a href="https://ocamlpro.com/blog/feed#conclusion">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#conclusion" class="anchor-link">Conclusion</a>
           </h2>
-<p>Here it is, you should now be knowledgeable enough about Opam to jump right in
+<p>Here it is, you should now be knowledgeable enough about <code>opam</code> to jump right in
 the OCaml discovery!</p>
 <p>Today we learned everything elementary about <code>opam</code>.</p>
 <p>From installation, to initialisation and explanations about the core concepts
@@ -578,8 +578,8 @@ of the <code>opam</code> environment, <code>switches</code>, packages and the Of
 <code>opam-repository</code>.</p>
 <p>Be sure to stay tuned with our blog, the journey into the rabbit hole has only
 started and <code>opam</code> is a deep one indeed!</p>
-<hr/>
+<hr>
 <p>Thank you for reading,</p>
 <p>From 2011, with love,</p>
 <p>The OCamlPro Team</p>
-</div>
+

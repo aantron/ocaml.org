@@ -11,10 +11,10 @@ source:
 
 
 <center>
-        <img src="http://www.mega-nerd.com/erikd/Img/michael_mak.jpg" border="0" alt="Michael Mak"/>
+        <img src="http://www.mega-nerd.com/erikd/Img/michael_mak.jpg" border="0" alt="Michael Mak">
 </center>
 
-<br/>
+<br>
 <p>
 On the same day that the computing world lost Steve Jobs, the company I work
 for lost its own star, founder and CEO of bCODE, Michael Mak.

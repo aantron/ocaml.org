@@ -18,5 +18,5 @@ source:
 <li><a href="http://developers.slashdot.org/story/11/08/27/2115210/Announcing-Opa-Making-Web-Programming-Transparent">the Slashdot thread spawned by this LtU thread</a>.</li>
 </ul>
 <p style="text-align:justify;"><strong>Edit</strong> Added the Slashdot thread.</p>
-<p style="text-align:justify;"><strong>Edit</strong> Gasp, Slashdot is down. Hey, GeekNet, if you need a scalable programming language for the next version of Slashcode, just ping us <img src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" alt="&#128578;" class="wp-smiley" style="height: 1em; max-height: 1em;"/></p>
+<p style="text-align:justify;"><strong>Edit</strong> Gasp, Slashdot is down. Hey, GeekNet, if you need a scalable programming language for the next version of Slashcode, just ping us <img src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;"></p>
 

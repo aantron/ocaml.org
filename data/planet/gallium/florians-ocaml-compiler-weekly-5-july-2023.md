@@ -71,8 +71,8 @@ standard library</a></h4>
 added a new <code>Type</code> module in OCaml 5.1. This new module
 defines the well-know equality GADT (Generalized Abstract Data
 Type):</p>
-<div class="highlight"><pre><span></span>type (_, _) eq = Equal : ('a, 'a) eq
-</pre></div>
+<div class="highlight"><pre><span>type (_, _) eq = Equal : ('a, 'a) eq
+</span></pre></div>
 
 <p>and type identity witnesses. In other words, this is mostly a module
 for heavy users of GADTs.</p>
@@ -88,13 +88,13 @@ three) that are defining a local <code>Type</code> module while using
 alternative standard library (like <code>base</code>) might be required
 to find a non-conflicting short-name for their local <code>Type</code>
 module (which might be as simple as</p>
-<div class="highlight"><pre><span></span><span class="k">module</span> <span class="n">Ty</span> = <span class="n">Type</span>
+<div class="highlight"><pre><span><span class="k">module</span> <span class="n">Ty</span> = <span class="n">Type</span>
 <span class="nb">open</span>! <span class="n">Base</span>
-</pre></div>
+</span></pre></div>
 
 <p>)</p>
 <h3>Internal API changes</h3>
-<p>The second ex &aelig;quo source of build failures in opam packages is the
+<p>The second ex æquo source of build failures in opam packages is the
 changes in internal API, either in the OCaml runtime or in the compiler
 library.</p>
 <h4>Changes in the runtime
@@ -106,18 +106,18 @@ argument. This change affected at least one opam package.</p>
 API</h4>
 <p>To improve the rendering of weakly polymorphic row variables, OCaml
 5.1 has switched its high-level display representation of type aliases
-to make it easier to display &ldquo;weakly polymorphic aliases&rdquo;:</p>
-<div class="highlight"><pre><span></span> [&gt; `X of int]  as _weak1
-</pre></div>
+to make it easier to display “weakly polymorphic aliases”:</p>
+<div class="highlight"><pre><span> [&gt; `X of int]  as _weak1
+</span></pre></div>
 
 <p>rather than</p>
-<div class="highlight"><pre><span></span>_[&gt; `X of int]
-</pre></div>
+<div class="highlight"><pre><span>_[&gt; `X of int]
+</span></pre></div>
 
 <p>This caused a build failure for at least one package that was relying
 on the previous API.</p>
 <h3>Type system change</h3>
-<p>The third ex &aelig;quo source of build failures is small changes in the
+<p>The third ex æquo source of build failures is small changes in the
 type system, where package that were at the frontier of the technically
 correct and bugs ended up falling on the other side of the fence during
 this release.</p>
@@ -132,30 +132,30 @@ this was probably a bug in the lone affected package.</p>
 <h4>Generative
 functors must be used generatively</h4>
 <p>When a functor is defined as an applicative functor</p>
-<div class="highlight"><pre><span></span><span class="k">module</span> <span class="n">App</span>() = <span class="n">struct</span>
+<div class="highlight"><pre><span><span class="k">module</span> <span class="n">App</span>() = <span class="n">struct</span>
   <span class="nb">type</span> <span class="nb">t</span>
 <span class="nb">end</span>
-</pre></div>
+</span></pre></div>
 
 <p>OCaml 5.1 forbids now to apply as if it was a generative functor:</p>
-<div class="highlight"><pre><span></span><span class="k">module</span> <span class="n">Ok</span> = <span class="n">App</span>(<span class="n">struct</span> <span class="nb">end</span>)
+<div class="highlight"><pre><span><span class="k">module</span> <span class="n">Ok</span> = <span class="n">App</span>(<span class="n">struct</span> <span class="nb">end</span>)
 <span class="k">module</span> <span class="n">New_error</span> = <span class="n">App</span>()
-</pre></div>
+</span></pre></div>
 
 <p>Previous version of OCaml did not make any difference between
 <code>struct end</code> or <code>()</code> in functor applications and
 thus allowed the form <code>App(struct end)</code>.</p>
 <p>The reverse situation, where a generative functor is applied to
 <code>struct end</code> is allowed but emits a warning</p>
-<div class="highlight"><pre><span></span><span class="k">module</span> <span class="n">Gen</span>() = <span class="n">struct</span>
+<div class="highlight"><pre><span><span class="k">module</span> <span class="n">Gen</span>() = <span class="n">struct</span>
   <span class="nb">type</span> <span class="nb">t</span>
 <span class="nb">end</span>
 <span class="k">module</span> <span class="n">New_warning</span> = <span class="n">Gen</span>(<span class="n">struct</span> <span class="nb">end</span>)
-</pre></div>
+</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nv">Warning</span> <span class="mi">73</span> [<span class="nv">generative</span><span class="o">-</span><span class="nv">application</span><span class="o">-</span><span class="nv">expects</span><span class="o">-</span><span class="nv">unit</span>]: <span class="nv">A</span> <span class="nv">generative</span> <span class="nv">functor</span>
-<span class="nv">should</span> <span class="nv">be</span> <span class="nv">applied</span> <span class="nv">to</span> <span class="s1">'</span><span class="s">()</span><span class="s1">'</span><span class="c1">; using '(struct end)' is deprecated.</span>
-</pre></div>
+<div class="highlight"><pre><span><span class="nv">Warning</span><span class="w"> </span><span class="mi">73</span><span class="w"> </span>[<span class="nv">generative</span><span class="o">-</span><span class="nv">application</span><span class="o">-</span><span class="nv">expects</span><span class="o">-</span><span class="nv">unit</span>]:<span class="w"> </span><span class="nv">A</span><span class="w"> </span><span class="nv">generative</span><span class="w"> </span><span class="nv">functor</span>
+<span class="nv">should</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">applied</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="s1">'()'</span><span class="c1">; using '(struct end)' is deprecated.</span>
+</span></pre></div>
 
 <p>This restriction is there to make clearer the distinction between
 applicative and generative application. But at least $one opam package

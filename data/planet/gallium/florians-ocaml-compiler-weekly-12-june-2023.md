@@ -58,7 +58,7 @@ different between Merlin and the compiler. Having two implementations is
 painful in term of both maintenance and evolution of this feature.
 Moreover, the compiler implementation was originally meant to be a
 temporary prototype for OCaml 4.01.0, ten years ago.</p>
-<p>This is why I am hoping to find the time to finally upstream Merlin&rsquo;s
+<p>This is why I am hoping to find the time to finally upstream Merlin’s
 implementation of the <code>-short-path</code> flag.</p>
 <h3>Updating
 <code>ppxlib</code> after a parsetree refinement</h3>
@@ -67,13 +67,13 @@ to iron out the last wrinkles of the second alpha for 5.1.0.</p>
 <p>From the point of view of ppxlib, one of the interesting challenge
 introduced by the <code>value binding</code> parsetree change in 5.1.0
 is that it added a new way to represent an old construct</p>
-<div class="highlight"><pre><span></span>let x : typ = expr
-</pre></div>
+<div class="highlight"><pre><span>let x : typ = expr
+</span></pre></div>
 
 <p>rather than a completely new construct.</p>
 <p>Indeed, before OCaml 5.1, this construct was desugared to</p>
-<div class="highlight"><pre><span></span>let (x:&oslash;. typ) = (expr:typ)
-</pre></div>
+<div class="highlight"><pre><span>let (x:ø. typ) = (expr:typ)
+</span></pre></div>
 
 <p>whereas in OCaml 5.1, this construct is a new distinct parsetree
 node.</p>
@@ -86,14 +86,14 @@ the location</h4>
 <p>Maybe surprisingly, the answer is <em>no</em>. This is due to the
 ghost location used in the ghost constraint node: when desugaring
 <code>let x: (((int))) = 0</code> to</p>
-<div class="highlight"><pre><span></span><span class="k">let</span> <span class="o">(</span><span class="n">x</span><span class="o">:</span><span class="n">&oslash;</span><span class="o">.</span> <span class="kt">int</span><span class="o">)</span> <span class="o">=</span> <span class="mi">0</span>
-</pre></div>
+<div class="highlight"><pre><span><span class="k">let</span> <span class="o">(</span><span class="n">x</span><span class="o">:</span><span class="n">ø</span><span class="o">.</span> <span class="kt">int</span><span class="o">)</span> <span class="o">=</span> <span class="mi">0</span>
+</span></pre></div>
 
-<p>the 5.0 parser attributed to the pattern <code>x:&oslash;. typ</code> the
+<p>the 5.0 parser attributed to the pattern <code>x:ø. typ</code> the
 ghost location</p>
-<div class="highlight"><pre><span></span><span class="k">let</span> <span class="n">x</span> <span class="o">:</span> <span class="o">((((</span><span class="kt">int</span><span class="o">))))</span>  <span class="o">=</span>
+<div class="highlight"><pre><span><span class="k">let</span> <span class="n">x</span> <span class="o">:</span> <span class="o">((((</span><span class="kt">int</span><span class="o">))))</span>  <span class="o">=</span>
     <span class="o">^^^^^^^^^^^^^^^</span>
-</pre></div>
+</span></pre></div>
 
 <p>But the new parsetree node only contains the location of the type
 <code>int</code> and not the location of the end of the parentheses. We
@@ -107,32 +107,32 @@ injective?</h4>
 <p>Most of the time, it is possible to map an OCaml 5.1 value binding
 onto an unique OCaml 5.0 encoded value binding. This works because the
 encoding used for value bindings in 5.0 constructs type expressions of
-the form <code>&oslash;. typ</code> that are not allowed in OCaml. We can thus
+the form <code>ø. typ</code> that are not allowed in OCaml. We can thus
 use those special type expressions to recognise desugared value
 bindings.</p>
 <p>Unfortunately, this is only the case when binding variables. Indeed,
 as soon as the pattern in the value binding is not a variable</p>
-<div class="highlight"><pre><span></span><span class="k">let</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span>
-</pre></div>
+<div class="highlight"><pre><span><span class="k">let</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span>
+</span></pre></div>
 
 <p>the 5.0 parser desugars this value binding to</p>
-<div class="highlight"><pre><span></span><span class="k">let</span> <span class="o">((</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span><span class="o">)</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span>
-</pre></div>
+<div class="highlight"><pre><span><span class="k">let</span> <span class="o">((</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span><span class="o">)</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span>
+</span></pre></div>
 
 <p>without any encoding of the type constraint. This means in particular
 that the 5.0 parser creates the same AST node for both</p>
-<div class="highlight"><pre><span></span><span class="k">let</span> <span class="o">((</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span><span class="o">)</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span>
-</pre></div>
+<div class="highlight"><pre><span><span class="k">let</span> <span class="o">((</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span><span class="o">)</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span>
+</span></pre></div>
 
 <p>and</p>
-<div class="highlight"><pre><span></span><span class="k">let</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span>
-</pre></div>
+<div class="highlight"><pre><span><span class="k">let</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span>
+</span></pre></div>
 
 <p>which are two different constructs in OCaml 5.1.</p>
 <p>Consequently, when we migrate a 5.0 parsetree of this form to the
 5.1, we have to decide if we should migrate this syntactic construct to
 the old parsetree node or to the new node. In this case, since the new
-syntactic node corresponds to a &ldquo;more pleasant&rdquo; syntactic form, we
+syntactic node corresponds to a “more pleasant” syntactic form, we
 decided to favour this form.</p>
 
 

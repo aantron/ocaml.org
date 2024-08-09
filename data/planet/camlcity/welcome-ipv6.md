@@ -12,7 +12,7 @@ source:
 
 
 <div>
-  <b>camlcity.org now connected</b><br/>&nbsp;
+  <b>camlcity.org now connected</b><br>&nbsp;
 </div>
 
 <div>
@@ -36,7 +36,7 @@ rolled out IPv6, but the major players are planning it for 2014. It
 turns out that at home I already have IPv6, although only via
 DSLite. (NB. In the default DNS configuration a client connected with
 DSLite or other 6-in-4 technologies will pick the IPv4 address if both
-&quot;Internets&quot; are available, so such clients will not show up in my web
+"Internets" are available, so such clients will not show up in my web
 server logs as IPv6.)
 </p>
 

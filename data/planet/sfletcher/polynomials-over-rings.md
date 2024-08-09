@@ -10,9 +10,7 @@ authors:
 source:
 ---
 
-
-<html>
-  <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html><head>
      
     
     <title>Polynomials over rings</title>
@@ -24,16 +22,15 @@ source:
     <p>The program presented here models
     univariate <a href="https://en.wikipedia.org/wiki/Polynomial">polynomials</a>
     over <a href="https://en.wikipedia.org/wiki/Ring_(mathematics)">rings</a>
-    based on an exercise in &quot;The Module Language&quot; chapter, of
-    <a href="http://gallium.inria.fr/~remy/">Didier R&eacute;my's</a>
+    based on an exercise in "The Module Language" chapter, of
+    <a href="http://gallium.inria.fr/~remy/">Didier Rémy's</a>
     book, <a href="https://caml.inria.fr/pub/docs/u3-ocaml/index.html">Using,
     Understanding and Unraveling the OCaml Lanaguage</a>.
     </p>
 
     <h3>Arithmetics and rings</h3>
     <p>We begin with a type for modules implementing arithmetic.
-    </p><pre>
-    module type ARITH = sig
+    </p><pre>    module type ARITH = sig
       type t
       val of_int : int -&gt; t            val to_int : t -&gt; int
       val of_string : string -&gt; t      val to_string : t -&gt; string
@@ -46,8 +43,7 @@ source:
     A ring is a set equipped with two binary operations that
     generalize the arithmetic operations of addition and
     multiplication.
-    <pre>
-    module type RING = sig
+    <pre>    module type RING = sig
       type t
       type extern_t
       val print : t -&gt; unit
@@ -60,8 +56,7 @@ source:
     We can build rings over arithmetics with functors. This particular
     one fixes the external representation of the elements of the ring
     to <code>int</code>.
-    <pre>
-    module Ring (A : ARITH) :
+    <pre>    module Ring (A : ARITH) :
       RING  with type t = A.t and type extern_t = int =
     struct
       include A
@@ -72,8 +67,7 @@ source:
     </pre>
     Thus, here for example are rings over various specific arithmetic
     modules.
-    <pre>
-    module Ring_int32 = Ring (Int32);;
+    <pre>    module Ring_int32 = Ring (Int32);;
     module Ring_int64 = Ring (Int64);;
     module Ring_nativeint = Ring (Nativeint);;
     module Ring_int = Ring (
@@ -88,11 +82,10 @@ source:
       end
     );;
     </pre>
-    
+    <p></p>
     <h3>Polynomials</h3>
     <p>We define now the type of polynomials.
-    </p><pre>
-    module type POLYNOMIAL = sig
+    </p><pre>    module type POLYNOMIAL = sig
       type coeff (*Type of coefficients*)
       type coeff_extern_t (*Type of coeff. external rep*)
 
@@ -105,8 +98,7 @@ source:
     </pre>
     Given a module implementing a ring, we can generate a module
     implementing polynomials with coefficients drawn from the ring.
-    <pre>
-    module Polynomial (R : RING) :
+    <pre>    module Polynomial (R : RING) :
       POLYNOMIAL with type coeff = R.t
       and type coeff_extern_t = R.extern_t
       and type extern_t = (R.extern_t * int) list =
@@ -128,39 +120,34 @@ source:
     of pairs of coefficients and powers, ordered so that lower powers
     come before higher ones. Here's a simple printing utility to aid
     visualization.
-    <pre>
-    let print p =
+    <pre>    let print p =
       List.iter
-        (fun (c, k) -&gt; Printf.printf &quot;+ (&quot;;
+        (fun (c, k) -&gt; Printf.printf "+ (";
           R.print c;
-          Printf.printf &quot;)X^%d &quot; k)
+          Printf.printf ")X^%d " k)
         p
     </pre>
     In order that we get a canonical representation, null
     coefficients are eliminated. In particular, the null monomial is
     simply the empty list.
-    <pre>
-    let zero = []
+    <pre>    let zero = []
     </pre>
     The multiplicative identity <code>one</code> is not really
     necessary as it is just a particular monomial however, its
     presence makes polynomials themselves satisfy the interface of
     rings.
-    <pre>
-    let one = [R.one, 0]
+    <pre>    let one = [R.one, 0]
     </pre>
     This helper function constructs monomials.
-    <pre>
-    let monomial (a : coeff) (k : int) =
+    <pre>    let monomial (a : coeff) (k : int) =
       if k &lt; 0 then
-        failwith &quot;monomial : negative powers not supported&quot;
+        failwith "monomial : negative powers not supported"
       else if R.equal a R.zero then [] else [a, k]
     </pre>
     Next up, we define addition of polynomials by the following
     function. Care is taken to ensure the representation invariant is
     respected.
-    <pre>
-    let rec add u v =
+    <pre>    let rec add u v =
       match u, v with
       | [], _ -&gt; v
       | _, [] -&gt; u
@@ -177,8 +164,7 @@ source:
     now write <code>make</code> that computes a polynomial from an
     external representation. We also give the inverse
     function <code>show</code> here too.
-    <pre>
-    let make l =
+    <pre>    let make l =
       List.fold_left (fun acc (c, k) -&gt;
         add (monomial (R.make c) k) acc) zero l
 
@@ -187,8 +173,7 @@ source:
     </pre>
     The module private function <code>times</code> left-multiplies a
     polynomial by a monomial.
-    <pre>
-    let rec times (c, k) = function
+    <pre>    let rec times (c, k) = function
       | [] -&gt; []
       | (c1, k1) :: q -&gt;
         let c2 = R.mul c c1 in
@@ -196,14 +181,12 @@ source:
         else (c2, k + k1) :: times (c, k) q
     </pre>
     Given the existence of <code>times</code>, polynomial
-    multiplication can be expressed in a &quot;one-liner&quot;.
-    <pre>
-    let mul p = List.fold_left (fun r m -&gt; add r (times m p)) zero
+    multiplication can be expressed in a "one-liner".
+    <pre>    let mul p = List.fold_left (fun r m -&gt; add r (times m p)) zero
     </pre>
     Comparing two polynomials for equality is achieved with the
     following predicate.
-    <pre>
-    let rec equal p1 p2 =
+    <pre>    let rec equal p1 p2 =
       match p1, p2 with
       | [], [] -&gt; true
       | (c1, k1) :: q1, (c2, k2) :: q2 -&gt;
@@ -215,8 +198,7 @@ source:
     powers. The following routine uses
     the <a href="https://en.wikipedia.org/wiki/Exponentiation_by_squaring">exponentiation
     by squaring</a> technique.
-    <pre>
-    let rec pow c = function
+    <pre>    let rec pow c = function
       | 0 -&gt; R.one
       | 1 -&gt; c
       | k -&gt;
@@ -228,8 +210,7 @@ source:
     polynomial at a specific point. The implementation
     uses <a href="https://en.wikipedia.org/wiki/Horner's_method">Horner's
     rule</a> for computationally efficient evaluation.
-    <pre>
-    let eval p c = match List.rev p with
+    <pre>    let eval p c = match List.rev p with
       | [] -&gt; R.zero
       | (h :: t) -&gt;
         let reduce (a, k) (b, l) =
@@ -239,13 +220,12 @@ source:
         let a, k = List.fold_left reduce h t in
         R.mul (pow c k) a
       </pre>
-    
+    <p></p>
     <h3>Testing and example usage</h3>
     <p>The following interactive session creates a polynomial with
     integer coefficients module and uses it to confirm the equivalence
     of $(1 + x)(1 - x)$ with $(1 - x^{2})$.
-    </p><pre>
-    # #use &quot;polynomial.ml&quot;;;
+    </p><pre>    # #use "polynomial.ml";;
     # module R = Ring_int;;
     # module P = Polynomial (R);;
     # let p = P.mul (P.make [(1, 0); (1, 1)]) (P.make [(1, 0); (-1, 1)]);;
@@ -259,9 +239,8 @@ source:
     (1 \times X^{0})Y^{1}$. Similarly we can write $X - Y$ as $(1
     \times X^{1})Y^{0} + (-1 \times X^{0}) Y^1$ and now check the
     equivalence $(X + Y)(X - Y) = (X^{2} - Y^{2})$.
-    
-    <pre>
-    #module Y = Polynomial (P);;
+    <p></p>
+    <pre>    #module Y = Polynomial (P);;
     
     #(* (X + Y) *)
     #let r = Y.make [
@@ -284,8 +263,8 @@ source:
     #Y.equal (Y.mul r s) t;;
     - : bool = true
     </pre>
-    
-   <hr/>
-  </body>
-</html>
+    <p></p>
+   <hr>
+  
 
+</body></html>

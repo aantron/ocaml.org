@@ -11,37 +11,37 @@ source:
 
 <div class="date">August 26, 2020</div>
 
-<p>Since last year I&rsquo;ve been using BuckleScript to build web apps in OCaml
+<p>Since last year I’ve been using BuckleScript to build web apps in OCaml
 and have been enjoying it very much. However, when I went to the
-project&rsquo;s home page recently I found that BuckleScript has been renamed
+project’s home page recently I found that BuckleScript has been renamed
 to <a href="http://rescript-lang.org/">ReScript</a> and that all reference to OCaml
 has been removed from the project (as far as I can tell).</p>
 
-<p>In particular, there&rsquo;s no documentation that describes how to use the
+<p>In particular, there’s no documentation that describes how to use the
 standard OCaml syntax with the BuckleScript compiler. Previously there
 were parallel documents for a new JavaScript-like syntax (based on
 Reason) and for the standard OCaml syntax. But now there is just a
 JavaScript-like syntax (different from but similar to Reason).</p>
 
 <table class="morelikealist" style="margin-top: 0.4em;">
-<tr><td>
+<tbody><tr><td>
 <a href="http://psellos.com/ocaml/example-app-slide24.html">
-<img src="http://psellos.com/images/slide242-220-sepia.png"/><br/>
+<img src="http://psellos.com/images/slide242-220-sepia.png"><br>
 </a>
 </td></tr>
-</table>
+</tbody></table>
 
 <p>Although the project
 <a href="http://reasonml.org/blog/a-note-on-bucklescripts-future-commitments">blog</a>
 says they will continue to support the OCaml syntax for a long time, in
 practice it will be impossible to use OCaml syntax with BuckleScript
-unless there is documentation. There&rsquo;s no way to determine the methods
+unless there is documentation. There’s no way to determine the methods
 used for interoperation with the browser environment. Guessing and
 on-line chat are not workable replacements.</p>
 
-<p>Unless documentation appears pretty soon, I can&rsquo;t really recommend using
-BuckleScript if you want to build web apps using OCaml syntax. Since I&rsquo;d
-like my work to be at least a little bit useful to others, I&rsquo;ll most
+<p>Unless documentation appears pretty soon, I can’t really recommend using
+BuckleScript if you want to build web apps using OCaml syntax. Since I’d
+like my work to be at least a little bit useful to others, I’ll most
 likely be switching to
 <a href="https://ocsigen.org/js_of_ocaml/3.1.0/manual/overview">Js_of_OCaml</a> for
 future work.</p>

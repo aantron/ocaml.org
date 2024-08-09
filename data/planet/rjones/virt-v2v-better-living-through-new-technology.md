@@ -21,6 +21,6 @@ source:
 </li><li> qemu now has excellent <a href="https://rwmj.wordpress.com/2014/03/13/new-in-virt-sparsify-in-place-sparsification/#content">discard and trim support</a>.  To minimize the amount of data that we copy, we first <a href="http://libguestfs.org/guestfs.3.html#guestfs_fstrim">fstrim the filesystems</a>.  This causes the overlay to remember which bits of the filesystem are used and only copy those bits.
 </li><li> <a href="https://www.mail-archive.com/ntfs-3g-devel@lists.sourceforge.net/msg01060.html">I added support for fstrim to ntfs-3g</a> so this works for Windows guests too.
 </li><li> <a href="http://libguestfs.org/guestfs.3.html#remote-storage">libguestfs has support for remote storage</a>, <a href="https://rwmj.wordpress.com/2013/09/02/new-in-libguestfs-allow-cache-mode-to-be-selected/#content">cachemode</a>, discard, copy-on-read and more, meaning we can use all these features in virt-v2v.
-</li><li> We use OCaml &mdash; not C, and not type-unsafe languages &mdash; to ensure that the compiler is helping us to find bugs in the code that we write, and also to ensure that we end up with an optimized, standalone binary that requires no runtime support/interpreters and can be shipped everywhere.
+</li><li> We use OCaml — not C, and not type-unsafe languages — to ensure that the compiler is helping us to find bugs in the code that we write, and also to ensure that we end up with an optimized, standalone binary that requires no runtime support/interpreters and can be shipped everywhere.
 </li></ul>
 

@@ -12,7 +12,7 @@ source:
 
 
 <div>
-  <b>Faster builds with omake, part 3: Caches</b><br/>&nbsp;
+  <b>Faster builds with omake, part 3: Caches</b><br>&nbsp;
 </div>
 
 <div>
@@ -65,7 +65,7 @@ In the case of OMake there are mainly two important caches:
     a given directory. The cache covers both types of build rules: explicit
     and implicit rules. For the latter it is very important to have this
     cache because the applicable implicit rules need to be searched.
-    As OMake normally uses the &quot;-modules&quot; switch of ocamldep, it has to
+    As OMake normally uses the "-modules" switch of ocamldep, it has to
     find out on its own in which directory an OCaml module is built.
 </li><li>The file cache answers the question whether a file is still up to date,
     or whether it needs to be rebuilt. This is based on three data blobs:
@@ -75,7 +75,7 @@ In the case of OMake there are mainly two important caches:
     the file is out of date. The details are somewhat complicated, though,
     in particular the computation of the digest costs some time and should
     only be done if it helps avoiding other expensive actions. Parts of the file
-    cache survive OMake invocations as these are stored in the &quot;.omakedb&quot;
+    cache survive OMake invocations as these are stored in the ".omakedb"
     file.
 </li></ul>
 
@@ -91,7 +91,7 @@ is generated from m.mly there will be entries for both m.ml and m.mly).
 As I found it, it was very simple, just a mapping
 
 <blockquote>
-filepath &#8614; buildable_flag
+filepath ↦ buildable_flag
 </blockquote>
 
 and if a file f could potentially exist in many directories d there
@@ -110,7 +110,7 @@ we need to walk the mapping data structure.
 The new layout of the cache compresses the data in the following way:
 
 </p><blockquote>
-filename &#8614; (directories_buildable, directories_non_buildable)
+filename ↦ (directories_buildable, directories_non_buildable)
 </blockquote>
 
 On the left side, only simple filenames without paths are used. So
@@ -125,7 +125,7 @@ Note that if we were to program a lame build system, we could even
 simplify this to
 
 </p><blockquote>
-filename &#8614; directory_buildable option
+filename ↦ directory_buildable option
 </blockquote>
 
 but we want to take into account that files can potentially be built in
@@ -151,7 +151,7 @@ digest). Also, there are two versions of the cache: the persistent
 version, as stored in the .omakedb file, and the live version.
 
 <p>
-Many simpler build systems (like &quot;make&quot;) only use the file stats for
+Many simpler build systems (like "make") only use the file stats for
 deciding whether a file is out of date. This is somewhat imprecise,
 in particular when the filesystem stores the timestamps of the files
 with only low granularity (e.g. in units of seconds). Another problem
@@ -227,7 +227,7 @@ All taken together, this gives another little boost. This is mostly observable
 on Windows as this OS does not profit from the improvements described in the
 previous article of the series.
 
-<img src="http://blog.camlcity.org/files/img/blog/omake3_bug.gif" width="1" height="1"/>
+<img src="http://blog.camlcity.org/files/img/blog/omake3_bug.gif" width="1" height="1">
 </p></cc-field>
 </div>
 

@@ -5,8 +5,8 @@ description: We have recently worked on modifying the OCaml system to be able to
   supported by stable kernels. This page presents this work, funded by Jane Street.
   The patch is provided for OCaml version 4.00.0. If you need it...
 url: https://ocamlpro.com/blog/2012_08_08_profiling_ocaml_amd64_code_under_linux
-date: 2012-08-08T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2012-08-08T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    \xC7agdas Bozman\n  "
 source:
@@ -18,7 +18,7 @@ source:
   An example: profiling <code>ocamlopt.opt</code>
 </h2>
 <p>Here is an example of a session of profiling done using both Linux performance tools and a modified OCaml 4.00.0 system (the patch is available at the end of this article).</p>
-<p>Linux performance tools are available as part of the Linux kernel (in the <code>linux-tools</code> package on Debian/Ubuntu). Most of the tools are invoked through the <code>perf</code> command, &agrave; la git. For example, we are going to check where the time is spent when calling the <code>ocamlopt.opt</code> command:</p>
+<p>Linux performance tools are available as part of the Linux kernel (in the <code>linux-tools</code> package on Debian/Ubuntu). Most of the tools are invoked through the <code>perf</code> command, à la git. For example, we are going to check where the time is spent when calling the <code>ocamlopt.opt</code> command:</p>
 <pre><code class="language-bash">perf record -g ./ocamlopt.opt -c -I utils -I parsing -I typing typing/*.ml
 </code></pre>
 <p>This command generates a file <code>perf.data</code> in the current directory, containing all the events that were received during the execution of the command. These events contain the values of the performance counters in the amd64 processor, and the call-chain (backtrace) at the event.</p>

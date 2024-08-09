@@ -1,8 +1,8 @@
 ---
 title: Permanent Computer Scientist Position at CEA LIST - LSL
 description:
-url: http://frama-c.com/%20/jobs/2022-02-01-permanent-computer-scientist-cyber-security-verification.html%20
-date: 2022-02-01T00:00:00-00:00
+url: http://frama-c.com/jobs/2023-10-26-permanent-computer-scientist-abstract-interpretation.html
+date: 2023-10-26T00:00:00-00:00
 preview_image:
 authors:
 - Frama-C

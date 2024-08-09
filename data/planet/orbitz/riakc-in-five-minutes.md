@@ -33,7 +33,7 @@ Now, the code.  The following is a complete CLI tool that will PUT a key and pri
 <i><font color="#9A1900"> * representation</font></i>
 <i><font color="#9A1900"> *)</font></i>
 <b><font color="#0000FF">let</font></b> hex_of_string <font color="#990000">=</font>
-  <b><font color="#000080">String</font></b><font color="#990000">.</font>concat_map <font color="#990000">~</font>f<font color="#990000">:(</font><b><font color="#0000FF">fun</font></b> c <font color="#990000">-&gt;</font> sprintf <font color="#FF0000">&quot;%X&quot;</font> <font color="#990000">(</font><b><font color="#000080">Char</font></b><font color="#990000">.</font>to_int c<font color="#990000">))</font>
+  <b><font color="#000080">String</font></b><font color="#990000">.</font>concat_map <font color="#990000">~</font>f<font color="#990000">:(</font><b><font color="#0000FF">fun</font></b> c <font color="#990000">-&gt;</font> sprintf <font color="#FF0000">"%X"</font> <font color="#990000">(</font><b><font color="#000080">Char</font></b><font color="#990000">.</font>to_int c<font color="#990000">))</font>
 
 <i><font color="#9A1900">(*</font></i>
 <i><font color="#9A1900"> * An Robj can have multiple values in it, each one with its</font></i>
@@ -44,11 +44,11 @@ Now, the code.  The following is a complete CLI tool that will PUT a key and pri
   <b><font color="#000080">List</font></b><font color="#990000">.</font>iter
     <font color="#990000">~</font>f<font color="#990000">:(</font><b><font color="#0000FF">fun</font></b> content <font color="#990000">-&gt;</font>
       <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">module</font></b> <font color="#009900">C</font> <font color="#990000">=</font> <b><font color="#000080">Riakc</font></b><font color="#990000">.</font><b><font color="#000080">Robj</font></b><font color="#990000">.</font><font color="#009900">Content</font> <b><font color="#0000FF">in</font></b>
-      printf <font color="#FF0000">&quot;VALUE: %s\n&quot;</font> <font color="#990000">(</font><b><font color="#000080">C</font></b><font color="#990000">.</font>value content<font color="#990000">))</font>
+      printf <font color="#FF0000">"VALUE: %s\n"</font> <font color="#990000">(</font><b><font color="#000080">C</font></b><font color="#990000">.</font>value content<font color="#990000">))</font>
     contents
 
 <b><font color="#0000FF">let</font></b> fail s <font color="#990000">=</font>
-  printf <font color="#FF0000">&quot;%s\n&quot;</font> s<font color="#990000">;</font>
+  printf <font color="#FF0000">"%s\n"</font> s<font color="#990000">;</font>
   shutdown <font color="#993399">1</font>
 
 <b><font color="#0000FF">let</font></b> exec <font color="#990000">()</font> <font color="#990000">=</font>
@@ -64,7 +64,7 @@ Now, the code.  The following is a complete CLI tool that will PUT a key and pri
     <font color="#990000">~</font>port
     <font color="#990000">(</font><b><font color="#0000FF">fun</font></b> c <font color="#990000">-&gt;</font>
       <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">module</font></b> <font color="#009900">R</font> <font color="#990000">=</font> <b><font color="#000080">Riakc</font></b><font color="#990000">.</font><font color="#009900">Robj</font> <b><font color="#0000FF">in</font></b>
-      <b><font color="#0000FF">let</font></b> content  <font color="#990000">=</font> <b><font color="#000080">R</font></b><font color="#990000">.</font><b><font color="#000080">Content</font></b><font color="#990000">.</font>create <font color="#FF0000">&quot;some random data&quot;</font> <b><font color="#0000FF">in</font></b>
+      <b><font color="#0000FF">let</font></b> content  <font color="#990000">=</font> <b><font color="#000080">R</font></b><font color="#990000">.</font><b><font color="#000080">Content</font></b><font color="#990000">.</font>create <font color="#FF0000">"some random data"</font> <b><font color="#0000FF">in</font></b>
       <b><font color="#0000FF">let</font></b> robj     <font color="#990000">=</font> <b><font color="#000080">R</font></b><font color="#990000">.</font>create <font color="#990000">[]</font> <font color="#990000">|&gt;</font> <b><font color="#000080">R</font></b><font color="#990000">.</font>set_content content <b><font color="#0000FF">in</font></b>
       <i><font color="#9A1900">(*</font></i>
 <i><font color="#9A1900">       * Put takes a bucket, a key, and an optional list of</font></i>
@@ -75,8 +75,8 @@ Now, the code.  The following is a complete CLI tool that will PUT a key and pri
 <i><font color="#9A1900">       *)</font></i>
       <b><font color="#000080">Riakc</font></b><font color="#990000">.</font><b><font color="#000080">Conn</font></b><font color="#990000">.</font>put
         c
-        <font color="#990000">~</font>b<font color="#990000">:</font><font color="#FF0000">&quot;test_bucket&quot;</font>
-        <font color="#990000">~</font>k<font color="#990000">:</font><font color="#FF0000">&quot;test_key&quot;</font>
+        <font color="#990000">~</font>b<font color="#990000">:</font><font color="#FF0000">"test_bucket"</font>
+        <font color="#990000">~</font>k<font color="#990000">:</font><font color="#FF0000">"test_key"</font>
         <font color="#990000">~</font>opts<font color="#990000">:[</font><b><font color="#000080">Riakc</font></b><font color="#990000">.</font><b><font color="#000080">Opts</font></b><font color="#990000">.</font><b><font color="#000080">Put</font></b><font color="#990000">.</font><font color="#009900">Return_body</font><font color="#990000">]</font>
         robj<font color="#990000">)</font>
 
@@ -95,12 +95,12 @@ Now, the code.  The following is a complete CLI tool that will PUT a key and pri
 <i><font color="#9A1900">       *)</font></i>
       <b><font color="#0000FF">let</font></b> vclock <font color="#990000">=</font>
  <b><font color="#000080">Option</font></b><font color="#990000">.</font>value
-   <font color="#990000">~</font>default<font color="#990000">:</font><font color="#FF0000">&quot;&lt;none&gt;&quot;</font>
+   <font color="#990000">~</font>default<font color="#990000">:</font><font color="#FF0000">"&lt;none&gt;"</font>
    <font color="#990000">(</font><b><font color="#000080">Option</font></b><font color="#990000">.</font>map <font color="#990000">~</font>f<font color="#990000">:</font>hex_of_string <font color="#990000">(</font><b><font color="#000080">R</font></b><font color="#990000">.</font>vclock robj<font color="#990000">))</font>
       <b><font color="#0000FF">in</font></b>
-      <b><font color="#0000FF">let</font></b> key <font color="#990000">=</font> <b><font color="#000080">Option</font></b><font color="#990000">.</font>value <font color="#990000">~</font>default<font color="#990000">:</font><font color="#FF0000">&quot;&lt;none&gt;&quot;</font> key <b><font color="#0000FF">in</font></b>
-      printf <font color="#FF0000">&quot;KEY: %s\n&quot;</font> key<font color="#990000">;</font>
-      printf <font color="#FF0000">&quot;VCLOCK: %s\n&quot;</font> vclock<font color="#990000">;</font>
+      <b><font color="#0000FF">let</font></b> key <font color="#990000">=</font> <b><font color="#000080">Option</font></b><font color="#990000">.</font>value <font color="#990000">~</font>default<font color="#990000">:</font><font color="#FF0000">"&lt;none&gt;"</font> key <b><font color="#0000FF">in</font></b>
+      printf <font color="#FF0000">"KEY: %s\n"</font> key<font color="#990000">;</font>
+      printf <font color="#FF0000">"VCLOCK: %s\n"</font> vclock<font color="#990000">;</font>
       print_contents <font color="#990000">(</font><b><font color="#000080">R</font></b><font color="#990000">.</font>contents robj<font color="#990000">);</font>
       shutdown <font color="#993399">0</font>
     <b><font color="#0000FF">end</font></b>
@@ -110,14 +110,14 @@ Now, the code.  The following is a complete CLI tool that will PUT a key and pri
 <i><font color="#9A1900">     * since there aren't really any more semantics to apply</font></i>
 <i><font color="#9A1900">     * to the data if it matches the PB frame.</font></i>
 <i><font color="#9A1900">     *)</font></i>
-    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Bad_conn</font>           <font color="#990000">-&gt;</font> fail <font color="#FF0000">&quot;Bad_conn&quot;</font>
-    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Bad_payload</font>        <font color="#990000">-&gt;</font> fail <font color="#FF0000">&quot;Bad_payload&quot;</font>
-    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Incomplete_payload</font> <font color="#990000">-&gt;</font> fail <font color="#FF0000">&quot;Incomplete_payload&quot;</font>
-    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Notfound</font>           <font color="#990000">-&gt;</font> fail <font color="#FF0000">&quot;Notfound&quot;</font>
-    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Incomplete</font>         <font color="#990000">-&gt;</font> fail <font color="#FF0000">&quot;Incomplete&quot;</font>
-    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Overflow</font>           <font color="#990000">-&gt;</font> fail <font color="#FF0000">&quot;Overflow&quot;</font>
-    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Unknown_type</font>       <font color="#990000">-&gt;</font> fail <font color="#FF0000">&quot;Unknown_type&quot;</font>
-    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Wrong_type</font>         <font color="#990000">-&gt;</font> fail <font color="#FF0000">&quot;Wrong_type&quot;</font>
+    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Bad_conn</font>           <font color="#990000">-&gt;</font> fail <font color="#FF0000">"Bad_conn"</font>
+    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Bad_payload</font>        <font color="#990000">-&gt;</font> fail <font color="#FF0000">"Bad_payload"</font>
+    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Incomplete_payload</font> <font color="#990000">-&gt;</font> fail <font color="#FF0000">"Incomplete_payload"</font>
+    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Notfound</font>           <font color="#990000">-&gt;</font> fail <font color="#FF0000">"Notfound"</font>
+    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Incomplete</font>         <font color="#990000">-&gt;</font> fail <font color="#FF0000">"Incomplete"</font>
+    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Overflow</font>           <font color="#990000">-&gt;</font> fail <font color="#FF0000">"Overflow"</font>
+    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Unknown_type</font>       <font color="#990000">-&gt;</font> fail <font color="#FF0000">"Unknown_type"</font>
+    <font color="#990000">|</font> <font color="#009900">Error</font> `<font color="#009900">Wrong_type</font>         <font color="#990000">-&gt;</font> fail <font color="#FF0000">"Wrong_type"</font>
 
 <b><font color="#0000FF">let</font></b> <font color="#990000">()</font> <font color="#990000">=</font>
   ignore <font color="#990000">(</font>eval <font color="#990000">());</font>

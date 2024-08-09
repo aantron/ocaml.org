@@ -63,7 +63,7 @@ heavy, and even <a href="https://github.com/mirage/irmin/blob/master/README.md#u
 uses</a> require
 multiple functor instantiations<sup role="doc-noteref"><a href="https://kcsrk.info/atom-ocaml.xml#fn:irmin" class="footnote" rel="footnote">1</a></sup>. The primary goal of Ezirmin is to
 provide a defuntorized interface to Irmin, specialized to useful defaults.
-However, as I&rsquo;ve continued to build Ezirmin, it has come to include a collection
+However, as I’ve continued to build Ezirmin, it has come to include a collection
 of useful mergeable data types including counters, queues, ropes, logs, etc. I
 will spend some time describing some of the interesting aspects of these data
 structures.</p>
@@ -82,66 +82,66 @@ structures.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>opam <span class="nb">install </span>ezirmin
 </code></pre></div></div>
 
-<p>Let&rsquo;s fire up <code class="language-plaintext highlighter-rouge">utop</code> and get started:</p>
+<p>Let’s fire up <code class="language-plaintext highlighter-rouge">utop</code> and get started:</p>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">$</span> <span class="n">utop</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="o">#</span><span class="n">require</span> <span class="s2">&quot;ezirmin&quot;</span><span class="p">;;</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="o">#</span><span class="n">require</span> <span class="s2">"ezirmin"</span><span class="p">;;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">open</span> <span class="nn">Lwt</span><span class="p">.</span><span class="nc">Infix</span><span class="p">;;</span>
 </code></pre></div></div>
 
-<p>We&rsquo;ll create a mergeable queue of strings using the Git file system backend
+<p>We’ll create a mergeable queue of strings using the Git file system backend
 rooted at <code class="language-plaintext highlighter-rouge">/tmp/ezirminq</code>:</p>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="k">module</span> <span class="nc">M</span> <span class="o">=</span> <span class="nn">Ezirmin</span><span class="p">.</span><span class="nc">FS_queue</span><span class="p">(</span><span class="nn">Tc</span><span class="p">.</span><span class="nc">String</span><span class="p">);;</span> <span class="c">(* Mergeable queue of strings *)</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">open</span> <span class="nc">M</span><span class="p">;;</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span><span class="n">init</span> <span class="o">~</span><span class="n">root</span><span class="o">:</span><span class="s2">&quot;/tmp/ezirminq&quot;</span> <span class="o">~</span><span class="n">bare</span><span class="o">:</span><span class="bp">true</span> <span class="bp">()</span> <span class="o">&gt;&gt;=</span> <span class="n">master</span><span class="p">);;</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span><span class="n">init</span> <span class="o">~</span><span class="n">root</span><span class="o">:</span><span class="s2">"/tmp/ezirminq"</span> <span class="o">~</span><span class="n">bare</span><span class="o">:</span><span class="bp">true</span> <span class="bp">()</span> <span class="o">&gt;&gt;=</span> <span class="n">master</span><span class="p">);;</span>
 <span class="k">val</span> <span class="n">m</span> <span class="o">:</span> <span class="n">branch</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">abstr</span><span class="o">&gt;</span>
 </code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">m</code> is the master branch of the repository. Ezirmin exposes a key value store,
 where keys are hierarchical paths and values are whatever data types is stored in
-the repo. In this case, the data type is a queue. Let&rsquo;s push some elements into
+the repo. In this case, the data type is a queue. Let’s push some elements into
 the queue:</p>
 
-<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">push</span> <span class="n">m</span> <span class="p">[</span><span class="s2">&quot;home&quot;</span><span class="p">;</span> <span class="s2">&quot;todo&quot;</span><span class="p">]</span> <span class="s2">&quot;buy milk&quot;</span><span class="p">;;</span>
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">push</span> <span class="n">m</span> <span class="p">[</span><span class="s2">"home"</span><span class="p">;</span> <span class="s2">"todo"</span><span class="p">]</span> <span class="s2">"buy milk"</span><span class="p">;;</span>
 <span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="n">push</span> <span class="n">m</span> <span class="p">[</span><span class="s2">&quot;work&quot;</span><span class="p">;</span> <span class="s2">&quot;todo&quot;</span><span class="p">]</span> <span class="s2">&quot;publish ezirmin&quot;</span><span class="p">;;</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="n">push</span> <span class="n">m</span> <span class="p">[</span><span class="s2">"work"</span><span class="p">;</span> <span class="s2">"todo"</span><span class="p">]</span> <span class="s2">"publish ezirmin"</span><span class="p">;;</span>
 <span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="n">to_list</span> <span class="n">m</span> <span class="p">[</span><span class="s2">&quot;home&quot;</span><span class="p">;</span> <span class="s2">&quot;todo&quot;</span><span class="p">];;</span>
-<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;buy milk&quot;</span><span class="p">]</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="n">to_list</span> <span class="n">m</span> <span class="p">[</span><span class="s2">"home"</span><span class="p">;</span> <span class="s2">"todo"</span><span class="p">];;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"buy milk"</span><span class="p">]</span>
 </code></pre></div></div>
 
 <p>The updates to the queue is saved in the Git repository at <code class="language-plaintext highlighter-rouge">/tmp/ezirminq</code>. In
 another terminal,</p>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">$</span> <span class="n">utop</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="o">#</span><span class="n">require</span> <span class="s2">&quot;ezirmin&quot;</span><span class="p">;;</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="o">#</span><span class="n">require</span> <span class="s2">"ezirmin"</span><span class="p">;;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">module</span> <span class="nc">M</span> <span class="o">=</span> <span class="nn">Ezirmin</span><span class="p">.</span><span class="nc">FS_queue</span><span class="p">(</span><span class="nn">Tc</span><span class="p">.</span><span class="nc">String</span><span class="p">);;</span> <span class="c">(* Mergeable queue of strings *)</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">open</span> <span class="nc">M</span><span class="p">;;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">open</span> <span class="nn">Lwt</span><span class="p">.</span><span class="nc">Infix</span><span class="p">;;</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span><span class="n">init</span> <span class="o">~</span><span class="n">root</span><span class="o">:</span><span class="s2">&quot;/tmp/ezirminq&quot;</span> <span class="o">~</span><span class="n">bare</span><span class="o">:</span><span class="bp">true</span> <span class="bp">()</span> <span class="o">&gt;&gt;=</span> <span class="n">master</span><span class="p">);;</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span><span class="n">init</span> <span class="o">~</span><span class="n">root</span><span class="o">:</span><span class="s2">"/tmp/ezirminq"</span> <span class="o">~</span><span class="n">bare</span><span class="o">:</span><span class="bp">true</span> <span class="bp">()</span> <span class="o">&gt;&gt;=</span> <span class="n">master</span><span class="p">);;</span>
 <span class="k">val</span> <span class="n">m</span> <span class="o">:</span> <span class="n">branch</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">abstr</span><span class="o">&gt;</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="n">pop</span> <span class="n">m</span> <span class="p">[</span><span class="s2">&quot;home&quot;</span><span class="p">;</span> <span class="s2">&quot;todo&quot;</span><span class="p">];;</span>
-<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="n">option</span> <span class="o">=</span> <span class="nc">Some</span> <span class="s2">&quot;buy milk&quot;</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="n">pop</span> <span class="n">m</span> <span class="p">[</span><span class="s2">"home"</span><span class="p">;</span> <span class="s2">"todo"</span><span class="p">];;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="n">option</span> <span class="o">=</span> <span class="nc">Some</span> <span class="s2">"buy milk"</span>
 </code></pre></div></div>
 
 <p>For concurrency control, use branches. In the first terminal,</p>
 
-<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">wip</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="o">@@</span> <span class="n">clone_force</span> <span class="n">m</span> <span class="s2">&quot;wip&quot;</span><span class="p">;;</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="n">push</span> <span class="n">wip</span> <span class="p">[</span><span class="s2">&quot;home&quot;</span><span class="p">;</span> <span class="s2">&quot;todo&quot;</span><span class="p">]</span> <span class="s2">&quot;walk dog&quot;</span><span class="p">;;</span>
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">wip</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="o">@@</span> <span class="n">clone_force</span> <span class="n">m</span> <span class="s2">"wip"</span><span class="p">;;</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="n">push</span> <span class="n">wip</span> <span class="p">[</span><span class="s2">"home"</span><span class="p">;</span> <span class="s2">"todo"</span><span class="p">]</span> <span class="s2">"walk dog"</span><span class="p">;;</span>
 <span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="n">push</span> <span class="n">wip</span> <span class="p">[</span><span class="s2">&quot;home&quot;</span><span class="p">;</span> <span class="s2">&quot;todo&quot;</span><span class="p">]</span> <span class="s2">&quot;take out trash&quot;</span><span class="p">;;</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="n">push</span> <span class="n">wip</span> <span class="p">[</span><span class="s2">"home"</span><span class="p">;</span> <span class="s2">"todo"</span><span class="p">]</span> <span class="s2">"take out trash"</span><span class="p">;;</span>
 <span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
 </code></pre></div></div>
 
 <p>The changes are not visible until the branches are merged.</p>
 
-<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">to_list</span> <span class="n">m</span> <span class="p">[</span><span class="s2">&quot;home&quot;</span><span class="p">;</span> <span class="s2">&quot;todo&quot;</span><span class="p">];;</span>
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">to_list</span> <span class="n">m</span> <span class="p">[</span><span class="s2">"home"</span><span class="p">;</span> <span class="s2">"todo"</span><span class="p">];;</span>
 <span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="bp">[]</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="n">merge</span> <span class="n">wip</span> <span class="o">~</span><span class="n">into</span><span class="o">:</span><span class="n">m</span><span class="p">;;</span>
 <span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="n">to_list</span> <span class="n">m</span> <span class="p">[</span><span class="s2">&quot;home&quot;</span><span class="p">;</span> <span class="s2">&quot;todo&quot;</span><span class="p">];;</span>
-<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;walk dog&quot;</span><span class="p">;</span> <span class="s2">&quot;take out trash&quot;</span><span class="p">]</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="n">to_list</span> <span class="n">m</span> <span class="p">[</span><span class="s2">"home"</span><span class="p">;</span> <span class="s2">"todo"</span><span class="p">];;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"walk dog"</span><span class="p">;</span> <span class="s2">"take out trash"</span><span class="p">]</span>
 </code></pre></div></div>
 
 <h2>Merge semantics</h2>
@@ -192,7 +192,7 @@ also manipulate history using the Git command line.</p>
 
 <p>Back in the first terminal:</p>
 
-<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">to_list</span> <span class="n">m</span> <span class="p">[</span><span class="s2">&quot;home&quot;</span><span class="p">;</span> <span class="s2">&quot;todo&quot;</span><span class="p">];;</span>
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">to_list</span> <span class="n">m</span> <span class="p">[</span><span class="s2">"home"</span><span class="p">;</span> <span class="s2">"todo"</span><span class="p">];;</span>
 <span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="bp">[]</span>
 </code></pre></div></div>
 
@@ -202,35 +202,35 @@ programmatically.</p>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">run</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span><span class="p">;;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">repo</span> <span class="o">=</span> <span class="n">run</span> <span class="o">@@</span> <span class="n">init</span> <span class="bp">()</span><span class="p">;;</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Books&quot;</span><span class="p">;</span> <span class="s2">&quot;Ovine Supply Logistics&quot;</span><span class="p">];;</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Books"</span><span class="p">;</span> <span class="s2">"Ovine Supply Logistics"</span><span class="p">];;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">push_msg</span> <span class="o">=</span> <span class="n">push</span> <span class="n">m</span> <span class="o">~</span><span class="n">path</span><span class="p">;;</span>
 
 <span class="n">utop</span> <span class="o">#</span> <span class="k">begin</span>
-  <span class="n">push_msg</span> <span class="s2">&quot;Baa&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span>
-  <span class="n">push_msg</span> <span class="s2">&quot;Baa&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span>
-  <span class="n">push_msg</span> <span class="s2">&quot;Black&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span>
-  <span class="n">push_msg</span> <span class="s2">&quot;Camel&quot;</span>
+  <span class="n">push_msg</span> <span class="s2">"Baa"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span>
+  <span class="n">push_msg</span> <span class="s2">"Baa"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span>
+  <span class="n">push_msg</span> <span class="s2">"Black"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span>
+  <span class="n">push_msg</span> <span class="s2">"Camel"</span>
 <span class="k">end</span><span class="p">;;</span>
 
 <span class="n">utop</span> <span class="o">#</span> <span class="n">to_list</span> <span class="n">m</span> <span class="n">path</span><span class="p">;;</span>
-<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Baa&quot;</span><span class="p">;</span> <span class="s2">&quot;Baa&quot;</span><span class="p">;</span> <span class="s2">&quot;Black&quot;</span><span class="p">;</span> <span class="s2">&quot;Camel&quot;</span><span class="p">]</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Baa"</span><span class="p">;</span> <span class="s2">"Baa"</span><span class="p">;</span> <span class="s2">"Black"</span><span class="p">;</span> <span class="s2">"Camel"</span><span class="p">]</span>
 </code></pre></div></div>
 
-<p>Clearly this is wrong. Let&rsquo;s fix this by reverting to earlier version:</p>
+<p>Clearly this is wrong. Let’s fix this by reverting to earlier version:</p>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">m_1</span><span class="o">::_</span> <span class="o">=</span> <span class="n">run</span> <span class="o">@@</span> <span class="n">predecessors</span> <span class="n">repo</span> <span class="n">m</span><span class="p">;;</span> <span class="c">(** HEAD~1 version *)</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="n">to_list</span> <span class="n">m_1</span> <span class="n">path</span><span class="p">;;</span>
-<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Baa&quot;</span><span class="p">;</span> <span class="s2">&quot;Baa&quot;</span><span class="p">;</span> <span class="s2">&quot;Black&quot;</span><span class="p">]</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Baa"</span><span class="p">;</span> <span class="s2">"Baa"</span><span class="p">;</span> <span class="s2">"Black"</span><span class="p">]</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="n">update_branch</span> <span class="n">m</span> <span class="o">~</span><span class="n">set</span><span class="o">:</span><span class="n">m_1</span><span class="p">;;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="n">to_list</span> <span class="n">m</span> <span class="n">path</span><span class="p">;;</span>
-<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Baa&quot;</span><span class="p">;</span> <span class="s2">&quot;Baa&quot;</span><span class="p">;</span> <span class="s2">&quot;Black&quot;</span><span class="p">]</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Baa"</span><span class="p">;</span> <span class="s2">"Baa"</span><span class="p">;</span> <span class="s2">"Black"</span><span class="p">]</span>
 </code></pre></div></div>
 
-<p>Now that we&rsquo;ve undone the error, we can do the right thing.</p>
+<p>Now that we’ve undone the error, we can do the right thing.</p>
 
-<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">push_msg</span> <span class="s2">&quot;Sheep&quot;</span><span class="p">;;</span>
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">push_msg</span> <span class="s2">"Sheep"</span><span class="p">;;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="n">run</span> <span class="o">@@</span> <span class="n">to_list</span> <span class="n">m</span> <span class="n">path</span><span class="p">;;</span>
-<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Baa&quot;</span><span class="p">;</span> <span class="s2">&quot;Baa&quot;</span><span class="p">;</span> <span class="s2">&quot;Black&quot;</span><span class="p">;</span> <span class="s2">&quot;Sheep&quot;</span><span class="p">]</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Baa"</span><span class="p">;</span> <span class="s2">"Baa"</span><span class="p">;</span> <span class="s2">"Black"</span><span class="p">;</span> <span class="s2">"Sheep"</span><span class="p">]</span>
 </code></pre></div></div>
 
 <h2>Reacting to changes</h2>
@@ -238,15 +238,15 @@ programmatically.</p>
 <p>Ezirmin supports watching a particular key for updates and invoking a callback
 function when there is one.</p>
 
-<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">cb</span> <span class="n">_</span> <span class="o">=</span> <span class="nn">Lwt</span><span class="p">.</span><span class="n">return</span> <span class="p">(</span><span class="n">print_endline</span> <span class="s2">&quot;callback: update to home/todo&quot;</span><span class="p">);;</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="n">watch</span> <span class="n">m</span> <span class="p">[</span><span class="s2">&quot;home&quot;</span><span class="p">;</span> <span class="s2">&quot;todo&quot;</span><span class="p">]</span> <span class="n">cb</span>
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">cb</span> <span class="n">_</span> <span class="o">=</span> <span class="nn">Lwt</span><span class="p">.</span><span class="n">return</span> <span class="p">(</span><span class="n">print_endline</span> <span class="s2">"callback: update to home/todo"</span><span class="p">);;</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="n">watch</span> <span class="n">m</span> <span class="p">[</span><span class="s2">"home"</span><span class="p">;</span> <span class="s2">"todo"</span><span class="p">]</span> <span class="n">cb</span>
 </code></pre></div></div>
 
 <p>The code above installs a listener <code class="language-plaintext highlighter-rouge">cb</code> on the queue at <code class="language-plaintext highlighter-rouge">home/todo</code>, which is
 run every time the queue is updated. This includes local <code class="language-plaintext highlighter-rouge">push</code> and <code class="language-plaintext highlighter-rouge">pop</code>
 operations as well as updates due to merges.</p>
 
-<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">push</span> <span class="n">m</span> <span class="p">[</span><span class="s2">&quot;home&quot;</span><span class="p">;</span> <span class="s2">&quot;todo&quot;</span><span class="p">]</span> <span class="s2">&quot;hang pictures&quot;</span><span class="p">;;</span>
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">push</span> <span class="n">m</span> <span class="p">[</span><span class="s2">"home"</span><span class="p">;</span> <span class="s2">"todo"</span><span class="p">]</span> <span class="s2">"hang pictures"</span><span class="p">;;</span>
 <span class="n">callback</span><span class="o">:</span> <span class="n">update</span> <span class="k">to</span> <span class="n">home</span><span class="o">/</span><span class="n">todo</span>
 <span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
 </code></pre></div></div>
@@ -300,7 +300,7 @@ sharing for free: two blocks with the same content will have the have the same
 hash. This not only applies for individual blocks, but also for
 linked-structures. For example,</p>
 
-<p align="center"> <img src="https://kcsrk.info/assets/linked_list.png" alt="Hash list"/> </p>
+<p align="center"> <img src="https://kcsrk.info/assets/linked_list.png" alt="Hash list"> </p>
 
 <p>The linked list above is uniquely identified by hash <code class="language-plaintext highlighter-rouge">h0</code> since <code class="language-plaintext highlighter-rouge">h0</code> was
 computed from the content <code class="language-plaintext highlighter-rouge">a</code> and the hash of the tail of the list <code class="language-plaintext highlighter-rouge">h1</code>. No
@@ -359,7 +359,7 @@ convergence. Every abelian group is also an inverse semigroup. Hence, the above
 strategy is correct. Merges can also be equivalently viewed as a <a href="https://arxiv.org/pdf/1311.3903.pdf">pushout in
 category theory</a>, leading to the same
 result. I will have to save the discussion of the category theoretic reasoning
-of Irmin merges for another time. But Liam O&rsquo;Connor has written a concise
+of Irmin merges for another time. But Liam O’Connor has written a concise
 <a href="http://liamoc.net/posts/2015-11-10-patch-theory.html">post</a> on the theory of patches
 which is worth a read.</p>
 
@@ -369,7 +369,7 @@ which is worth a read.</p>
 need not be unique. One way to end up with multiple lowest common ancestors is
 criss-cross merges. For example, consider the history graph below:</p>
 
-<p align="center"> <img src="https://kcsrk.info/assets/criss_cross.png" alt="Criss cross merge"/> </p>
+<p align="center"> <img src="https://kcsrk.info/assets/criss_cross.png" alt="Criss cross merge"> </p>
 
 <p>The counter at some key in the <code class="language-plaintext highlighter-rouge">master</code> was initially <code class="language-plaintext highlighter-rouge">0</code>. The branch <code class="language-plaintext highlighter-rouge">wip</code> was
 cloned at this point. The counter is incremented by <code class="language-plaintext highlighter-rouge">1</code> at <code class="language-plaintext highlighter-rouge">master</code> and <code class="language-plaintext highlighter-rouge">2</code> at
@@ -429,33 +429,33 @@ with its predecessor.</p>
 resulting in a DAG that captures the causal history. The following sequence of
 operations:</p>
 
-<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="o">#</span><span class="n">require</span> <span class="s2">&quot;ezirmin&quot;</span><span class="p">;;</span>
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="o">#</span><span class="n">require</span> <span class="s2">"ezirmin"</span><span class="p">;;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">open</span> <span class="nn">Lwt</span><span class="p">.</span><span class="nc">Infix</span><span class="p">;;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">module</span> <span class="nc">M</span> <span class="o">=</span> <span class="nn">Ezirmin</span><span class="p">.</span><span class="nc">Memory_log</span><span class="p">(</span><span class="nn">Tc</span><span class="p">.</span><span class="nc">String</span><span class="p">);;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">open</span> <span class="nc">M</span><span class="p">;;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span><span class="n">init</span> <span class="bp">()</span> <span class="o">&gt;&gt;=</span> <span class="n">master</span><span class="p">);;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span>
-  <span class="n">append</span> <span class="n">m</span> <span class="bp">[]</span> <span class="s2">&quot;m0&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
-  <span class="n">append</span> <span class="n">m</span> <span class="bp">[]</span> <span class="s2">&quot;m1&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
-  <span class="n">clone_force</span> <span class="n">m</span> <span class="s2">&quot;wip&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">w</span> <span class="o">-&gt;</span>
-  <span class="n">append</span> <span class="n">w</span> <span class="bp">[]</span> <span class="s2">&quot;w0&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
-  <span class="n">append</span> <span class="n">m</span> <span class="bp">[]</span> <span class="s2">&quot;m2&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
+  <span class="n">append</span> <span class="n">m</span> <span class="bp">[]</span> <span class="s2">"m0"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
+  <span class="n">append</span> <span class="n">m</span> <span class="bp">[]</span> <span class="s2">"m1"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
+  <span class="n">clone_force</span> <span class="n">m</span> <span class="s2">"wip"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">w</span> <span class="o">-&gt;</span>
+  <span class="n">append</span> <span class="n">w</span> <span class="bp">[]</span> <span class="s2">"w0"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
+  <span class="n">append</span> <span class="n">m</span> <span class="bp">[]</span> <span class="s2">"m2"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
   <span class="n">merge</span> <span class="n">w</span> <span class="o">~</span><span class="n">into</span><span class="o">:</span><span class="n">m</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
-  <span class="n">append</span> <span class="n">w</span> <span class="bp">[]</span> <span class="s2">&quot;w1&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
-  <span class="n">append</span> <span class="n">w</span> <span class="bp">[]</span> <span class="s2">&quot;w2&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
-  <span class="n">append</span> <span class="n">m</span> <span class="bp">[]</span> <span class="s2">&quot;m3&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
-  <span class="n">append</span> <span class="n">m</span> <span class="bp">[]</span> <span class="s2">&quot;m4&quot;</span>
+  <span class="n">append</span> <span class="n">w</span> <span class="bp">[]</span> <span class="s2">"w1"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
+  <span class="n">append</span> <span class="n">w</span> <span class="bp">[]</span> <span class="s2">"w2"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
+  <span class="n">append</span> <span class="n">m</span> <span class="bp">[]</span> <span class="s2">"m3"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
+  <span class="n">append</span> <span class="n">m</span> <span class="bp">[]</span> <span class="s2">"m4"</span>
 <span class="p">);;</span>
 </code></pre></div></div>
 
 <p>results in the heap below.</p>
 
-<p align="center"> <img src="https://kcsrk.info/assets/log.png" alt="Merge log"/> </p>
+<p align="center"> <img src="https://kcsrk.info/assets/log.png" alt="Merge log"> </p>
 
 <p>Read traverses the log in reverse chronological order.</p>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="n">read_all</span> <span class="n">m</span> <span class="bp">[]</span><span class="p">;;</span>
-<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;m4&quot;</span><span class="p">;</span> <span class="s2">&quot;m3&quot;</span><span class="p">;</span> <span class="s2">&quot;m2&quot;</span><span class="p">;</span> <span class="s2">&quot;w0&quot;</span><span class="p">;</span> <span class="s2">&quot;m1&quot;</span><span class="p">;</span> <span class="s2">&quot;m0&quot;</span><span class="p">]</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="kt">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"m4"</span><span class="p">;</span> <span class="s2">"m3"</span><span class="p">;</span> <span class="s2">"m2"</span><span class="p">;</span> <span class="s2">"w0"</span><span class="p">;</span> <span class="s2">"m1"</span><span class="p">;</span> <span class="s2">"m0"</span><span class="p">]</span>
 </code></pre></div></div>
 
 <p>This implementation has <code class="language-plaintext highlighter-rouge">O(1)</code> appends and <code class="language-plaintext highlighter-rouge">O(1)</code> merges, resulting in much
@@ -463,7 +463,7 @@ better performance. The graph below compares the blob log implementation and
 this linked implementation with file system backend by performing repeated
 appends to the log and measuring the latency for append.</p>
 
-<p align="center"> <img src="https://kcsrk.info/assets/perf_log.png" alt="Perf log"/> </p>
+<p align="center"> <img src="https://kcsrk.info/assets/perf_log.png" alt="Perf log"> </p>
 
 <p>Each point represents the average latency for the previous 100 appends. The
 results show that the append latency for linked implementation remains
@@ -486,7 +486,7 @@ the merge algorithm works out the smallest subtrees where the modification
 occurred. If the modifications are on distinct subtrees, then the merge is
 trivial.</p>
 
-<p align="center"> <img src="https://kcsrk.info/assets/merge_rope.png" alt="merge rope"/> </p>
+<p align="center"> <img src="https://kcsrk.info/assets/merge_rope.png" alt="merge rope"> </p>
 
 <p>If the modification is on the same subtree, then the algorithm delegates to
 merge the contents. This problem has been well studied under the name of
@@ -508,42 +508,42 @@ and then apply the transformed patch of the other branch to get the result tree.
 
 <p>For example,</p>
 
-<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="o">#</span><span class="n">require</span> <span class="s2">&quot;ezirmin&quot;</span><span class="p">;;</span>
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">utop</span> <span class="o">#</span> <span class="o">#</span><span class="n">require</span> <span class="s2">"ezirmin"</span><span class="p">;;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">open</span> <span class="nn">Lwt</span><span class="p">.</span><span class="nc">Infix</span><span class="p">;;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">open</span> <span class="nn">Ezirmin</span><span class="p">.</span><span class="nc">Memory_rope_string</span><span class="p">;;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span><span class="n">init</span> <span class="bp">()</span> <span class="o">&gt;&gt;=</span> <span class="n">master</span><span class="p">);;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">t</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span>
-  <span class="n">make</span> <span class="s2">&quot;abc&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">t</span> <span class="o">-&gt;</span>
+  <span class="n">make</span> <span class="s2">"abc"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">t</span> <span class="o">-&gt;</span>
   <span class="n">write</span> <span class="n">m</span> <span class="bp">[]</span> <span class="n">t</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
   <span class="nn">Lwt</span><span class="p">.</span><span class="n">return</span> <span class="n">t</span>
 <span class="p">);;</span>
-<span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">w</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span><span class="n">clone_force</span> <span class="n">m</span> <span class="s2">&quot;w&quot;</span><span class="p">);;</span>
+<span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">w</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span><span class="n">clone_force</span> <span class="n">m</span> <span class="s2">"w"</span><span class="p">);;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="k">let</span> <span class="n">_</span> <span class="o">=</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span>
-  <span class="n">set</span> <span class="n">t</span> <span class="mi">1</span> <span class="k">'</span><span class="n">x'</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">t'</span> <span class="c">(* &quot;axc&quot; *)</span> <span class="o">-&gt;</span>
+  <span class="n">set</span> <span class="n">t</span> <span class="mi">1</span> <span class="k">'</span><span class="n">x'</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">t'</span> <span class="c">(* "axc" *)</span> <span class="o">-&gt;</span>
   <span class="n">write</span> <span class="n">m</span> <span class="bp">[]</span> <span class="n">t'</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
 
-  <span class="n">insert</span> <span class="n">t</span> <span class="mi">1</span> <span class="s2">&quot;y&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">t'</span> <span class="c">(* &quot;aybc&quot; *)</span><span class="o">-&gt;</span>
+  <span class="n">insert</span> <span class="n">t</span> <span class="mi">1</span> <span class="s2">"y"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">t'</span> <span class="c">(* "aybc" *)</span><span class="o">-&gt;</span>
   <span class="n">write</span> <span class="n">w</span> <span class="bp">[]</span> <span class="n">t'</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
 
-  <span class="n">merge</span> <span class="n">w</span> <span class="o">~</span><span class="n">into</span><span class="o">:</span><span class="n">m</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="c">(* &quot;ayxc&quot; *)</span> <span class="o">-&gt;</span>
+  <span class="n">merge</span> <span class="n">w</span> <span class="o">~</span><span class="n">into</span><span class="o">:</span><span class="n">m</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">_</span> <span class="c">(* "ayxc" *)</span> <span class="o">-&gt;</span>
   <span class="n">merge</span> <span class="n">m</span> <span class="o">~</span><span class="n">into</span><span class="o">:</span><span class="n">w</span>
 <span class="p">);;</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span>
   <span class="n">read</span> <span class="n">m</span> <span class="bp">[]</span> <span class="o">&gt;&gt;=</span> <span class="k">function</span>
-  <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">&quot;impossible&quot;</span>
+  <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">"impossible"</span>
   <span class="o">|</span> <span class="nc">Some</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="n">flush</span> <span class="n">r</span> <span class="o">&gt;|=</span> <span class="k">fun</span> <span class="n">s</span> <span class="o">-&gt;</span>
-  <span class="nn">Printf</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;m is </span><span class="se">\&quot;</span><span class="s2">%s</span><span class="se">\&quot;\n</span><span class="s2">&quot;</span> <span class="n">s</span>
+  <span class="nn">Printf</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"m is </span><span class="se">\"</span><span class="s2">%s</span><span class="se">\"\n</span><span class="s2">"</span> <span class="n">s</span>
 <span class="p">);;</span>
 <span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
-<span class="n">m</span> <span class="n">is</span> <span class="s2">&quot;ayxc&quot;</span>
+<span class="n">m</span> <span class="n">is</span> <span class="s2">"ayxc"</span>
 <span class="n">utop</span> <span class="o">#</span> <span class="nn">Lwt_main</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span>
   <span class="n">read</span> <span class="n">w</span> <span class="bp">[]</span> <span class="o">&gt;&gt;=</span> <span class="k">function</span>
-  <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">&quot;impossible&quot;</span>
+  <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">"impossible"</span>
   <span class="o">|</span> <span class="nc">Some</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="n">flush</span> <span class="n">r</span> <span class="o">&gt;|=</span> <span class="k">fun</span> <span class="n">s</span> <span class="o">-&gt;</span>
-  <span class="nn">Printf</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;w is </span><span class="se">\&quot;</span><span class="s2">%s</span><span class="se">\&quot;\n</span><span class="s2">&quot;</span> <span class="n">s</span>
+  <span class="nn">Printf</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"w is </span><span class="se">\"</span><span class="s2">%s</span><span class="se">\"\n</span><span class="s2">"</span> <span class="n">s</span>
 <span class="p">)</span>
 <span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
-<span class="n">w</span> <span class="n">is</span> <span class="s2">&quot;ayxc&quot;</span>
+<span class="n">w</span> <span class="n">is</span> <span class="s2">"ayxc"</span>
 </code></pre></div></div>
 
 <p>The combination of mergeable ropes with OT gets the best of both worlds.
@@ -573,13 +573,13 @@ operations such as <code class="language-plaintext highlighter-rouge">deposit</c
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li role="doc-endnote">
-      <p>Things are indeed improving with a cleaner API in the <a href="https://github.com/mirage/irmin/pull/397">1.0 release</a>.&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:irmin" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p>Things are indeed improving with a cleaner API in the <a href="https://github.com/mirage/irmin/pull/397">1.0 release</a>.&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:irmin" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li role="doc-endnote">
-      <p>Push is currently <a href="https://github.com/mirage/irmin/issues/379">broken</a>. But given that Irmin is compatible with git, one can use <code class="language-plaintext highlighter-rouge">git-push</code> to publish changes.&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:push" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p>Push is currently <a href="https://github.com/mirage/irmin/issues/379">broken</a>. But given that Irmin is compatible with git, one can use <code class="language-plaintext highlighter-rouge">git-push</code> to publish changes.&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:push" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li role="doc-endnote">
-      <p>The same principle underlies the irrefutability of <a href="https://en.wikipedia.org/wiki/Blockchain_(database)">blockchain</a>. No block can be changed without reflecting the change in every subsequent block.&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:blockchain" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p>The same principle underlies the irrefutability of <a href="https://en.wikipedia.org/wiki/Blockchain_(database)">blockchain</a>. No block can be changed without reflecting the change in every subsequent block.&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:blockchain" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
   </ol>
 </div>

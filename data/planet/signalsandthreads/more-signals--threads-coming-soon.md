@@ -9,5 +9,5 @@ authors:
 source:
 ---
 
-<p>Signals &amp; Threads is back, and we have a fun season of topics lined up, including: Building better abstractions for design and user interfaces, the role of writing in a technical organization, the approach that different languages take to memory management...and more. We hope you&rsquo;ll join us. The first episode drops September 1st.</p>
+<p>Signals &amp; Threads is back, and we have a fun season of topics lined up, including: Building better abstractions for design and user interfaces, the role of writing in a technical organization, the approach that different languages take to memory management...and more. We hope you’ll join us. The first episode drops September 1st.</p>
 

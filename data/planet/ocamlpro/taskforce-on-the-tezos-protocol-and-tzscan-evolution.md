@@ -5,8 +5,8 @@ description: As we are preparing to work on the Tezos Protocol, we're still acti
   accounts. We'd like to allow people to see who is contributing to the network and
   to understand the distribution of rolls, rights, etc. For sta...
 url: https://ocamlpro.com/blog/2018_04_13_taskforce_on_the_tezos_protocol_and_tzscan_evolution
-date: 2018-04-13T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2018-04-13T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Michael Laporte\n  "
 source:

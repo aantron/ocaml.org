@@ -5,8 +5,8 @@ description: OPAM 1.1.0 is ready, and we are shipping a release candidate for pa
   September beta release, and quite a few stability and usability improvements. Thanks
   to all beta-testers who have taken the time to file repor...
 url: https://ocamlpro.com/blog/2013_10_14_opam_1.1.0_release_candidate_out
-date: 2013-10-14T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2013-10-14T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:

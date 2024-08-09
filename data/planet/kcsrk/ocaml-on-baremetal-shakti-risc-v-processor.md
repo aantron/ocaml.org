@@ -11,7 +11,7 @@ source:
 
 <p>It has been 3 months since I joined <a href="https://www.iitm.ac.in/">IIT Madras</a> and it
 has been good fun so far. Along with the members of the <a href="http://rise.cse.iitm.ac.in/">RISE
-group</a>, we&rsquo;ve initiated a project to build secure
+group</a>, we’ve initiated a project to build secure
 applications on top of secure extensions of the open-source
 <a href="http://shakti.org.in/">Shakti</a> RISC-V processor ecosystem. Unsurprisingly, my
 language of choice to build the applications is <a href="http://www.ocaml.org/">OCaml</a>.
@@ -35,7 +35,7 @@ dockerhub:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> iitmshakti/riscv-ocaml-baremetal:0.1.0
 
 <span class="c"># Write your program</span>
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'let _ = print_endline &quot;A camel treads on hardware!&quot;'</span> <span class="o">&gt;</span> hello.ml
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'let _ = print_endline "A camel treads on hardware!"'</span> <span class="o">&gt;</span> hello.ml
 <span class="c"># Compile for Shakti</span>
 <span class="nv">$ </span>ocamlopt <span class="nt">-output-obj</span> <span class="nt">-o</span> payload.o hello.ml
 <span class="nv">$ </span>file payload.o
@@ -100,6 +100,6 @@ who is a visiting student at IIT Madras on a semester away from Leibniz
 University Hannover,
 <a href="https://www.linkedin.com/in/arjun-menon/?originalSubdomain=in">Arjun</a>, Lavanya,
 Ambika, <a href="http://www.cse.iitm.ac.in/~chester/">Chester</a>, and the rest of the
-Shakti team. The RISC-V port of OCaml is developed and maintained by <a href="https://nojb.github.io/">Nicol&aacute;s
-Ojeda B&auml;r</a>.</p>
+Shakti team. The RISC-V port of OCaml is developed and maintained by <a href="https://nojb.github.io/">Nicolás
+Ojeda Bär</a>.</p>
 

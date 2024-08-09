@@ -16,5 +16,4 @@ Revisiting the post on Braun Trees I noticed that, while pedagogical, the implem
 let rec rep compare e = function
 | N (_, (N (el, _, _) as l), E)
   when compare el e  &lt; 0 -&gt;
-  N (el, rep compare e l, E)
-| N 
+  N (el, rep compare e l, E

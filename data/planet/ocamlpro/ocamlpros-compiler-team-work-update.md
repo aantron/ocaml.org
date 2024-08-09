@@ -5,14 +5,14 @@ description: The OCaml compiler team at OCamlPro is happy to present some of the
   a new framework for optimizations in the compiler, called Flambda2, aiming at solving
   the shortcomings that became apparent in the Flambda optimi...
 url: https://ocamlpro.com/blog/2019_08_30_ocamlpros_compiler_team_work_update
-date: 2019-08-30T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2019-08-30T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Vincent Laviron\n  "
 source:
 ---
 
-<p><img src="https://ocamlpro.com/blog/assets/img/picture_cpu_compiler.jpeg" alt=""/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/picture_cpu_compiler.jpeg" alt=""></p>
 <p>The OCaml compiler team at OCamlPro is happy to present some of the work recently done jointly with JaneStreet's team.</p>
 <p>A lot of work has been done towards a new framework for optimizations in the compiler, called Flambda2, aiming at solving the shortcomings that became apparent in the Flambda optimization framework (see below for more details). While that work is in progress, the team also worked on some more short-term improvements, notably on the current Flambda optimization framework, as well as some compiler modifications that will benefit Flambda2.</p>
 <blockquote>
@@ -32,7 +32,7 @@ source:
 </ul>
 <p>All of those restrictions have recently been reworked and formalized based on work from Alban Reynaud during an internship at Inria, reviewed and completed by Gabriel Scherer and Jeremy Yallop.</p>
 <p>Unfortunately, this work only covers checking whether the recursive definitions are allowed or not; actual compilation is done later in the compiler, in one place for bytecode and another for native code, and these pieces of code have not been linked with the new check so there have been a few cases where the check allowed code that wasn't actually compiled correctly.</p>
-<p>Since we didn't want to deal with it directly in our new version of Flambda, we had started working on a patch to move the compilation of recursive values up in the compilation pipeline, before the split between bytecode and native code. After some amount of hacking (we discovered that compilation of classes creates recursive value bindings that would not pass the earlier recursive check&hellip;), we have a patch that is mostly ready for review and will soon start engaging with the rest of the compiler team with the aim of integrating it into the compiler.</p>
+<p>Since we didn't want to deal with it directly in our new version of Flambda, we had started working on a patch to move the compilation of recursive values up in the compilation pipeline, before the split between bytecode and native code. After some amount of hacking (we discovered that compilation of classes creates recursive value bindings that would not pass the earlier recursive check…), we have a patch that is mostly ready for review and will soon start engaging with the rest of the compiler team with the aim of integrating it into the compiler.</p>
 <h4>Separate compilation of recursive modules, compilation units as functors</h4>
 <p>Some OCaml developers like to encapsulate each type definition in its own module, with an interface that can expose the needed types and functions, while abstracting away as much of the actual implementation as possible. It is then common to have each of these modules in its own file, to simplify management and avoid unseemly big files.</p>
 <p>However, this breaks down when one needs to define several types that depend on each other. The usual solutions are either to use recursive modules, which have the drawback of requiring all the modules to be in the same compilation unit, leading to very big files (we have seen a real case of a more than 10,000-lines file), or make each module parametric in the other modules, translating them into functors, and then instantiate all the functors when building the outwards-facing interface.</p>
@@ -83,10 +83,10 @@ let _ =
 </blockquote>
 <p>Vincent Laviron (2 September 2019 at 16 h 22 min):</p>
 <blockquote>
-<p>OCamlPro is not working on multicore OCaml. It is still being worked on elsewhere, with efforts concentrated around OCaml Labs, but I don&rsquo;t have more information than what is publicly available. All of the work we described here is not expected to interfere with multicore.</p>
+<p>OCamlPro is not working on multicore OCaml. It is still being worked on elsewhere, with efforts concentrated around OCaml Labs, but I don’t have more information than what is publicly available. All of the work we described here is not expected to interfere with multicore.</p>
 </blockquote>
 <p>Lindsay (25 September 2020 at 20 h 20 min):</p>
 <blockquote>
-<p>Thanks for your continued work on the compiler and tooling! Am curious if there is any news regarding the item &ldquo;Separate compilation of recursive modules&rdquo;.</p>
+<p>Thanks for your continued work on the compiler and tooling! Am curious if there is any news regarding the item “Separate compilation of recursive modules”.</p>
 </blockquote>
 

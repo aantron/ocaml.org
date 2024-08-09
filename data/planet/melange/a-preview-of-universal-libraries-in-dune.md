@@ -11,14 +11,14 @@ source:
 
 <p>I recently shared a <a href="https://melange.re/blog/whats-2024-brought-to-melange-so-far.html">2024 progress
 update</a> about our work on Melange. In
-that message, I briefly wrote about &quot;universal libraries&quot; in Dune, the ability
+that message, I briefly wrote about "universal libraries" in Dune, the ability
 to write a shared OCaml / Melange codebase while varying specific module
 implementations, flags, preprocessing steps, etc. according to the compilation
 target.</p>
-<p>I also promised to dive deeper into what &quot;universal libraries&quot; are all about,
+<p>I also promised to dive deeper into what "universal libraries" are all about,
 and the new use cases that they unlock in Dune. Keep reading for an in-depth
 look at the history behind this new feature rolling out in Dune 3.16.</p>
-<hr/>
+<hr>
 <h2 tabindex="-1">The Bird's-eye View <a href="https://melange.re/blog/feed.rss#the-bird-s-eye-view" class="header-anchor" aria-label="Permalink to &quot;The Bird's-eye View&quot;"></a></h2>
 <p>Let's walk backwards from our end-goal: having a shared OCaml / Melange
 codebase that can render React.js components on the server, such that the
@@ -48,7 +48,7 @@ apply different preprocessing steps and/or flags.</li>
 same library, based on their compilation target. If we try to use it in a
 real-world codebase, we'll also find the need to specify different
 preprocessing definitions, compilation flags, the set of modules belonging to
-the library &ndash; effectively most fields in the <code>(library ..)</code> stanza.</p>
+the library – effectively most fields in the <code>(library ..)</code> stanza.</p>
 <h2 tabindex="-1">A First <s>Hack</s> Approach <a href="https://melange.re/blog/feed.rss#a-first-hack-approach" class="header-anchor" aria-label="Permalink to &quot;A First ~~Hack~~ Approach&quot;"></a></h2>
 <p>We concluded that it would be desirable to write two library definitions. That
 would allow us to configure each <code>(library ..)</code> stanza field separately,
@@ -94,11 +94,11 @@ each directory.</li>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">;; module `C` has a specific Melange implementation</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">rule</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">with-stdout-to</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> c.ml</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">echo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &quot;let backend = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">melange</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)))</span></span></code></pre>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">echo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "let backend = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">melange</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)))</span></span></code></pre>
 </div><p>This worked until it didn't: we quickly ran into a limitation in <code>(copy_files ..)</code> (<a href="https://github.com/ocaml/dune/issues/9709" target="_blank" rel="noreferrer">dune#9709</a>). Because this
 stanza operates in the build directory, it was impossible to exclude some of
 build artifacts that get generated with <code>.ml{,i}</code> extensions from the copy glob
-&ndash; Dune uses extensions such as <code>.pp.ml</code> and <code>.re.pp.ml</code> as targets of its
+– Dune uses extensions such as <code>.pp.ml</code> and <code>.re.pp.ml</code> as targets of its
 <a href="https://dune.readthedocs.io/en/stable/overview.html#term-dialect" target="_blank" rel="noreferrer">dialect</a> and
 <a href="https://dune.readthedocs.io/en/stable/reference/preprocessing-spec.html" target="_blank" rel="noreferrer">preprocessing</a>
 phases.</p>
@@ -130,7 +130,7 @@ configuration overhead;</li>
 dependency on Melange, which should really be optional for native-only
 consumers.</li>
 <li>Extensive usage of <code>(copy_files ..)</code> as shared in the example above breaks
-editor integration and &quot;jump to definition&quot;; Merlin and OCaml-LSP don't track
+editor integration and "jump to definition"; Merlin and OCaml-LSP don't track
 the original source in this scenario.</li>
 </ul>
 <h2 tabindex="-1">Testing a New Solution <a href="https://melange.re/blog/feed.rss#testing-a-new-solution" class="header-anchor" aria-label="Permalink to &quot;Testing a New Solution&quot;"></a></h2>
@@ -183,7 +183,7 @@ If we need to vary <code>C</code>'s implementation, we can express that in Dune 
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">action</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">with-stdout-to</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   %{target}</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">echo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &quot;let backend = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">OCaml</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)))</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">echo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "let backend = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">OCaml</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)))</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">enabled_if</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> %{context_name} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">default</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)))</span></span>
 <span class="line"></span>
@@ -193,7 +193,7 @@ If we need to vary <code>C</code>'s implementation, we can express that in Dune 
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">action</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">with-stdout-to</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   %{target}</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">echo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &quot;let backend = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">Melange</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)))</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">echo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "let backend = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">Melange</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)))</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">enabled_if</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> %{context_name} melange)))</span></span></code></pre>
 </div><p>In short, both libraries get a module <code>C</code>. <code>c.ml</code>'s contents vary according to

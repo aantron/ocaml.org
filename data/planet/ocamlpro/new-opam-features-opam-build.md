@@ -5,8 +5,8 @@ description: 'UPDATE: after discussions following this post, this feature was ab
   The new opam 2.0 release, currently in beta, introduces several new features. This
   post gets into some detail on the new opam build comma...'
 url: https://ocamlpro.com/blog/2017_03_16_new_opam_features_opam_build
-date: 2017-03-16T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2017-03-16T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:
@@ -78,7 +78,7 @@ The opam files to use can also be explicitely selected on the command-line.</p>
 <h3>Implementation details</h3>
 <p>The choice of the compiler, on automatic initialisation, is either explicit,
 using the <code>--compiler</code> option, or automatic. In the latter case, the default
-selection is used (see <code>opam init --help</code>, section &quot;CONFIGURATION FILE&quot; for
+selection is used (see <code>opam init --help</code>, section "CONFIGURATION FILE" for
 details), but a compiler compatible with the local packages found is searched
 from that. This allows, for example, to choose a system compiler when available
 and compatible, avoiding a recompilation of OCaml.</p>
@@ -121,7 +121,7 @@ works.</p>
 <p>Sharing compilers, or other packages across switches is not supported at the moment. However:</p>
 <p>You can still use the global <code>system compiler</code> on any switch, local or not, to avoid its recompilation
 What is planned, as a first step, for after the 2.0 release, is to add a cache of compiled packages. Hooks are already in place to allow this, and opam is able to track the files installed by each package already, so the most difficult part is probably going to be the relocation issues with OCaml itself.</p>
-<p>A cache is an easier solution to warrant consistency: with shared switches, the problem of reinstallations and keeping everything consistent gets much more complex &mdash; what happens when you change the compiler of your &ldquo;master&rdquo; switch ?</p>
+<p>A cache is an easier solution to warrant consistency: with shared switches, the problem of reinstallations and keeping everything consistent gets much more complex — what happens when you change the compiler of your “master” switch ?</p>
 </blockquote>
 <p>Hez Carty (20 March 2017 at 16 h 46 min):</p>
 <blockquote>

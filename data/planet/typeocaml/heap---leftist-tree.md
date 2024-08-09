@@ -10,7 +10,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2015/03/leftist.jpg#hero" alt="leftist"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/leftist.jpg#hero" alt="leftist"></p>
 
 <p><a href="https://en.wikipedia.org/wiki/Heap_(data_structure)">Heap</a> is one of most important data structure, where the minimum of all elements can always be easily and efficiently retrieved. </p>
 
@@ -18,7 +18,7 @@ source:
 
 <p>In imperative world, <a href="https://en.wikipedia.org/wiki/Binary_heap">binary heap</a> (implemented via <em>array</em>) is frequently used. Here is an example:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/binary_heap-2.jpg" alt="binary_heap"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/binary_heap-2.jpg" alt="binary_heap"></p>
 
 <p>The (min) heap on the right hand side is a full binary tree indeed. The root is always the min and recursively, a root (of any sub tree) is always smaller than its two children. Note that <strong>we just need to keep partial order for heap</strong>, not total order like binary search tree. For example, <code>1</code> needs to be smaller than its two children, but the relationship between the two children does not matter. Thus, the left child and right child can be either <code>10</code> and <code>3</code> or <code>3</code> and <code>10</code>. Moreover, the big node <code>17</code> can be in the right branch of <code>1</code> while its parent <code>3</code> is smaller than <code>10</code>. </p>
 
@@ -64,7 +64,7 @@ source:
 <li><em>merge</em>: <code>O(n)</code></li>
 </ol>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/list_based-2.jpg" alt="list_based"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/list_based-2.jpg" alt="list_based"></p>
 
 <p>We can see that in this design, the list is fully sorted all the time. And also it is a tree, with just one branch always. </p>
 
@@ -85,7 +85,7 @@ source:
 
 <p>The creation of the type is easy, but it is hard to implement those operations. Let's take <em>insert</em> as an example.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/binary_tree_heap.jpg" alt="insert"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/binary_tree_heap.jpg" alt="insert"></p>
 
 <p>The <em>attempt 1</em> in the diagram above illustrates the idea behind the array based binary heap. When we insert an element, ideally we should put it in the last available place at the bottom level or the first place at a brand new level if already full, then we do a <em>pull up</em> by comparing and swapping with parents one by one. Obviously, we cannot do it in a pure tree structure since it is not efficient to find the initial place.</p>
 
@@ -93,7 +93,7 @@ source:
 
 <p>We will also have problem in <em>delete_min</em>.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/binary_tree_heap_delete.jpg" alt="delete_min"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/binary_tree_heap_delete.jpg" alt="delete_min"></p>
 
 <p>If we delete the root (min), then we will have two binary trees. Then the question is how to merge them? Do we just take all elements of one of the trees, and insert every element into the other tree? Will this way be efficient even if we are able to design a good <em>insert</em>? </p>
 
@@ -117,7 +117,7 @@ source:
 
 <p>In order to maintain this property, each node has a <strong>rank</strong>, which indidates <strong>the length of the path between the node and the right most leaf</strong>. For example, </p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/leftist_rank.jpg" alt="rank"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/leftist_rank.jpg" alt="rank"></p>
 
 <p>The way of keep ranks up-to-date is like this:</p>
 
@@ -132,7 +132,7 @@ source:
 
 <h2>Insert</h2>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/leftist_insert-2.jpg" alt="insert"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/leftist_insert-2.jpg" alt="insert"></p>
 
 <p>We can see that by always putting the higher rank to the left can make the right branch being shortest all the time. Actually, this strategy is how this design of tree based heap got the name <em>leftist</em>, i.e., more nodes intend to be on the left side. </p>
 
@@ -155,7 +155,7 @@ source:
 
 <p>Again, let's see an example.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/03/leftist_merge.jpg" alt="merge"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/03/leftist_merge.jpg" alt="merge"></p>
 
 <h2>Code</h2>
 
@@ -192,11 +192,11 @@ let rank = function Leaf -&gt; 0 | Node (_,_,_,r) -&gt; r
 <pre><code class="ocaml">let insert x t = merge (singleton x) t
 
 let get_min = function  
-  | Leaf -&gt; failwith &quot;empty&quot;
+  | Leaf -&gt; failwith "empty"
   | Node (_, k, _, _) -&gt; k
 
 let delete_min = function  
-  | Leaf -&gt; failwith &quot;empty&quot;
+  | Leaf -&gt; failwith "empty"
   | Node (l, _, r, _) -&gt; merge l r
 </code></pre>
 

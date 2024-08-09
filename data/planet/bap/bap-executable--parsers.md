@@ -63,7 +63,7 @@ is no stated otherwise, all types and definitions are belong to a
 
 <h2>Backend Plugin</h2>
 
-<p>The ELF backend code&rsquo;s job is to abstract away the ELF and DWARF
+<p>The ELF backend code’s job is to abstract away the ELF and DWARF
 specific details into a unified <code class="language-plaintext highlighter-rouge">image</code> type.  Our Elf backend plugin
 is divided into two libraries:</p>
 
@@ -80,7 +80,7 @@ module. <a href="https://github.com/BinaryAnalysisPlatform/bap/blob/master/lib/b
 submodule exposes a rich set of type definitions, and
 <a href="https://github.com/BinaryAnalysisPlatform/bap/blob/master/lib/bap_elf/elf_parse.ml">Elf.Parse</a>
 provides an interface to the parser proper. The parser is
-inspired from Jyun-Yan You&rsquo;s parser, but modified to avoid
+inspired from Jyun-Yan You’s parser, but modified to avoid
 unnecessary copies of data for efficiency. As such, the parser
 does not typically return actual data, but offsets to queried
 data.  Of course you can always retrieve the data when needed
@@ -90,7 +90,7 @@ using the utility functions <code class="language-plaintext highlighter-rouge">E
   </li>
   <li>
     <p><code class="language-plaintext highlighter-rouge">bap.dwarf</code> that allows one to lookup dwarf symbols in a file. At
-the time of this writing, our elf parsing library doesn&rsquo;t support
+the time of this writing, our elf parsing library doesn’t support
 symtable reading.</p>
   </li>
 </ul>
@@ -117,13 +117,13 @@ the BAP tree itself. Recall that
 <a href="https://binaryanalysisplatform.github.io/bap_plugins">BAP plugins</a> are found via the
 <code class="language-plaintext highlighter-rouge">META</code> file, and are of the form:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugin_system = &quot;bap.subsystem&quot;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugin_system = "bap.subsystem"
 </code></pre></div></div>
 
 <p>In order to add a new executable image backend, you should attach your
 plugin to the  <code class="language-plaintext highlighter-rouge">image</code> subystem, i.e.,:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugin_system = &quot;bap.image&quot;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugin_system = "bap.image"
 </code></pre></div></div>
 
 <p>We recommend you do so by adding the above command as part of your
@@ -133,7 +133,7 @@ oasis build.  Please see our
 <p><strong>Note:</strong> We adhere to the principle functions in BAP do not
 occasionally throw exceptions. Instead, if function can fail, then it
 will specify it explicitly in its type, by returning a value of type
-<a href="https://blogs.janestreet.com/ocaml-core/110.01.00/doc/core_kernel/#Or_error">&lsquo;a Or_error.t</a>,
+<a href="https://blogs.janestreet.com/ocaml-core/110.01.00/doc/core_kernel/#Or_error">‘a Or_error.t</a>,
 that is described in their
 <a href="https://blogs.janestreet.com/how-to-fail-introducing-or-error-dot-t/">blog</a>
 as well as in the Real World OCaml

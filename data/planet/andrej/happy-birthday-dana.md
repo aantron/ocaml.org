@@ -2,7 +2,7 @@
 title: Happy birthday, Dana!
 description:
 url: http://math.andrej.com/2022/10/11/happy-birthday-dana/
-date: 2022-10-11T07:00:00-00:00
+date: 2022-10-10T22:00:00-00:00
 preview_image:
 authors:
 - Andrej Bauer
@@ -24,11 +24,11 @@ I heard it first when I was Dana's student. In 2008 I asked Dana to recount it i
 
 <p><strong>One of your famous results is the construction of a domain $D_\infty$ which is isomorphic to its own continuous function space $D_\infty \to D_\infty$. How did you invent it?</strong></p>
 
-<p><strong>D. S.:</strong> $D_\infty$ did not come until later. I remember it was a quiet Saturday in November 1969 at home. I had proved that if domains $D$ and $E$ have a countable basis of finite elements, then so does the continuous function space $D \to E$. In understanding how often the basis for $D \to E$ was more complicated than the bases for $D$ and $E$, I then thought, &ldquo;Oh, no, there must exist a bad $D$ with a basis so 'dense' that the basis for $D \to D$ is just as complicated &ndash; in fact, isomorphic.&rdquo; But I never proved the existence of models exactly that way because I soon saw that the iteration of $X \mapsto (X \to X)$ constructed a suitable basis in the limit. That was the actual $D_\infty$ construction.</p>
+<p><strong>D. S.:</strong> $D_\infty$ did not come until later. I remember it was a quiet Saturday in November 1969 at home. I had proved that if domains $D$ and $E$ have a countable basis of finite elements, then so does the continuous function space $D \to E$. In understanding how often the basis for $D \to E$ was more complicated than the bases for $D$ and $E$, I then thought, “Oh, no, there must exist a bad $D$ with a basis so 'dense' that the basis for $D \to D$ is just as complicated – in fact, isomorphic.” But I never proved the existence of models exactly that way because I soon saw that the iteration of $X \mapsto (X \to X)$ constructed a suitable basis in the limit. That was the actual $D_\infty$ construction.</p>
 
-<p><strong>Why do you say &ldquo;oh no&rdquo;? It was an important discovery!</strong></p>
+<p><strong>Why do you say “oh no”? It was an important discovery!</strong></p>
 
-<p><strong>D. S.:</strong> Since, I had claimed for years that the type-free $\lambda$-calculus has no &ldquo;mathematical&rdquo; models (as distinguished from term models), I said to myself, &ldquo;Oh, no, now I will have to eat my own words!&rdquo;</p>
+<p><strong>D. S.:</strong> Since, I had claimed for years that the type-free $\lambda$-calculus has no “mathematical” models (as distinguished from term models), I said to myself, “Oh, no, now I will have to eat my own words!”</p>
 
 <p><strong>The existence of term models is guaranteed by the Church-Rosser theorem from 1936 which implies that the untyped lambda calculus is consistent?</strong></p>
 
@@ -36,7 +36,7 @@ I heard it first when I was Dana's student. In 2008 I asked Dana to recount it i
 
 <p><strong>The domain $D_\infty$ is an involved construction which gives a model for the calculus with both $\beta$- and $\eta$-rules. Is it easier to give a model which satisfies the $\beta$-rule only?</strong></p>
 
-<p><strong>D. S.:</strong> Since the powerset of natural numbers $P\omega$ (with suitable topology) is universal for countably-based $T_0$-spaces, and since a continuous lattice is a retract of every superspace, it follows that $P\omega \to P\omega$ is a retract of $P\omega$. This gives a non-$\eta$ model without any infinity-limit constructions. But continuous lattices had not yet been invented in 1969 &ndash; that I knew of.</p>
+<p><strong>D. S.:</strong> Since the powerset of natural numbers $P\omega$ (with suitable topology) is universal for countably-based $T_0$-spaces, and since a continuous lattice is a retract of every superspace, it follows that $P\omega \to P\omega$ is a retract of $P\omega$. This gives a non-$\eta$ model without any infinity-limit constructions. But continuous lattices had not yet been invented in 1969 – that I knew of.</p>
 
 <p><strong>Where can the interested readers read more about this topic?</strong></p>
 

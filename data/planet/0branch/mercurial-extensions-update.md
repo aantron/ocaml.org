@@ -16,14 +16,14 @@ source:
       <a href="https://blog.0branch.com/index.html">#</a> February  5, 2020
     </div>
   </div>
-  <hr/>
+  <hr>
   <div>
     <p>In my <a href="https://blog.0branch.com/posts/2020-02-03-bitbucket-migration.html">previous post</a>, I mentioned that a couple of old Mercurial extensions are archived on this server: <a href="http://hg.0branch.com/hg-prettypaths">hg-prettypaths</a> and <a href="http://hg.0branch.com/hg-persona/">hg-persona</a>.</p>
 <p>Both have now been lightly tidied and updated to work with newer versions of Mercurial (tested on 4.5.3, 5.3).</p>
   </div>
 </div>
 
-<hr/>
+<hr>
 
 <div></div>
 

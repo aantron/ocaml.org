@@ -15,7 +15,7 @@ OCaml compiler that emits JavaScript.</p>
 emitting more ES6 constructs, supports more JavaScript builtins, improves error
 handling, and makes using Dune virtual libraries fully supported. Read on for
 more details.</p>
-<hr/>
+<hr>
 <h2 tabindex="-1">Embracing OCaml 5.2 <a href="https://melange.re/blog/feed.rss#embracing-ocaml-5-2" class="header-anchor" aria-label="Permalink to &quot;Embracing OCaml 5.2&quot;"></a></h2>
 <p>OCaml 5.2 was released just last week. With Melange 4, you can now leverage all
 the power and enhancements in this latest OCaml version. We've upgraded the

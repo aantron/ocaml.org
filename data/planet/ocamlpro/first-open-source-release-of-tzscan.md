@@ -5,8 +5,8 @@ description: In October 2017, after the Tezos ICO, OCamlPro started to work on a
   to the community, after the node itself, of course. We used it internally to monitor
   the Tezos alphanet, until its official public release...
 url: https://ocamlpro.com/blog/2018_11_08_first_open_source_release_of_tzscan
-date: 2018-11-08T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2018-11-08T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Fabrice Le Fessant\n  "
 source:
@@ -35,7 +35,7 @@ v3</a>.</p>
 </li>
 </ul>
 <p>The project contains:</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/TzScanOS.png" alt="TZScan architecture schema"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/TzScanOS.png" alt="TZScan architecture schema"></p>
 <ul>
 <li>
 <p>The blockchain crawler, used to monitor the blockchain, and fill a PostgreSQL database</p>
@@ -66,7 +66,7 @@ be to translate TzScan in your language : check the file
 for a list of strings to translate, and
 <a href="https://gitlab.com/tzscan/tzscan/blob/master/static/lang-fr.json">lang-fr.json</a>
 for a partial translation!</p>
-<h2>OCamlPro&rsquo;s services around TzScan</h2>
+<h2>OCamlPro’s services around TzScan</h2>
 <p>TzScan OS can be used to monitor private/enterprise deployments of Tezos. OCamlPro is available to help and support such deployments.</p>
 <h2>Acknowledgments</h2>
 <p>We are thankful to the Tezos Foundation and Ryan Jesperson for their support!</p>

@@ -20,7 +20,7 @@ source:
 a library for Typed Regular Expressions
 that allows matching, printing and routing. While many people expressed interest,
 the syntax was (rightfully) considered too obtuse for practical usage.
-Thanks to Petter A. &lsquo;<a href="https://github.com/paurkedal">paurkedal</a>&rsquo; Urkedal, this should now be fixed!</p>
+Thanks to Petter A. ‘<a href="https://github.com/paurkedal">paurkedal</a>’ Urkedal, this should now be fixed!</p>
 
 
         

@@ -10,8 +10,8 @@ source:
 ---
 
 
-<p>Version 8.4pl4 of Coq fixes several bugs of version 8.4pl3 including 3 critical ones. More information to be found in the <a href="https://coq.inria.fr/distrib/V8.4pl4/CHANGES">CHANGES</a> file.</p>
-<p>WARNING: The current logic of Coq is now known to be inconsistent with Axiom prop_extensionality :<br/>
+<p>Version 8.4pl4 of Coq fixes several bugs of version 8.4pl3 including 3 critical ones. More information to be found in the <a href="https://coq-distrib.s3-website.fr-par.scw.cloud/V8.4pl4/CHANGES">CHANGES</a> file.</p>
+<p>WARNING: The current logic of Coq is now known to be inconsistent with Axiom prop_extensionality :<br>
 forall A B:Prop, (A &lt;-&gt; B) -&gt; A = B.</p>
 
  

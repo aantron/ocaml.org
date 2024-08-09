@@ -16,24 +16,24 @@ source:
       <a href="https://blog.0branch.com/index.html">#</a> May 18, 2020
     </div>
   </div>
-  <hr/>
+  <hr>
   <div>
     <p>Tom Dickey released <a href="http://invisible-island.net/vile">vile</a> 9.8u yesterday (148 files changed, 13,530 insertions, 6,791 deletions).</p>
-<p>Alongside the usual improvements and fixes, 9.8u includes a new <code>smartcase</code> mode<a href="https://blog.0branch.com/rss.xml#fn1" class="footnote-ref"><sup>1</sup></a> for treating regex searches as case insensitive unless uppercase characters are included in the search string. This is similar to nvi&rsquo;s <code>iclower</code> (when used in conjunction with <code>ignorecase</code>):</p>
+<p>Alongside the usual improvements and fixes, 9.8u includes a new <code>smartcase</code> mode<a href="https://blog.0branch.com/rss.xml#fn1" class="footnote-ref"><sup>1</sup></a> for treating regex searches as case insensitive unless uppercase characters are included in the search string. This is similar to nvi’s <code>iclower</code> (when used in conjunction with <code>ignorecase</code>):</p>
 <pre><code>smartcase (scs)
        Overrides the setting of ignorecase when the pattern contains
        uppercase characters. (B)</code></pre>
 <p>Full release notes are <a href="http://invisible-island.net/vile/CHANGES.html#index-v9_8u">here</a>.</p>
 <section class="footnotes">
-<hr/>
+<hr>
 <ol>
-<li><p>Thanks to Brendan O&rsquo;Dea for implementing this.<a href="https://blog.0branch.com/rss.xml#fnref1" class="footnote-back">&#8617;</a></p></li>
+<li><p>Thanks to Brendan O’Dea for implementing this.<a href="https://blog.0branch.com/rss.xml#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
   </div>
 </div>
 
-<hr/>
+<hr>
 
 <div></div>
 

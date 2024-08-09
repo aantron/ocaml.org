@@ -12,7 +12,7 @@ source:
 
 
 <div>
-  <b>Why the concept is not good enough</b><br/>&nbsp;
+  <b>Why the concept is not good enough</b><br>&nbsp;
 </div>
 
 <div>
@@ -99,8 +99,7 @@ that backs the lexers generated with ocamllex. We now have to
 use <code>bytes</code> for the core of this buffer. There are three
 functions in <code>Lexing</code> for creating new buffers:
 
-<pre>
-val from_channel : in_channel -&gt; lexbuf
+<pre>val from_channel : in_channel -&gt; lexbuf
 val from_string : string -&gt; lexbuf
 val from_function : (string -&gt; int -&gt; int) -&gt; lexbuf
 </pre>
@@ -108,8 +107,7 @@ val from_function : (string -&gt; int -&gt; int) -&gt; lexbuf
 The first observation is that we'll better offer two more constructors
 to the users of this module:
 
-<pre>
-val from_bytes : bytes -&gt; lexbuf
+<pre>val from_bytes : bytes -&gt; lexbuf
 val from_bytes_function : (bytes -&gt; int -&gt; int) -&gt; lexbuf
 </pre>
 
@@ -119,8 +117,7 @@ and don't offer these functions to the users of the module. However,
 it's unavoidable anyway for <code>from_channel</code>, because I/O
 buffers are of course <code>bytes</code>:
 
-<pre>
-let from_channel ch =
+<pre>let from_channel ch =
   from_bytes_function (Pervasives.input ch)
 </pre>
 
@@ -156,8 +153,7 @@ We just allow that <code>bytes</code> can officially be
 coerced to <code>string</code>:
 </p>
 
-<pre>
-let s = (b : bytes :&gt; string)
+<pre>let s = (b : bytes :&gt; string)
 </pre>
 
 <p>
@@ -167,16 +163,15 @@ this buffer can be mutated, and this mutation can be observed through
 the <code>string</code> type:
 </p>
 
-<pre>
-let mutable_string() =
+<pre>let mutable_string() =
   let b = Bytes.make 1 'X' in
   let s = (b :&gt; string) in
   (s, Bytes.set 0)
 
 let (s, set) = mutable_string()
-(* s is now &quot;X&quot; *)
+(* s is now "X" *)
 let () = set 'Y'
-(* s is now &quot;Y&quot; *)
+(* s is now "Y" *)
 </pre>
 
 <p>
@@ -193,8 +188,7 @@ explained at the example of the <code>Lexing</code> module: It is now
 sufficient when we implement <code>Lexing.from_string</code>, because
 <code>bytes</code> can always be coerced to <code>string</code>:
 
-</p><pre>
-let from_bytes s =
+</p><pre>let from_bytes s =
   from_string (s :&gt; string)
 </pre>
 
@@ -207,8 +201,7 @@ This can be avoided with a variation: Add a third type
 <code>stringlike</code> as the common supertype of both
 <code>string</code> and <code>bytes</code>. So we allow:
 
-</p><pre>
-let sl1 = (s : string :&gt; stringlike)
+</p><pre>let sl1 = (s : string :&gt; stringlike)
 let sl2 = (b : bytes :&gt; stringlike)
 </pre>
 
@@ -228,15 +221,13 @@ a <code>stringlike</code> behind the back of this API
 need to be compatible to both <code>string</code> and <code>bytes</code>.
 In the <code>Lexing</code> example, we would just define
 
-</p><pre>
-val from_stringlike : stringlike -&gt; lexbuf
+</p><pre>val from_stringlike : stringlike -&gt; lexbuf
 val from_stringlike_function : (stringlike -&gt; int -&gt; int) -&gt; lexbuf
 </pre>
 
 and then reduce the other constructors to just these two, e.g.
 
-<pre>
-let from_string s =
+<pre>let from_string s =
   from_stringlike (s :&gt; stringlike)
 
 let from_bytes b =
@@ -270,8 +261,7 @@ for some operating systems when used for I/O)
 <p>
 So let's define:
 
-</p><pre>
-type bytes =
+</p><pre>type bytes =
   (char,Bigarray.int8_unsigned_elt,Bigarray.c_layout) Bigarray.Array1.t
 </pre>
 
@@ -305,7 +295,7 @@ seems to be very attractive: back <code>bytes</code> by bigarrays,
 and provide an <code>stringlike</code> supertype for easing the
 programming of application buffers.
 
-<img src="http://blog.camlcity.org/files/img/blog/bytes1_bug.gif" width="1" height="1"/>
+<img src="http://blog.camlcity.org/files/img/blog/bytes1_bug.gif" width="1" height="1">
 
 
 </div>

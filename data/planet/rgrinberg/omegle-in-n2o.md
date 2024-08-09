@@ -9,7 +9,7 @@ authors:
 source:
 ---
 
-<p>Recently I&rsquo;ve been messing around with a new and exciting web framework
+<p>Recently I’ve been messing around with a new and exciting web framework
 in erlang called N2O. This framework appeals to me for a few reasons.
 These include:</p>
 

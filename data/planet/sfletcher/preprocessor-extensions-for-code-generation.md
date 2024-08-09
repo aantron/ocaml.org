@@ -10,29 +10,27 @@ authors:
 source:
 ---
 
-
-<html>
-  <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html><head>
     
     <title>PPX</title>
   </head>
   <body>
   <h2>Preprocessor extensions for code generation</h2>
-  <p>&quot;A Guide to Extension Points in OCaml&quot;[1] provides a great
-  &quot;quick-start&quot; on using the OCaml extension points API to implement
+  <p>"A Guide to Extension Points in OCaml"[1] provides a great
+  "quick-start" on using the OCaml extension points API to implement
   preprocessor extensions for abstract syntax tree rewrites. This post
   picks up where that tutorial leaves off by showing how to write a
   ppx that does code generation.
   </p>
   <p>The problem treated here is one posed in Whitequark's blog :
-  &quot;Implement a syntax extension that would accept type declarations of
+  "Implement a syntax extension that would accept type declarations of
   the form 
   <code class="code">type t = A [@id 1] | B of int [@id 4] [@@id_of]</code> 
   to generate a function mapping a value of type <code class="code">t</code> to its
-  integer representation.&quot;
+  integer representation."
   </p>
 
-  <h2>Implementing the &quot;<code class="code">id_of</code>&quot; ppx</h2>
+  <h2>Implementing the "<code class="code">id_of</code>" ppx</h2>
 
   <h3>The basic strategy</h3>
   <p>In the OCaml parse tree, structures are lists of structure
@@ -67,7 +65,7 @@ source:
    default_mapper <span class="keyword">with</span> structure = structure_mapper
 }
 
-<span class="keyword">let</span> () = register <span class="string">&quot;id_of&quot;</span> id_of_mapper</code></pre>
+<span class="keyword">let</span> () = register <span class="string">"id_of"</span> id_of_mapper</code></pre><p></p>
   <p>
   This program goes just a little bit further
   though. Any <code class="code">@id</code> or <code class="code">@@id_of</code> attributes that
@@ -96,7 +94,7 @@ source:
     type_declaration = type_declaration_mapper;
     constructor_declaration = constructor_declaration_mapper
 }</code></pre>
-  
+  <p></p>
   <h3>Implementing the mappings</h3>
   <p>To warm up, lets start with the easy mappers.</p>
   <p>The role of <code class="code">type_declaration_mapper</code> is a function
@@ -107,16 +105,16 @@ source:
     (mapper : mapper)
     (decl : type_declaration) : type_declaration  =
   <span class="keyword">match</span> decl <span class="keyword">with</span>
-    <span class="comment">(*Case of an inductive type &quot;t&quot;*)</span>
-  <span class="keywordsign">|</span> {ptype_name = {txt = <span class="string">&quot;t&quot;</span>; _};
+    <span class="comment">(*Case of an inductive type "t"*)</span>
+  <span class="keywordsign">|</span> {ptype_name = {txt = <span class="string">"t"</span>; _};
      ptype_kind = <span class="constructor">Ptype_variant</span> constructor_declarations;
      ptype_attributes;_} <span class="keywordsign">-&gt;</span>
     <span class="keyword">let</span> (_, attrs) =
-      <span class="constructor">List</span>.partition (<span class="keyword">fun</span> ({txt;_},_) <span class="keywordsign">-&gt;</span>txt=<span class="string">&quot;id_of&quot;</span>) ptype_attributes <span class="keyword">in</span>
+      <span class="constructor">List</span>.partition (<span class="keyword">fun</span> ({txt;_},_) <span class="keywordsign">-&gt;</span>txt=<span class="string">"id_of"</span>) ptype_attributes <span class="keyword">in</span>
     {(default_mapper.type_declaration mapper decl)
     <span class="keyword">with</span> ptype_attributes=attrs}
-  <span class="comment">(*Not an inductive type named &quot;t&quot;*)</span>
-  <span class="keywordsign">|</span> _ <span class="keywordsign">-&gt;</span> default_mapper.type_declaration mapper decl</code></pre>
+  <span class="comment">(*Not an inductive type named "t"*)</span>
+  <span class="keywordsign">|</span> _ <span class="keywordsign">-&gt;</span> default_mapper.type_declaration mapper decl</code></pre><p></p>
   <p><code class="code">constructor_declaration_mapper</code> is analogous
   to <code class="code">type_declaration_mapper</code> above but this time
   its <code class="code">@id</code> attributes that are removed.
@@ -126,26 +124,26 @@ source:
   <span class="keyword">match</span> decl <span class="keyword">with</span>
   <span class="keywordsign">|</span> {pcd_name={loc; _}; pcd_attributes; _} <span class="keywordsign">-&gt;</span>
     <span class="keyword">let</span> (_, attrs) =
-      <span class="constructor">List</span>.partition (<span class="keyword">fun</span> ({txt;_}, _) <span class="keywordsign">-&gt;</span> txt=<span class="string">&quot;id&quot;</span>) pcd_attributes  <span class="keyword">in</span>
+      <span class="constructor">List</span>.partition (<span class="keyword">fun</span> ({txt;_}, _) <span class="keywordsign">-&gt;</span> txt=<span class="string">"id"</span>) pcd_attributes  <span class="keyword">in</span>
     {(default_mapper.constructor_declaration mapper decl)
-    <span class="keyword">with</span> pcd_attributes=attrs}</code></pre>
+    <span class="keyword">with</span> pcd_attributes=attrs}</code></pre><p></p>
   <p>Now to the raison d'etre of the
   ppx, <code class="code">structure_mapper</code>. 
   </p>
   <p>First, a utility function that computes from
   a <code class="code">constructor_declaration</code> with an <code class="code">@id</code>
   attribute, a (function) <code class="code">case</code> for it. For example,
-  suppose &quot;<code class="code">Bar of int [@id 4]</code>&quot; is the constructor
+  suppose "<code class="code">Bar of int [@id 4]</code>" is the constructor
   declaration, then the <code class="code">case</code> to be computed is the AST
-  corresponding to the code &quot;<code class="code">| Bar _ -&gt; 4</code>&quot;.
+  corresponding to the code "<code class="code">| Bar _ -&gt; 4</code>".
   </p><pre><code class="code">  <span class="keyword">let</span> case_of_constructor_declaration :
       constructor_declaration <span class="keywordsign">-&gt;</span> case =  <span class="keyword">function</span>
     <span class="keywordsign">|</span> {pcd_name={txt;loc};pcd_args;pcd_attributes; _} <span class="keywordsign">-&gt;</span>
-      <span class="keyword">match</span> <span class="constructor">List</span>.filter (<span class="keyword">fun</span> ({txt;_}, _) <span class="keywordsign">-&gt;</span> txt=<span class="string">&quot;id&quot;</span>) pcd_attributes <span class="keyword">with</span>
-      <span class="comment">(*No &quot;@id&quot;*)</span>
+      <span class="keyword">match</span> <span class="constructor">List</span>.filter (<span class="keyword">fun</span> ({txt;_}, _) <span class="keywordsign">-&gt;</span> txt=<span class="string">"id"</span>) pcd_attributes <span class="keyword">with</span>
+      <span class="comment">(*No "@id"*)</span>
       <span class="keywordsign">|</span> [] <span class="keywordsign">-&gt;</span>
-        raise (<span class="constructor">Location</span>.<span class="constructor">Error</span> (<span class="constructor">Location</span>.error ~loc <span class="string">&quot;[@id] : Missing&quot;</span>))
-      <span class="comment">(*Single &quot;@id&quot;*)</span>
+        raise (<span class="constructor">Location</span>.<span class="constructor">Error</span> (<span class="constructor">Location</span>.error ~loc <span class="string">"[@id] : Missing"</span>))
+      <span class="comment">(*Single "@id"*)</span>
       <span class="keywordsign">|</span> [(_, payload)] <span class="keywordsign">-&gt;</span>
         <span class="keyword">begin</span> <span class="keyword">match</span> payload <span class="keyword">with</span>
           <span class="keywordsign">|</span> <span class="constructor">PStr</span> [{pstr_desc=<span class="constructor">Pstr_eval</span> ({pexp_desc=
@@ -159,12 +157,12 @@ source:
               (<span class="constructor">Exp</span>.constant (<span class="constructor">Pconst_integer</span> (id, <span class="constructor">None</span>)))
           <span class="keywordsign">|</span> _ <span class="keywordsign">-&gt;</span>
             raise (<span class="constructor">Location</span>.<span class="constructor">Error</span> (<span class="constructor">Location</span>.error ~loc
-            <span class="string">&quot;[@id] : Bad (or missing) argument (should be int e.g. [@id 4])&quot;</span>))
+            <span class="string">"[@id] : Bad (or missing) argument (should be int e.g. [@id 4])"</span>))
         <span class="keyword">end</span>
-      <span class="comment">(*Many &quot;@id&quot;s*)</span>
+      <span class="comment">(*Many "@id"s*)</span>
       <span class="keywordsign">|</span> (_ :: _) <span class="keywordsign">-&gt;</span>
         raise (<span class="constructor">Location</span>.<span class="constructor">Error</span> (<span class="constructor">Location</span>.error ~loc
-        <span class="string">&quot;[@id] : Multiple occurences&quot;</span>))</code></pre>
+        <span class="string">"[@id] : Multiple occurences"</span>))</code></pre><p></p>
   <p>One more utility function is required.</p>
   <p><code class="code">eval_structure_item item acc</code> computes structure
   items to push on the front of <code class="code">acc</code>. If <code class="code">item</code>
@@ -183,12 +181,12 @@ source:
     <span class="keyword">begin</span>
       <span class="keyword">match</span> type_decl <span class="keyword">with</span>
       <span class="comment">(*Case where the type identifer is [t]*)</span>
-      <span class="keywordsign">|</span> {ptype_name = {txt = <span class="string">&quot;t&quot;</span>; _};
+      <span class="keywordsign">|</span> {ptype_name = {txt = <span class="string">"t"</span>; _};
          ptype_kind = <span class="constructor">Ptype_variant</span> constructor_declarations;
          ptype_attributes;
          _} <span class="keywordsign">-&gt;</span>
         <span class="keyword">begin</span>
-          <span class="keyword">match</span> <span class="constructor">List</span>.filter (<span class="keyword">fun</span> ({txt;_},_) <span class="keywordsign">-&gt;</span>txt=<span class="string">&quot;id_of&quot;</span>)
+          <span class="keyword">match</span> <span class="constructor">List</span>.filter (<span class="keyword">fun</span> ({txt;_},_) <span class="keywordsign">-&gt;</span>txt=<span class="string">"id_of"</span>)
             ptype_attributes
           <span class="keyword">with</span>
           <span class="comment">(*No [@@id_of]*)</span>
@@ -208,7 +206,7 @@ source:
             <span class="keyword">let</span> id_of : structure_item =
               <span class="constructor">Str</span>.value <span class="constructor">Nonrecursive</span> [
                 <span class="constructor">Vb</span>.mk
-                  (<span class="constructor">Pat</span>.var {txt=<span class="string">&quot;id_of&quot;</span>; loc=(!default_loc)})
+                  (<span class="constructor">Pat</span>.var {txt=<span class="string">"id_of"</span>; loc=(!default_loc)})
                   (<span class="constructor">Exp</span>.function_ cases)] <span class="keyword">in</span>
 
             default_mapper.structure_item mapper item :: id_of :: acc
@@ -219,13 +217,13 @@ source:
   <span class="comment">(*Case this structure item is something other than a single type
     declaration*)</span>
   <span class="keywordsign">|</span> _ <span class="keywordsign">-&gt;</span> default_mapper.structure_item mapper item :: acc</code></pre>
-  
+  <p></p>
   <p>Finally we can write <code class="code">structure_mapper</code> itself as a
   simple fold over a structure.
   </p><pre><code class="code"><span class="keyword">let</span> structure_mapper
     (mapper : mapper)
     (structure : structure) : structure =
-  <span class="constructor">List</span>.fold_right (eval_structure_item mapper)structure []</code></pre>
+  <span class="constructor">List</span>.fold_right (eval_structure_item mapper)structure []</code></pre><p></p>
  <h3>Building and testing</h3>
   <p>So that's it, this preprocessor extension is complete. Assuming
   the code is contained in a file called <code class="code">ppx_id_of.ml</code> it
@@ -233,7 +231,7 @@ source:
   </p><pre>ocamlc -o ppx_id_of.exe  -I +compiler-libs ocamlcommon.cma ppx_id_of.ml</pre>
   When built, it can be tested with a command like
   <code class="code"> ocamlc -dsource -ppx ppx_id_of.exe test.ml</code>.
-  
+  <p></p>
   <p>
   For example, when invoked on the following program,
 </p><pre><code class="code"><span class="keyword">type</span> t =
@@ -278,16 +276,16 @@ source:
                           <span class="keyword">let</span> id_of = <span class="keyword">function</span> <span class="keywordsign">|</span> <span class="constructor">U</span>  <span class="keywordsign">-&gt;</span> 0  <span class="keyword">end</span>
       <span class="keyword">end</span>
   <span class="keyword">end</span></code></pre>
-  
-  <hr/>
+  <p></p>
+  <hr>
   <p>
-    References:<br/>
-     [1] <a href="https://whitequark.org/blog/2014/04/16/a-guide-to-extension-points-in-ocaml/">&quot;A
-     Guide to Extension Points in OCaml&quot; -- Whitequark (blog post
+    References:<br>
+     [1] <a href="https://whitequark.org/blog/2014/04/16/a-guide-to-extension-points-in-ocaml/">"A
+     Guide to Extension Points in OCaml" -- Whitequark (blog post
      2014)</a>
   </p>
-  </body>
-</html>
+  
 
 
 
+</body></html>

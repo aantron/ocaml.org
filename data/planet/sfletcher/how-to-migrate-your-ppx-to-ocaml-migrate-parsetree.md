@@ -10,9 +10,7 @@ authors:
 source:
 ---
 
-
-<html>
-  <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html><head>
     
     <title>OCaml migrate parse tree</title>
   </head>
@@ -28,7 +26,7 @@ source:
   as written, exhibits a problem : new releases of the OCaml compiler
   are generally accompanied by evolutions of the OCaml parse tree. The
   effect of this is, a ppx written against a specific version of the
-  compiler will &quot;break&quot; in the presence of later releases of the
+  compiler will "break" in the presence of later releases of the
   compiler. As pointed out in [3], the use of ppx's in the OCaml
   eco-system these days is ubiquitous. If each new release of the
   OCaml compiler required sychronized updates of each and every ppx
@@ -41,8 +39,8 @@ source:
   from one OCaml version to another. This allows the ppx rewriter to
   write against a specific version of the parsetree and lets the
   library take care of rolling parsetrees backwards and forwards in
-  versions as necessary.  In this way, the resulting ppx is &quot;forward
-  compatible&quot; with newer OCaml versions without requiring ppx code
+  versions as necessary.  In this way, the resulting ppx is "forward
+  compatible" with newer OCaml versions without requiring ppx code
   updates.
   </p>
   <p>To get the <code>ppx_id_of</code> code from the earlier blog post
@@ -68,26 +66,26 @@ source:
    .                    .                   .
 *)</span>
 
-<span class="keyword">let</span> () = <span class="constructor">Driver</span>.register ~name:<span class="string">&quot;id_of&quot;</span> (<span class="keyword">module</span> <span class="constructor">OCaml_402</span>) id_of_mapper
+<span class="keyword">let</span> () = <span class="constructor">Driver</span>.register ~name:<span class="string">"id_of"</span> (<span class="keyword">module</span> <span class="constructor">OCaml_402</span>) id_of_mapper
 </code></pre> The complete code for this article is available
 online <a href="https://github.com/shayne-fletcher/zen/tree/master/ocaml/ppx_id_of/v2">here</a>
 and as a bonus, includes a
 minimal <a href="https://jbuilder.readthedocs.io/en/latest/"><code>jbuilder</code></a>
 build system demonstrating just how well the OCaml tool-chain comes
 together these days.
-  
-  <hr/>
+  <p></p>
+  <hr>
   <p>
-    References:<br/>
-     [1] <a href="https://whitequark.org/blog/2014/04/16/a-guide-to-extension-points-in-ocaml/">&quot;A
-     Guide to Extension Points in OCaml&quot; -- Whitequark (blog post
-     2014)</a><br/>
-     [2] <a href="http://blog.shaynefletcher.org/2017/05/preprocessor-extensions-for-code.html">&quot;Preprocessor
-     extensions for code generation&quot; -- Shayne Fletcher (blog post
-     2017)</a><br/>
-     [3] <a href="http://rgrinberg.com/posts/extension-points-3-years-later/">&quot;Extension
-     Points - 3 Years Later&quot; -- Rudi Grinberg (blog post 2017)</a><br/>
+    References:<br>
+     [1] <a href="https://whitequark.org/blog/2014/04/16/a-guide-to-extension-points-in-ocaml/">"A
+     Guide to Extension Points in OCaml" -- Whitequark (blog post
+     2014)</a><br>
+     [2] <a href="http://blog.shaynefletcher.org/2017/05/preprocessor-extensions-for-code.html">"Preprocessor
+     extensions for code generation" -- Shayne Fletcher (blog post
+     2017)</a><br>
+     [3] <a href="http://rgrinberg.com/posts/extension-points-3-years-later/">"Extension
+     Points - 3 Years Later" -- Rudi Grinberg (blog post 2017)</a><br>
   </p>
-  </body>
-</html>
+  
 
+</body></html>

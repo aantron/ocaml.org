@@ -5,8 +5,8 @@ description: Liquidity version 1.0 We are pleased to announce the release of the
   of the highlights of this version are detailed below. Multiple Entry Points In the
   previous versions of Liquidity, smart contracts were limited ...
 url: https://ocamlpro.com/blog/2019_03_08_announcing_liquidity_version_1_0
-date: 2019-03-08T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2019-03-08T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Alain Mebsout\n  "
 source:

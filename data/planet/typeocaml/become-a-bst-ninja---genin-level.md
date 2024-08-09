@@ -10,7 +10,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2014/12/bst_ninja.jpg#hero" alt="bst_ninja"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/12/bst_ninja.jpg#hero" alt="bst_ninja"></p>
 
 <p>Binary Search Tree (<em>BST</em>) is one of the most classic data structures. The definition for its structure is shown as below:</p>
 
@@ -37,7 +37,7 @@ source:
 
 <p>And here is an example of BST:</p>
 
-<p><img src="http://typeocaml.com/content/images/2014/12/example_bst.jpg" alt="example_bst"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/12/example_bst.jpg" alt="example_bst"></p>
 
 <p>Instead of continuing to present the basics of BST, this post will now focus on how to attack BST related problems with the most powerful weapon: <strong>Recursion</strong>. </p>
 
@@ -61,7 +61,7 @@ source:
 
 <p>The thinking flow is illustrated as the diagram below.</p>
 
-<p><img src="http://typeocaml.com/content/images/2014/12/left_root_right-4.jpg" alt="solve"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/12/left_root_right-4.jpg" alt="solve"></p>
 
 <p>Before we start to look at some problems, note that in the diagram above or <a href="http://typeocaml.com/2014/12/04/recursion-reloaded/">Recursion Reloaded</a>, we seem to always solve <em>both left and right</em>, or say, <em>all sub-problmes</em>. It is actually not necessary. For BST, sometimes <em>either left or right</em> is enough. Let's have a look at this case first. </p>
 
@@ -81,7 +81,7 @@ source:
 <li>What if we get to a <em>Leaf</em>? It means we can finally place our new key there as a new <em>Node</em> and of course, at this moment both children of the new <em>Node</em> are <em>Leaves</em>.</li>
 </ol>
 
-<p><img src="http://typeocaml.com/content/images/2014/12/insert-2.jpg" alt="insert"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/12/insert-2.jpg" alt="insert"></p>
 
 <p>Note that the BST type in OCaml we defined early on is pure functional, which means every time we need to update something, we have to create new. That's why in the diagram, even if we just insert x to left or right, we need to construct a new <em>Node</em> because we are updating the left child or the right one. The code is shown as below.</p>
 
@@ -120,7 +120,7 @@ source:
 
 <p>Another way is to think recursively. First let analyse a little bit about the longest path matter.</p>
 
-<p><img src="http://typeocaml.com/content/images/2014/12/height.jpg#small" alt="height"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/12/height.jpg#small" alt="height"></p>
 
 <p>As we can see from the above diagram, <em>Root</em> has two edges: one to <em>Left</em> and the other to <em>Right</em>. So whatever the longest path from <em>Root</em> might be, it must pass either <em>Left</em> or <em>Right</em>. If we somehow could obtain the longest path from the root of <em>Left</em> and the longest path from the root of <em>Right</em>, the longest path from <em>Root</em> should be the bigger one of the two paths, right?</p>
 
@@ -139,7 +139,7 @@ source:
 
 <p>So far, it seems our hypothetic <code>solve</code> function takes only the sub-probem as parameter. In many cases this is not enough. Sometimes we need to supply <strong>more arguments</strong> to help <code>solve</code>. For example, in the problem of retriving all keys at a certain depth definitely needs <em>current depth</em> information.</p>
 
-<p><img src="http://typeocaml.com/content/images/2014/12/depth-1.jpg#small" alt="depth"/></p>
+<p><img src="http://typeocaml.com/content/images/2014/12/depth-1.jpg#small" alt="depth"></p>
 
 <p>Only with the help of <code>current_depth</code>, the <em>Root</em> can know whether it belongs to the final results. </p>
 
@@ -166,10 +166,10 @@ let all_keys_at depth bst = from_depth depth 0 bst
 <p>From <a href="http://en.wikipedia.org/wiki/Ninja">Ninja Wiki</a></p>
 
 <blockquote>
-  <p>A system of rank existed. A j&#333;nin (&quot;upper man&quot;) was the highest rank, representing the group and hiring out mercenaries. This is followed by the ch&#363;nin (&quot;middle man&quot;), assistants to the j&#333;nin. At the bottom was the genin (&quot;lower man&quot;), field agents drawn from the lower class and assigned to carry out actual missions.</p>
+  <p>A system of rank existed. A jōnin ("upper man") was the highest rank, representing the group and hiring out mercenaries. This is followed by the chūnin ("middle man"), assistants to the jōnin. At the bottom was the genin ("lower man"), field agents drawn from the lower class and assigned to carry out actual missions.</p>
 </blockquote>
 
-<hr/>
+<hr>
 
 <p><strong>Ps.</strong> </p>
 

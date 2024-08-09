@@ -16,14 +16,14 @@ source:
       <a href="https://blog.0branch.com/index.html">#</a> May 13, 2016
     </div>
   </div>
-  <hr/>
+  <hr>
   <div>
-    <p><em>or</em> &ldquo;Wait, what? Tail call optimisation in awk?&rdquo;</p>
+    <p><em>or</em> “Wait, what? Tail call optimisation in awk?”</p>
 <h1>Overview</h1>
 <p>This post covers <a href="https://en.wikipedia.org/wiki/Tail_call">tail call optimisation</a> (TCO) behaviour in three common awk implementations<a href="https://blog.0branch.com/rss.xml#fn1" class="footnote-ref"><sup>1</sup></a>: <a href="https://www.gnu.org/software/gawk/">gawk</a>, <a href="http://invisible-island.net/mawk/mawk.html">mawk</a> and <a href="http://www.cs.princeton.edu/~bwk/btl.mirror/">nawk</a> (<em>AKA</em> the one true awk).</p>
-<p>None of the three implement full TCO, while <code>gawk</code> alone provides self-TCO. The bulk of this post will therefore be devoted to gawk&rsquo;s implementation and related pitfalls.</p>
+<p>None of the three implement full TCO, while <code>gawk</code> alone provides self-TCO. The bulk of this post will therefore be devoted to gawk’s implementation and related pitfalls.</p>
 <h1>Initial observations</h1>
-<p>Let&rsquo;s begin with a simple awk script that defines a single function, <code>recur</code>, called from the <code>BEGIN</code> block:</p>
+<p>Let’s begin with a simple awk script that defines a single function, <code>recur</code>, called from the <code>BEGIN</code> block:</p>
 <pre><code>$ nawk 'function recur() {return recur()} BEGIN {recur()}'
 Segmentation fault: 11
 $ mawk 'function recur() {return recur()} BEGIN {recur()}'
@@ -31,23 +31,23 @@ Segmentation fault: 11
 $ gawk 'function recur() {return recur()} BEGIN {recur()}'
 # ...runs indefinitely [?]...</code></pre>
 <p>Note the difference in behaviour here: nawk and mawk blow the stack and segfault while gawk cheerily continues running. Thanks gawk.</p>
-<p>But wait! Gawk is actually dynamically allocating additional stack frames&mdash;so long as there&rsquo;s memory (and swap) to consume, gawk will gobble it up and our script will plod on. Below, the first 30 seconds of (virtual) memory consumption are charted<a href="https://blog.0branch.com/rss.xml#fn2" class="footnote-ref"><sup>2</sup></a>:</p>
-<p><img src="https://blog.0branch.com/images/gawk-mem-1.png" width="708" class="figure"/></p>
+<p>But wait! Gawk is actually dynamically allocating additional stack frames—so long as there’s memory (and swap) to consume, gawk will gobble it up and our script will plod on. Below, the first 30 seconds of (virtual) memory consumption are charted<a href="https://blog.0branch.com/rss.xml#fn2" class="footnote-ref"><sup>2</sup></a>:</p>
+<p><img src="https://blog.0branch.com/images/gawk-mem-1.png" width="708" class="figure"></p>
 <p>Whoops!</p>
 <h2>The gawk optimiser</h2>
 <p>In order to obtain (self-)TCO and spare your poor swap partition, gawk provides the <code>-O</code> switch,</p>
 <pre><code>$ gawk -O 'function foo() {return recur()} BEGIN {recur()}'
 # ...runs indefinitely; air conditioning no longer required...</code></pre>
 <p>and lo and behold,</p>
-<p><img src="https://blog.0branch.com/images/gawk-mem-2.png" width="710" class="figure"/></p>
+<p><img src="https://blog.0branch.com/images/gawk-mem-2.png" width="710" class="figure"></p>
 <h2>Doubling down</h2>
-<p>What about full TCO? Let&rsquo;s expand our one liner a little to include a trampoline call:</p>
+<p>What about full TCO? Let’s expand our one liner a little to include a trampoline call:</p>
 <pre><code>$ gawk -O 'function go() {return to()} function to() {return go()} BEGIN {go()}'</code></pre>
 <p>and chart memory consumption again,</p>
-<p><img src="https://blog.0branch.com/images/gawk-mem-3.png" width="710" class="figure"/></p>
-<p>Bugger. So, it looks like gawk isn&rsquo;t keen on full blown TCO. Time to find out why.</p>
+<p><img src="https://blog.0branch.com/images/gawk-mem-3.png" width="710" class="figure"></p>
+<p>Bugger. So, it looks like gawk isn’t keen on full blown TCO. Time to find out why.</p>
 <h3>The secret sauce</h3>
-<p>We&rsquo;ve just seen that gawk seems to optimise self-calls in tail position when the <code>-O</code> flag is specified. To better understand this functionality we can dump opcodes from the trampoline case and take a look under the hood:</p>
+<p>We’ve just seen that gawk seems to optimise self-calls in tail position when the <code>-O</code> flag is specified. To better understand this functionality we can dump opcodes from the trampoline case and take a look under the hood:</p>
 <pre><code>$ echo 'function go() {return to()} function to() {return go()} BEGIN {go()}' &gt; /tmp/trampoline.awk
 $ gawk --debug -O -f /tmp/trampoline.awk
 gawk&gt; dump
@@ -80,7 +80,7 @@ gawk&gt; dump
 [     1:0x7fc00bd021f0] Op_K_return         :
 [      :0x7fc00c800f20] Op_push_i           : Nnull_string [MALLOC|STRING|STRCUR|NUMCUR|NUMBER]
 [      :0x7fc00c800f40] Op_K_return         :</code></pre>
-<p>Note the lack of a distinct <em>jump</em> or <em>tailcall</em> opcode; instead, even with the optimiser turned on, <code>go</code> and <code>to</code> are performing <code>Op_func_call</code>s. Hmm, okay; we&rsquo;ll see a different opcode in our original <code>recur</code> case, though, right? Wrong:</p>
+<p>Note the lack of a distinct <em>jump</em> or <em>tailcall</em> opcode; instead, even with the optimiser turned on, <code>go</code> and <code>to</code> are performing <code>Op_func_call</code>s. Hmm, okay; we’ll see a different opcode in our original <code>recur</code> case, though, right? Wrong:</p>
 <pre><code>$ echo 'function recur() {return recur()} BEGIN {recur()}' &gt; /tmp/recur.awk
 $ gawk --debug -O -f /tmp/recur.awk
 gawk&gt; dump
@@ -105,12 +105,12 @@ gawk&gt; dump
 [     1:0x7fc1d0408d70] Op_K_return         :
 [      :0x7fc1d08020e0] Op_push_i           : Nnull_string [MALLOC|STRING|STRCUR|NUMCUR|NUMBER]
 [      :0x7fc1d0802100] Op_K_return         :</code></pre>
-<p><tt>&macr;\_(&#12484;)_/&macr;</tt></p>
-<p>Time to dig around gawk&rsquo;s grammar definition. Here&rsquo;s <code>return</code>, defined in <code>awkgram.y</code>:</p>
+<p><tt>¯\_(ツ)_/¯</tt></p>
+<p>Time to dig around gawk’s grammar definition. Here’s <code>return</code>, defined in <code>awkgram.y</code>:</p>
 <div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" data-line-number="1">| LEX_RETURN</a>
 <a class="sourceLine" data-line-number="2">  {</a>
 <a class="sourceLine" data-line-number="3">    <span class="cf">if</span> (! in_function)</a>
-<a class="sourceLine" data-line-number="4">        yyerror(_(<span class="st">&quot;`return' used outside function context&quot;</span>));</a>
+<a class="sourceLine" data-line-number="4">        yyerror(_(<span class="st">"`return' used outside function context"</span>));</a>
 <a class="sourceLine" data-line-number="5">  } opt_exp statement_term {</a>
 <a class="sourceLine" data-line-number="6">    <span class="cf">if</span> ($<span class="dv">3</span> == NULL) {</a>
 <a class="sourceLine" data-line-number="7">        $$ = list_create($<span class="dv">1</span>);</a>
@@ -144,33 +144,33 @@ gawk&gt; dump
 <li>Checks whether the <code>do_optimize</code> flag (<code>-O</code>) is specified.</li>
 <li>If so, it checks whether the previous instruction is an <code>Op_func_call</code>.</li>
 <li>If that call is to a function with the same name as the current one,</li>
-<li>&hellip;the <code>tail_call</code> flag is set.</li>
+<li>…the <code>tail_call</code> flag is set.</li>
 </ol>
 <p>So it goes.</p>
 <h1>At last, a conclusion</h1>
-<p>Here&rsquo;re a few takeaways from the above<a href="https://blog.0branch.com/rss.xml#fn3" class="footnote-ref"><sup>3</sup></a>:</p>
+<p>Here’re a few takeaways from the above<a href="https://blog.0branch.com/rss.xml#fn3" class="footnote-ref"><sup>3</sup></a>:</p>
 <ul>
-<li>Don&rsquo;t rely on TCO if you&rsquo;re writing awk.</li>
-<li>Just don&rsquo;t.</li>
-<li>If you <em>do</em> need TCO, make sure you&rsquo;re using gawk
+<li>Don’t rely on TCO if you’re writing awk.</li>
+<li>Just don’t.</li>
+<li>If you <em>do</em> need TCO, make sure you’re using gawk
 <ul>
-<li>Be sure to specify the <code>-O</code> flag otherwise you&rsquo;ll need to buy a new fan,</li>
-<li>and make sure you&rsquo;re not trampolining as the optimiser won&rsquo;t be of any help.</li>
+<li>Be sure to specify the <code>-O</code> flag otherwise you’ll need to buy a new fan,</li>
+<li>and make sure you’re not trampolining as the optimiser won’t be of any help.</li>
 </ul></li>
 </ul>
-<p>Personally, I&rsquo;ll be sticking with nawk.</p>
+<p>Personally, I’ll be sticking with nawk.</p>
 <section class="footnotes">
-<hr/>
+<hr>
 <ol>
-<li><p>Probably the most common.<a href="https://blog.0branch.com/rss.xml#fnref1" class="footnote-back">&#8617;</a></p></li>
-<li><p>Output drawn from <code>ps</code><a href="https://blog.0branch.com/rss.xml#fnref2" class="footnote-back">&#8617;</a></p></li>
-<li><p>YMMV<a href="https://blog.0branch.com/rss.xml#fnref3" class="footnote-back">&#8617;</a></p></li>
+<li><p>Probably the most common.<a href="https://blog.0branch.com/rss.xml#fnref1" class="footnote-back">↩</a></p></li>
+<li><p>Output drawn from <code>ps</code><a href="https://blog.0branch.com/rss.xml#fnref2" class="footnote-back">↩</a></p></li>
+<li><p>YMMV<a href="https://blog.0branch.com/rss.xml#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
   </div>
 </div>
 
-<hr/>
+<hr>
 
 <div></div>
 

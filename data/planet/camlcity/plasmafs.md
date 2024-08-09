@@ -12,7 +12,7 @@ source:
 
 
 <div>
-  <b>A serious distributed filesystem</b><br/>&nbsp;
+  <b>A serious distributed filesystem</b><br>&nbsp;
 </div>
 
 <div>
@@ -26,7 +26,7 @@ from popular distributed filesystems like HDFS. This starts from the
 beginning with the requirements analysis.
 
 <cc-field name="maintext">
-<p>
+</cc-field></p><p>
 A distributed filesystem (DFS) allows it to store giant amounts of
 data.  A high number of data nodes (computers with hard disks) can be
 attached to a DFS cluster, and usually a second kind of node, called
@@ -36,7 +36,7 @@ compared to the payload data (the ratios are somewhere between
 1:10,000 to 1:1,000,000), so a single name node can manage a quite
 large cluster. Also, the clients can contact the data nodes
 directly to access payload data - the traffic is not routed via
-the name node like in &quot;normal&quot; network filesystems. This allows
+the name node like in "normal" network filesystems. This allows
 enormous bandwidths.
 
 </p><p>
@@ -47,16 +47,16 @@ unfortunate compromises to gain speed:
 </p><ul>
   <li>The metadata is not well protected. Although the metadata is
    saved to disk and usually also replicated to another computer, these 
-   &quot;safety copies&quot; lag behind. In the case of an outage, data loss
+   "safety copies" lag behind. In the case of an outage, data loss
    is common (HDFS even fails fatally when the disk fills up).
    Given the amount of data, this is not acceptable. It's like a
-   local filesystem without journaling.<br/>&nbsp;
+   local filesystem without journaling.<br>&nbsp;
   </li><li>The name node protocol is too simplistic, and because of this,
    DFS implementations need ultra-high-speed name node implementations
    (at least several 10000 operations per second) to manage larger clusters.
    Another consequence is that only large block sizes (several megabytes)
    promise decent access speeds, because this is the only implemented
-   strategy to reduce the frequency of name node operations.<br/>&nbsp;
+   strategy to reduce the frequency of name node operations.<br>&nbsp;
   </li><li>Unless you can physically separate the cluster from the rest
     of the network, security is a requirement. It is difficult to provide,
     however, mainly because the data nodes are independently accessed, and you
@@ -116,7 +116,7 @@ more techniques to address the potential bottleneck name node:
     block lists. It is possible to write terabytes of data to files with
     <i>only a single commit</i>! Applications accessing large files
     sequentially (as, e.g., in the map/reduce framework) can especially
-    profit from this scheme.<br/>&nbsp;
+    profit from this scheme.<br>&nbsp;
   </li><li>PlasmaFS addresses blocks linearly: for each data node the blocks
     are identified by numbers from 0 to n-1. This is safe, because we
     manage the consistency globally (basically, there is a kind of
@@ -126,11 +126,11 @@ more techniques to address the potential bottleneck name node:
     other DFS use GUIDs to identify blocks. The linear scheme,
     however, allow it to transmit and store block lists in a
     compressed way (extent-based). For example, if a file uses the
-    blocks 10 to 14 on a data nodes, this is stored as &quot;10-14&quot;, and not
-    as &quot;10,11,12,13,14&quot;. Also, block allocations are always done
+    blocks 10 to 14 on a data nodes, this is stored as "10-14", and not
+    as "10,11,12,13,14". Also, block allocations are always done
     for ranges of blocks. This greatly reduces the number
     of name node operations while only moderately increasing their
-    complexity.<br/>&nbsp;
+    complexity.<br>&nbsp;
   </li><li>A version number is maintained per file that is
     increased whenever data or metadata are modified. This allows it
     to keep external caches up to date with only low overhead: A quick
@@ -163,7 +163,7 @@ applicable to the scheme used by Hadoop.)
 <p>
 I have done some tests with the latest development version of
 Plasma. The peak number of commits per second seems to be around 500
-(here, a &quot;commit&quot; is a transaction writing data that can include
+(here, a "commit" is a transaction writing data that can include
 several data update operations). This test used a recently bought SSD,
 and ran on a quad-core server machine. It was not evident that the SSD
 was the bottleneck (one indication is that the test ran only slightly
@@ -171,8 +171,8 @@ faster when syncs were turned off), so there is probably still a lot
 of room for optimization.
 
 </p><p>
-Given that a map/reduce task needs the name node only every &asymp;0.3 seconds,
-this &quot;commit speed&quot; would be theoretically sufficient for around
+Given that a map/reduce task needs the name node only every ≈0.3 seconds,
+this "commit speed" would be theoretically sufficient for around
 1600 parallely running tasks. It is likely that other limits are
 hit first (e.g. the switching capacity). Anyway, these are encouraging
 numbers showing that this young project is not on the wrong track.
@@ -191,7 +191,7 @@ options that could be worth an implementation include:
     delayed block deallocation). nevertheless, this is certainly a viable option.
     Even writes could be handled by
     the secondary nodes, but this tends to become very complicated,
-    and is probably not worth it.<br/>&nbsp;
+    and is probably not worth it.<br>&nbsp;
   </li><li>An easier option to increase the capacity is to split the file
     space, so that each name node takes care of a partition only. A
     user transaction would still need a uniform view on the filesystem,
@@ -284,12 +284,12 @@ a lot of documentation, and especially downloads. Also take a look at
 the <a href="http://plasma.camlcity.org/plasma/perf.html">performance
 page</a>, describing a few tests I recently ran.
 
-<img src="http://blog.camlcity.org/files/img/blog/plasma4_bug.gif" width="1" height="1"/>
+<img src="http://blog.camlcity.org/files/img/blog/plasma4_bug.gif" width="1" height="1">
 
 
 
-</cc-field>
-</p>
+
+<p></p>
 </div>
 
 <div>

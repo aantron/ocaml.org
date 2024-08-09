@@ -5,14 +5,14 @@ description: "A reflection on the new year\u2026 Today, Tezos is a global networ
   inception of this project, the French company OCamlPro which, to this day, stills
   develops numerous projects around Tezos, played a particularly important..."
 url: https://ocamlpro.com/blog/2019_01_29_tezos_and_ocamlpro
-date: 2019-01-29T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2019-01-29T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Arthur Breitman\n  "
 source:
 ---
 
-<p>A reflection on the new year&hellip; Today, Tezos is a global network and an
+<p>A reflection on the new year… Today, Tezos is a global network and an
 open source project with developers spanning over five continents. In
 the inception of this project, the French company OCamlPro which, to
 this day, stills develops numerous projects around Tezos, played a

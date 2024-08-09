@@ -5,7 +5,7 @@ description: Welcome to a new episode of The Flambda2 Snippets! Today's topic is
   both purely tail-recursive and/or functions annotated with the [@@loop] attribute
   in OCaml. A lazy explanation for its utility would be...
 url: https://ocamlpro.com/blog/2024_05_07_the_flambda2_snippets_2
-date: 2024-05-07T12:13:29-00:00
+date: 2024-05-07T13:31:53-00:00
 preview_image: https://www.ocamlpro.com/blog/assets/img/F2S_loopify_figure.png
 authors:
 - "\n    Nathana\xEBlle Courant\n  "
@@ -17,14 +17,14 @@ source:
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/F2S_loopify_figure.png">
-      <img src="https://ocamlpro.com/blog/assets/img/F2S_loopify_figure.png" alt="Two camels are taking a break from crossing the desert, they know their path could not have been more optimised."/>
+      <img src="https://ocamlpro.com/blog/assets/img/F2S_loopify_figure.png" alt="Two camels are taking a break from crossing the desert, they know their path could not have been more optimised.">
     </a>
     </p><div class="caption">
       Two camels are taking a break from crossing the desert, they know their path could not have been more optimised.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <h3>Welcome to a new episode of <strong>The Flambda2 Snippets</strong>!</h3>
 <p>Today's topic is <code>Loopify</code>, one of <code>Flambda2</code>'s many optimisation algorithms
 which specifically deals with optimising both <em>purely tail-recursive</em> and/or
@@ -49,7 +49,7 @@ Research &amp; Development and Compilation; with many more years of expertise in
 all aspects of Computer Science and Formal Methods.</p>
 </blockquote>
 <p></p><div>
-<strong>Table of contents</strong>
+<strong>Table of contents</strong><p></p>
 <ul>
 <li><a href="https://ocamlpro.com/blog/feed#tco">Tail-Call Optimisation</a>
 </li>
@@ -68,9 +68,9 @@ all aspects of Computer Science and Formal Methods.</p>
 </ul>
 </li>
 <li><a href="https://ocamlpro.com/blog/feed#conclusion">Conclusion</a>
+</li></ul></div>
 
-</li>
-</ul>
+
 <h2>
 <a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#tco" class="anchor-link">Tail-Call Optimisation</a>
           </h2>
@@ -98,14 +98,14 @@ called from <code>f</code>:</p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/F2S_2_stack_no_tail_rec_call.svg">
-      <img src="https://ocamlpro.com/blog/assets/img/F2S_2_stack_no_tail_rec_call.svg" alt="A representation of the textbook behaviour for recursive functions stackframe allocations. You can see here that the stackframes of non-tail-recursive functions are allocated sequentially on decreasing memory addresses which may eventually lead to a stack overflow."/>
+      <img src="https://ocamlpro.com/blog/assets/img/F2S_2_stack_no_tail_rec_call.svg" alt="A representation of the textbook behaviour for recursive functions stackframe allocations. You can see here that the stackframes of non-tail-recursive functions are allocated sequentially on decreasing memory addresses which may eventually lead to a stack overflow.">
     </a>
     </p><div class="caption">
       A representation of the textbook behaviour for recursive functions stackframe allocations. You can see here that the stackframes of non-tail-recursive functions are allocated sequentially on decreasing memory addresses which may eventually lead to a stack overflow.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>Now, let's consider a tail-recursive implementation of the <code>g</code> function in a
 context where TCO is <strong>not</strong> supported. Tail-recursion means that the last
 thing <code>t_rec_g</code> does before returning is calling itself. The key is that we
@@ -117,14 +117,14 @@ space is therefore mostly wasted.</p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/F2S_2_stack_tail_rec_call_no_tco.svg">
-      <img src="https://ocamlpro.com/blog/assets/img/F2S_2_stack_tail_rec_call_no_tco.svg" alt="A representation of the textbook behaviour for tail-recursive functions stackframe allocations without Tail Call Optimisation (TCO). When TCO is not implemented the behaviour for these allocations and the potential for a stack overflow are the same as with non-tail-recursive functions."/>
+      <img src="https://ocamlpro.com/blog/assets/img/F2S_2_stack_tail_rec_call_no_tco.svg" alt="A representation of the textbook behaviour for tail-recursive functions stackframe allocations without Tail Call Optimisation (TCO). When TCO is not implemented the behaviour for these allocations and the potential for a stack overflow are the same as with non-tail-recursive functions.">
     </a>
     </p><div class="caption">
       A representation of the textbook behaviour for tail-recursive functions stackframe allocations without Tail Call Optimisation (TCO). When TCO is not implemented the behaviour for these allocations and the potential for a stack overflow are the same as with non-tail-recursive functions.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>And finally, let us look at the same function in a context where TCO <strong>is</strong>
 supported. It is now apparent that memory consumption is much improved by the
 fact that we reuse the space from the previous stackframe to allocate the next
@@ -133,14 +133,14 @@ one all the while preserving its return address:</p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/F2S_2_stack_tail_rec_call_tco.svg">
-      <img src="https://ocamlpro.com/blog/assets/img/F2S_2_stack_tail_rec_call_tco.svg" alt="A representation of the textbook behaviour for tail-recursive functions stackframe allocations with TCO. Since TCO is implemented, we can see that the stack memory consumption is now constant, and that the potential that this specific tail-recursive function will lead to a stack overflow is diminished."/>
+      <img src="https://ocamlpro.com/blog/assets/img/F2S_2_stack_tail_rec_call_tco.svg" alt="A representation of the textbook behaviour for tail-recursive functions stackframe allocations with TCO. Since TCO is implemented, we can see that the stack memory consumption is now constant, and that the potential that this specific tail-recursive function will lead to a stack overflow is diminished.">
     </a>
     </p><div class="caption">
       A representation of the textbook behaviour for tail-recursive functions stackframe allocations with TCO. Since TCO is implemented, we can see that the stack memory consumption is now constant, and that the potential that this specific tail-recursive function will lead to a stack overflow is diminished.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <h3>
 <a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#tailcallsinocaml" class="anchor-link">Tail-Calls in OCaml</a>
           </h3>
@@ -227,7 +227,7 @@ in this specific example, all occurrences of boxing operations disappear except
 a single one at the end of the function.</p>
 <p><strong>We like to think that not forcing the user to write such code is a benefit, to
 say the least.</strong></p>
-<hr/>
+<hr>
 <h2>
 <a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#loopify" class="anchor-link">Loopify</a>
           </h2>
@@ -235,7 +235,7 @@ say the least.</strong></p>
 <a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#concept" class="anchor-link">Concept</a>
           </h3>
 <p>There is a general concept of transforming function-level control-flow into
-direct <strong>IR</strong> continuations to benefit from &quot;basic block-level&quot; optimisations. One
+direct <strong>IR</strong> continuations to benefit from "basic block-level" optimisations. One
 such pattern is present in the local-function optimisation triggered by the
 <code>[@local]</code> attribute. <a href="https://github.com/ocaml/ocaml/pull/2143">Here's the link to the PR that implements
 it</a>. <code>Loopify</code> is an attempt to
@@ -278,12 +278,12 @@ let rec fold_left f acc = function
 </code></pre>
 <p>Here, the decision to <code>loopify</code> is automatic and requires no input from the
 user. Quite straightforward.</p>
-<hr/>
+<hr>
 <p>Onto the second case now:</p>
 <pre><code class="language-ocaml">(* Helper function, not recursive, nothing to do. *)
 let log dbg f arg =
   if dbg then
-    print_endline &quot;Logging...&quot;;
+    print_endline "Logging...";
   f arg
 [@@inline]
 
@@ -339,7 +339,7 @@ continuation call to <code>self</code> with the same arguments as the original c
       let f = iter_with_log dbg f in
       let arg = r in
       if dbg then
-        print_endline &quot;Logging...&quot;;
+        print_endline "Logging...";
       f arg
   in
   apply_cont k_self (dbg, f, l)
@@ -358,8 +358,8 @@ transformations that we replace with the adequate continuation call.</p>
         by the simplification.
        *)
       if dbg then
-        print_endline &quot;Logging...&quot;;
-      apply_cont k_self (dbg, f, l)
+        print_endline "Logging...";
+      apply_cont k_self (dbg, f, r)
   in
   apply_cont k_self (dbg, f, l)
 </code></pre>
@@ -367,8 +367,8 @@ transformations that we replace with the adequate continuation call.</p>
 call is mainly about allowing other optimisations to take place. As shown
 in the previous section, one of these optimisations is <code>unboxing</code> which can be
 important in some cases like numerical calculus. Such optimisations can take
-place because continuations allow more freedom than function calls which must
-respect the OCaml calling conventions.</p>
+place because continuations are local to a function while OCaml ABI-abiding
+function calls require a prior global analysis.</p>
 <p>One could think that a continuation call is intrinsically cheaper than a
 function call. However, the OCaml compiler already optimises self-tail-calls
 such that they are already as cheap as continuation calls (i.e, a single <code>jump</code>
@@ -419,7 +419,7 @@ with only <em>some</em> tail-recursive paths), or for functions which are not
 obviously tail-recursive in the source code, but could become so after some
 optimisation steps.</p>
 <p>This transformation illustrates a core principle behind the <code>Flambda2</code> design:
-applying a somewhat na&iuml;ve optimisation that is not transformative by itself,
+applying a somewhat naïve optimisation that is not transformative by itself,
 but changes the way the compiler can look at the code and trigger a whole lot
 of other useful ones. Conversely, it being triggered in the middle of the
 inlining phase can allow some non-obvious cases to become radically better.
@@ -430,5 +430,5 @@ to these principles.</p>
 principles in action, starting with the next blog post that will introduce
 <code>Downward and Upward Traversals</code>.</p>
 <p><strong>Stay tuned, and thank you for reading, until next time, <em>see you Space
-Cowboy</em>. <a href="https://fr.wikipedia.org/wiki/Cowboy_Bebop">&#129312;</a></strong></p>
-</div>
+Cowboy</em>. <a href="https://fr.wikipedia.org/wiki/Cowboy_Bebop">🤠</a></strong></p>
+

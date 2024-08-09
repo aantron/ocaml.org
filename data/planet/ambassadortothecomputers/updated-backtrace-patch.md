@@ -10,7 +10,7 @@ authors:
 source:
 ---
 
-<p>I&rsquo;ve updated my <a href="http://skydeck.com/blog/programming/stack-traces-in-ocaml">backtrace</a> <a href="http://skydeck.com/blog/programming/more-stack-traces-in-ocaml">patch</a> to work with OCaml 3.11.x as well as 3.10.x. The patch provides</p> 
+<p>I’ve updated my <a href="http://skydeck.com/blog/programming/stack-traces-in-ocaml">backtrace</a> <a href="http://skydeck.com/blog/programming/more-stack-traces-in-ocaml">patch</a> to work with OCaml 3.11.x as well as 3.10.x. The patch provides</p> 
  
 <ul> 
 <li> 
@@ -34,7 +34,7 @@ source:
 </li> 
  
 <li> 
-<p>fixed a bug that could cause spurious &ldquo;unknown location&rdquo; lines in the backtrace</p> 
+<p>fixed a bug that could cause spurious “unknown location” lines in the backtrace</p> 
 </li> 
  
 <li> 

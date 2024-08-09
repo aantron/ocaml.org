@@ -61,7 +61,7 @@ If you use the LevelDB backend you can use secondary indices, known as 2i, which
 </p>
 
 <p>
-Riak encodes the type of the index in the name.  As an example, if you want to allow people to search by a field called &quot;foo&quot; which is a binary secondary index, you would name that index &quot;foo_bin&quot;.  In the Python Riak client, one sets an index with something like the following code:
+Riak encodes the type of the index in the name.  As an example, if you want to allow people to search by a field called "foo" which is a binary secondary index, you would name that index "foo_bin".  In the Python Riak client, one sets an index with something like the following code:
 </p>
 
 <pre><code>obj<font color="#990000">.</font><b><font color="#000000">add_index</font></b><font color="#990000">(</font><font color="#FF0000">'field1_bin'</font><font color="#990000">,</font> <font color="#FF0000">'val1'</font><font color="#990000">)</font>
@@ -75,12 +75,12 @@ In Riakc, the naming convention is hidden from the user.  Instead, the the name 
 <pre><code><b><font color="#0000FF">let</font></b> <b><font color="#0000FF">module</font></b> <font color="#009900">R</font> <font color="#990000">=</font> <b><font color="#000080">Riakc</font></b><font color="#990000">.</font><font color="#009900">Robj</font> <b><font color="#0000FF">in</font></b>
 <b><font color="#0000FF">let</font></b> index1 <font color="#990000">=</font>
   <b><font color="#000080">R</font></b><font color="#990000">.</font>index_create
-    <font color="#990000">~</font>k<font color="#990000">:</font><font color="#FF0000">&quot;field1&quot;</font>
-    <font color="#990000">~</font>v<font color="#990000">:(</font><b><font color="#000080">R</font></b><font color="#990000">.</font><b><font color="#000080">Index</font></b><font color="#990000">.</font><font color="#009900">String</font> <font color="#FF0000">&quot;val1&quot;</font><font color="#990000">)</font>
+    <font color="#990000">~</font>k<font color="#990000">:</font><font color="#FF0000">"field1"</font>
+    <font color="#990000">~</font>v<font color="#990000">:(</font><b><font color="#000080">R</font></b><font color="#990000">.</font><b><font color="#000080">Index</font></b><font color="#990000">.</font><font color="#009900">String</font> <font color="#FF0000">"val1"</font><font color="#990000">)</font>
 <b><font color="#0000FF">in</font></b>
 <b><font color="#0000FF">let</font></b> index2 <font color="#990000">=</font>
   <b><font color="#000080">R</font></b><font color="#990000">.</font>index_create
-    <font color="#990000">~</font>k<font color="#990000">:</font><font color="#FF0000">&quot;field2&quot;</font>
+    <font color="#990000">~</font>k<font color="#990000">:</font><font color="#FF0000">"field2"</font>
     <font color="#990000">~</font>v<font color="#990000">:(</font><b><font color="#000080">R</font></b><font color="#990000">.</font><b><font color="#000080">Index</font></b><font color="#990000">.</font><font color="#009900">Integer</font> <font color="#993399">10000</font><font color="#990000">)</font>
 <b><font color="#0000FF">in</font></b>
 <b><font color="#000080">R</font></b><font color="#990000">.</font>set_content
@@ -89,7 +89,7 @@ In Riakc, the naming convention is hidden from the user.  Instead, the the name 
 </code></pre>
 
 <p>
-When the <code>Robj.t</code> is written to the DB, &quot;field1&quot; and &quot;field2&quot; will be transformed into their appropriate names.
+When the <code>Robj.t</code> is written to the DB, "field1" and "field2" will be transformed into their appropriate names.
 </p>
 
 <p>
@@ -114,11 +114,11 @@ Here is a Python 2i search followed by the equivalent search in Riakc.
 
 <pre><code><b><font color="#000080">Riakc</font></b><font color="#990000">.</font><b><font color="#000080">Conn</font></b><font color="#990000">.</font>index_search
   conn
-  <font color="#990000">~</font>b<font color="#990000">:</font><font color="#FF0000">&quot;mybucket&quot;</font>
-  <font color="#990000">~</font>index<font color="#990000">:</font><font color="#FF0000">&quot;field1&quot;</font>
+  <font color="#990000">~</font>b<font color="#990000">:</font><font color="#FF0000">"mybucket"</font>
+  <font color="#990000">~</font>index<font color="#990000">:</font><font color="#FF0000">"field1"</font>
   <font color="#990000">(</font>range_string
-     <font color="#990000">~</font>min<font color="#990000">:</font><font color="#FF0000">&quot;val1&quot;</font>
-     <font color="#990000">~</font>max<font color="#990000">:</font><font color="#FF0000">&quot;val2&quot;</font>
+     <font color="#990000">~</font>min<font color="#990000">:</font><font color="#FF0000">"val1"</font>
+     <font color="#990000">~</font>max<font color="#990000">:</font><font color="#FF0000">"val2"</font>
      <font color="#990000">~</font>return_terms<font color="#990000">:</font><b><font color="#0000FF">false</font></b><font color="#990000">)</font>
 </code></pre>
 

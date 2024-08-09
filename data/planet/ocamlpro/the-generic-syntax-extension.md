@@ -5,8 +5,8 @@ description: 'OCaml 4.01 with its new feature to disambiguate constructors allow
   your own syntax without having to write complicated parsetree transformers. We propose
   an implementation in the form of a ppx rewriter. it does only a s...'
 url: https://ocamlpro.com/blog/2014_04_01_the_generic_syntax_extension
-date: 2014-04-01T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2014-04-01T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    \xC7agdas Bozman\n  "
 source:
@@ -15,7 +15,7 @@ source:
 <p>OCaml 4.01 with its new feature to disambiguate constructors allows to do a nice trick: a simple and generic syntax extension that allows to define your own syntax without having to write complicated parsetree transformers. We propose an implementation in the form of a ppx rewriter.</p>
 <p>it does only a simple transformation: replace strings prefixed by an operator starting with ! by a series of constructor applications</p>
 <p>for instance:</p>
-<pre><code class="language-ocaml">!! &quot;hello 3&quot;
+<pre><code class="language-ocaml">!! "hello 3"
 </code></pre>
 <p>is rewriten to</p>
 <pre><code class="language-ocaml">!! (Start (H (E (L (L (O (Space (N3 (End))))))))
@@ -69,7 +69,7 @@ let n3 = convert (Start (N1 (N2 (N0 End))))
 <p>And the generic syntax extension allows us to write:</p>
 <pre><code class="language-ocaml">let ( !! ) = convert
 
-let n4 = !! &quot;120_121_000&quot;
+let n4 = !! "120_121_000"
 val n4 : Num.num = &lt;num 11367&gt;
 </code></pre>
 <h4>Specialised Format Strings</h4>
@@ -92,9 +92,9 @@ and 'a f =
 <p>Let's look at the inferred type for some examples:</p>
 <pre><code class="language-ocaml">let (!*) x = x
 
-let v = !* &quot;%i %c&quot;;;
+let v = !* "%i %c";;
 # val v : (int -&gt; char -&gt; unit) start = Start (Percent (I (Space (Percent (C End)))))
-let v = !* &quot;ici&quot;;;
+let v = !* "ici";;
 # val v : unit start = Start (I (C (I End)))
 </code></pre>
 <p>This is effectively the types we would like for a format string looking like that. To use it we can define a simple printer:</p>
@@ -103,13 +103,13 @@ let v = !* &quot;ici&quot;;;
 
 and main : type t. t a -&gt; t = function
   | I r -&gt;
-    print_string &quot;i&quot;;
+    print_string "i";
     main r
   | C r -&gt;
-    print_string &quot;c&quot;;
+    print_string "c";
     main r
   | Space r -&gt;
-    print_string &quot; &quot;;
+    print_string " ";
     main r
   | End -&gt; ()
   | Percent f -&gt;
@@ -125,13 +125,13 @@ and format : type t. t f -&gt; t = function
       print_char c;
       main r
   | Percent r -&gt;
-    print_string &quot;%&quot;;
+    print_string "%";
     main r
 
 let (!!) cons = print cons
 </code></pre>
 <p>And voila!</p>
-<pre><code class="language-ocaml">let s = !! &quot;%i %c&quot; 1 'c';;
+<pre><code class="language-ocaml">let s = !! "%i %c" 1 'c';;
 # 1 c
 </code></pre>
 <h3>How generic is it really ?</h3>
@@ -214,9 +214,9 @@ type start = Start of empty q
 
 let !! x = x
 
-let m = ! &quot;&quot;
-let m = ! &quot;()&quot;
-let m = ! &quot;((())())()&quot;
+let m = ! ""
+let m = ! "()"
+let m = ! "((())())()"
 </code></pre>
 <p>To encode the stack, we use the type parameters: Lparen pushes an r to the stack, Rparen consumes it and End checks that the stack is effectively empty.</p>
 <p>There are a few more tricks needed to encode tests on the top value in the stack, and a conversion of a grammar to Greibach normal form to allow this encoding.</p>

@@ -9,10 +9,10 @@ authors:
 source:
 ---
 
-<p>It was a lasting issue that BAP didn&rsquo;t have a tutorial. We have an
+<p>It was a lasting issue that BAP didn’t have a tutorial. We have an
 extensive reference documentation that can even be considered as a
 manual, we have wiki and chats, but still it was necessary to read
-lots of stuff even for writing the simplest analysis. That&rsquo;s why
+lots of stuff even for writing the simplest analysis. That’s why
 people kept asking us for the tutorial. So, today we are happy to
 announce the first <a href="https://github.com/BinaryAnalysisPlatform/bap-tutorial">true tutorial</a>.</p>
 

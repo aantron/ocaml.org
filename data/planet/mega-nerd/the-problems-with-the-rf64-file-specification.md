@@ -48,14 +48,14 @@ First and foremost, in section 3.5, the document states:
 In spite of higher sampling frequencies and multi-channel audio, some production
 audio files will inevitably be smaller than 4 Gbyte and they should therefore
 stay in Broadcast Wave Format.
-<br/><br/>
+<br><br>
 The problem arises that a recording application cannot know in advance whether
 the recorded audio it is compiling will exceed 4 Gbyte or not at end of
 recording (i.e. whether it needs to use RF64 or not).
-<br/><br/>
+<br><br>
 The solution is to enable the recording application to switch from BWF to RF64
 on the fly at the 4 Gbyte size-limit, while the recording is still going on.
-<br/><br/>
+<br><br>
 This is achieved by reserving additional space in the BWF by inserting a 'JUNK'
 chunk 3 that is of the same size as a 'ds64' chunk. This reserved space has no
 meaning for Broadcast Wave, but will become the 'ds64' chunk, if a transition
@@ -166,8 +166,8 @@ RF64) is specified as:
 </pre>
 
 <p>
-Here, the <b><tt>chunkSize</tt></b> field is simply the <i>&quot;size of the 'fmt '
-chunk&quot;</i> and nowhere in the EBU document is it specified exactly how that
+Here, the <b><tt>chunkSize</tt></b> field is simply the <i>"size of the 'fmt '
+chunk"</i> and nowhere in the EBU document is it specified exactly how that
 <b><tt>chunkSize</tt></b> field should be calculated.
 However, if you give the EBU documentation to any experienced software engineer
 with no previous knowledge of RIFF/WAV files, they would almost certainly assume

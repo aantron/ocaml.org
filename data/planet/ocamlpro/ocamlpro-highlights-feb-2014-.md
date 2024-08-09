@@ -5,8 +5,8 @@ description: 'Here is a short report of some of our activities in February 2014 
   preparing the next big things for OPAM. We have also steadily been improving stability
   and usability, with a focus on friendly messages: for example...'
 url: https://ocamlpro.com/blog/2014_03_05_ocamlpro_highlights_feb_2014
-date: 2014-03-05T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2014-03-05T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    \xC7agdas Bozman\t\n  "
 source:
@@ -20,48 +20,48 @@ with a focus on friendly messages: for example, there is a <a href="https://gith
 <p>With OPAM 1.1.1, you currently get this information:</p>
 <pre><code class="language-shell-session">## opam install custom_printf.109.15.00
 The following actions will be performed:
-&ndash; remove pa_bench.109.55.02
-&ndash; downgrade type_conv.109.60.01 to 109.20.00 [required by comparelib, custom_printf]
-&ndash; downgrade uri.1.4.0 to 1.3.11
-&ndash; recompile variantslib.109.15.03 [use type_conv]
-&ndash; downgrade sexplib.110.01.00 to 109.20.00 [required by custom_printf]
-&ndash; downgrade pa_ounit.109.53.02 to 109.18.00 [required by custom_printf]
-&ndash; recompile ocaml-data-notation.0.0.11 [use type_conv]
-&ndash; recompile fieldslib.109.20.03 [use type_conv]
-&ndash; recompile dyntype.0.9.0 [use type_conv]
-&ndash; recompile deriving-ocsigen.0.5 [use type_conv]
-&ndash; downgrade comparelib.109.60.00 to 109.15.00
-&ndash; downgrade custom_printf.109.60.00 to 109.15.00
-&ndash; downgrade cohttp.0.9.16 to 0.9.15
-&ndash; recompile cow.0.9.1 [use type_conv, uri]
-&ndash; recompile github.0.7.0 [use type_conv, uri]
+– remove pa_bench.109.55.02
+– downgrade type_conv.109.60.01 to 109.20.00 [required by comparelib, custom_printf]
+– downgrade uri.1.4.0 to 1.3.11
+– recompile variantslib.109.15.03 [use type_conv]
+– downgrade sexplib.110.01.00 to 109.20.00 [required by custom_printf]
+– downgrade pa_ounit.109.53.02 to 109.18.00 [required by custom_printf]
+– recompile ocaml-data-notation.0.0.11 [use type_conv]
+– recompile fieldslib.109.20.03 [use type_conv]
+– recompile dyntype.0.9.0 [use type_conv]
+– recompile deriving-ocsigen.0.5 [use type_conv]
+– downgrade comparelib.109.60.00 to 109.15.00
+– downgrade custom_printf.109.60.00 to 109.15.00
+– downgrade cohttp.0.9.16 to 0.9.15
+– recompile cow.0.9.1 [use type_conv, uri]
+– recompile github.0.7.0 [use type_conv, uri]
 0 to install | 7 to reinstall | 0 to upgrade | 7 to downgrade | 1 to remove
 </code></pre>
 <p>With the next <code>trunk</code> version of OPAM, you will get the much more informative output on real dependencies:</p>
 <pre><code class="language-shell-session">## opam install custom_printf.109.15.00
 The following actions will be performed:
-&ndash; remove pa_bench.109.55.02 [conflicts with type_conv, pa_ounit]
-&ndash; downgrade type_conv from 109.60.01 to 109.20.00 [required by custom_printf]
-&ndash; downgrade uri from 1.4.0 to 1.3.10 [uses sexplib]
-&ndash; recompile variantslib.109.15.03 [uses type_conv]
-&ndash; downgrade sexplib from 110.01.00 to 109.20.00 [required by custom_printf]
-&ndash; downgrade pa_ounit from 109.53.02 to 109.18.00 [required by custom_printf]
-&ndash; recompile ocaml-data-notation.0.0.11 [uses type_conv]
-&ndash; recompile fieldslib.109.20.03 [uses type_conv]
-&ndash; recompile dyntype.0.9.0 [uses type_conv]
-&ndash; recompile deriving-ocsigen.0.5 [uses type_conv]
-&ndash; downgrade comparelib from 109.60.00 to 109.15.00 [uses type_conv]
-&ndash; downgrade custom_printf from 109.60.00 to 109.15.00
-&ndash; downgrade cohttp from 0.9.16 to 0.9.14 [uses sexplib]
-&ndash; recompile cow.0.9.1 [uses type_conv]
-&ndash; recompile github.0.7.0 [uses uri, cohttp]
+– remove pa_bench.109.55.02 [conflicts with type_conv, pa_ounit]
+– downgrade type_conv from 109.60.01 to 109.20.00 [required by custom_printf]
+– downgrade uri from 1.4.0 to 1.3.10 [uses sexplib]
+– recompile variantslib.109.15.03 [uses type_conv]
+– downgrade sexplib from 110.01.00 to 109.20.00 [required by custom_printf]
+– downgrade pa_ounit from 109.53.02 to 109.18.00 [required by custom_printf]
+– recompile ocaml-data-notation.0.0.11 [uses type_conv]
+– recompile fieldslib.109.20.03 [uses type_conv]
+– recompile dyntype.0.9.0 [uses type_conv]
+– recompile deriving-ocsigen.0.5 [uses type_conv]
+– downgrade comparelib from 109.60.00 to 109.15.00 [uses type_conv]
+– downgrade custom_printf from 109.60.00 to 109.15.00
+– downgrade cohttp from 0.9.16 to 0.9.14 [uses sexplib]
+– recompile cow.0.9.1 [uses type_conv]
+– recompile github.0.7.0 [uses uri, cohttp]
 0 to install | 7 to reinstall | 0 to upgrade | 7 to downgrade | 1 to remove
 </code></pre>
 <p>Failsafe behaviour is being much improved as well, because things do
 happen to go wrong when you access the network to download packages and
 then compile them, and that was the biggest source of problems for our
 users: errors are now more <a href="https://github.com/ocaml/opam/commit/f8808c603820771627a6a8477778a5f52e46758f">tightly controlled</a> in <a href="https://github.com/ocaml/opam/commit/c52a2f2ef12ad93f2838907ab3e5ac38d631703b">each stage</a> of the opam command.</p>
-<p>For example, nothing will be changed in case of a failed or interrupted download, and if you press <code>C-c</code> in the middle of an action, you&rsquo;ll get something like this:</p>
+<p>For example, nothing will be changed in case of a failed or interrupted download, and if you press <code>C-c</code> in the middle of an action, you’ll get something like this:</p>
 <pre><code class="language-shell-session">[ERROR] User interruption while waiting for sub-processes
 
 [ERROR] Failure while processing typerex.1.99.6-beta
@@ -80,11 +80,11 @@ recompile alcotest.0.2.0
 install ocp-indent.1.4.1
 install lablgtk.2.16.0
 
-The former state can be restored with opam switch import -f &ldquo;&lt;xxx&gt;.export&rdquo;
+The former state can be restored with opam switch import -f “&lt;xxx&gt;.export”
 </code></pre>
-<p>You also shouldn&rsquo;t have to dig anymore to find the most meaningful error when something fails.</p>
+<p>You also shouldn’t have to dig anymore to find the most meaningful error when something fails.</p>
 <p>With the ever-increasing number of packages and versions, resolving
-requests becomes a real challenge and we&rsquo;re glad we made the choice to
+requests becomes a real challenge and we’re glad we made the choice to
 rely on specialized solvers. The built-in heuristics may show its limits
 when attempting <a href="https://github.com/ocaml/opam-rt/commit/f15c492b1a21ccd99e140a3d440330dd0d39a8ff">long-delayed upgrades</a>, and everybody is encouraged to install an external solver (<a href="http://potassco.sourceforge.net/index.html">aspcud</a> being the one supported at the moment).</p>
 <p>Consequently, we have also been working more tightly with the Mancoosi team at <a href="http://www.irill.org/">IRILL</a> to <a href="https://github.com/ocaml/opam/commit/d3dd9b0ef46881987251f3e375e86dd209b034b8">improve interaction with the solver</a>, and how the user can <a href="https://github.com/ocaml/opam/wiki/Specifying_Solver_Preferences">get the best of it</a> is now well documented, thanks to Roberto Di Cosmo.</p>
@@ -105,14 +105,14 @@ and by adding this directory once and for all to the PATH, with:</p>
 <pre><code class="language-shell-session">$ eval `ocp-manager -config`
 </code></pre>
 <p>You would be able to switch to OPAM switch 3.12.1 (that needs to have been installed first with OPAM) immediatly by using:</p>
-<p>[code language=&rdquo;bash&rdquo; gutter=&rdquo;false&rdquo;]</p>
+<p>[code language=”bash” gutter=”false”]</p>
 <pre><code class="language-shell-session">$ ocp-manager -set opam:3.12.1
 </code></pre>
 <p>Nothing much different from OPAM ? The nice thing with <code>ocp-manager</code>
 is that wrappers also use environment variables and per-directory
 information to choose the OCaml version of the tool they are going to
 run. For example, if some top-directory of your project contains a file <code>.ocp-switch</code>
-with the line &ldquo;opam:4.01.0&rdquo;, your project will always be compiled with
+with the line “opam:4.01.0”, your project will always be compiled with
 this version of OCaml, even if you change the global per-user
 configuration. You can also override the global and local configuration
 by setting the <code>OCAML_VERSION</code> environment variable.</p>
@@ -139,7 +139,7 @@ heap and the time spent searching in the free list. It is all the more
 important that improving the format of the free list with bins has been
 discussed lately in the Core team.</p>
 <p>Here, we display the distribution of blocks at a snapshot during the execution of <code>why3replayer</code>, a tool that we are trying to optimize during the <a href="https://bware.lri.fr/index.php/BWare_project">Bware Project</a>. The number of free blocks is displayed darker than live blocks, from size 21 to size 0.</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/graph_blocks_stats1.png" alt="blocks_stats"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/graph_blocks_stats1.png" alt="blocks_stats"></p>
 <p>It is interesting to notice that, for this applications, almost all
 allocations have a size smaller than 6. We are planning to use such
 information to simulate the cost of allocation for this application, and
@@ -147,13 +147,13 @@ see which data structure for the free list would benefit the most to
 the performance of the application.</p>
 <h4>Whole Program Analysis</h4>
 <p>The static OCaml analyszer is going quite well. Our set of (working) <a href="https://github.com/OCamlPro/ocaml-data-analysis/tree/master/test/samples">test samples</a> is growing in size and complexity. Our last improvement was what is called <strong>widening</strong>.
-What&rsquo;s widening ? Well, the main idea is &ldquo;when I go through a big loop
-5000 times, I don&rsquo;t want the analyzer to do that too&rdquo;. If we take this
+What’s widening ? Well, the main idea is “when I go through a big loop
+5000 times, I don’t want the analyzer to do that too”. If we take this
 sample test:</p>
 <pre><code class="language-ocaml">let () = for i = 0 to 5000 do () done
 </code></pre>
 <p>Without widening, the analysis would loop 5000 times through that
-loop. That&rsquo;s quite useless, not to mention that replacing 5000 by <code>Random.int ()</code> would make the analysis loop until max_int (2^62 times on a 64-bits computer) ! Worse, let&rsquo;s take this code:</p>
+loop. That’s quite useless, not to mention that replacing 5000 by <code>Random.int ()</code> would make the analysis loop until max_int (2^62 times on a 64-bits computer) ! Worse, let’s take this code:</p>
 <pre><code class="language-ocaml">let () =
 let x = ref 0 in
 for i = 1 to 10 do
@@ -161,19 +161,19 @@ x := !x + 1
 done
 </code></pre>
 <p>Here, the analysis would not see that the increment on !x and i would
-be linked (that&rsquo;s one of the aproximations we do to make the
+be linked (that’s one of the aproximations we do to make the
 computation doable). So, the analyzer does not loop ten times, but again
 2^62 times: we do not want that to happen.</p>
-<p>The good news now: we can say to the analyzer &ldquo;every time you go
-through a loop, check what integers you incremented, and suppose you&rsquo;ll
-increment them again and again until you can&rsquo;t&rdquo;. This way we only go
+<p>The good news now: we can say to the analyzer “every time you go
+through a loop, check what integers you incremented, and suppose you’ll
+increment them again and again until you can’t”. This way we only go
 twice through our for-loop: first to discover it, then to propagate the
 widening approximation.</p>
-<p>Of course this is not that simple, and we&rsquo;ll often loose information
-by doing only two iterations. But in most cases, we don&rsquo;t need it or we
+<p>Of course this is not that simple, and we’ll often loose information
+by doing only two iterations. But in most cases, we don’t need it or we
 can get it in a quicker way than iterating billions of times through a
 small loop.</p>
-<p>Hopefully, we&rsquo;ll soon be able to analyze any simple program that uses only <code>Pervasives</code> and the basic language features, but <code>for</code> and <code>while</code> loops are already a good starting point !</p>
+<p>Hopefully, we’ll soon be able to analyze any simple program that uses only <code>Pervasives</code> and the basic language features, but <code>for</code> and <code>while</code> loops are already a good starting point !</p>
 <h4>SPARK 2014: a Use-Case of Alt-Ergo</h4>
 <p>The SPARK toolset, developped by the <a href="https://www.adacore.com/">AdaCore</a>
 company, targets the verification of programs written in the SPARK

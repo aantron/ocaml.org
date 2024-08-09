@@ -10,7 +10,7 @@ source:
 ---
 
 
-The alleged &quot;hack&quot; of coq.inria.fr that led to several days of downtime
+The alleged "hack" of coq.inria.fr that led to several days of downtime
 for investigations was nothing more than a spam bug report. More details
 <a href="https://sympa.inria.fr/sympa/arc/coq-club/2017-08/msg00040.html">here</a>.
 

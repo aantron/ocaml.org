@@ -5,8 +5,8 @@ description: OPAM is a source-based package manager for OCaml. It supports multi
   development workflow. I have recently announced the beta-release of OPAM on the
   caml-list, and this blog post introduces the basics to new OPAM...
 url: https://ocamlpro.com/blog/2013_01_17_beta_release_of_opam
-date: 2013-01-17T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2013-01-17T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:
@@ -23,25 +23,25 @@ the OCaml community and not being completely satisfied with the
 existing solutions, especially regarding the management of dependency
 constraints between packages. Existing technologies such as GODI, oasis,
 odb and ocamlbrew did contain lots of good ideas that we shamelessly
-stole but the final user-experience was not so great &mdash; and we disagreed
-with some of the architectural choices, so it wasn&rsquo;t so easy to
+stole but the final user-experience was not so great — and we disagreed
+with some of the architectural choices, so it wasn’t so easy to
 contribute to fix the existing flaws. Thus we started to discuss the
 specification of a new package manager with folks from <a href="https://www.janestreet.com/">Jane Street</a> who decided to fund the project and from the <a href="https://www.mancoosi.org/">Mancoosi project</a>
 to integrate state-of-the-art dependency management technologies. We
-then hired an engineer to do the initial prototyping work &mdash; and this
+then hired an engineer to do the initial prototyping work — and this
 effort finally gave birth to OPAM!</p>
 <h3>Installing OPAM</h3>
 <p>OPAM packages are already available for homebrew, macports and
 arch-linux. Debian and Ubuntu packages should be available quite soon.
 In any cases, you can either use a <a href="https://github.com/ocaml/opam/blob/master/shell/opam_installer.sh">binary installer</a> or simply install it from <a href="https://github.com/OCamlPro/opam/archive/0.9.1.tar.gz">sources</a>. To learn more about the installation process, read the <a href="https://opam.ocamlpro.com/doc/Quick_Install.html">installation instructions</a>.</p>
 <h3>Initializing OPAM</h3>
-<p>Once you&rsquo;ve installed OPAM, you have to initialize it. OPAM will store all its state under <code>~/.opam</code>,
+<p>Once you’ve installed OPAM, you have to initialize it. OPAM will store all its state under <code>~/.opam</code>,
 so if you want to reset your OPAM configuration, simply remove that
 directory and restart from scratch. OPAM can either use the compiler
 installed on your system or it can also install a fresh version of the
 compiler:</p>
 <pre><code class="language-shell-session">$ opam init # Use the system compiler&lt;br&gt;
-$ opam init &ndash;comp 4.00.1 # Use OCaml 4.00.1&lt;br&gt;
+$ opam init –comp 4.00.1 # Use OCaml 4.00.1&lt;br&gt;
 </code></pre>
 <p>OPAM will prompt you to add a shell script fragment to your <code>.profile</code>.
 It is highly recommended to follow these instructions, as it let OPAM
@@ -49,18 +49,18 @@ set-up correctly the environment variables it needs to compile and
 configure the packages.</p>
 <h3>Getting help</h3>
 <p>OPAM user manual is integrated:</p>
-<pre><code class="language-shell-session">$ opam &ndash;help # Get help on OPAM itself
-$ opam init &ndash;help # Get help on the init sub-command
+<pre><code class="language-shell-session">$ opam –help # Get help on OPAM itself
+$ opam init –help # Get help on the init sub-command
 </code></pre>
 <h3>Basic commands</h3>
 <p>Once OPAM is initialized, you can ask it to list the available
 packages, get package information and search for a given pattern in
 package descriptions:</p>
-<pre><code class="language-shell-session">$ opam list *foo* # list all the package containing &lsquo;foo&rsquo; in their name
-$ opam info foo # Give more information on the &lsquo;foo&rsquo; package
-$ opam search foo # search for the string &lsquo;foo&rsquo; in all package descriptions
+<pre><code class="language-shell-session">$ opam list *foo* # list all the package containing ‘foo’ in their name
+$ opam info foo # Give more information on the ‘foo’ package
+$ opam search foo # search for the string ‘foo’ in all package descriptions
 </code></pre>
-<p>Once you&rsquo;ve found a package you would like to install, just run the usual <code>install</code> command.</p>
+<p>Once you’ve found a package you would like to install, just run the usual <code>install</code> command.</p>
 <pre><code class="language-shell-session">$ opam install lwt # install lwt and its dependencies
 $ opam remove lwt # remove lwt and its dependencies
 </code></pre>
@@ -68,14 +68,14 @@ $ opam remove lwt # remove lwt and its dependencies
 <pre><code class="language-shell-session">$ opam update # check if new packages are available
 $ opam upgrade # upgrade your packages to the latest version
 </code></pre>
-<p>Casual users of OCaml won&rsquo;t need to know more about OPAM. Simply
+<p>Casual users of OCaml won’t need to know more about OPAM. Simply
 remind to update and upgrade OPAM regularly to keep your system
 up-to-date.</p>
 <h3>Use-case 1: Managing Multiple Compilers</h3>
 <p>A new release of OCaml is available and you want to be able to use it. How to do this in OPAM ? This is as simple as:</p>
 <pre><code class="language-shell-session">$ opam update # pick-up the latest compiler descriptions
 $ opam switch 4.00.2 # switch to the new 4.00.2 release
-$ opam switch export &ndash;switch=system | opam switch import -y
+$ opam switch export –switch=system | opam switch import -y
 </code></pre>
 <p>The first line will get the latest package and compiler descriptions,
 and will tell you if new packages or new compilers are available.
@@ -91,9 +91,9 @@ $ opam switch reinstall 4.01.0dev+trunk # reinstall trunk
 <h3>Use-case 2: Managing Multiple Repositories</h3>
 <p>Sometimes, you want to let people use a new version of your software
 early. Or you are working in a company and expose internal libraries to
-your coworkers but you don&rsquo;t want them to be available to anybody using
-OPAM. How can you do that with OPAM? It&rsquo;s easy! You can set-up your own
-repository (see for instance <a href="https://github.com/xen-org/opam-repo-dev/">xen-org</a>&lsquo;s development packages) and add it to your OPAM configuration:</p>
+your coworkers but you don’t want them to be available to anybody using
+OPAM. How can you do that with OPAM? It’s easy! You can set-up your own
+repository (see for instance <a href="https://github.com/xen-org/opam-repo-dev/">xen-org</a>‘s development packages) and add it to your OPAM configuration:</p>
 <pre><code class="language-shell-session">$ opam repository list # list the repositories available in your config
 $ opam repository add xen-org git://github.com/xen-org/opam-repo-dev.git
 $ opam repository list # new xen-org repository available
@@ -120,5 +120,5 @@ $ opam update re # check for change in the remote git branch
 $ opam upgrade lwt re # upgrade re and lwt if necessary
 </code></pre>
 <h3>Conclusion</h3>
-<p>I&rsquo;ve briefly explained some of the main features of OPAM. If you want to go further, I would advise to read the <a href="https://opam.ocamlpro.com/doc/Advanced_Usage.html">user</a> and <a href="https://opam.ocamlpro.com/doc/Packaging.html">packager</a> tutorials. If you really want to understand the internals of OPAM, you can also read the <a href="https://github.com/OCamlPro/opam/blob/master/doc/dev-manual/dev-manual.pdf?raw=true">developer manual</a>.</p>
+<p>I’ve briefly explained some of the main features of OPAM. If you want to go further, I would advise to read the <a href="https://opam.ocamlpro.com/doc/Advanced_Usage.html">user</a> and <a href="https://opam.ocamlpro.com/doc/Packaging.html">packager</a> tutorials. If you really want to understand the internals of OPAM, you can also read the <a href="https://github.com/OCamlPro/opam/blob/master/doc/dev-manual/dev-manual.pdf?raw=true">developer manual</a>.</p>
 

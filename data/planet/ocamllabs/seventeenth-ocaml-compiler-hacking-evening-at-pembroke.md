@@ -13,21 +13,21 @@ source:
 
 <p>If you're planning to come along, it'd be helpful if you could <a href="https://doodle.com/poll/dxvcih4d9en2t5vy">indicate interest via Doodle</a> and <a href="http://lists.ocaml.org/admin/cam-compiler-hacking">sign up to the mailing list</a> to receive updates.</p>
 
-<p><em><strong>Where</strong></em>: The Old Library, Pembroke College&#8203;, &#8203;Cambridge&#8203; &#8203;CB2 1RF</p>
+<p><em><strong>Where</strong></em>: The Old Library, Pembroke College​, ​Cambridge​ ​CB2 1RF</p>
 
-<p>&#8203;The Old Library is the first building on the left straight after the Porters Lodge.</p>
+<p>​The Old Library is the first building on the left straight after the Porters Lodge.</p>
 
-<p><em><strong>When</strong></em>: 6:30pm, Tuesday 16&#8203;th &#8203;May</p>
+<p><em><strong>When</strong></em>: 6:30pm, Tuesday 16​th ​May</p>
 
 <p><em><strong>Who</strong></em>: anyone interested in improving OCaml. Knowledge of OCaml programming will obviously be helpful, but prior experience of working on OCaml internals isn't necessary.</p>
 
-<p><em><strong>Refreshments</strong></em>: either the Pembroke buttery between 5:45-6:45pm (cash only) or there will be a finger buffet in&#8203; The Old Library&#8203; itself.</p>
+<p><em><strong>Refreshments</strong></em>: either the Pembroke buttery between 5:45-6:45pm (cash only) or there will be a finger buffet in​ The Old Library​ itself.</p>
 
 <p><em><strong>What</strong></em>: fixing bugs, implementing new features, learning about OCaml internals</p>
 
 <p><em><strong>Wiki</strong></em>: https://github.com/ocamllabs/compiler-hacking/wiki</p>
 
-<p>We're defining &quot;compiler&quot; pretty broadly, to include anything that's part of the standard distribution, which means at least the
+<p>We're defining "compiler" pretty broadly, to include anything that's part of the standard distribution, which means at least the
  <a href="https://github.com/ocaml/ocaml/tree/trunk/stdlib">standard library</a>,
  <a href="https://github.com/ocaml/ocaml/tree/trunk/byterun">run</a><a href="https://github.com/ocaml/ocaml/tree/trunk/asmrun">time</a>, tools
     (<a href="http://caml.inria.fr/pub/docs/manual-ocaml/depend.html">ocamldep</a>,

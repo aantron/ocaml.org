@@ -5,8 +5,8 @@ description: Feedback on this post is welcomed on Discuss! We are pleased to ann
   New features Back-ported ability to load upgraded roots read-only; allows applications
   compiled with opam-state 2.0.9 to load a root which has b...
 url: https://ocamlpro.com/blog/2021_08_03_opam_2.0.9_release
-date: 2021-08-03T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2021-08-03T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Raja Boujbel\n  "
 source:
@@ -49,15 +49,15 @@ source:
 <li>Fish: stop using deprecated <code>^</code> syntax to fix support for Fish 3.3.0+ [<a href="https://github.com/ocaml/opam/issues/4736">#4736</a>]
 </li>
 </ul>
-<hr/>
+<hr>
 <p>Installation instructions (unchanged):</p>
 <ol>
 <li>From binaries: run
 </li>
 </ol>
-<pre><code class="language-shell-session">bash -c &quot;sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.0.9&quot;
+<pre><code class="language-shell-session">bash -c "sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.0.9"
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.9">the Github &quot;Releases&quot; page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update you sandbox script.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.9">the Github "Releases" page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update you sandbox script.</p>
 <ol start="2">
 <li>From source, using opam:
 </li>

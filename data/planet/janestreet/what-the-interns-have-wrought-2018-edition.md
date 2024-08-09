@@ -11,9 +11,9 @@ authors:
 source:
 ---
 
-<p>Yet again, intern season is coming to a close, and so it&rsquo;s time to
+<p>Yet again, intern season is coming to a close, and so it’s time to
 look back at what the interns have achieved in their short time with
-us.  I&rsquo;m always impressed by what our interns manage to squeeze into
+us.  I’m always impressed by what our interns manage to squeeze into
 the summer, and this year is no different.</p>
 
 

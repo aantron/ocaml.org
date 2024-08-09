@@ -12,14 +12,14 @@ source:
 
 
 <div>
-  <b>Faster builds with omake, part 1: Overview</b><br/>&nbsp;
+  <b>Faster builds with omake, part 1: Overview</b><br>&nbsp;
 </div>
 
 <div>
   
 In
 the <a href="https://sympa.inria.fr/sympa/arc/caml-list/2014-09/msg00090.html">2014
-edition</a> of the &quot;which is the best build system for OCaml&quot; debate
+edition</a> of the "which is the best build system for OCaml" debate
 the <a href="http://omake.metaprl.org">OMake</a> utility was heavily
 criticized for being not scalable enough. Some quick tests showed that
 there was in deed a problem. At
@@ -50,7 +50,7 @@ OMake is not only a build system (like e.g. ocamlbuild), but it also
 includes extensions that are important for controlling and customizing
 builds. There is an interpreter for a simple dynamically typed
 functional language. There is a command shell implementing utilities
-like &quot;rm&quot; or &quot;cp&quot; which is in particular important on non-Unix
+like "rm" or "cp" which is in particular important on non-Unix
 systems. There are system interfaces for watching files and restarting
 the build whenever source code is saved in the editor. In short, OMake
 is very feature-rich, but also, and this is the downside, it is also
@@ -80,7 +80,7 @@ was used for Windows, so you cannot compare Linux with Windows):
 
 </p><p>
 </p><table border="1">
-<tr>
+<tbody><tr>
 <th>Size n</th>
 <th>Parallelism j</th>
 <th>Number of modules (n^4)</th>
@@ -115,7 +115,7 @@ was used for Windows, so you cannot compare Linux with Windows):
 <td align="right">607</td>
 <td align="right">341</td>
 </tr>
-</table>
+</tbody></table>
 
 <p>This clearly shows that there is something wrong, in particular for
 Linux as OS: For the n=8 number of 4096 modules, which is around 1.7
@@ -140,12 +140,12 @@ behaves much better:
 
 <p>
 </p><table border="1">
-<tr>
+<tbody><tr>
 <th>Size n</th>
 <th>Parallelism j</th>
 <th>Number of modules (n^4)</th>
-<th>Runtime Linux<br/>(Speedup factor)</th>
-<th>Runtime Windows<br/>(Speedup factor)</th>
+<th>Runtime Linux<br>(Speedup factor)</th>
+<th>Runtime Windows<br>(Speedup factor)</th>
 </tr>
 <tr>
 <td align="right">n=7</td>
@@ -175,7 +175,7 @@ behaves much better:
 <td align="right">144 (4.2)</td>
 <td align="right">330 (1.0)</td>
 </tr>
-</table>
+</tbody></table>
 
 <div style="float:right; width:50%; border: 1px solid black; padding: 10px; margin-left: 1em; margin-top: 1em; background-color: #E0E0E0">
 There is a now a <a href="https://github.com/gerdstolpmann/omake-fork/tags">pre-release omake-0.10.0-test1</a> that can be bootstrapped! It contains all
@@ -199,13 +199,13 @@ n=7 runs.
 incremental build takes after changing a single file. At least for
 OMake, a good measure for this is the zero rebuild time: how long
 OMake takes to figure out that nothing has changed, i.e. the time for
-the second omake run in &quot;omake ; omake&quot;:
+the second omake run in "omake ; omake":
 
 </p><table border="1">
-<tr>
+<tbody><tr>
 <th>Parameters</th>
 <th>Runtime Linux omake-0.9.8.6</th>
-<th>Runtime Linux 2015-05-18<br/>(Speedup Factor)</th>
+<th>Runtime Linux 2015-05-18<br>(Speedup Factor)</th>
 </tr>
 <tr>
 <td align="right">n=7, j=1</td>
@@ -217,7 +217,7 @@ the second omake run in &quot;omake ; omake&quot;:
 <td align="right">39.2</td>
 <td align="right">15.6 (2.5)</td>
 </tr>
-</table>
+</tbody></table>
 
 <p>The time roughly halves. Note that you get a similar effect under
 Windows as OMake doesn't start any commands for a zero
@@ -230,12 +230,12 @@ for commands, which turns out to be the more expensive action).
 
 I started it the old-fashioned way by manually instrumenting
 interesting functions. This means that counts and (wall-clock)
-runtimes are measured. Functions that (subjectively) &quot;take too long&quot;
+runtimes are measured. Functions that (subjectively) "take too long"
 are further analyzed by also instrumenting called functions. This way
 I could quickly find out the interesting parts (while learning how
 OMake works as you go through the code and instrument it). The
 helper module I used: <a href="https://github.com/gerdstolpmann/omake-fork/blob/master/src/libmojave/lm_instrument.mli">Lm_instrument</a>. (Note that
-I did all the actual instrumentation in the &quot;perf-test&quot; branch.)
+I did all the actual instrumentation in the "perf-test" branch.)
 
 <p>As OCaml supports gprof instrumentation I also tried this but
 without success. The problem is simply that gprof looks at the wrong
@@ -298,12 +298,12 @@ to the command of the rule, as if every rule looked like:
 
 </p><blockquote>
 <code>
-target: source1 ... sourceN :value: $(command)<br/>
+target: source1 ... sourceN :value: $(command)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;$(command)
 </code>
 </blockquote>
 
-i.e. when the command changes the rule &quot;fires&quot; and is executed. This is
+i.e. when the command changes the rule "fires" and is executed. This is
 an automatic addition, and it is very useful: When you start a build after
 changing parameters (e.g. include paths) OMake automatically
 detects which commands have changed because of this, and reruns these.
@@ -312,7 +312,7 @@ detects which commands have changed because of this, and reruns these.
 However, there is a price to pay. For checking whether a rule is out of date
 it is required to expand the command and compute the digest. For a full
 build the time for this is negligible (and you need the commands anyway
-for starting them), but for a &quot;zero rebuild&quot; the commands are finally
+for starting them), but for a "zero rebuild" the commands are finally
 not needed, and OMake expands them only for the out-of-date check. As you
 might guess, this is the main reason why a zero rebuild is so slow.
 
@@ -330,7 +330,7 @@ to do in my time budget.
 The next part will be published on Friday, 6/19.
 </div>
 
-<img src="http://blog.camlcity.org/files/img/blog/omake1_bug.gif" width="1" height="1"/>
+<img src="http://blog.camlcity.org/files/img/blog/omake1_bug.gif" width="1" height="1">
 
 
 </div>

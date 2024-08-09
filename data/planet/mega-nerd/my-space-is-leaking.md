@@ -66,7 +66,7 @@ an
 	<a href="http://hackage.haskell.org/packages/archive/deepseq/1.3.0.1/doc/html/Control-DeepSeq.html#t:NFData">
 	NFData</a>
 instance.
-A bit of googling for &quot;custom NFData instance&quot; showed up the
+A bit of googling for "custom NFData instance" showed up the
 	<a href="http://hackage.haskell.org/package/deepseq-th/">
 	deepseq-th</a>
 package which uses Template Haskell to generate NFData instances.
@@ -99,10 +99,10 @@ generics version ran just as fast.
 </p>
 
 <p>
-That's when Jos&Atilde;&copy; Pedro Magalh&Atilde;&pound;es (dreixel in #haskell) said that he had a draft
+That's when JosÃ© Pedro MagalhÃ£es (dreixel in #haskell) said that he had a draft
 paper
 	<a href="http://dreixel.net/research/pdf/ogpi_draft.pdf">
-	&quot;Optimisation of Generic Programs through Inlining&quot;</a>
+	"Optimisation of Generic Programs through Inlining"</a>
 explaining how and why this generic implementation is just as fast as the
 Template Haskell version.
 Basically it boils down to the compiler having all the information it needs at

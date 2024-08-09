@@ -5,14 +5,14 @@ description: This blog post and the previous one about functor packs covers two 
   packs, a new feature adding the possiblity to compile packs as functors, allowing
   the user to implement functors as multiple source files or even ...
 url: https://ocamlpro.com/blog/2020_09_30_rehabilitating_packs_using_functors_and_recursivity_part_2
-date: 2020-09-30T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2020-09-30T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Pierrick Couderc\n  "
 source:
 ---
 
-<p><img src="https://ocamlpro.com/blog/assets/img/train.jpg" alt=""/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/train.jpg" alt=""></p>
 <p>This blog post and the previous one about <a href="https://ocamlpro.com/blog/2020_09_24_rehabilitating_packs_using_functors_and_recursivity_part_1">functor packs</a> covers two RFCs currently developed by OCamlPro and Jane Street. We previously introduced functor packs, a new feature adding the possiblity to compile packs as functors, allowing the user to implement functors as multiple source files or even parameterized libraries.</p>
 <p>In this blog post, we will cover the other aspect of the packs rehabilitation: allowing anyone to implement recursive compilation units using packs (as described formally in the <a href="https://github.com/ocaml/RFCs/pull/20">RFC#20</a>). Our previous post introduced briefly how packs were compiled and why we needed some bits of closure conversion to effectively implement big functors. Once again, to implement recursive packs we will need to encode modules through this technique, as such we advise the reader to check at least the introduction and the compilation part of functor packs.</p>
 <h2>Recursive modules through recursive packs</h2>

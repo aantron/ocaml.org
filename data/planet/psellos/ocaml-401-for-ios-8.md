@@ -15,7 +15,7 @@ source:
 iOS 8 is not too difficult. The only thing that changes is the name of
 the SDK, which can be specified with the <code>-ccopt</code> option of ocamlopt.</p>
 
-<p>I&rsquo;ve been testing OCaml apps on iOS 8.1 recently, and I wrote a script
+<p>I’ve been testing OCaml apps on iOS 8.1 recently, and I wrote a script
 that runs the OCamlXARM version of ocamlopt with the correct options. In
 fact it lets you specify the revision of iOS that you want to compile
 for.</p>
@@ -37,40 +37,40 @@ while [ $# -gt 0 ] ; do
             REV=$2
             shift 2
         else
-            echo &quot;$USAGE&quot; &gt;&amp;2
+            echo "$USAGE" &gt;&amp;2
             exit 1
         fi
         ;;
-    *)  ARGS[${#ARGS[*]}]=&quot;$1&quot;
+    *)  ARGS[${#ARGS[*]}]="$1"
         shift 1
         ;;
     esac
 done
-if [ &quot;$REV&quot; = &quot;&quot; ]; then
-    echo &quot;$USAGE&quot; &gt;&amp;2
+if [ "$REV" = "" ]; then
+    echo "$USAGE" &gt;&amp;2
     exit 1
 fi
 HIDEOUT=/Applications/Xcode.app/Contents/Developer 
 PLT=$HIDEOUT/Platforms/iPhoneOS.platform 
 SDK=/Developer/SDKs/iPhoneOS${REV}.sdk 
-OCOPTS=&quot;-ccopt -isysroot -ccopt $PLT$SDK&quot; 
-/usr/local/ocamlxarm/v7/bin/ocamlopt $OCOPTS &quot;${ARGS[@]}&quot;</code></pre>
+OCOPTS="-ccopt -isysroot -ccopt $PLT$SDK" 
+/usr/local/ocamlxarm/v7/bin/ocamlopt $OCOPTS "${ARGS[@]}"</code></pre>
 
-<p>Let&rsquo;s make a tiny OCaml program for testing:</p>
+<p>Let’s make a tiny OCaml program for testing:</p>
 
-<pre><code>$ echo &quot;Printf.printf \&quot;There's a light up above\n\&quot;&quot; &gt; bbjohn.ml</code></pre>
+<pre><code>$ echo "Printf.printf \"There's a light up above\n\"" &gt; bbjohn.ml</code></pre>
 
-<p>Here&rsquo;s what happens if you compile with the current OCamlXARM on a
+<p>Here’s what happens if you compile with the current OCamlXARM on a
 system with the iOS 8.1 SDK:</p>
 
 <pre><code>$ /usr/local/ocamlxarm/v7/bin/ocamlopt -o bbjohn bbjohn.ml
 clang: warning: no such sysroot directory: '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk'
 ld: library not found for -lSystem
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
-File &quot;caml_startup&quot;, line 1:
+File "caml_startup", line 1:
 Error: Error during linking</code></pre>
 
-<p>As you can see, it&rsquo;s trying and failing to use the iOS 7.1 SDK. Here&rsquo;s
+<p>As you can see, it’s trying and failing to use the iOS 7.1 SDK. Here’s
 how to use <code>ocamloptrev</code> (the above script):</p>
 
 <pre><code>$ ocamloptrev -rev 8.1 -o bbjohn -cclib -Wl,-no_pie bbjohn.ml
@@ -82,14 +82,14 @@ bbjohn: Mach-O executable arm</code></pre>
 <p>I have run the generated executables under iOS 8.1, and they work for
 me.</p>
 
-<p>I&rsquo;m continuing to work with passion, in the evenings, in my
+<p>I’m continuing to work with passion, in the evenings, in my
 metaphorically lonely atelier in the subbasement, on several
 OCaml-on-iOS projects. In fact one is potentially quite exciting. Thanks
 for all the support from correspondents as I work through them as fast
 as I can.</p>
 
 <p>I hope this script will be useful for folks who want to try OCaml on iOS
-while I&rsquo;m updating the release to the latest versions of everything and
+while I’m updating the release to the latest versions of everything and
 keeping all the irons in the fire.</p>
 
 <p>If you have any trouble (or success) with the script, or have any other

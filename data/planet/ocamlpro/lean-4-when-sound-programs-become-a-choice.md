@@ -5,8 +5,8 @@ description: Monitoring Edge Technical Endeavours As a company specialized in st
   ongoing trend of bringing more and more of these elements into mainstream programming
   languages. Rust is a relatively recent example of t...
 url: https://ocamlpro.com/blog/2024_03_07_lean4_when_sound_programs_become_a_choice
-date: 2024-03-07T10:00:20-00:00
-preview_image: https://ocamlpro.com/assets/img/logo_ocp_icon.svg
+date: 2024-03-07T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Adrien Champion\n  "
 source:
@@ -21,16 +21,16 @@ and more of these elements into mainstream programming languages. Rust is a
 relatively recent example of this trend; another one is the very recent <a href="https://leanprover-community.github.io/index.html">Lean 4
 language</a>.</p>
 <p></p><div>
-<strong>Table of contents</strong>
+<strong>Table of contents</strong><p></p>
 <ul>
 <li><a href="https://ocamlpro.com/blog/feed#watch">Monitoring Edge Technical Software</a>
 </li>
 <li><a href="https://ocamlpro.com/blog/feed#lean4">Lean 4, the Promise of Proven Software</a>
 </li>
 <li><a href="https://ocamlpro.com/blog/feed#leanpro">OCamlPro for a Future of Trustworthy Software</a>
+</li></ul></div>
 
-</li>
-</ul>
+
 <h3>
 <a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#lean4" class="anchor-link">Lean 4, the Promising Future of Proven Software</a>
           </h3>
@@ -45,7 +45,7 @@ This contrasts with having a programming language, a specification language,
 and a separate verification/certification tool, and then having to argue about
 the trustworthiness of each of them, and that the glue linking all of them
 together makes sense. This is extremely interesting in the context of critical
-embedded systems in particular, and in qualified/certified &quot;high-trust&quot;
+embedded systems in particular, and in qualified/certified "high-trust"
 development in general.</p>
 <p>While admittedly not as mainstream as Rust, Lean 4 has recently seen an
 explosion in interest from the media, developers, mathematicians, and (some)
@@ -65,7 +65,7 @@ development effort is also part of our culture. This is to give back to the
 community, but also to closely follow the evolution of Lean 4 and sharpen our
 skills.</p>
 <p>There are a few notable and public examples of our involvement. As part of our
-in-house prototyping, we discovered a <a href="https://leanprover.zulipchat.com/#narrow/stream/270676-lean4/topic/case.20in.20dependent.20match.20not.20triggering.20.28.3F.29/near/288328239">&quot;major bug&quot; in Lean 4's dependent
+in-house prototyping, we discovered a <a href="https://leanprover.zulipchat.com/#narrow/stream/270676-lean4/topic/case.20in.20dependent.20match.20not.20triggering.20.28.3F.29/near/288328239">"major bug" in Lean 4's dependent
 pattern-matching</a>; later, we contributed on <a href="https://github.com/leanprover/lean4/pull/1811">improving aspects of the
 by notation</a> (used to construct proofs), which then ricocheted into
 <a href="https://github.com/leanprover/lean4/pull/1844">fixing problems into the calc tactic</a>. More recently, we contributed
@@ -75,4 +75,4 @@ the documentation effort</a>...</p>
 <p>Lean 4 is not of industrial-strength yet, but it gets closer and closer.
 Quickly enough for us to think that now's a reasonable time to spend some time
 exploring it.</p>
-</div>
+

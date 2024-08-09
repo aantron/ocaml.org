@@ -11,7 +11,7 @@ authors:
 source:
 ---
 
-<p>Testing is important, and it&rsquo;s hard to get people to do as much of it as they
+<p>Testing is important, and it’s hard to get people to do as much of it as they
 should. Testing tools matter because the smoother the process is, the more tests
 people will write.</p>
 

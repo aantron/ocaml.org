@@ -9,9 +9,9 @@ authors:
 source:
 ---
 
-<p>Lately, I&rsquo;ve been messing around with Janestreet&rsquo;s core and async
+<p>Lately, I’ve been messing around with Janestreet’s core and async
 libraries by reimplementing an old interview question that has been
 posed to me before. The problem statement itself is from my memory alone
-so this isn&rsquo;t 100% what I&rsquo;ve been asked but it should be extremely
+so this isn’t 100% what I’ve been asked but it should be extremely
 close.</p>
 

@@ -17,7 +17,7 @@ Export modifier for setting options, support for goal selectors in front of
 focusing brackets and a new experimental -mangle-names option for linting proof
 scripts.
 
-Feedback and <a href="https://github.com/coq/coq/issues">bug reports</a> are extremely welcome.
+Feedback and <a href="https://github.com/coq/coq/issues">bug reports</a> are extremely welcome.<p></p>
 
 
  

@@ -6,8 +6,8 @@ description: "We are happy to announce a new release of Alt\u2011Ergo (version 2
   formulas, with a primary focus on advancing program verification.\nThis powerful
   tool is instrumental in the arsenal of static analysis solutions su..."
 url: https://ocamlpro.com/blog/2023_09_18_release_of_alt_ergo_2_5_1
-date: 2023-09-18T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2023-09-18T13:31:53-00:00
+preview_image: https://ocamlpro.com/blog/assets/img/ae-251-is-out.png
 authors:
 - "\n    Pierre Villemot\n  "
 source:
@@ -18,19 +18,19 @@ source:
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/ae-251-is-out.png">
-      <img src="https://ocamlpro.com/blog/assets/img/ae-251-is-out.png" alt="Alt&#8209;Ergo: An Automated SMT Solver for Program Verification"/>
+      <img src="https://ocamlpro.com/blog/assets/img/ae-251-is-out.png" alt="Alt‑Ergo: An Automated SMT Solver for Program Verification">
     </a>
     </p><div class="caption">
-      Alt&#8209;Ergo: An Automated SMT Solver for Program Verification
+      Alt‑Ergo: An Automated SMT Solver for Program Verification
     </div>
-  
+  <p></p>
 </div>
-
-<p><strong>We are happy to announce a new release of Alt&#8209;Ergo (version 2.5.1).</strong></p>
+<p></p>
+<p><strong>We are happy to announce a new release of Alt‑Ergo (version 2.5.1).</strong></p>
 <blockquote>
 <p>Alt-Ergo is a cutting-edge automated prover designed specifically for mathematical formulas, with a primary focus on advancing program verification.</p>
 <p>This powerful tool is instrumental in the arsenal of static analysis solutions such as Trust-In-Soft Analyzer and Frama-C. It accompanies other major solvers like CVC5 and Z3, and is part of the solvers used behind Why3, a platform renowned for deductive program verification.</p>
-<p><strong>Find out more about Alt&#8209;Ergo and how to join the Alt-Ergo Users' Club <a href="https://alt-ergo.ocamlpro.com/#about">here</a>!</strong></p>
+<p><strong>Find out more about Alt‑Ergo and how to join the Alt-Ergo Users' Club <a href="https://alt-ergo.ocamlpro.com/#about">here</a>!</strong></p>
 </blockquote>
 <p>This release includes the following new features and improvements:</p>
 <ul>
@@ -105,7 +105,7 @@ Notice that the support is only avalaible through the Dolmen frontend.</p>
 <pre><code class="language-shell-session">alt-ergo --frontend dolmen input.smt2
 </code></pre>
 <p>produces the limpid error message:</p>
-<pre><code class="language-shell-session">File &quot;input.smt2&quot;, line 5, character 11-18:
+<pre><code class="language-shell-session">File "input.smt2", line 5, character 11-18:
 5 | (assert (= (f x y) 0))
                ^^^^^^^
 Error The term: `y` has type `real` but was expected to be of type `int`
@@ -149,7 +149,7 @@ new <code>bvnot</code> primitive that slipped through the cracks. The bug was fo
 immediately after the release, and version 2.5.1 released with a fix.</p>
 <h2>Acknowledgements</h2>
 <p>We thank members of the <a href="https://alt-ergo.ocamlpro.com/#club">Alt-Ergo Users' Club</a>: Thales, Trust-in-Soft, AdaCore, MERCE and the CEA.</p>
-<p>We specially thank David Mentr&eacute; and Denis Cousineau at Mitsubishi Electric R&amp;D
+<p>We specially thank David Mentré and Denis Cousineau at Mitsubishi Electric R&amp;D
 Center Europe for funding the initial work on model generation.
 Note that MERCE has been a Member of the Alt-Ergo Users' Club for three years.
 This partnership allowed Alt-Ergo to evolve and we hope that more users will join
@@ -158,12 +158,12 @@ the Club on our journey to make Alt-Ergo a must-have tool.</p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/clubAE.png">
-      <img src="https://ocamlpro.com/blog/assets/img/clubAE.png" alt="The dedicated members of our Alt-Ergo Club!"/>
+      <img src="https://ocamlpro.com/blog/assets/img/clubAE.png" alt="The dedicated members of our Alt-Ergo Club!">
     </a>
     </p><div class="caption">
       The dedicated members of our Alt-Ergo Club!
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 

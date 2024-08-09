@@ -33,7 +33,7 @@ merged. At the very least, because this means no more lengthy
 rebasing.</p>
 <h4><a href="https://github.com/ocaml/ocaml/pull/12031">A type for symbol
 identifiers in the bytecode</a></h4>
-<p>Working with S&eacute;bastien Hinderer, I have completed a final review on
+<p>Working with Sébastien Hinderer, I have completed a final review on
 his work on switching to a narrower type for global symbols in the
 bytecode backend. His PR has been merged on last Friday. Hopefully, it
 shall make further work in this area of the compiler simpler by making

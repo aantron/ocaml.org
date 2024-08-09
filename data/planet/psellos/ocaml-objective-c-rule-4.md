@@ -18,7 +18,7 @@ only input is a periodic categorization of the spatial orientation of the
 phone. The timing of the crash was quite consistent.</p>
 
 <p>It turns out that the same problem can be demonstrated in OS X. At the
-risk of revealing just how many errors I make in coding, I thought I&rsquo;d
+risk of revealing just how many errors I make in coding, I thought I’d
 write up this example also. I can imagine that somebody else might see
 the problem some day.</p>
 
@@ -29,8 +29,8 @@ Here is the table in Objective C (<code>table.m</code>):</p>
 
 <pre><code>#include &lt;Foundation/Foundation.h&gt;
 
-#include &quot;caml/memory.h&quot;
-#include &quot;caml/alloc.h&quot;
+#include "caml/memory.h"
+#include "caml/alloc.h"
 
 static NSMutableDictionary *g_dict = nil;
 
@@ -68,37 +68,37 @@ value table_lookup(value k)
 
 <p>The table associates a string with an OCaml value. You have to imagine
 that I have some reason to retrieve the OCaml value for a string in the
-Objective C code. But for this example I&rsquo;ll look up values from OCaml
+Objective C code. But for this example I’ll look up values from OCaml
 using <code>table_lookup()</code>.</p>
 
 <p>The OCaml main program looks like this (<code>r4.ml</code>):</p>
 
-<pre><code>external table_add : string -&gt; int list -&gt; unit = &quot;table_add&quot;
-external table_lookup : string -&gt; int list option = &quot;table_lookup&quot;
+<pre><code>external table_add : string -&gt; int list -&gt; unit = "table_add"
+external table_lookup : string -&gt; int list option = "table_lookup"
 
 let rec replicate n x = if n &lt;= 0 then [] else x :: replicate (n - 1) x
 
 let rec check iter =
-    (* Keep checking whether the &quot;four&quot; entry looks right. If not,
+    (* Keep checking whether the "four" entry looks right. If not,
      * return the iteration number where it fails.
      *)
     if iter mod 1000000 = 0 then
-        Printf.printf &quot;iteration %d\n%!&quot; iter;
-    match table_lookup &quot;four&quot; with
+        Printf.printf "iteration %d\n%!" iter;
+    match table_lookup "four" with
     | Some [_; _; _; _] -&gt; check (iter + 1)
     | _ -&gt; iter
 
 let main () =
-    table_add &quot;three&quot; (replicate 3 1);
-    table_add &quot;four&quot; (replicate 4 1);
+    table_add "three" (replicate 3 1);
+    table_add "four" (replicate 4 1);
     let failed_iter = check 1 in
-    Printf.printf &quot;failed at iteration %d\n&quot; failed_iter
+    Printf.printf "failed at iteration %d\n" failed_iter
 
 let () = main ()</code></pre>
 
-<p>The program creates two entries in the table. The value for <code>&quot;four&quot;</code> is
-the list <code>[1; 1; 1; 1]</code>. Then&mdash;and you know this means something is very
-wrong&mdash;it fetches the value for <code>&quot;four&quot;</code> repeatedly and checks that it
+<p>The program creates two entries in the table. The value for <code>"four"</code> is
+the list <code>[1; 1; 1; 1]</code>. Then—and you know this means something is very
+wrong—it fetches the value for <code>"four"</code> repeatedly and checks that it
 has the correct length.</p>
 
 <p>If you compile this and run it on OS X a couple of times, you see the
@@ -113,12 +113,12 @@ failed at iteration 131067
 $ r4
 failed at iteration 131067</code></pre>
 
-<p>So, at iteration 131067 the length of the list for <code>&quot;four&quot;</code> changes to
+<p>So, at iteration 131067 the length of the list for <code>"four"</code> changes to
 something other than 4. The first 131066 iterations correspond to the 5
 minutes 50 seconds when my iOS app worked fine. Then things go wrong.
 Note that 131067 is suspiciously close to a power of 2.</p>
 
-<p>You, reader, are possibly way ahead of me and already see what&rsquo;s wrong.
+<p>You, reader, are possibly way ahead of me and already see what’s wrong.
 But what I did was work through the problem carefully with lldb.
 Eventually I figured out that I had broken Rule 4:</p>
 
@@ -128,8 +128,8 @@ Eventually I figured out that I had broken Rule 4:</p>
 </blockquote>
 
 <p>In retrospect this is obvious. OCaml values are subject to change at
-every allocation. But they can&rsquo;t change if the GC can&rsquo;t find them, so
-they need to be registered. The values in the table aren&rsquo;t registered,
+every allocation. But they can’t change if the GC can’t find them, so
+they need to be registered. The values in the table aren’t registered,
 so they become invalid at the first GC. You can find Rule 4 and the
 Other Rules here:</p>
 
@@ -138,14 +138,14 @@ Other Rules here:</p>
 </blockquote>
 
 <p>One reason it was difficult to code this correctly is that the
-<code>NSNumber</code> wrapper class doesn&rsquo;t have an interface for getting a pointer
+<code>NSNumber</code> wrapper class doesn’t have an interface for getting a pointer
 to the wrapped-up number. I thought about this for a while and ended up
 doing the following (corrected <code>table.m</code>):</p>
 
 <pre><code>#include &lt;Foundation/Foundation.h&gt;
 
-#include &quot;caml/memory.h&quot;
-#include &quot;caml/alloc.h&quot;
+#include "caml/memory.h"
+#include "caml/alloc.h"
 
 static NSMutableDictionary *g_dict = nil;
 
@@ -186,7 +186,7 @@ value table_lookup(value k)
     CAMLreturn(Val_int(0)); /* None */
 }</code></pre>
 
-<p>Since I can&rsquo;t get pointers to wrapped up values, I make pointers myself
+<p>Since I can’t get pointers to wrapped up values, I make pointers myself
 and wrap <em>them</em>.</p>
 
 <p>If you compile and run this corrected version, it looks like this:</p>

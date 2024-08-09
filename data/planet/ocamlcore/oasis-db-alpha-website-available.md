@@ -17,7 +17,7 @@ source:
 <p><a href="http://oasis.ocamlcore.org">http://oasis.ocamlcore.org</a></p>
 <p>(direct link to the <a href="http://oasis.ocamlcore.org/dev">development&nbsp; version</a> and <a href="http://oasis.forge.ocamlcore.org/oasis-db/server-dev/">access to various files</a>)</p>
 </td>
-<td><img src="http://www.ocamlcore.com/wp/wp-content/uploads/logo.png" align="right" width="100" height="94" alt=""/></td>
+<td><img src="http://www.ocamlcore.com/wp/wp-content/uploads/logo.png" align="right" width="100" height="94" alt=""></td>
 </tr>
 </tbody>
 </table>

@@ -12,8 +12,8 @@ authors:
 source:
 ---
 
-<p>It&rsquo;s often surprising just how much software performance depends on how the
-software is deployed. All the time and effort you&rsquo;ve invested in optimization
+<p>It’s often surprising just how much software performance depends on how the
+software is deployed. All the time and effort you’ve invested in optimization
 can be erased by a few bad decisions in scheduler policy, affinity, or
 background workload on a server.</p>
 

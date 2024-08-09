@@ -15,7 +15,7 @@ source:
 8.12.2</a>.
 
 </p><p>This release fixes two impacting 8.12 regressions (in notations and
-the implicit argument inference of the exists tactic).  See the <a href="https://coq.inria.fr/distrib/V8.12.2/refman/changes.html#changes-in-8-12-2">changelog</a>
+the implicit argument inference of the exists tactic).  See the <a href="https://coq.github.io/doc/V8.12.2/refman/changes.html#changes-in-8-12-2">changelog</a>
 for details.</p>
 
 

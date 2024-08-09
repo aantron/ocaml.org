@@ -10,7 +10,7 @@ authors:
 source:
 ---
 
-<p>If you haven&rsquo;t heard of it, <a href="https://www.depthfirstlearning.com/2018/DFL-Fellowship">Depth First
+<p>If you haven’t heard of it, <a href="https://www.depthfirstlearning.com/2018/DFL-Fellowship">Depth First
 Learning</a> is a
 wonderful resource for learning about machine learning.</p>
 

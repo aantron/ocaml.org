@@ -23,7 +23,7 @@ OCaml projects and a bit of on-going work on structured logs.</p>
   <h3>OCaml 5.1.1</h3>
 <p>OCaml 5.1.0 has been released nearly three months ago, in those
 months we have discovered a few significant bugs that were impeding the
-use of OCaml 5.1.1:</p>
+use of OCaml 5.1:</p>
 <ul>
 <li>one type system soundness bug</li>
 <li>one dependency bug</li>
@@ -31,24 +31,24 @@ use of OCaml 5.1.1:</p>
 </ul>
 <p>To fix those issues, and have a version of OCaml 5.1 usable by
 anyone, we have release a new patched version 5.1.1 of OCaml.</p>
-<p>Let&rsquo;s spend some time analysing those issues.</p>
+<p>Let’s spend some time analysing those issues.</p>
 <h4>Type system (and type
 printing) bug</h4>
 <p>The first worrying bug in OCaml 5.1.0 was an issue with the
 refactoring of variance computation. Suddenly, in OCaml 5.1.0 one could
 write</p>
-<div class="highlight"><pre><span></span><span class="k">type</span> <span class="o">-</span><span class="k">'</span><span class="n">a</span> <span class="n">n</span>
+<div class="highlight"><pre><span><span class="k">type</span> <span class="o">-</span><span class="k">'</span><span class="n">a</span> <span class="n">n</span>
 <span class="k">type</span> <span class="o">+</span><span class="k">'</span><span class="n">a</span> <span class="n">p</span>
 <span class="k">type</span> <span class="o">+</span><span class="k">'</span><span class="n">a</span> <span class="n">ko</span> <span class="o">=</span> <span class="k">'</span><span class="n">a</span> <span class="n">p</span> <span class="n">n</span>
-</pre></div>
+</span></pre></div>
 
 <p>and the typechecker would accept the absurd statement that
 <code>+ * - = +</code>. Such a statement can be easily exploited to
 crash an OCaml program, and it was introduced due to a small typo when
 refactoring the typechecker.</p>
-<div class="highlight"><pre><span></span><span class="ow">and</span> <span class="n">mn</span> <span class="o">=</span>
+<div class="highlight"><pre><span><span class="ow">and</span> <span class="n">mn</span> <span class="o">=</span>
   <span class="n">mem</span> <span class="nc">May_pos</span> <span class="n">v1</span> <span class="o">&amp;&amp;</span> <span class="n">mem</span> <span class="nc">May_neg</span> <span class="n">v2</span> <span class="o">||</span> <span class="n">mem</span> <span class="nc">May_pos</span> <span class="n">v1</span> <span class="o">&amp;&amp;</span> <span class="n">mem</span> <span class="nc">May_neg</span> <span class="n">v2</span>
-</pre></div>
+</span></pre></div>
 
 <p>(Can you spot the typo?)</p>
 <p>Fortunately, the typo was easy to fix and the type system unsoundness
@@ -56,26 +56,26 @@ was soon fixed.</p>
 <p>But that was only the first problem. Soon after, a second report came
 in, mentioning that the typechecker was crashing on cyclic abbreviations
 like</p>
-<div class="highlight"><pre><span></span><span class="k">type</span> <span class="k">'</span><span class="n">a</span> <span class="n">t</span> <span class="o">=</span> <span class="k">'</span><span class="n">a</span> <span class="n">s</span> <span class="o">*</span> <span class="k">'</span><span class="n">a</span> <span class="n">irr</span>
+<div class="highlight"><pre><span><span class="k">type</span> <span class="k">'</span><span class="n">a</span> <span class="n">t</span> <span class="o">=</span> <span class="k">'</span><span class="n">a</span> <span class="n">s</span> <span class="o">*</span> <span class="k">'</span><span class="n">a</span> <span class="n">irr</span>
 <span class="ow">and</span> <span class="k">'</span><span class="n">a</span> <span class="n">irr</span> <span class="o">=</span> <span class="kt">unit</span>
 <span class="ow">and</span>  <span class="k">'</span><span class="n">a</span> <span class="n">s</span> <span class="o">=</span> <span class="k">'</span><span class="n">a</span> <span class="n">t</span>
-</pre></div>
+</span></pre></div>
 
 <p>but only when the <code>-short-paths</code> flag was specified. After
 some investigation, it was not the typechecker that was crashing but the
 type printer! (which is unfortunately not a that rare occurrence)</p>
 <p>More precisely, the type printer was crashing when trying to print
 the improved type error message in OCaml 5.1 for cyclic definition</p>
-<div class="highlight"><pre><span></span><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">abbreviation</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">cyclic</span><span class="o">:</span>
+<div class="highlight"><pre><span><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">abbreviation</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">cyclic</span><span class="o">:</span>
 <span class="w">         </span><span class="s1">'a t = '</span><span class="n">a</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="s1">'a irr,</span>
 <span class="s1">         '</span><span class="n">a</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="s1">'a irr contains '</span><span class="n">a</span><span class="w"> </span><span class="n">s</span><span class="o">,</span>
 <span class="w">         </span><span class="s1">'a s = '</span><span class="n">a</span><span class="w"> </span><span class="n">t</span>
-</pre></div>
+</span></pre></div>
 
 <p>because in presence of the flag <code>-short-path</code> the printer
 tried to find a better name for <code>'a t</code> in a type environment
 which contained the recursive definition. This endeavour was doomed to
-fail. Fortunately, the fix was quite straightforward: don&rsquo;t feed the
+fail. Fortunately, the fix was quite straightforward: don’t feed the
 type printer invalid type environment.</p>
 <h4>Packaging bug</h4>
 <p>The introduced of compressed compiler artefacts (<code>.cmi</code>,
@@ -85,9 +85,9 @@ decrease in size of the installation; we forgot that using an external C
 library for compression within the runtime added this library as
 dependency for all users of the OCaml runtime.</p>
 <p>In other words, we had added a new C dependency to all OCaml users.
-If this didn&rsquo;t seem to create problem on macOS or most linux situation,
+If this didn’t seem to create problem on macOS or most linux situation,
 at least for developers, it was clearly a non ideal situation. A
-compiler shouldn&rsquo;t impose its dependency on compiled programs.</p>
+compiler shouldn’t impose its dependency on compiled programs.</p>
 <p>Moreover, if compressed marshalling is very nice for the compiler,
 this is a quite biased use case. In particular, one cannot use
 marshalled data coming from untrustworthy sources (because such data
@@ -182,13 +182,13 @@ possible to use numerical code in OCaml.</p>
 <h3>Project-wide occurence index</h3>
 <p>Beyond the release of OCaml 5.1.1, I have been working on reviewing
 PRs.</p>
-<p>With Gabriel Scherer and Ulysse G&eacute;rard, we spend an afternoon reading
+<p>With Gabriel Scherer and Ulysse Gérard, we spend an afternoon reading
 and discussing the design of a PR by Ulysse which improves the
 <code>shape</code> metadata to make them provides an index of value and
 definition occurrences within an OCaml module.</p>
 <p>The <code>shape</code> metadata are a new form of metadata introduced
 in OCaml 4.14. Those metadata tracks definitions of types, modules,
-module types, &hellip;</p>
+module types, …</p>
 <p>One important characteristic of <code>shapes</code> is that they are
 able to see through functors applications and includes to find back the
 original definition of values.</p>
@@ -215,7 +215,7 @@ functors.</p>
 can define new versions by creating a value of type
 <code>id scheme_version</code> (with <code>id</code> a fresh new
 type).</p>
-<div class="highlight"><pre><span></span><span class="k">type</span> <span class="k">'</span><span class="n">a</span> <span class="n">scheme_version</span>
+<div class="highlight"><pre><span><span class="k">type</span> <span class="k">'</span><span class="n">a</span> <span class="n">scheme_version</span>
 <span class="k">type</span> <span class="o">(</span><span class="k">'</span><span class="n">a</span><span class="o">,</span><span class="k">'</span><span class="n">b</span><span class="o">)</span> <span class="n">key</span>
 <span class="k">module</span> <span class="k">type</span> <span class="nc">Def</span> <span class="o">=</span> <span class="k">sig</span>
   <span class="k">type</span> <span class="n">id</span> <span class="c">(* this should be a fresh and unique id *)</span>
@@ -231,23 +231,23 @@ type).</p>
   <span class="k">val</span> <span class="n">new_key</span><span class="o">:</span> <span class="n">id</span> <span class="n">scheme_version</span>  <span class="o">-&gt;</span> <span class="kt">string</span> <span class="o">-&gt;</span> <span class="k">'</span><span class="n">a</span> <span class="n">typ</span> <span class="o">-&gt;</span> <span class="k">'</span><span class="n">a</span> <span class="n">key</span>
   <span class="k">val</span> <span class="n">new_version</span><span class="o">:</span> <span class="n">version</span> <span class="o">-&gt;</span> <span class="n">id</span> <span class="n">scheme_version</span>
 <span class="k">end</span>
-</pre></div>
+</span></pre></div>
 
 <p>Then nested records or sum types can only create new fields or
 constructors by using a typed version defined by the parent module:</p>
-<div class="highlight"><pre><span></span><span class="k">module</span> <span class="k">type</span> <span class="nc">Sum</span> <span class="o">=</span> <span class="k">sig</span>
+<div class="highlight"><pre><span><span class="k">module</span> <span class="k">type</span> <span class="nc">Sum</span> <span class="o">=</span> <span class="k">sig</span>
   <span class="k">type</span> <span class="n">root</span>
   <span class="k">include</span> <span class="nc">Def</span>
   <span class="k">val</span> <span class="n">new_constr</span><span class="o">:</span> <span class="n">root</span> <span class="n">scheme_version</span> <span class="o">-&gt;</span> <span class="kt">string</span> <span class="o">-&gt;</span> <span class="k">'</span><span class="n">a</span> <span class="n">typ</span> <span class="o">-&gt;</span> <span class="k">'</span><span class="n">a</span> <span class="n">key</span>
 <span class="k">end</span>
-</pre></div>
+</span></pre></div>
 
 <p>and we can use generative functors to ensure that our type-level
 identifiers are as fresh as we need them to be:</p>
-<div class="highlight"><pre><span></span><span class="k">module</span> <span class="nc">New_root_scheme</span><span class="bp">()</span><span class="o">:</span> <span class="nc">Root</span>
+<div class="highlight"><pre><span><span class="k">module</span> <span class="nc">New_root_scheme</span><span class="bp">()</span><span class="o">:</span> <span class="nc">Root</span>
 <span class="k">module</span> <span class="nc">New_record</span><span class="o">(</span><span class="nc">Root</span><span class="o">:</span><span class="nc">Def</span><span class="o">)</span><span class="bp">()</span><span class="o">:</span> <span class="nc">Record</span> <span class="k">with</span> <span class="k">type</span> <span class="n">root</span> <span class="o">:=</span> <span class="nn">Root</span><span class="p">.</span><span class="n">id</span>
 <span class="k">module</span> <span class="nc">New_sum</span><span class="o">(</span><span class="nc">Root</span><span class="o">:</span><span class="nc">Def</span><span class="o">)</span><span class="bp">()</span><span class="o">:</span> <span class="nc">Sum</span> <span class="k">with</span> <span class="k">type</span> <span class="n">root</span> <span class="o">:=</span> <span class="nn">Root</span><span class="p">.</span><span class="n">id</span>
-</pre></div>
+</span></pre></div>
 
 
   

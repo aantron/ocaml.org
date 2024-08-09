@@ -14,7 +14,7 @@ source:
 Batteries Included 1.1.0</a></strong> to the Debian unstable
 archive; hopefully, it will quickly enter testing to be released
 with the next Debian stable release. This is the first release in
-Debian of the &quot;new generation&quot; of Batteries Included, which has
+Debian of the "new generation" of Batteries Included, which has
 followed a strict diet, and now has <a href="http://camomile.sourceforge.net/">Camomile</a> as its only
 external dependency.</p>
 <p>It took me a while to package it due to an intertwining

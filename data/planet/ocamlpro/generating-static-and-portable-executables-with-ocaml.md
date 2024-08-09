@@ -7,8 +7,8 @@ description: 'Distributing OCaml software on opam is great (if I dare say so mys
   However, just distributing the locally generated binaries requires that the users
   ha...'
 url: https://ocamlpro.com/blog/2021_09_02_generating_static_and_portable_executables_with_ocaml
-date: 2021-09-02T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2021-09-02T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:
@@ -25,11 +25,11 @@ source:
 <details>
     <summary>Sample code</summary>
 <h5>fserv.ml</h5>
-<pre><code class="language-ocaml">let () = Dream.(run @@ logger @@ static &quot;.&quot;)
+<pre><code class="language-ocaml">let () = Dream.(run @@ logger @@ static ".")
 </code></pre>
 <h5>fserv.opam</h5>
-<pre><code class="language-python">opam-version: &quot;2.0&quot;
-depends: [&quot;ocaml&quot; &quot;dream&quot;]
+<pre><code class="language-python">opam-version: "2.0"
+depends: ["ocaml" "dream"]
 </code></pre>
 <h5>dune-project</h5>
 <pre><code class="language-lisp">(lang dune 2.8)
@@ -90,7 +90,7 @@ _build/default/fserv.exe: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linu
 $ ldd _build/default/fserv.exe
         not a dynamic executable
 </code></pre>
-<p>The executable was generated... and the result <em>seems</em> OK, but we shouldn't skip all these <code>ld</code> warnings. Basically, what <code>ld</code> is telling us is that you shouldn't statically link <code>glibc</code> (it internally uses dynlinking, to libraries that also need <code>glibc</code> functions, and will therefore <strong>still</strong> need to dynlink a second version from the system &#129327;).</p>
+<p>The executable was generated... and the result <em>seems</em> OK, but we shouldn't skip all these <code>ld</code> warnings. Basically, what <code>ld</code> is telling us is that you shouldn't statically link <code>glibc</code> (it internally uses dynlinking, to libraries that also need <code>glibc</code> functions, and will therefore <strong>still</strong> need to dynlink a second version from the system 🤯).</p>
 <p>Indeed here, we have been statically linking a dynamic linking engine, among other things. Don't do it.</p>
 <h3>Linux solution: linking with musl instead of glibc</h3>
 <p>The easiest workaround at this point, on Linux, is to compile with <a href="http://musl.libc.org/">musl</a>, which is basically a glibc replacement that can be statically linked. There are some OCaml and gcc variants to automatically use musl (comments welcome if you have been successful with them!), but I have found the simplest option is to use a tiny Alpine Linux image through a Docker container. Here we'll use OCamlPro's <a href="https://hub.docker.com/r/ocamlpro/ocaml">minimal Docker images</a> but anything based on musl should do.</p>
@@ -134,7 +134,7 @@ tar vx
 </code></pre>
 </blockquote>
 <h3>The other cases: turning to manual linking</h3>
-<p>Sometimes you can't use the above: the automatic linking options may need to be tweaked for static libraries, your app may still need dynlinking support at some point, or you may not have the musl option. On macOS, for example, the libc doesn't have a static version at all (and the <code>-static</code> option of <code>ld</code> is explicitely &quot;only used building the kernel&quot;). Let's get our hands dirty and see how to use a mixed static/dynamic linking scheme. First, we examine how OCaml does the linking usually:</p>
+<p>Sometimes you can't use the above: the automatic linking options may need to be tweaked for static libraries, your app may still need dynlinking support at some point, or you may not have the musl option. On macOS, for example, the libc doesn't have a static version at all (and the <code>-static</code> option of <code>ld</code> is explicitely "only used building the kernel"). Let's get our hands dirty and see how to use a mixed static/dynamic linking scheme. First, we examine how OCaml does the linking usually:</p>
 <p>The linking options are passed automatically by OCaml, using information that is embedded in the <code>cm(x)a</code> files, for example:</p>
 <pre><code class="language-shell-session">$ ocamlobjinfo $(opam var lwt:lib)/unix/lwt_unix.cma |head
 File ~/.opam/4.11.0/lib/lwt/unix/lwt_unix.cma
@@ -148,7 +148,7 @@ Interfaces imported:
         1372e035e54f502dcc3646993900232f        Lwt_features
         3a3ca1838627f7762f49679ce0278ad1        CamlinternalFormatBasics
 </code></pre>
-<p>Now the linking flags, here <code>-llwt_unix_stubs -lev -lpthread</code> let the C compiler choose the best way to link; in the case of stubs, they will be static (using the <code>.a</code> files &mdash; unless you make special effort to use dynamic ones), but <code>-lev</code> will let the system linker select the shared library, because it is generally preferred. Gathering these flags by hand would be tedious: my preferred trick is to just add the <code>-verbose</code> flag to OCaml (for the lazy, you can just set &mdash; temporarily &mdash; <code>OCAMLPARAM=_,verbose=1</code>):</p>
+<p>Now the linking flags, here <code>-llwt_unix_stubs -lev -lpthread</code> let the C compiler choose the best way to link; in the case of stubs, they will be static (using the <code>.a</code> files — unless you make special effort to use dynamic ones), but <code>-lev</code> will let the system linker select the shared library, because it is generally preferred. Gathering these flags by hand would be tedious: my preferred trick is to just add the <code>-verbose</code> flag to OCaml (for the lazy, you can just set — temporarily — <code>OCAMLPARAM=_,verbose=1</code>):</p>
 <pre><code class="language-lisp">(executable
   (public_name fserv)
   (flags (:standard -verbose))
@@ -280,41 +280,41 @@ tar vx
 <pre><code class="language-bash">#!/bin/sh
 set -ue
 
-LINKING_MODE=&quot;$1&quot;
-OS=&quot;$2&quot;
+LINKING_MODE="$1"
+OS="$2"
 FLAGS=
 CCLIB=
 
-case &quot;$LINKING_MODE&quot; in
+case "$LINKING_MODE" in
     dynamic)
         ;; # No extra flags needed
     static)
-        case &quot;$OS&quot; in
+        case "$OS" in
             linux) # Assuming Alpine here
-                CCLIB=&quot;-static -no-pie&quot;;;
+                CCLIB="-static -no-pie";;
             macosx)
-                FLAGS=&quot;-noautolink&quot;
-                CCLIB=&quot;-lssl_stubs -lcamlstr -loverlap_stubs_stubs
+                FLAGS="-noautolink"
+                CCLIB="-lssl_stubs -lcamlstr -loverlap_stubs_stubs
                        -ldigestif_c_stubs -lmtime_clock_stubs
                        -lmirage_crypto_rng_unix_stubs -lmirage_crypto_stubs
                        -lcstruct_stubs -llwt_unix_stubs -lthreadsnat -lunix
-                       -lbigstringaf_stubs&quot;
-                LIBS=&quot;libssl libcrypto libev&quot;
+                       -lbigstringaf_stubs"
+                LIBS="libssl libcrypto libev"
                 for lib in $LIBS; do
-                    CCLIB=&quot;$CCLIB $(pkg-config $lib --variable libdir)/$lib.a&quot;
+                    CCLIB="$CCLIB $(pkg-config $lib --variable libdir)/$lib.a"
                 done;;
             *)
-                echo &quot;No known static compilation flags for '$OS'&quot; &gt;&amp;2
+                echo "No known static compilation flags for '$OS'" &gt;&amp;2
                 exit 1
         esac;;
     *)
-        echo &quot;Invalid linking mode '$LINKING_MODE'&quot; &gt;&amp;2
+        echo "Invalid linking mode '$LINKING_MODE'" &gt;&amp;2
         exit 2
 esac
 
 echo '('
-for f in $FLAGS; do echo &quot;  $f&quot;; done
-for f in $CCLIB; do echo &quot;  -cclib $f&quot;; done
+for f in $FLAGS; do echo "  $f"; done
+for f in $CCLIB; do echo "  -cclib $f"; done
 echo ')'
 </code></pre>
 <p>Then you'll only have to run <code>LINKING_MODE=static dune build fserv.exe</code> to generate the static executable (wrapped in the Docker script above, in the case of Alpine), and can include that in your CI as well.</p>
@@ -324,7 +324,7 @@ echo ')'
 <ul>
 <li><a href="https://github.com/ocaml/opam/releases/download/2.1.0/opam-2.1.0-x86_64-macos">reproducible builds</a> should be a goal when you intend to distribute pre-compiled binaries.
 </li>
-<li><a href="https://github.com/AltGr/opam-bundle">opam-bundle</a> is a different, heavy-weight approach to distributing opam software to non-OCaml developers, that retains the &quot;compile all from source&quot; policy but provides one big package that bootstraps OCaml, opam and all the dependencies with a single command.-
+<li><a href="https://github.com/AltGr/opam-bundle">opam-bundle</a> is a different, heavy-weight approach to distributing opam software to non-OCaml developers, that retains the "compile all from source" policy but provides one big package that bootstraps OCaml, opam and all the dependencies with a single command.-
 </li>
 </ul>
 </blockquote>

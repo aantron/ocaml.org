@@ -5,8 +5,8 @@ description: After a few more months brewing, we are pleased to announce a new b
   an expected 2.0.0 by the beginning of next year. This version brings many new features,
   stability fixes, and big improvements to the local developmen...
 url: https://ocamlpro.com/blog/2017_11_27_opam_2.0_beta5_is_out
-date: 2017-11-27T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2017-11-27T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:

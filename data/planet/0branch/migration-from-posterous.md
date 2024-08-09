@@ -16,14 +16,14 @@ source:
       <a href="https://blog.0branch.com/index.html">#</a> February 17, 2013
     </div>
   </div>
-  <hr/>
+  <hr>
   <div>
-    <p>I&rsquo;ve migrated this blog from <a href="https://posterous.com/">Posterous</a> to <a href="http://jaspervdj.be/hakyll/">Hakyll</a> following the (long anticipated) <a href="http://blog.posterous.com/thanks-from-posterous">announcement</a> that Posterous will be shut down in April. Unfortunately, comments for old posts have been lost.</p>
+    <p>I’ve migrated this blog from <a href="https://posterous.com/">Posterous</a> to <a href="http://jaspervdj.be/hakyll/">Hakyll</a> following the (long anticipated) <a href="http://blog.posterous.com/thanks-from-posterous">announcement</a> that Posterous will be shut down in April. Unfortunately, comments for old posts have been lost.</p>
 <p>Hopefully folks like the new layout; mobile stylesheet coming soon.</p>
   </div>
 </div>
 
-<hr/>
+<hr>
 
 <div></div>
 

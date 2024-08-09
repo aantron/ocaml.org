@@ -1,7 +1,7 @@
 ---
 title: 'Oxidizing OCaml: Locality'
-description: "Coming from OCaml, the Rust programming language has many appealingfeatures.
-  \ Rust\u2019s system for tracking lifetime and ownership allowsusers to safely express..."
+description: OCaml with Jane Street extensions is available from our public opam repo.
+  Only a slice of the features described in this series are currently implemented.
 url: https://blog.janestreet.com/oxidizing-ocaml-locality/
 date: 2023-05-26T00:00:00-00:00
 preview_image: https://blog.janestreet.com/oxidizing-ocaml-locality/oxidizing-ocaml-locality.png
@@ -10,8 +10,6 @@ authors:
 source:
 ---
 
-<p>Coming from OCaml, the Rust programming language has many appealing
-features.  Rust&rsquo;s system for tracking lifetime and ownership allows
-users to safely express patterns that are awkward in OCaml, such as:</p>
+<p><em>OCaml with Jane Street extensions is available from our public <a href="https://github.com/janestreet/opam-repository/tree/with-extensions">opam repo</a>. Only a slice of the features described in this series are currently implemented.</em></p>
 
 

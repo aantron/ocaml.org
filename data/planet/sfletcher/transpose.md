@@ -10,11 +10,9 @@ authors:
 source:
 ---
 
-
-<html>
-  <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
   
-  <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type"/>
+  <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
   
   <title>Transpose</title>
   </head>
@@ -32,7 +30,7 @@ source:
     </p><div align="center">
     $\left[\mathbf{A}\right]_{ij} = \left[\mathbf{A^{T}}\right]_{ji}$.
     </div>
-  
+  <p></p>
   <p>
     As definitions go, this isn't terribly helpful in
     explaining <em>how</em> to compute a transpose. A better
@@ -48,7 +46,7 @@ source:
   <span class="keywordsign">|</span> [] <span class="keywordsign">|</span> [] :: _ <span class="keywordsign">-&gt;</span> []
   <span class="keywordsign">|</span> ls <span class="keywordsign">-&gt;</span> <span class="constructor">List</span>.map (<span class="constructor">List</span>.hd) ls :: transpose (<span class="constructor">List</span>.map (<span class="constructor">List</span>.tl) ls)
 </code></pre>
-  
+  <p></p>
   <p>
   It is not at all hard to understand how the program works when
   you've seen an example:
@@ -57,7 +55,7 @@ source:
   = [1; 3; 5] :: [2; 4; 6] :: transpose [[]; []; []]
   = [1; 3; 5] :: [2; 4; 6] :: []
   = [[1; 3; 5]; [2; 4; 6]]</code></pre>
-  
+  <p></p>
   <p>
     Being as pretty as it is, one is inclined to leave things be but,
     as a practical matter it should be rephrased to be tail-recursive.
@@ -67,12 +65,12 @@ source:
   <span class="keywordsign">|</span> ls <span class="keywordsign">-&gt;</span> transpose_rec (<span class="constructor">List</span>.map (<span class="constructor">List</span>.hd) ls :: acc) (<span class="constructor">List</span>.map (<span class="constructor">List</span>.tl) ls)
   <span class="keyword">in</span> transpose_rec [] ls
 </code></pre>   
-  
-  <hr/>
+  <p></p>
+  <hr>
   <p>
-    References:<br/>
-    &quot;An Introduction to Functional Programming Systems Using Haskell&quot; -- Davie A J T., 1992
+    References:<br>
+    "An Introduction to Functional Programming Systems Using Haskell" -- Davie A J T., 1992
   </p>
-  </body>
-</html>
+  
 
+</body></html>

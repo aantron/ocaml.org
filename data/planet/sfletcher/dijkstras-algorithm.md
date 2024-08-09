@@ -10,16 +10,14 @@ authors:
 source:
 ---
 
-
-<html>
-  <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html><head>
     
     <title>Shortest Path</title>
   </head>
   <body>
     <p>This article assumes familiarity with Dijkstra's shortest path algorithm. For a refresher, see [1]. The code assumes <code class="code">open Core</code> is in effect and is online <a href="https://github.com/shayne-fletcher/zen/tree/master/ocaml/dijkstra">here</a>.
     </p>
-    <p>The first part of the program organizes our thoughts about what we are setting out to compute. The signature summarizes the notion (for our purposes) of a graph definition in modular form. A module implementing this signature defines a type <code class="code">vertex_t</code> for vertices, a type <code class="code">t</code> for graphs and type <code class="code">extern_t</code> : a representation of a <code class="code">t</code> for interaction between an implemening module and its &quot;outside world&quot;.
+    <p>The first part of the program organizes our thoughts about what we are setting out to compute. The signature summarizes the notion (for our purposes) of a graph definition in modular form. A module implementing this signature defines a type <code class="code">vertex_t</code> for vertices, a type <code class="code">t</code> for graphs and type <code class="code">extern_t</code> : a representation of a <code class="code">t</code> for interaction between an implemening module and its "outside world".
 </p><pre><code class="code"><span class="keyword">module</span> <span class="keyword">type</span> <span class="constructor">Graph_sig</span> = <span class="keyword">sig</span>
   <span class="keyword">type</span> vertex_t [@@deriving sexp]
   <span class="keyword">type</span> t [@@deriving sexp]
@@ -45,8 +43,8 @@ source:
   <span class="keyword">end</span>
 
 <span class="keyword">end</span>
-</code></pre>A realization of <code class="code">Graph_sig</code> provides &quot;conversion&quot; functions <code class="code">of_adjacency</code>/<code class="code">to_adjacency</code> between the types <code class="code">extern_t</code> and <code class="code">t</code> and nests a module <code class="code">Dijkstra</code>. The signature of the sub-module <code class="code">Dijkstra</code> requires concrete modules provide a type <code class="code">state</code> and an implementation of Dijkstra's algorithm in terms of the function signature <code class="code">val dijkstra : vertex_t -&gt; t -&gt; [ `Ok of state | `Error of error ]</code>.
-    
+</code></pre>A realization of <code class="code">Graph_sig</code> provides "conversion" functions <code class="code">of_adjacency</code>/<code class="code">to_adjacency</code> between the types <code class="code">extern_t</code> and <code class="code">t</code> and nests a module <code class="code">Dijkstra</code>. The signature of the sub-module <code class="code">Dijkstra</code> requires concrete modules provide a type <code class="code">state</code> and an implementation of Dijkstra's algorithm in terms of the function signature <code class="code">val dijkstra : vertex_t -&gt; t -&gt; [ `Ok of state | `Error of error ]</code>.
+    <p></p>
     <p>For reusability, the strategy for implementing graphs will be generic programming via functors over modules implementing s vertex type.</p>
     <p>An implementation of the module type <code class="code">GRAPH</code> defines a module type <code class="code">VERT</code> which is required to provide a comparable type <code class="code">t</code>. It further defines a module type <code class="code">S</code> that is exactly module type <code class="code">Graph_sig</code> above. Lastly, modules of type <code class="code">GRAPH</code> provide a functor <code class="code">Make</code> that maps any module of type <code class="code">VERT</code> to new module of type <code class="code">S</code> fixing <code class="code">extern_t</code> to an adjacency list representation in terms of the native OCaml type <code class="code">'a list</code> and <code class="code">float</code> to represent weights on edges.
 </p><pre><code class="code"><span class="keyword">module</span> <span class="keyword">type</span> <span class="constructor">GRAPH</span> = <span class="keyword">sig</span>
@@ -65,7 +63,7 @@ source:
 <span class="keyword">end</span>
 </code></pre>
 The two module types <code class="code">Graph_sig</code> and <code class="code">GRAPH</code> together provide the specification for the program. <code class="code">module Graph</code> in the next section implements this specification.
-    
+    <p></p>
     <p>Implementation of module <code class="code">Graph</code> is in outline this.
 </p><pre><code class="code"><span class="keyword">module</span> <span class="constructor">Graph</span> : <span class="constructor">GRAPH</span> = <span class="keyword">struct</span>
   <span class="keyword">module</span> <span class="keyword">type</span> <span class="constructor">VERT</span> = <span class="keyword">sig</span>
@@ -88,7 +86,7 @@ The two module types <code class="code">Graph_sig</code> and <code class="code">
 <span class="keyword">end</span>
 </code></pre>
 As per the requirements of <code class="code">GRAPH</code> the module types <code class="code">VERT</code> and <code class="code">S</code> are provided as is the functor <code class="code">Make</code>. It is the code that is ellided by the <code class="code">...</code> above in the definition of <code class="code">Make</code> that is now the focus.
-    
+    <p></p>
     <p>Modules produced by applications of <code class="code">Make</code> satisfy <code class="code">S</code>. This requires suitable definitions of types <code class="code">vertext_t</code>, <code class="code">t</code> and <code class="code">extern_t</code>. The modules <code class="code">Map</code> and <code class="code">Set</code> are available due to modules of type <code class="code">VERT</code> being comparable in their type <code class="code">t</code>.
 </p><pre><code class="code">      <span class="keyword">module</span> <span class="constructor">Map</span> = <span class="constructor">V</span>.<span class="constructor">Map</span>
       <span class="keyword">module</span> <span class="constructor">Set</span> = <span class="constructor">V</span>.<span class="constructor">Set</span>
@@ -99,8 +97,8 @@ As per the requirements of <code class="code">GRAPH</code> the module types <cod
       <span class="keyword">type</span> load_error = [ <span class="keywordsign">`</span><span class="constructor">Duplicate_vertex</span> <span class="keyword">of</span> vertex_t ] [@@deriving sexp]
       <span class="keyword">exception</span> <span class="constructor">Load_error</span> <span class="keyword">of</span> load_error [@@deriving sexp]
 </code></pre>
-    
-    <p>While the external representation <code class="code">extern_t</code> of graphs is chosen to be an adjacency list representation in terms of association lists, the internal representation <code class="code">t</code> is a vertex map of adjacency lists providing logarithmic loookup complexity. The conversion functions between the two representations &quot;come for free&quot; via module <code class="code">Map</code>.
+    <p></p>
+    <p>While the external representation <code class="code">extern_t</code> of graphs is chosen to be an adjacency list representation in terms of association lists, the internal representation <code class="code">t</code> is a vertex map of adjacency lists providing logarithmic loookup complexity. The conversion functions between the two representations "come for free" via module <code class="code">Map</code>.
 
 </p><pre><code class="code">      <span class="keyword">let</span> to_adjacency g = <span class="constructor">Map</span>.to_alist g
 
@@ -114,9 +112,9 @@ As per the requirements of <code class="code">GRAPH</code> the module types <cod
         <span class="keyword">with</span>
         <span class="keywordsign">|</span> <span class="constructor">Load_error</span> err <span class="keywordsign">-&gt;</span> <span class="keywordsign">`</span><span class="constructor">Load_error</span> err
 </code></pre>
-    
-<p>At this point the &quot;scaffolding&quot; for Dijkstra's algorithm, that part of <code class="code">GRAPH</code> dealing with the representation of graphs is implemented.</p>
-<p>The interpretation of Dijkstra's algorithm we adopt is functional : the idea is we loop over vertices relaxing their edges until all shortest paths are known. What we know on any recursive iteration of the loop is a current &quot;state&quot; (of the computation) and each iteration produces a new state. This next definition is the formal definition of <code class="code">type state</code>.
+    <p></p>
+<p>At this point the "scaffolding" for Dijkstra's algorithm, that part of <code class="code">GRAPH</code> dealing with the representation of graphs is implemented.</p>
+<p>The interpretation of Dijkstra's algorithm we adopt is functional : the idea is we loop over vertices relaxing their edges until all shortest paths are known. What we know on any recursive iteration of the loop is a current "state" (of the computation) and each iteration produces a new state. This next definition is the formal definition of <code class="code">type state</code>.
 </p><pre><code class="code">      <span class="keyword">module</span> <span class="constructor">Dijkstra</span> = <span class="keyword">struct</span>
 
         <span class="keyword">type</span> state = {
@@ -132,11 +130,11 @@ The fields of this record are:
 <ul><li><code class="code">src : vertex_t</code>, the source vertex;</li>
 <li><code class="code">g : t</code>, <i>G</i> the graph;</li>
 <li><code class="code">d : float Map.t</code>, <i>d</i> the shortest path weight estimates;</li>
-<li><code class="code">pre : vertex_t Map.t</code>, <i>&pi;</i> the predecessor relation;</li>
+<li><code class="code">pre : vertex_t Map.t</code>, <i>π</i> the predecessor relation;</li>
 <li><code class="code">s : Set.t</code>, the set <i>S</i> of nodes for which the lower bound shortest path weight is known;</li>
 <li><code class="code">v_s : (vertex_t * float) Heap.t</code>, <i>V - {S}, </i> , the set of nodes of <code class="code">g</code> for which the lower bound of the shortest path weight is not yet known ordered on their estimates.</li>
 </ul>
-<p>Function invocation <code class="code">init src g</code> compuates an initial state for the graph <code class="code">g</code> containing the source node <code class="code">src</code>. In the initial state, <code class="code">d</code> is everywhere <i>&infin;</i> except for <code class="code">src</code> which is <i>0</i>. Set <i>S</i> (i.e. <code class="code">s</code>) and the predecessor relation <i>&pi;</i> (i.e. <code class="code">pred</code>) are empty and the set <i>V - {S}</i> (i.e. <code class="code">v_s</code>) contains all nodes.
+<p>Function invocation <code class="code">init src g</code> compuates an initial state for the graph <code class="code">g</code> containing the source node <code class="code">src</code>. In the initial state, <code class="code">d</code> is everywhere <i>∞</i> except for <code class="code">src</code> which is <i>0</i>. Set <i>S</i> (i.e. <code class="code">s</code>) and the predecessor relation <i>π</i> (i.e. <code class="code">pred</code>) are empty and the set <i>V - {S}</i> (i.e. <code class="code">v_s</code>) contains all nodes.
 </p><pre><code class="code">        <span class="keyword">let</span> init src g =
           <span class="keyword">let</span> init x = <span class="keyword">match</span> <span class="constructor">V</span>.equal src x <span class="keyword">with</span>
             <span class="keywordsign">|</span> <span class="keyword">true</span> <span class="keywordsign">-&gt;</span> 0.0 <span class="keywordsign">|</span> <span class="keyword">false</span> <span class="keywordsign">-&gt;</span> <span class="constructor">Float</span>.infinity <span class="keyword">in</span>
@@ -152,8 +150,8 @@ The fields of this record are:
                 ~cmp:(<span class="keyword">fun</span> (_, e1) (_, e2) <span class="keywordsign">-&gt;</span> <span class="constructor">Float</span>.compare e1 e2)
           }
 </code></pre>
-
-<p>Relaxing an edge <i>(u, v)</i> with weight <i>w (u, v)</i> tests whether the shortest path to <i>v</i> so far can be improved by going through <i>u</i> and if so, updating <i>d (v)</i> and <i>&pi; (v)</i> accordingly.
+<p></p>
+<p>Relaxing an edge <i>(u, v)</i> with weight <i>w (u, v)</i> tests whether the shortest path to <i>v</i> so far can be improved by going through <i>u</i> and if so, updating <i>d (v)</i> and <i>π (v)</i> accordingly.
 </p><pre><code class="code">        <span class="keyword">type</span> error = [
           <span class="keywordsign">|</span> <span class="keywordsign">`</span><span class="constructor">Relax</span> <span class="keyword">of</span> vertex_t
         ] [@@deriving sexp]
@@ -184,7 +182,7 @@ The fields of this record are:
           <span class="keyword">else</span> state
 </code></pre>
 Here, relaxation can result in a linear heap update operation. A better implementation might seek to avoid that.
-
+<p></p>
 <p>One iteration of the body of the loop of Dijkstra's algorithm consists of the node in <i>V - {S}</i> with the least shortest path weight estimate being moved to <i>S</i> and its edges relaxed.
 </p><pre><code class="code">        <span class="keyword">let</span> dijkstra_exn src g =
           <span class="keyword">let</span> <span class="keyword">rec</span> loop ({s; v_s; _} <span class="keyword">as</span> state) =
@@ -205,11 +203,11 @@ Here, relaxation can result in a linear heap update operation. A better implemen
           <span class="keyword">with</span>
           <span class="keywordsign">|</span> <span class="constructor">Error</span> err <span class="keywordsign">-&gt;</span> <span class="keywordsign">`</span><span class="constructor">Error</span> err
 </code></pre>
-
+<p></p>
     <p>The shortest path estimates contained by a value of <code class="code">state</code> is given by the projection <code class="code">d</code>.
 </p><pre><code class="code">        <span class="keyword">let</span> d state = <span class="constructor">Map</span>.to_alist (state.d)
 </code></pre>
-
+<p></p>
 <p>The shortest paths themselves are easily computed as,
 </p><pre><code class="code">   <span class="keyword">let</span> path state n =
           <span class="keyword">let</span> <span class="keyword">rec</span> loop acc x =
@@ -241,11 +239,11 @@ which completes the implementation of <code class="code">Make</code>.
           ]
   <span class="keyword">with</span>
   <span class="keywordsign">|</span> <span class="keywordsign">`</span><span class="constructor">Ok</span> g <span class="keywordsign">-&gt;</span> g
-  <span class="keywordsign">|</span> <span class="keywordsign">`</span><span class="constructor">Load_error</span> e <span class="keywordsign">-&gt;</span> failwiths <span class="string">&quot;Graph load error : %s&quot;</span> e <span class="constructor">G</span>.sexp_of_load_error
+  <span class="keywordsign">|</span> <span class="keywordsign">`</span><span class="constructor">Load_error</span> e <span class="keywordsign">-&gt;</span> failwiths <span class="string">"Graph load error : %s"</span> e <span class="constructor">G</span>.sexp_of_load_error
 ;;
 <span class="keyword">let</span> s = <span class="keyword">match</span> (<span class="constructor">G</span>.<span class="constructor">Dijkstra</span>.dijkstra <span class="string">'s'</span> g) <span class="keyword">with</span>
   <span class="keywordsign">|</span> <span class="keywordsign">`</span><span class="constructor">Ok</span> s <span class="keywordsign">-&gt;</span> s
-  <span class="keywordsign">|</span> <span class="keywordsign">`</span><span class="constructor">Error</span> e <span class="keywordsign">-&gt;</span> failwiths <span class="string">&quot;Error : %s&quot;</span> e <span class="constructor">G</span>.<span class="constructor">Dijkstra</span>.sexp_of_error
+  <span class="keywordsign">|</span> <span class="keywordsign">`</span><span class="constructor">Error</span> e <span class="keywordsign">-&gt;</span> failwiths <span class="string">"Error : %s"</span> e <span class="constructor">G</span>.<span class="constructor">Dijkstra</span>.sexp_of_error
 
 ;; <span class="constructor">G</span>.<span class="constructor">Dijkstra</span>.d s
 - : (char * float) list =
@@ -256,14 +254,14 @@ which completes the implementation of <code class="code">Make</code>.
 [(<span class="string">'s'</span>, [<span class="string">'s'</span>]); (<span class="string">'u'</span>, [<span class="string">'s'</span>; <span class="string">'u'</span>]); (<span class="string">'v'</span>, [<span class="string">'s'</span>; <span class="string">'u'</span>; <span class="string">'v'</span>]); (<span class="string">'x'</span>, [<span class="string">'s'</span>; <span class="string">'x'</span>]);
  (<span class="string">'y'</span>, [<span class="string">'s'</span>; <span class="string">'x'</span>; <span class="string">'y'</span>])]
 </code></pre>
-
-
+<p></p>
+<p></p>
     <p>
-    </p><hr/>
+    </p><hr>
     <p>
-      References:<br/>
-      [1] &quot;Introduction to Algorithms&quot; Section 24.3:Dijkstra's algorithm -- Cormen et. al. (Second ed.) 2001.<br/>
+      References:<br>
+      [1] "Introduction to Algorithms" Section 24.3:Dijkstra's algorithm -- Cormen et. al. (Second ed.) 2001.<br>
     </p>
-  </body>
-</html>
+  
 
+</body></html>

@@ -7,8 +7,8 @@ description: 'Feedback on this post is welcomed on Discuss! We are pleased to an
 
   opam var no longer fails if ...'
 url: https://ocamlpro.com/blog/2022_08_12_opam_2.1.3_release
-date: 2022-08-12T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2022-08-12T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Raja Boujbel\n  "
 source:
@@ -55,14 +55,14 @@ source:
 </li>
 </ul>
 <p>You can also find API changes in the <a href="https://github.com/ocaml/opam/releases/tag/2.1.3">release note</a>.</p>
-<hr/>
+<hr>
 <p>Opam installation instructions (unchanged):</p>
 <ol>
 <li>
 <p>From binaries: run</p>
-<pre><code class="language-shell-session">$ bash -c &quot;sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.1.3&quot;
+<pre><code class="language-shell-session">$ bash -c "sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.1.3"
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.1.3">the Github &quot;Releases&quot; page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update you sandbox script.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.1.3">the Github "Releases" page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update you sandbox script.</p>
 </li>
 <li>
 <p>From source, using opam:</p>

@@ -119,7 +119,7 @@ run in constant stack space and I demonstrated this using the same function
   let () =
       let n = int_of_string Sys.argv.(1) in
       let facn = factorial n in
-      Printf.printf &quot;factorial %d = %s\n&quot; n (string_of_big_int facn)
+      Printf.printf "factorial %d = %s\n" n (string_of_big_int facn)
 
 </pre>
 
@@ -157,7 +157,7 @@ thats much less of a problem).
 Finally, I showed a way of doing TCO by hand using a technique I found in
 Spencer Tipping's
 	<a href="https://github.com/spencertipping/js-in-ten-minutes/">
-	<i>&quot;Javascipt in Ten Minutes&quot;</i></a>.
+	<i>"Javascipt in Ten Minutes"</i></a>.
 The solution adds a couple of new properties to the prototype of the
 <tt><b>Function</b></tt> object to provide delimited continuations (another
 idea from functional programming).
@@ -174,16 +174,16 @@ broken.
 As far as I am concerned, my presentation was received very well and the Twitter
 responses (all two of them) ranged from
 	<a href="https://twitter.com/sydjs/status/4821816115728384">
-	<i>&quot;brain melting&quot;</i></a>
+	<i>"brain melting"</i></a>
 to
 	<a href="https://twitter.com/pamelafox/status/4884534680092672">
-	<i>&quot;awesome&quot;</i></a>.
+	<i>"awesome"</i></a>.
 </p>
 
 <p>
 I then hung around for the rest of the meeting, had another beer and chatted to
 people.
-One interesting part of the meeting was called &quot;Di-<i>script</i>-ions&quot;, where a
+One interesting part of the meeting was called "Di-<i>script</i>-ions", where a
 member of the audience would put up small 4-10 line snippets of Javascript code
 and asked the audience what they did and why.
 What was surprising to me that for some cases the semantics of a small piece of

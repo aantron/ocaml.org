@@ -22,46 +22,46 @@ source:
 <p>Install from your operating system the packages providing telegraf, influxdb, and grafana.</p>
 <p>Setup telegraf to contain a socket listener:</p>
 <pre><code>[[inputs.socket_listener]]
-  service_address = &quot;tcp://192.168.42.14:8094&quot;
-  keep_alive_period = &quot;5m&quot;
-  data_format = &quot;influx&quot;
+  service_address = "tcp://192.168.42.14:8094"
+  keep_alive_period = "5m"
+  data_format = "influx"
 </code></pre>
-<p>Use a unikernel that reports to Influx (below the heading &quot;Unikernels (with metrics reported to Influx)&quot; on <a href="https://builds.robur.coop">builds.robur.coop</a>) and provide <code>--monitor=192.168.42.14</code> as boot parameter. Conventionally, these unikernels expect a second network interface (on the &quot;management&quot; bridge) where telegraf (and a syslog sink) are running. You'll need to pass <code>--net=management</code> and <code>--arg='--management-ipv4=192.168.42.x/24'</code> to albatross-client.</p>
+<p>Use a unikernel that reports to Influx (below the heading "Unikernels (with metrics reported to Influx)" on <a href="https://builds.robur.coop">builds.robur.coop</a>) and provide <code>--monitor=192.168.42.14</code> as boot parameter. Conventionally, these unikernels expect a second network interface (on the "management" bridge) where telegraf (and a syslog sink) are running. You'll need to pass <code>--net=management</code> and <code>--arg='--management-ipv4=192.168.42.x/24'</code> to albatross-client.</p>
 <p>Albatross provides a <code>albatross-influx</code> daemon that reports information from the host system about the unikernels to influx. Start it with <code>--influx=192.168.42.14</code>.</p>
 <h2>Adding monitoring to your unikernel</h2>
 <p>If you want to extend your own unikernel with metrics, follow along these lines.</p>
 <p>An example is the <a href="https://github.com/roburio/dns-primary-git">dns-primary-git</a> unikernel, where on the branch <code>future</code> we have a single commit ahead of main that adds monitoring. The difference is in the unikernel configuration and the main entry point. See the <a href="https://builds.robur.coop/job/dns-primary-git-monitoring/build/latest/">binary builts</a> in contrast to the <a href="https://builds.robur.coop/job/dns-primary-git/build/latest/">non-monitoring builts</a>.</p>
 <p>In config, three new command line arguments are added: <code>--monitor=IP</code>, <code>--monitor-adjust=PORT</code> <code>--syslog=IP</code> and <code>--name=STRING</code>. In addition, the package <code>monitoring-experiments</code> is required. And a second network interface <code>management_stack</code> using the prefix <code>management</code> is required and passed to the unikernel. Since the syslog reporter requires a console (to report when logging fails), also a console is passed to the unikernel. Each reported metrics includes a tag <code>vm=&lt;name&gt;</code> that can be used to distinguish several unikernels reporting to the same InfluxDB.</p>
 <p>Command line arguments:</p>
-<pre><code class="language-patch">   let doc = Key.Arg.info ~doc:&quot;The fingerprint of the TLS certificate.&quot; [ &quot;tls-cert-fingerprint&quot; ] in
-   Key.(create &quot;tls_cert_fingerprint&quot; Arg.(opt (some string) None doc))
+<pre><code class="language-patch">   let doc = Key.Arg.info ~doc:"The fingerprint of the TLS certificate." [ "tls-cert-fingerprint" ] in
+   Key.(create "tls_cert_fingerprint" Arg.(opt (some string) None doc))
  
 +let monitor =
-+  let doc = Key.Arg.info ~doc:&quot;monitor host IP&quot; [&quot;monitor&quot;] in
-+  Key.(create &quot;monitor&quot; Arg.(opt (some ip_address) None doc))
++  let doc = Key.Arg.info ~doc:"monitor host IP" ["monitor"] in
++  Key.(create "monitor" Arg.(opt (some ip_address) None doc))
 +
 +let monitor_adjust =
-+  let doc = Key.Arg.info ~doc:&quot;adjust monitoring (log level, ..)&quot; [&quot;monitor-adjust&quot;] in
-+  Key.(create &quot;monitor_adjust&quot; Arg.(opt (some int) None doc))
++  let doc = Key.Arg.info ~doc:"adjust monitoring (log level, ..)" ["monitor-adjust"] in
++  Key.(create "monitor_adjust" Arg.(opt (some int) None doc))
 +
 +let syslog =
-+  let doc = Key.Arg.info ~doc:&quot;syslog host IP&quot; [&quot;syslog&quot;] in
-+  Key.(create &quot;syslog&quot; Arg.(opt (some ip_address) None doc))
++  let doc = Key.Arg.info ~doc:"syslog host IP" ["syslog"] in
++  Key.(create "syslog" Arg.(opt (some ip_address) None doc))
 +
 +let name =
-+  let doc = Key.Arg.info ~doc:&quot;Name of the unikernel&quot; [&quot;name&quot;] in
-+  Key.(create &quot;name&quot; Arg.(opt string &quot;ns.nqsb.io&quot; doc))
++  let doc = Key.Arg.info ~doc:"Name of the unikernel" ["name"] in
++  Key.(create "name" Arg.(opt string "ns.nqsb.io" doc))
 +
  let mimic_impl random stackv4v6 mclock pclock time =
    let tcpv4v6 = tcpv4v6_of_stackv4v6 $ stackv4v6 in
    let mhappy_eyeballs = mimic_happy_eyeballs $ random $ time $ mclock $ pclock $ stackv4v6 in
 </code></pre>
 <p>Requiring <code>monitoring-experiments</code>, registering command line arguments:</p>
-<pre><code class="language-patch">     package ~min:&quot;3.7.0&quot; ~max:&quot;3.8.0&quot; &quot;git-mirage&quot;;
-     package ~min:&quot;3.7.0&quot; &quot;git-paf&quot;;
-     package ~min:&quot;0.0.8&quot; ~sublibs:[&quot;mirage&quot;] &quot;paf&quot;;
-+    package &quot;monitoring-experiments&quot;;
-+    package ~sublibs:[&quot;mirage&quot;] ~min:&quot;0.3.0&quot; &quot;logs-syslog&quot;;
+<pre><code class="language-patch">     package ~min:"3.7.0" ~max:"3.8.0" "git-mirage";
+     package ~min:"3.7.0" "git-paf";
+     package ~min:"0.0.8" ~sublibs:["mirage"] "paf";
++    package "monitoring-experiments";
++    package ~sublibs:["mirage"] ~min:"0.3.0" "logs-syslog";
    ] in
    foreign
 -    ~keys:[Key.abstract remote_k ; Key.abstract axfr]
@@ -72,16 +72,16 @@ source:
      ~packages
 </code></pre>
 <p>Added console and a second network stack to <code>foreign</code>:</p>
-<pre><code class="language-patch">     &quot;Unikernel.Main&quot;
+<pre><code class="language-patch">     "Unikernel.Main"
 -    (random @-&gt; pclock @-&gt; mclock @-&gt; time @-&gt; stackv4v6 @-&gt; mimic @-&gt; job)
 +    (console @-&gt; random @-&gt; pclock @-&gt; mclock @-&gt; time @-&gt; stackv4v6 @-&gt; mimic @-&gt; stackv4v6 @-&gt; job)
 +
 </code></pre>
 <p>Passing a console implementation (<code>default_console</code>) and a second network stack (with <code>management</code> prefix) to <code>register</code>:</p>
-<pre><code class="language-patch">+let management_stack = generic_stackv4v6 ~group:&quot;management&quot; (netif ~group:&quot;management&quot; &quot;management&quot;)
+<pre><code class="language-patch">+let management_stack = generic_stackv4v6 ~group:"management" (netif ~group:"management" "management")
  
  let () =
-   register &quot;primary-git&quot;
+   register "primary-git"
 -    [dns_handler $ default_random $ default_posix_clock $ default_monotonic_clock $
 -     default_time $ net $ mimic_impl]
 +    [dns_handler $ default_console $ default_random $ default_posix_clock $ default_monotonic_clock $
@@ -109,10 +109,10 @@ _stack.V4V6) (_ : sig end) (Management : Mirage_stack.V4V6) = struct
 +  let start c _rng _pclock _mclock _time s ctx management =
 +    let hostname = Key_gen.name () in
 +    (match Key_gen.syslog () with
-+     | None -&gt; Logs.warn (fun m -&gt; m &quot;no syslog specified, dumping on stdout&quot;)
++     | None -&gt; Logs.warn (fun m -&gt; m "no syslog specified, dumping on stdout")
 +     | Some ip -&gt; Logs.set_reporter (Syslog.create c management ip ~hostname ()));
 +    (match Key_gen.monitor () with
-+     | None -&gt; Logs.warn (fun m -&gt; m &quot;no monitor specified, not outputting statistics&quot;)
++     | None -&gt; Logs.warn (fun m -&gt; m "no monitor specified, not outputting statistics")
 +     | Some ip -&gt; Monitoring.create ~hostname ?listen_port:(Key_gen.monitor_adjust ()) ip management);
      connect_store ctx &gt;&gt;= fun (store, upstream) -&gt;
      load_git None store upstream &gt;&gt;= function

@@ -5,8 +5,8 @@ description: By OCamlPro & Origin Labs Writing smart contacts may often be a bur
   Dune Network team, we are willing to provide as many possibilities as possible for
   developers to thrive in an accessible and secure framework. T...
 url: https://ocamlpro.com/blog/2020_06_09_a_dune_love_story_from_liquidity_to_love
-date: 2020-06-09T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2020-06-09T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Steven De Oliveira\n  "
 source:
@@ -14,12 +14,12 @@ source:
 
 <div align="center">
 <a href="https://ocamlpro.com/blog/2020_06_09_a_dune_love_story_from_liquidity_to_love">
-<img src="https://ocamlpro.com/blog/assets/img/liq-love-1.png" width="900" height="900" alt="Liquidity &amp; Love" title="A Dune Love story: From Liquidity to Love"/>
+<img src="https://ocamlpro.com/blog/assets/img/liq-love-1.png" width="900" height="900" alt="Liquidity &amp; Love" title="A Dune Love story: From Liquidity to Love">
 </a>
 </div>
 <p><em>By OCamlPro &amp; Origin Labs</em></p>
 <p>Writing smart contacts may often be a burdensome task, as you need to learn a new language for each blockchain you target. In the Dune Network team, we are willing to provide as many possibilities as possible for developers to thrive in an accessible and secure framework.</p>
-<p>There are two kinds of languages on a blockchain: &ldquo;native&rdquo; languages that are directly understood by the blockchain, but with some difficulty by the developers, and &ldquo;compiled&rdquo; languages that are more transparent to developers, but need to be translated to a native language to run on the blockchain. For example, Solidity is a developer-friendly language, compiled to the native EVM language on the Ethereum blockchain.</p>
+<p>There are two kinds of languages on a blockchain: “native” languages that are directly understood by the blockchain, but with some difficulty by the developers, and “compiled” languages that are more transparent to developers, but need to be translated to a native language to run on the blockchain. For example, Solidity is a developer-friendly language, compiled to the native EVM language on the Ethereum blockchain.</p>
 <p>Dune Network supports multiple native languages:</p>
 <ul>
 <li><a href="https://medium.com/dune-network/love-a-new-smart-contract-language-for-the-dune-network-a217ab2255be"><strong>Love</strong></a>, a type-safe language with a ML syntax and suited for formal verification
@@ -40,10 +40,10 @@ source:
 </ul>
 <p>Though Liquidity and Love are both part of the ML family, Liquidity is much more developer-friendly: types are inferred, whereas in Love they have to be explicit, and Liquidity supports the ReasonML JavaScript syntax while Love is bound to its ML syntax.</p>
 <p>For all these reasons, we are pleased to announce a wedding: Liquidity now supports the Love language!</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/liq-love-2.png" alt="Liquidity &amp; Love"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/liq-love-2.png" alt="Liquidity &amp; Love"></p>
 <p><em>Liquidity now supports generating Love smart contracts</em></p>
 <p>This is great news for Love, as Liquidity is easier to use, and comes with an online web editor, <a href="https://www.liquidity-lang.org/edit/">Try-Liquidity</a>. Liquidity is also being targeted by the <a href="https://arxiv.org/pdf/1907.10674.pdf">ConCert project</a>, aiming at <strong>verifying smart contracts</strong> with the formal verification framework Coq.</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/dune-compilers.png" alt="Dune Languages"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/dune-compilers.png" alt="Dune Languages"></p>
 <p><em>The Smart Contract Framework on the Dune Network</em></p>
 <p>Compiling contracts from Liquidity to Love has several benefits compared to Michelson. First, Love contracts are about 60% smaller than Michelson contracts, hence they are <strong>60% cheaper</strong> to deploy. Also, the compiler outputs a Love contract that can be easily read and audited.</p>
 <p>The Love compiler is part of the <a href="https://github.com/OCamlPro/liquidity">Liquidity project</a>. It works as follows:</p>
@@ -56,7 +56,7 @@ source:
 </li>
 </ul>
 <p>Want to try it out? Check the <a href="https://www.liquidity-lang.org/edit/">Try-Liquidity</a> website: you can now compile and deploy your Liquidity contracts in Love from the online editor directly to the Mainnet and Testnet using <a href="https://metal.dune.network">Dune Metal</a>!</p>
-<hr/>
+<hr>
 <p>These are some of the resources you might find interesting when building your own smart contracts:</p>
 <ul>
 <li><strong>The Love Language Documentation</strong>: https://dune.network/docs/dune-dev-docs/love-doc/introduction.html

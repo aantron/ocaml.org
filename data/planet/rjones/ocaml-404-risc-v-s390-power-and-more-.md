@@ -17,9 +17,8 @@ source:
 </li><li> New, upstream S/390x backend.  I actually <a href="https://caml.inria.fr/mantis/view.php?id=7405">found and fixed</a> a bug, go me!
 </li><li> New, <a href="https://github.com/nojb/riscv-ocaml">non-upstream RISC-V backend</a>.  I <a href="https://github.com/nojb/riscv-ocaml/issues/1">found a bug</a> in this backend too, but it proved to be easy to fix.  You can now install and run most of the OCaml packages <a href="https://fedoraproject.org/wiki/Architectures/RISC-V">on Fedora/RISC-V</a>.
 </li></ul>
-<p>And talking about Fedora/RISC-V, it took a month, but the <a href="https://fedorapeople.org/groups/risc-v/logs/status-2.html">mass-rebuild of all Fedora packages</a> completed, and now we&rsquo;ve got about &#8532;rds of all Fedora packages available for RISC-V.  That&rsquo;s quite a lot:</p>
-<pre>
-$ <b>du -sh SRPMS/ RPMS/</b>
+<p>And talking about Fedora/RISC-V, it took a month, but the <a href="https://fedorapeople.org/groups/risc-v/logs/status-2.html">mass-rebuild of all Fedora packages</a> completed, and now we’ve got about ⅔rds of all Fedora packages available for RISC-V.  That’s quite a lot:</p>
+<pre>$ <b>du -sh SRPMS/ RPMS/</b>
 <b>31G</b>	<a href="https://fedorapeople.org/groups/risc-v/SRPMS/">SRPMS/</a>
 <b>27G</b>	<a href="https://fedorapeople.org/groups/risc-v/RPMS/">RPMS/</a>
 </pre>

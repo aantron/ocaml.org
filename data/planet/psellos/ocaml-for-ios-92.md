@@ -17,16 +17,16 @@ Something like that happened over the holidays, and I was able to put
 together binary releases of the most recent OCaml compiler for iOS.</p>
 
 <div class="flowaroundimg" style="margin-top: 1.0em;">
-<a href="http://psellos.com/ocaml/compile-to-iphone.html"><img src="http://psellos.com/images/vorobeacon-s35.png" alt="Spacy Voronoi image"/></a>
+<a href="http://psellos.com/ocaml/compile-to-iphone.html"><img src="http://psellos.com/images/vorobeacon-s35.png" alt="Spacy Voronoi image"></a>
 </div>
 
-<p>For quite a few years I&rsquo;ve been maintaining a set of patches that
+<p>For quite a few years I’ve been maintaining a set of patches that
 transform the OCaml compiler into a cross compiler for iOS. Recently
 there has been some work (with the kind help of Gerd Stolpmann) to
 improve these patches and incorporate them into the official INRIA OCaml
 release.</p>
 
-<p>There&rsquo;s a lot of awesome stuff going on with OCaml these days, so I&rsquo;m
+<p>There’s a lot of awesome stuff going on with OCaml these days, so I’m
 not sure when the iOS support will be released. But in the meantime the
 changes are available in a branch of the official OCaml repository. I
 checked out the branch and built two compilers, for 32- and 64-bit iOS.</p>
@@ -47,7 +47,7 @@ building from source.</p>
 <p>I hope to find enough fifth dimensional time soon to update the test
 apps and the compilers for the iOS Simulator.</p>
 
-<p>If you find problems with the compilers, I&rsquo;d be happy to hear about
+<p>If you find problems with the compilers, I’d be happy to hear about
 them.  Or if you have any comments or encouragement, leave them below or
 email me at <a href="mailto:jeffsco@psellos.com">jeffsco@psellos.com</a>.</p>
 

@@ -5,8 +5,8 @@ description: OPAM 1.2.2 has just been released. This fixes a few issues over 1.2
   the installation as up-to-date as possible even when the latest version of a package
   can not be installed. Upgrade from 1.2.1 (or earlier) See the...
 url: https://ocamlpro.com/blog/2015_05_07_opam_1.2.2_released
-date: 2015-05-07T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2015-05-07T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:

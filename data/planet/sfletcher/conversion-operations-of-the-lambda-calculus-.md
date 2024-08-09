@@ -10,9 +10,7 @@ authors:
 source:
 ---
 
-
-<html>
-  <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html><head>
      
     
     <title>Conversion</title>
@@ -78,13 +76,11 @@ source:
       the inner $x$ in the first reduction because it was not free in
       the body of the outer $\lambda x$ abstraction. Indeed, in the
       OCaml top-level we observe
-      </p><pre>
-       # (fun x -&gt; (fun x -&gt; ( + ) (( - ) x 1)) x 3) 9 ;;
+      </p><pre>       # (fun x -&gt; (fun x -&gt; ( + ) (( - ) x 1)) x 3) 9 ;;
        - : int = 11
       </pre>
       or equivalently, in C++,
-      <pre>
-      auto add = [](int x) { return [=](int y) { return x + y; }; };
+      <pre>      auto add = [](int x) { return [=](int y) { return x + y; }; };
       auto sub = [](int x) { return [=](int y) { return x - y; }; };
       [=](int x) { 
         return [=](int x) {
@@ -103,12 +99,12 @@ source:
     way to look at $\beta$ conversion is that it is saying something
     about $\lambda$-expressions that look different but mean the same
     thing.
-    
+    <p></p>
 
     <h4>$\alpha$-conversion</h4>
     <p>
     It seems obvious that the two abstractions $\lambda x.+\;x\;1$ and
-    $\lambda y.+\;y\;1$ &quot;ought&quot; to be equivalent. $\alpha$-conversion
+    $\lambda y.+\;y\;1$ "ought" to be equivalent. $\alpha$-conversion
     allows us to change the name of a formal parameter as long as it
     is done consistently. So we write $\lambda x.+\;x\;1
     \underset{\alpha}{\leftrightarrow} \lambda y.+\;y\;1$. Of course,
@@ -119,7 +115,7 @@ source:
     <h4>$\eta$-conversion</h4>
     <p>
       This last conversion rule exists to to complete our intuition
-      about what $\lambda$-abstractions &quot;ought&quot; to be equivalent. The
+      about what $\lambda$-abstractions "ought" to be equivalent. The
       rule is this : If $f$ denotes a function, $x$ a variable that
       does not occur free in $f$, then $\lambda x.f\;x
       \underset{\eta}{\leftrightarrow} f$. For example, in OCaml if we
@@ -149,11 +145,11 @@ source:
     \end{eqnarray}
     \]
     </p>
-    <hr/>
+    <hr>
     <p>
-      References:<br/>
+      References:<br>
       [1] <cite>The Implementation of Functional Programming Languages</cite> by Simon L. Peyton Jones. 1987.</p>
-    
-  </body>
-</html>
+    <p></p>
+  
 
+</body></html>

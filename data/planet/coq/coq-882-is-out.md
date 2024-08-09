@@ -15,7 +15,7 @@ source:
 <ul>
 <li>The kernel does not tolerate capture of global universes by polymorphic universe binders, fixing a soundness break (triggered only through custom plugins)</li>
 <li>A PDF version of the reference manual is available once again.</li>
-<li>The coq-makefile targets <code>print-pretty-timed</code>, <code>print-pretty-timed-diff</code>, and <code>print-pretty-single-time-diff</code> now correctly label the &quot;before&quot; and &quot;after&quot; columns, rather than swapping them.</li>
+<li>The coq-makefile targets <code>print-pretty-timed</code>, <code>print-pretty-timed-diff</code>, and <code>print-pretty-single-time-diff</code> now correctly label the "before" and "after" columns, rather than swapping them.</li>
 <li>The Windows installer now includes many more external packages that can be individually selected for installation.</li>
 </ul>
 <p>Many other bug fixes and lots of documentation improvements (for details, see the <a href="https://github.com/coq/coq/milestone/15?closed=1">8.8.2 milestone</a>).</p>

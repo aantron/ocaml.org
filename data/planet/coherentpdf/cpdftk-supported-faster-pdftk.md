@@ -22,6 +22,6 @@ source:
 <li>Attach files to the document or individual pages</li>
 </ul>
 <p>For Mac OS X, Windows, Linux, Solaris. Other plaforms by request. Coherent PDF CPDFTK 1.6 is available for $200 for a single license or $40 for a non-commercial use license.</p>
-<p>The free trial is fully functional but places the word &ldquo;DEMO&rdquo; over any file it writes.</p>
+<p>The free trial is fully functional but places the word “DEMO” over any file it writes.</p>
 
 

@@ -15,7 +15,7 @@ developed by  Peter Sewell and Francesco Zappa Nardelli,
 has recently been extended to compile language definitions
 to a Coq representation in locally-nameless style with cofinite 
 quantification, as popularised in Engineering Formal Metatheory by
-Aydemir, Chargu&eacute;raud, Pierce, Pollack and Weirich. It deals with the
+Aydemir, Charguéraud, Pierce, Pollack and Weirich. It deals with the
 single-binder case only.</p>
 <p>Some examples (including STLC, Fsub, and the nu-calculus of Pitts and
 Stark) and the documentation are available from the <a href="http://www.di.ens.fr/~zappa/projects/ln_ott/">ln-ott page</a> and the 

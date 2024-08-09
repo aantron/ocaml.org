@@ -9,17 +9,17 @@ authors:
 source:
 ---
 
-<p>&#8203;Our summer compiler hacking event will be hosted by Euan and the Citrix Team on Thursday 7th&#8203; July &mdash; come and explore the other side of Cambridge and the Science Park!</p>
+<p>​Our summer compiler hacking event will be hosted by Euan and the Citrix Team on Thursday 7th​ July — come and explore the other side of Cambridge and the Science Park!</p>
 
 <p>If you're planning to come along, it'd be helpful if you could <a href="http://doodle.com/poll/kykn2fxzgbqrdc3h">indicate interest via Doodle</a> and <a href="http://lists.ocaml.org/admin/cam-compiler-hacking">sign up to the mailing list</a> to receive updates.</p>
 
-<p><em><strong>Where</strong></em>: <a href="https://goo.gl/maps/pVRvLfVNMb12">Citrix Systems Research &amp; Development Ltd.</a><br/>
-  Building 10&#8203;1, &#8203;
-  Cambridge<br/>
-  Science Park&#8203;,<br/>
-  Milton Road&#8203;,<br/>
-  Cambridge&#8203;<br/>
-  CB4 0FY&#8203;   </p>
+<p><em><strong>Where</strong></em>: <a href="https://goo.gl/maps/pVRvLfVNMb12">Citrix Systems Research &amp; Development Ltd.</a><br>
+  Building 10​1, ​
+  Cambridge<br>
+  Science Park​,<br>
+  Milton Road​,<br>
+  Cambridge​<br>
+  CB4 0FY​   </p>
 
 <p><em><strong>When</strong></em>: 7pm, Thursday 7th July</p>
 
@@ -31,7 +31,7 @@ source:
 
 <p><em><strong>Wiki</strong></em>: https://github.com/ocamllabs/compiler-hacking/wiki</p>
 
-<p>We're defining &quot;compiler&quot; pretty broadly, to include anything that's part of the standard distribution, which means at least the
+<p>We're defining "compiler" pretty broadly, to include anything that's part of the standard distribution, which means at least the
  <a href="https://github.com/ocaml/ocaml/tree/trunk/stdlib">standard library</a>,
  <a href="https://github.com/ocaml/ocaml/tree/trunk/byterun">run</a><a href="https://github.com/ocaml/ocaml/tree/trunk/asmrun">time</a>, tools
     (<a href="http://caml.inria.fr/pub/docs/manual-ocaml/depend.html">ocamldep</a>,

@@ -10,6 +10,6 @@ source:
 ---
 
 <p>ppx has been out for a while but it seems like the community has been
-taking its time transitioning away from camlp4. There&rsquo;s probably a
+taking its time transitioning away from camlp4. There’s probably a
 couple of reasons for that:</p>
 

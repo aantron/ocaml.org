@@ -27,7 +27,7 @@ details of the full API and data structures.</p>
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">Project</span><span class="p">.</span><span class="n">memory</span> <span class="n">project</span>
 <span class="o">|&gt;</span> <span class="nn">Memmap</span><span class="p">.</span><span class="n">to_sequence</span>
 <span class="o">|&gt;</span> <span class="nn">Seq</span><span class="p">.</span><span class="n">iter</span> <span class="o">~</span><span class="n">f</span><span class="o">:</span><span class="p">(</span><span class="k">fun</span> <span class="p">(</span><span class="n">mem</span><span class="o">,</span><span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span>
-     <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;%s(%a)@.%a@.&quot;</span> <span class="p">(</span><span class="nn">Value</span><span class="p">.</span><span class="n">tagname</span> <span class="n">v</span><span class="p">)</span> <span class="nn">Value</span><span class="p">.</span><span class="n">pp</span> <span class="n">v</span> <span class="nn">Memory</span><span class="p">.</span><span class="n">pp</span> <span class="n">mem</span><span class="p">);</span>
+     <span class="nn">Format</span><span class="p">.</span><span class="n">printf</span> <span class="s2">"%s(%a)@.%a@."</span> <span class="p">(</span><span class="nn">Value</span><span class="p">.</span><span class="n">tagname</span> <span class="n">v</span><span class="p">)</span> <span class="nn">Value</span><span class="p">.</span><span class="n">pp</span> <span class="n">v</span> <span class="nn">Memory</span><span class="p">.</span><span class="n">pp</span> <span class="n">mem</span><span class="p">);</span>
 </code></pre></div></div>
 
 <p>Output:</p>
@@ -80,7 +80,7 @@ chunks of memory. For instance, in the output we see <code class="language-plain
   </li>
   <li>
     <p><code class="language-plaintext highlighter-rouge">Value.pp</code> extracts the value of the relevant type, and prints it. For example,
-a section and it&rsquo;s corresponding name (<code class="language-plaintext highlighter-rouge">.rodata</code>, <code class="language-plaintext highlighter-rouge">.got</code>, &hellip;).</p>
+a section and it’s corresponding name (<code class="language-plaintext highlighter-rouge">.rodata</code>, <code class="language-plaintext highlighter-rouge">.got</code>, …).</p>
   </li>
   <li>
     <p>For the interested reader, see more on
@@ -88,12 +88,12 @@ a section and it&rsquo;s corresponding name (<code class="language-plaintext hig
   </li>
 </ul>
 
-<hr/>
+<hr>
 
 <h4>Image Sections</h4>
 
 <blockquote>
-  <p>How do I print the memory contents of an ELF section, such as &lsquo;.rodata&rsquo;?</p>
+  <p>How do I print the memory contents of an ELF section, such as ‘.rodata’?</p>
 </blockquote>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">find_section_by_name</span> <span class="n">name</span> <span class="o">=</span>
@@ -102,9 +102,9 @@ a section and it&rsquo;s corresponding name (<code class="language-plaintext hig
   <span class="nn">Memmap</span><span class="p">.</span><span class="n">to_sequence</span> <span class="n">memory</span> <span class="o">|&gt;</span> <span class="nn">Seq</span><span class="p">.</span><span class="n">find_map</span> <span class="o">~</span><span class="n">f</span><span class="o">:</span><span class="p">(</span><span class="k">fun</span> <span class="p">(</span><span class="n">m</span><span class="o">,</span><span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span>
       <span class="nn">Option</span><span class="p">.(</span><span class="nn">Value</span><span class="p">.</span><span class="n">get</span> <span class="nn">Image</span><span class="p">.</span><span class="n">section</span> <span class="n">v</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">n</span> <span class="o">-&gt;</span>
               <span class="nn">Option</span><span class="p">.</span><span class="n">some_if</span> <span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">name</span><span class="p">)</span> <span class="n">m</span><span class="p">))</span> <span class="k">in</span>
-<span class="p">(</span><span class="k">match</span> <span class="n">find_section_by_name</span> <span class="s2">&quot;.rodata&quot;</span> <span class="k">with</span>
- <span class="o">|</span> <span class="nc">Some</span> <span class="n">mem</span> <span class="o">-&gt;</span> <span class="n">printf</span> <span class="s2">&quot;%a&quot;</span> <span class="nn">Memory</span><span class="p">.</span><span class="n">pp</span> <span class="n">mem</span>
- <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">printf</span> <span class="s2">&quot;No memory for this section</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">(</span><span class="k">match</span> <span class="n">find_section_by_name</span> <span class="s2">".rodata"</span> <span class="k">with</span>
+ <span class="o">|</span> <span class="nc">Some</span> <span class="n">mem</span> <span class="o">-&gt;</span> <span class="n">printf</span> <span class="s2">"%a"</span> <span class="nn">Memory</span><span class="p">.</span><span class="n">pp</span> <span class="n">mem</span>
+ <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">printf</span> <span class="s2">"No memory for this section</span><span class="se">\n</span><span class="s2">"</span><span class="p">);</span>
 </code></pre></div></div>
 
 <p>Output:</p>
@@ -126,7 +126,7 @@ the memory <code class="language-plaintext highlighter-rouge">m</code>.</p>
   </li>
 </ul>
 
-<hr/>
+<hr>
 
 <h4>Reading memory</h4>
 
@@ -142,14 +142,14 @@ extract and print it:</p>
 <span class="k">let</span> <span class="n">mem_from_addr</span> <span class="n">addr</span> <span class="n">mem</span> <span class="o">=</span>
   <span class="k">match</span> <span class="nn">Memory</span><span class="p">.</span><span class="n">view</span> <span class="o">~</span><span class="n">word_size</span><span class="o">:</span><span class="nt">`r8</span> <span class="o">~</span><span class="n">from</span><span class="o">:</span><span class="n">addr</span> <span class="n">mem</span> <span class="k">with</span>
   <span class="o">|</span> <span class="nc">Ok</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="n">r</span>
-  <span class="o">|</span> <span class="nc">Error</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="o">@@</span> <span class="n">sprintf</span> <span class="s2">&quot;Failure: %s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">@@</span> <span class="nn">Error</span><span class="p">.</span><span class="n">to_string_hum</span> <span class="n">e</span> <span class="k">in</span>
+  <span class="o">|</span> <span class="nc">Error</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="o">@@</span> <span class="n">sprintf</span> <span class="s2">"Failure: %s</span><span class="se">\n</span><span class="s2">"</span> <span class="o">@@</span> <span class="nn">Error</span><span class="p">.</span><span class="n">to_string_hum</span> <span class="n">e</span> <span class="k">in</span>
 </code></pre></div></div>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">(** Given a memory area, start at the beginning and collect characters in the
 accumulator string until we reach a until byte. Return the string *)</span>
 <span class="k">let</span> <span class="n">read_string</span> <span class="n">mem</span> <span class="o">=</span>
   <span class="k">let</span> <span class="p">(</span><span class="o">!</span><span class="p">)</span> <span class="o">=</span> <span class="nn">Char</span><span class="p">.</span><span class="n">to_string</span> <span class="k">in</span>
-  <span class="nn">Memory</span><span class="p">.</span><span class="n">foldi</span> <span class="o">~</span><span class="n">word_size</span><span class="o">:</span><span class="nt">`r8</span> <span class="n">mem</span> <span class="o">~</span><span class="n">init</span><span class="o">:</span><span class="p">(</span><span class="bp">false</span><span class="o">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+  <span class="nn">Memory</span><span class="p">.</span><span class="n">foldi</span> <span class="o">~</span><span class="n">word_size</span><span class="o">:</span><span class="nt">`r8</span> <span class="n">mem</span> <span class="o">~</span><span class="n">init</span><span class="o">:</span><span class="p">(</span><span class="bp">false</span><span class="o">,</span><span class="s2">""</span><span class="p">)</span>
     <span class="o">~</span><span class="n">f</span><span class="o">:</span><span class="p">(</span><span class="k">fun</span> <span class="n">addr</span> <span class="n">word</span> <span class="p">(</span><span class="n">set</span><span class="o">,</span><span class="n">acc</span><span class="p">)</span> <span class="o">-&gt;</span>
         <span class="k">let</span> <span class="kt">char</span> <span class="o">=</span> <span class="nn">Word</span><span class="p">.</span><span class="n">to_chars</span> <span class="n">word</span> <span class="nc">LittleEndian</span> <span class="o">|&gt;</span> <span class="nn">Seq</span><span class="p">.</span><span class="n">hd_exn</span> <span class="k">in</span>
         <span class="k">match</span> <span class="n">set</span><span class="o">,</span><span class="kt">char</span> <span class="k">with</span>
@@ -159,18 +159,18 @@ accumulator string until we reach a until byte. Return the string *)</span>
 </code></pre></div></div>
 
 <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">(** Read from the address *)</span>
-<span class="k">let</span> <span class="n">addr</span> <span class="o">=</span> <span class="nn">Addr</span><span class="p">.</span><span class="n">of_string</span> <span class="s2">&quot;0x400644:64&quot;</span> <span class="k">in</span>
+<span class="k">let</span> <span class="n">addr</span> <span class="o">=</span> <span class="nn">Addr</span><span class="p">.</span><span class="n">of_string</span> <span class="s2">"0x400644:64"</span> <span class="k">in</span>
 
 <span class="c">(** Get and print the result *)</span>
 <span class="k">let</span> <span class="n">result</span> <span class="o">=</span>
   <span class="k">let</span> <span class="k">open</span> <span class="nc">Option</span> <span class="k">in</span>
-  <span class="n">find_section_by_name</span> <span class="s2">&quot;.rodata&quot;</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">mem</span> <span class="o">-&gt;</span>
+  <span class="n">find_section_by_name</span> <span class="s2">".rodata"</span> <span class="o">&gt;&gt;=</span> <span class="k">fun</span> <span class="n">mem</span> <span class="o">-&gt;</span>
   <span class="nn">Option</span><span class="p">.</span><span class="n">some_if</span> <span class="p">(</span><span class="nn">Memory</span><span class="p">.</span><span class="n">contains</span> <span class="n">mem</span> <span class="n">addr</span><span class="p">)</span> <span class="p">(</span>
     <span class="k">let</span> <span class="n">mem'</span> <span class="o">=</span> <span class="n">mem_from_addr</span> <span class="n">addr</span> <span class="n">mem</span> <span class="k">in</span>
     <span class="n">read_string</span> <span class="n">mem'</span><span class="p">)</span> <span class="k">in</span>
 <span class="p">(</span><span class="k">match</span> <span class="n">result</span> <span class="k">with</span>
- <span class="o">|</span> <span class="nc">Some</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">printf</span> <span class="s2">&quot;%s</span><span class="se">\n</span><span class="s2">%!&quot;</span> <span class="n">s</span>
- <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">&quot;No string could be found&quot;</span><span class="p">);</span>
+ <span class="o">|</span> <span class="nc">Some</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">printf</span> <span class="s2">"%s</span><span class="se">\n</span><span class="s2">%!"</span> <span class="n">s</span>
+ <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">"No string could be found"</span><span class="p">);</span>
 </code></pre></div></div>
 
 <p>Output:</p>

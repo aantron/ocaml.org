@@ -5,8 +5,8 @@ description: We recently worked on a project to build a binary installer for OCa
   for every OCaml version since 4.02.0, and we were surprised to discover that their
   (compressed) size grew from 18 MB to about 200 MB. This post gi...
 url: https://ocamlpro.com/blog/2023_01_02_ocaml_distribution
-date: 2023-01-02T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2023-01-02T13:31:53-00:00
+preview_image: https://ocamlpro.com/blog/assets/img/ocaml-binary-growth-2022.png
 authors:
 - "\n    Fabrice Le Fessant\n  "
 source:
@@ -20,7 +20,7 @@ binary packages of the distribution for every OCaml version since
 grew from 18 MB to about 200 MB. This post gives a survey of our
 findings.</p>
 <p></p><div>
-<strong>Table of contents</strong>
+<strong>Table of contents</strong><p></p>
 <ul>
 <li><a href="https://ocamlpro.com/blog/feed#introduction">Introduction</a>
 </li>
@@ -31,11 +31,11 @@ findings.</p>
 <li><a href="https://ocamlpro.com/blog/feed#distribution">Inside the OCaml Installation</a>
 </li>
 <li><a href="https://ocamlpro.com/blog/feed#conclusion">Conclusion</a>
+</li></ul></div>
 
-</li>
-</ul>
+
 <h2>
-<a class="anchor"></a>Introduction<a href="https://ocamlpro.com/blog/feed#introduction">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#introduction" class="anchor-link">Introduction</a>
           </h2>
 <p>One of the strengths of Rust is the ease with which it gets installed
 on a new computer in user space: with a simple command copy-pasted
@@ -63,20 +63,20 @@ the download speed against the installation speed).</p>
 <p>We decided it was worth trying to investigate this growth in more
 details, and this post is about our early findings.</p>
 <h2>
-<a class="anchor"></a>General Trends<a href="https://ocamlpro.com/blog/feed#trends">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#trends" class="anchor-link">General Trends</a>
           </h2>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/ocaml-binary-growth-2022.svg">
-      <img src="https://ocamlpro.com/blog/assets/img/ocaml-binary-growth-2022.svg" alt="In 10 years, the OCaml Distribution binary archive grew by a factor 10, from 18 MB to 198 MB, corresponding to a growth from 73 MB to 522 MB after installation, and from 748 to 2433 installed files."/>
+      <img src="https://ocamlpro.com/blog/assets/img/ocaml-binary-growth-2022.svg" alt="In 10 years, the OCaml Distribution binary archive grew by a factor 10, from 18 MB to 198 MB, corresponding to a growth from 73 MB to 522 MB after installation, and from 748 to 2433 installed files.">
     </a>
     </p><div class="caption">
       In 10 years, the OCaml Distribution binary archive grew by a factor 10, from 18 MB to 198 MB, corresponding to a growth from 73 MB to 522 MB after installation, and from 748 to 2433 installed files.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>So, let's have a look at the evolution of the size of the binary OCaml
 distribution in more details. Between version 4.02.0 (Aug 2014) and
 version 5.0.0 (Dec 2022):</p>
@@ -95,14 +95,14 @@ version 5.0.0 (Dec 2022):</p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/ocaml-sources-growth-2022.svg">
-      <img src="https://ocamlpro.com/blog/assets/img/ocaml-sources-growth-2022.svg" alt="The OCaml Distribution source archive was much more stable, with a global growth smaller than 2."/>
+      <img src="https://ocamlpro.com/blog/assets/img/ocaml-sources-growth-2022.svg" alt="The OCaml Distribution source archive was much more stable, with a global growth smaller than 2.">
     </a>
     </p><div class="caption">
       The OCaml Distribution source archive was much more stable, with a global growth smaller than 2.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>On the other hand, the source distribution itself was much more stable:</p>
 <ul>
 <li>
@@ -131,18 +131,18 @@ files:</p>
     <a href="https://ocamlpro.com/blog/assets/img/ocaml-binary-size-2022.svg">
       <img src="https://ocamlpro.com/blog/assets/img/ocaml-binary-size-2022.svg" alt="The growth is
 mostly caused by the increase in size of existing files, and not by
-the addition of new files."/>
+the addition of new files.">
     </a>
     </p><div class="caption">
       The growth is
 mostly caused by the increase in size of existing files, and not by
 the addition of new files.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <h2>
-<a class="anchor"></a>Causes and Consequences<a href="https://ocamlpro.com/blog/feed#changes">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#changes" class="anchor-link">Causes and Consequences</a>
           </h2>
 <p>We tried to identify the main causes of this growth: the growth is
 linear most of the time, with sharp increases (and decreases) at some
@@ -155,16 +155,16 @@ made it from one version to the next one:</p>
     <a href="https://ocamlpro.com/blog/assets/img/ocaml-binary-size-diff-2022.svg">
       <img src="https://ocamlpro.com/blog/assets/img/ocaml-binary-size-diff-2022.svg" alt="The
 difference of size between two versions is not big most of the time,
-but some versions exhibit huge increases or decreases."/>
+but some versions exhibit huge increases or decreases.">
     </a>
     </p><div class="caption">
       The
 difference of size between two versions is not big most of the time,
 but some versions exhibit huge increases or decreases.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>Let's have a look at the versions with the highest increases in size:</p>
 <ul>
 <li>
@@ -243,7 +243,7 @@ root causes of most of these changes would require to go deeper than
 what we can in such a blog post. Yet, these figures give good hints
 for experts on which versions to start investigating with.</p>
 <h2>
-<a class="anchor"></a>Inside the OCaml Installation<a href="https://ocamlpro.com/blog/feed#distribution">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#distribution" class="anchor-link">Inside the OCaml Installation</a>
           </h2>
 <p>Before concluding, it might also be worth studying which parts of the
 OCaml Installation take most of the space. 5.0.0 is a good candidate
@@ -294,7 +294,7 @@ executables. For example, all these ones are above 10 MB:</p>
 </ul>
 <p>There are both bytecode and native code executables in this list.</p>
 <h2>
-<a class="anchor"></a>Conclusion<a href="https://ocamlpro.com/blog/feed#conclusion">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#conclusion" class="anchor-link">Conclusion</a>
           </h2>
 <p>Our installer project would benefit from having a smaller binary OCaml
 distribution, but most OCaml users in general would also benefit from
@@ -332,4 +332,4 @@ will contain all the modules of the library, even the ones that are
 not useful for its specific purpose.</p>
 </li>
 </ul>
-</div>
+

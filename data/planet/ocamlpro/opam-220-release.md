@@ -5,8 +5,8 @@ description: 'Feedback on this post is welcomed on Discuss! We are very pleased 
   on for installation and upgrade instructions. NOTE: this article is cross-posted
   on opam.ocaml.org and ocamlpro.com, and published in discuss.ocaml...'
 url: https://ocamlpro.com/blog/2024_07_01_opam_2_2_0_releases
-date: 2024-07-01T08:15:07-00:00
-preview_image: https://ocamlpro.com/assets/img/logo_ocp_icon.svg
+date: 2024-07-01T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Raja Boujbel - OCamlPro\n  "
 source:
@@ -26,12 +26,12 @@ source:
 </li>
 </ol>
 <p>For Unix systems</p>
-<pre><code class="language-shell-session">bash -c &quot;sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.2.0&quot;
+<pre><code class="language-shell-session">bash -c "sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.2.0"
 </code></pre>
 <p>or from PowerShell for Windows systems</p>
-<pre><code class="language-shell-session">Invoke-Expression &quot;&amp; { $(Invoke-RestMethod https://raw.githubusercontent.com/ocaml/opam/master/shell/install.ps1) }&quot;
+<pre><code class="language-shell-session">Invoke-Expression "&amp; { $(Invoke-RestMethod https://raw.githubusercontent.com/ocaml/opam/master/shell/install.ps1) }"
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.2.0">the Github &quot;Releases&quot; page</a> to your PATH.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.2.0">the Github "Releases" page</a> to your PATH.</p>
 <ol start="2">
 <li>Or from source, manually: see the instructions in the <a href="https://github.com/ocaml/opam/tree/2.2.0#compiling-this-repo">README</a>.
 </li>
@@ -60,7 +60,7 @@ user coming over to Windows to test their software, it is also possible to have
 your own Cygwin/MSYS2 installation and use native Windows opam from that. Please
 see the <a href="https://opam.ocaml.org/blog/opam-2-2-0-windows/">previous blog post</a>
 for more information.</p>
-<p>There are two &quot;ports&quot; of OCaml on native Windows, referred to by the name of
+<p>There are two "ports" of OCaml on native Windows, referred to by the name of
 provider of the C compiler. The mingw-w64 port is <a href="https://www.mingw-w64.org/">GCC-based</a>.
 opam's external dependency (depext) system works for this port (including
 providing GCC itself), and many packages are already well-supported in
@@ -76,36 +76,36 @@ automatically find and use the C compiler from Visual Studio.</p>
 It is very helpful to determine which packages bring which dependencies in your installed switch.</p>
 <pre><code class="language-shell-session">$ opam tree cppo
 cppo.1.6.9
-&#9500;&#9472;&#9472; base-unix.base
-&#9500;&#9472;&#9472; dune.3.8.2 (&gt;= 1.10)
-&#9474;   &#9500;&#9472;&#9472; base-threads.base
-&#9474;   &#9500;&#9472;&#9472; base-unix.base [*]
-&#9474;   &#9492;&#9472;&#9472; ocaml.4.14.1 (&gt;= 4.08)
-&#9474;       &#9500;&#9472;&#9472; ocaml-base-compiler.4.14.1 (&gt;= 4.14.1~ &amp; &lt; 4.14.2~)
-&#9474;       &#9492;&#9472;&#9472; ocaml-config.2 (&gt;= 2)
-&#9474;           &#9492;&#9472;&#9472; ocaml-base-compiler.4.14.1 (&gt;= 4.12.0~) [*]
-&#9492;&#9472;&#9472; ocaml.4.14.1 (&gt;= 4.02.3) [*]
+├── base-unix.base
+├── dune.3.8.2 (&gt;= 1.10)
+│   ├── base-threads.base
+│   ├── base-unix.base [*]
+│   └── ocaml.4.14.1 (&gt;= 4.08)
+│       ├── ocaml-base-compiler.4.14.1 (&gt;= 4.14.1~ &amp; &lt; 4.14.2~)
+│       └── ocaml-config.2 (&gt;= 2)
+│           └── ocaml-base-compiler.4.14.1 (&gt;= 4.12.0~) [*]
+└── ocaml.4.14.1 (&gt;= 4.02.3) [*]
 </code></pre>
 <p>Reverse-dependencies can also be displayed using the new <code>opam why</code> command.
 This is useful to examine how dependency versions get constrained.</p>
 <pre><code class="language-shell-session">$ opam why cmdliner
 cmdliner.1.2.0
-&#9500;&#9472;&#9472; (&gt;= 1.1.0) b0.0.0.5
-&#9474;   &#9492;&#9472;&#9472; (= 0.0.5) odig.0.0.9
-&#9500;&#9472;&#9472; (&gt;= 1.1.0) ocp-browser.1.3.4
-&#9500;&#9472;&#9472; (&gt;= 1.0.0) ocp-indent.1.8.1
-&#9474;   &#9492;&#9472;&#9472; (&gt;= 1.4.2) ocp-index.1.3.4
-&#9474;       &#9492;&#9472;&#9472; (= version) ocp-browser.1.3.4 [*]
-&#9500;&#9472;&#9472; (&gt;= 1.1.0) ocp-index.1.3.4 [*]
-&#9500;&#9472;&#9472; (&gt;= 1.1.0) odig.0.0.9 [*]
-&#9500;&#9472;&#9472; (&gt;= 1.0.0) odoc.2.2.0
-&#9474;   &#9492;&#9472;&#9472; (&gt;= 2.0.0) odig.0.0.9 [*]
-&#9500;&#9472;&#9472; (&gt;= 1.1.0) opam-client.2.2.0~alpha
-&#9474;   &#9500;&#9472;&#9472; (= version) opam.2.2.0~alpha
-&#9474;   &#9492;&#9472;&#9472; (= version) opam-devel.2.2.0~alpha
-&#9500;&#9472;&#9472; (&gt;= 1.1.0) opam-devel.2.2.0~alpha [*]
-&#9500;&#9472;&#9472; (&gt;= 0.9.8) opam-installer.2.2.0~alpha
-&#9492;&#9472;&#9472; user-setup.0.7
+├── (&gt;= 1.1.0) b0.0.0.5
+│   └── (= 0.0.5) odig.0.0.9
+├── (&gt;= 1.1.0) ocp-browser.1.3.4
+├── (&gt;= 1.0.0) ocp-indent.1.8.1
+│   └── (&gt;= 1.4.2) ocp-index.1.3.4
+│       └── (= version) ocp-browser.1.3.4 [*]
+├── (&gt;= 1.1.0) ocp-index.1.3.4 [*]
+├── (&gt;= 1.1.0) odig.0.0.9 [*]
+├── (&gt;= 1.0.0) odoc.2.2.0
+│   └── (&gt;= 2.0.0) odig.0.0.9 [*]
+├── (&gt;= 1.1.0) opam-client.2.2.0~alpha
+│   ├── (= version) opam.2.2.0~alpha
+│   └── (= version) opam-devel.2.2.0~alpha
+├── (&gt;= 1.1.0) opam-devel.2.2.0~alpha [*]
+├── (&gt;= 0.9.8) opam-installer.2.2.0~alpha
+└── user-setup.0.7
 </code></pre>
 <blockquote>
 <p>Special thanks to <a href="https://github.com/cannorin">@cannorin</a> for contributing this feature.</p>
@@ -118,16 +118,16 @@ dependency. It will be ignored when installing normally, but it's pulled in when
 package is explicitly installed with the <code>--with-dev-setup</code> flag specified on
 the command line.</p>
 <p>For example</p>
-<pre><code class="language-shell-session">opam-version: &quot;2.0&quot;
+<pre><code class="language-shell-session">opam-version: "2.0"
 depends: [
-  &quot;ocaml&quot;
-  &quot;ocp-indent&quot; {with-dev-setup}
+  "ocaml"
+  "ocp-indent" {with-dev-setup}
 ]
 build: [make]
-install: [make &quot;install&quot;]
+install: [make "install"]
 post-messages:
-[ &quot;Thanks for installing the package&quot;
-  &quot;as well as its development setup. It will help with your future contributions&quot; {with-dev-setup} ]
+[ "Thanks for installing the package"
+  "as well as its development setup. It will help with your future contributions" {with-dev-setup} ]
 </code></pre>
 <h3>Major change: opam pin --recursive</h3>
 <p>When pinning a package using <code>opam pin</code>, opam looks for opam files in the root directory only.
@@ -174,10 +174,10 @@ from previous packages removal.</p>
 to a given set of packages</p>
 </li>
 <li>
-<p><code>opam list --base</code> has been renamed into <code>--invariant</code>, reflecting the fact that since opam 2.1 the &quot;base&quot; packages of a switch are instead expressed using a switch invariant.</p>
+<p><code>opam list --base</code> has been renamed into <code>--invariant</code>, reflecting the fact that since opam 2.1 the "base" packages of a switch are instead expressed using a switch invariant.</p>
 </li>
 <li>
-<p><code>opam install --formula &lt;formula&gt;</code> installs a formula instead of a list of packages. This can be useful if you would like to install one package or another one. For example <code>opam install --formula '&quot;extlib&quot; |&quot;extlib-compat&quot;'</code> will install either <code>extlib</code> or <code>extlib-compat</code> depending on what's best for the current switch.</p>
+<p><code>opam install --formula &lt;formula&gt;</code> installs a formula instead of a list of packages. This can be useful if you would like to install one package or another one. For example <code>opam install --formula '"extlib" |"extlib-compat"'</code> will install either <code>extlib</code> or <code>extlib-compat</code> depending on what's best for the current switch.</p>
 </li>
 </ul>
 <h3>Miscellaneous changes</h3>
@@ -190,9 +190,9 @@ to a given set of packages</p>
 </li>
 <li>Add a new <code>sys-ocaml-system</code> default global eval variable
 </li>
-<li>Hijack the <code>&quot;%{var?string-if-true:string-if-false-or-undefined}%&quot;</code> syntax to
+<li>Hijack the <code>"%{var?string-if-true:string-if-false-or-undefined}%"</code> syntax to
 support extending the variables of packages with <code>+</code> in their name
-(<code>conf-c++</code> and <code>conf-g++</code> already exist) using <code>&quot;%{?pgkname:var:}%&quot;</code>
+(<code>conf-c++</code> and <code>conf-g++</code> already exist) using <code>"%{?pgkname:var:}%"</code>
 </li>
 <li>Fix issues when using fish as shell
 </li>
@@ -201,7 +201,7 @@ support extending the variables of packages with <code>+</code> in their name
 is not defined on macOS
 </li>
 <li>Add Warning 69: Warn for new syntax when package name in variable in string
-interpolation contains several '+' (this is related to the &quot;hijack&quot; item above)
+interpolation contains several '+' (this is related to the "hijack" item above)
 </li>
 <li>Add support for Wolfi OS, treating it like Alpine family as it also uses apk
 </li>
@@ -242,5 +242,5 @@ API changes and a more detailed description of the changes are listed in:</p>
 <p>This release also includes PRs improving the documentation and improving
 and extending the tests.</p>
 <p>Please report any issues to <a href="https://github.com/ocaml/opam/issues">the bug-tracker</a>.</p>
-<p>We hope you will enjoy the new features of opam 2.2! &#128239;</p>
+<p>We hope you will enjoy the new features of opam 2.2! 📯</p>
 

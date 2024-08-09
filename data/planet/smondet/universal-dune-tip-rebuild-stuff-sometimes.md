@@ -10,5 +10,5 @@ source:
 ---
 
 
-    Quick hack to make &ldquo;at most every n seconds&rdquo; dune targets.
+    Quick hack to make “at most every n seconds” dune targets.
    

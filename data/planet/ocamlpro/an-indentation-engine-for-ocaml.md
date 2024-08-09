@@ -5,8 +5,8 @@ description: 'Since our last activity report we have released the first stable v
   an indentation tool. We have already described the basics of OPAM in two precedent
   blog posts, so today we will focus on the release of ...'
 url: https://ocamlpro.com/blog/2013_03_18_an_indentation_engine_for_ocaml
-date: 2013-03-18T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2013-03-18T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:
@@ -31,7 +31,7 @@ were limited. For instance, you could write coding guidelines and hope
 that all the developers in your project would follow them. If you wanted
 to be more systematic, you could create and share a common
 configuration file for some popular editors (most OCaml developers use
-the emacs&rsquo; <code>tuareg-mode</code> or vim) but it is very hard to get
+the emacs’ <code>tuareg-mode</code> or vim) but it is very hard to get
 consistent indentation result across multiple tools. Moreover, having to
 rely on a specific editor mode means that it is harder to fully
 automatize the indentation process, for instance when setting-up a VCS
@@ -45,7 +45,7 @@ hook.</p>
 <li>it should be easy to maintain and to extend;
 </li>
 </ul>
-<p>So we started to look at the OCaml tools&rsquo; ecosystem and we found an early prototype of Jun Furuse&rsquo;s <a href="https://bitbucket.org/camlspotter">ocaml-indent</a>.
+<p>So we started to look at the OCaml tools’ ecosystem and we found an early prototype of Jun Furuse’s <a href="https://bitbucket.org/camlspotter">ocaml-indent</a>.
 The foundation looked great but the result on real-world code sources
 was not as nice as it could be, so we decided to start from this base to
 build our new tool, that we called <code>ocp-indent</code>. Today, <code>ocp-indent</code> and <code>ocaml-indent</code> do not have much code in common anymore, but the global architecture of the system remains the same.</p>
@@ -55,10 +55,10 @@ any line in the program, we want to compute its indentation level, based
 on the code structure.</p>
 <p>It turns out to be much more difficult than that, mainly because
 indentation is only marginally semantic, and, worse, is a matter of
-taste and &ldquo;proper layout&rdquo;. In short, it&rsquo;s not a problem that can be
+taste and “proper layout”. In short, it’s not a problem that can be
 expressed concisely, because one really does want lots of specific cases
-handled &ldquo;nicely&rdquo;, depending on the on-screen layout &mdash; position of line
-breaks &mdash; rather than the semantic structure. <code>Ocp-indent</code>
+handled “nicely”, depending on the on-screen layout — position of line
+breaks — rather than the semantic structure. <code>Ocp-indent</code>
 does contain lots of ad-hoc logic for such cases. To make things harder,
 the OCaml syntax is known to be difficult to handle, with a few
 ambiguities.</p>
@@ -71,21 +71,21 @@ be modified to be more robust (ocaml fails on errors, the indentation
 tool should not) and to keep tokens like comments, quotations, and, in
 the latest version, some ocamldoc block delimiters.
 </li>
-<li>Taking the token stream as input, we maintain a <a href="https://github.com/OCamlPro/ocp-indent/blob/master/src/indentBlock.ml">&ldquo;block&rdquo; stack</a>
+<li>Taking the token stream as input, we maintain a <a href="https://github.com/OCamlPro/ocp-indent/blob/master/src/indentBlock.ml">“block” stack</a>
 that keeps informations like the kinds of blocks we have been through
 to get to the cursor position, the column and the indentation
-parameters. For instance, the &ldquo;block&rdquo; stack <code>[KBody KFfun; KLet; KBody KModule]</code> corresponds to the position of <code>X</code> in the following piece of (pseudo-) code:
+parameters. For instance, the “block” stack <code>[KBody KFfun; KLet; KBody KModule]</code> corresponds to the position of <code>X</code> in the following piece of (pseudo-) code:
 </li>
 </ul>
-<pre><code class="language-ocaml">&hellip;
+<pre><code class="language-ocaml">…
 module Foo = struct
-&hellip;
+…
 let f = fun a &amp;&gt; X
 </code></pre>
 <ul>
 <li>Each token may look up the stack to find its starting counterpart (<code>in</code> will look for <code>KLet</code>, etc.), or disambiguate (<code>=</code> will look for <code>KLet</code>, stopping on opening tokens like <code>KBracket</code>,
 and will be inserted as an operator if none is found). This is flexible
-enough to allow for &ldquo;breaking&rdquo; the stack when incorrect grammar is
+enough to allow for “breaking” the stack when incorrect grammar is
 found. For example, the unclosed paren in <code>module let x = ( end</code> should not break indent after the <code>end</code>. Great care was taken in deciding what tokens should be able to remove from the stack in which conditions.
 </li>
 <li>The stack can also be used to find a token that we want to align on, typically bars <code>|</code> in a pattern-matching.
@@ -93,14 +93,14 @@ found. For example, the unclosed paren in <code>module let x = ( end</code> shou
 <li>On every line break, the stack can be used to compute the indentation of the next line.
 </li>
 <li>In the case of partial file indentation (typically, reindenting one
-line or a single block), on lines that shouldn&rsquo;t be reindented the stack
+line or a single block), on lines that shouldn’t be reindented the stack
 is reversely updated to adapt to the current indentation.
 </li>
 </ul>
 <h4>Priorities</h4>
 <p>The part where some abstraction can be put into the engine is the
 knowledge of the semantics, and more precisely of the scope of the
-operations. It&rsquo;s also in that case that the indenter can help you write,
+operations. It’s also in that case that the indenter can help you write,
 and not only read, your code. On that matter, <code>ocp-indent</code>
 has a knowledge of the precedence of operators and constructs that is
 used to know how far to unwind the stack, and what to align on. For
@@ -141,10 +141,10 @@ the option <code>--numeric</code>: instead of reprinting the file
 reindented, it will only output indentation levels, which you can then
 process from your editor (for instance, using <code>indent-line-to</code> with emacs). That should be cheaper and will help preserve cursor position, etc.</p>
 <p>Currently, a simple emacs binding working on either the ocaml or the
-tuareg mode is provided, together with a vim mode contributed by Rapha&euml;l
+tuareg mode is provided, together with a vim mode contributed by Raphaël
 Proust and David Powers.</p>
 <h3>Results</h3>
-<p>We&rsquo;ve built <code>ocp-indent</code> based on a growing collection of <a href="https://github.com/OCamlPro/ocp-indent/tree/master/tests/passing">unit-tests</a>. If you find an indentation bug, feel free to <a href="https://github.com/OCamlPro/ocp-indent/issues">send us</a> a code snippet that we will incorporate into our test suite.</p>
+<p>We’ve built <code>ocp-indent</code> based on a growing collection of <a href="https://github.com/OCamlPro/ocp-indent/tree/master/tests/passing">unit-tests</a>. If you find an indentation bug, feel free to <a href="https://github.com/OCamlPro/ocp-indent/issues">send us</a> a code snippet that we will incorporate into our test suite.</p>
 <p>Our tests clearly show that the deep understanding that <code>ocp-indent</code>
 has of the OCaml syntax makes it shines on specific cases. We are still
 discussing and evaluating the implementation of few corner-cases

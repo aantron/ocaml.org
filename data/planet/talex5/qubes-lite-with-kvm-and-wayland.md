@@ -58,7 +58,7 @@ and attempting to create something similar with more modern/compatible/faster te
 <p>( this post also appeared on <a href="https://news.ycombinator.com/item?id=26378854">Hacker News</a> and
 <a href="https://lobste.rs/s/cisgn2/qubes_lite_with_kvm_wayland">Lobsters</a> )</p>
 <h2>QubesOS</h2>
-<p><a href="https://www.qubes-os.org/">QubesOS</a> aims to provide &quot;a reasonably secure operating system&quot;.
+<p><a href="https://www.qubes-os.org/">QubesOS</a> aims to provide "a reasonably secure operating system".
 It does this by running multiple virtual machines under the Xen hypervisor.
 Each VM's windows have a different colour and tag, but they appear together as a single desktop.
 The VMs I run include:</p>
@@ -130,7 +130,7 @@ hello
 <p>However, you can also add things to the store by asking Nix to run a build script.
 For example, to compile some source code:</p>
 <ol>
-<li>You add the source code and some build instructions (a &quot;derivation&quot; file) to the store.
+<li>You add the source code and some build instructions (a "derivation" file) to the store.
 </li>
 <li>You ask the store to build the derivation. It runs your build script in a container sandbox.
 </li>
@@ -146,12 +146,12 @@ For example, a bash script in the store will start something like:</p>
 This allows users to compile software from source and share the resulting binaries, without having to trust each other.</p>
 <p>Ideally, builds should be reproducible.
 To encourage this, builds which use the hash of the build instructions for the result path are built in a sandbox without network access.
-So, you can't submit a build job like &quot;Download and compile whatever is the latest version of Vim&quot;.
+So, you can't submit a build job like "Download and compile whatever is the latest version of Vim".
 But you can discover the latest version yourself and then submit two separate jobs to the store:</p>
 <ol>
-<li>&quot;Download Vim 8.2, with hash XXX&quot; (a fixed-output job, which therefore has network access)
+<li>"Download Vim 8.2, with hash XXX" (a fixed-output job, which therefore has network access)
 </li>
-<li>&quot;Build Vim from hash XXX&quot;
+<li>"Build Vim from hash XXX"
 </li>
 </ol>
 <p>You can run <code>nix-collect-garbage</code> to delete everything from the store that isn't reachable via the symlinks under <code>/nix/var/nix/gcroots/</code>.
@@ -160,11 +160,11 @@ Users can put symlinks to things they care about keeping in <code>/nix/var/nix/g
 and will try to download build results from there instead of compiling locally when possible.</p>
 <h3>nix-instantiate</h3>
 <p>Writing derivation files by hand is tedious, so Nix provides a templating language to create them easily.
-The Nix language is dynamically typed and based around maps/dictionaries (which it confusingly refers to as &quot;sets&quot;).
+The Nix language is dynamically typed and based around maps/dictionaries (which it confusingly refers to as "sets").
 <code>nix-instantiate file.nix</code> will generate a derivation from <code>file.nix</code> and add it to the store.</p>
 <p>An Nix file looks like this:</p>
 <figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="nix"><span class="line"><span class="nb">derivation</span> <span class="p">{</span> <span class="ss">system =</span> <span class="s2">&quot;x86_64-linux&quot;</span><span class="p">;</span> <span class="ss">builder =</span> <span class="o">.</span><span class="l">/myfile</span><span class="p">;</span> <span class="ss">name =</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span> <span class="p">}</span>
+</pre></td><td class="code"><pre><code class="nix"><span class="line"><span class="nb">derivation</span> <span class="p">{</span> <span class="ss">system =</span> <span class="s2">"x86_64-linux"</span><span class="p">;</span> <span class="ss">builder =</span> <span class="o">.</span><span class="l">/myfile</span><span class="p">;</span> <span class="ss">name =</span> <span class="s2">"foo"</span><span class="p">;</span> <span class="p">}</span>
 </span></code></pre></td></tr></tbody></table></div></figure><p>Running <code>nix-instantiate</code> on this will:</p>
 <ol>
 <li>Add <code>myfile</code> to the store.
@@ -246,7 +246,7 @@ Based on the <a href="https://nixos.wiki/wiki/Sway">NixOS wiki</a> instructions,
 </pre></td><td class="code"><pre><code class="nix"><span class="line">  programs<span class="o">.</span><span class="ss">sway =</span> <span class="p">{</span>
 </span><span class="line">    <span class="ss">enable =</span> <span class="no">true</span><span class="p">;</span>
 </span><span class="line">    wrapperFeatures<span class="o">.</span><span class="ss">gtk =</span> <span class="no">true</span><span class="p">;</span> <span class="c1"># so that gtk works properly</span>
-</span><span class="line">    <span class="ss">extraSessionCommands =</span> <span class="s2">&quot;export MOZ_ENABLE_WAYLAND=1&quot;</span><span class="p">;</span>
+</span><span class="line">    <span class="ss">extraSessionCommands =</span> <span class="s2">"export MOZ_ENABLE_WAYLAND=1"</span><span class="p">;</span>
 </span><span class="line">    <span class="ss">extraPackages =</span> <span class="k">with</span> pkgs<span class="p">;</span> <span class="p">[</span>
 </span><span class="line">      swaylock
 </span><span class="line">      swayidle
@@ -352,7 +352,7 @@ Here's that section of my <code>configuration.nix</code>:</p>
 </span><span class="line">    <span class="ss">interfaces =</span>
 </span><span class="line">      <span class="k">let</span> <span class="ss">mktap =</span> ip<span class="p">:</span> <span class="p">{</span>
 </span><span class="line">          <span class="ss">virtual =</span> <span class="no">true</span><span class="p">;</span>
-</span><span class="line">          <span class="ss">virtualOwner =</span> <span class="s2">&quot;tal&quot;</span><span class="p">;</span>
+</span><span class="line">          <span class="ss">virtualOwner =</span> <span class="s2">"tal"</span><span class="p">;</span>
 </span><span class="line">          ipv4<span class="o">.</span><span class="ss">addresses =</span> <span class="p">[</span>
 </span><span class="line">            <span class="p">{</span> <span class="ss">address =</span> ip<span class="p">;</span> <span class="ss">prefixLength =</span> <span class="mi">31</span><span class="p">;</span> <span class="p">}</span>
 </span><span class="line">          <span class="p">];</span>
@@ -361,16 +361,16 @@ Here's that section of my <code>configuration.nix</code>:</p>
 </span><span class="line">      <span class="p">{</span>
 </span><span class="line">        eno2<span class="o">.</span><span class="ss">useDHCP =</span> <span class="no">true</span><span class="p">;</span>
 </span><span class="line">        wlo1<span class="o">.</span><span class="ss">useDHCP =</span> <span class="no">true</span><span class="p">;</span>
-</span><span class="line">        <span class="ss">tapdev =</span> mktap <span class="s2">&quot;10.0.0.2&quot;</span><span class="p">;</span>
-</span><span class="line">        <span class="ss">tapcom =</span> mktap <span class="s2">&quot;10.0.0.4&quot;</span><span class="p">;</span>
-</span><span class="line">        <span class="ss">tapshopping =</span> mktap <span class="s2">&quot;10.0.0.6&quot;</span><span class="p">;</span>
-</span><span class="line">        <span class="ss">tapbanking =</span> mktap <span class="s2">&quot;10.0.0.8&quot;</span><span class="p">;</span>
-</span><span class="line">        <span class="ss">tapuntrusted =</span> mktap <span class="s2">&quot;10.0.0.10&quot;</span><span class="p">;</span>
+</span><span class="line">        <span class="ss">tapdev =</span> mktap <span class="s2">"10.0.0.2"</span><span class="p">;</span>
+</span><span class="line">        <span class="ss">tapcom =</span> mktap <span class="s2">"10.0.0.4"</span><span class="p">;</span>
+</span><span class="line">        <span class="ss">tapshopping =</span> mktap <span class="s2">"10.0.0.6"</span><span class="p">;</span>
+</span><span class="line">        <span class="ss">tapbanking =</span> mktap <span class="s2">"10.0.0.8"</span><span class="p">;</span>
+</span><span class="line">        <span class="ss">tapuntrusted =</span> mktap <span class="s2">"10.0.0.10"</span><span class="p">;</span>
 </span><span class="line">      <span class="p">};</span>
 </span><span class="line">    <span class="ss">nat =</span> <span class="p">{</span>
 </span><span class="line">      <span class="ss">enable =</span> <span class="no">true</span><span class="p">;</span>
-</span><span class="line">      <span class="ss">externalInterface =</span> <span class="s2">&quot;eno2&quot;</span><span class="p">;</span>
-</span><span class="line">      <span class="ss">internalIPs =</span> <span class="p">[</span> <span class="s2">&quot;10.0.0.0/8&quot;</span> <span class="p">];</span>
+</span><span class="line">      <span class="ss">externalInterface =</span> <span class="s2">"eno2"</span><span class="p">;</span>
+</span><span class="line">      <span class="ss">internalIPs =</span> <span class="p">[</span> <span class="s2">"10.0.0.0/8"</span> <span class="p">];</span>
 </span><span class="line">    <span class="p">};</span>
 </span><span class="line">  <span class="p">};</span>
 </span></code></pre></td></tr></tbody></table></div></figure><p>Overall, I'm very happy with NixOS so far.</p>
@@ -410,12 +410,12 @@ ls: cannot access '/tmp/.X11-unix/X0': No such file or directory
 <p>The container has an empty home directory, empty <code>/tmp</code>, and no access to the display sockets.
 If we run Firefox in this environment then... it opens its window just fine!
 How? <code>strace</code> shows what happened:</p>
-<pre><code>connect(4, {sa_family=AF_UNIX, sun_path=&quot;/run/user/1000/wayland-0&quot;}, 27) = -1 ENOENT (No such file or directory)
+<pre><code>connect(4, {sa_family=AF_UNIX, sun_path="/run/user/1000/wayland-0"}, 27) = -1 ENOENT (No such file or directory)
 socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC, 0) = 4
-connect(4, {sa_family=AF_UNIX, sun_path=@&quot;/tmp/.X11-unix/X0&quot;}, 20) = 0
+connect(4, {sa_family=AF_UNIX, sun_path=@"/tmp/.X11-unix/X0"}, 20) = 0
 </code></pre>
 <p>After failing to connect to Wayland, it then tried using X11 (via Xwayland) instead. Why did that work?
-If the first byte of the socket pathname is <code>\0</code> then Linux instead interprets it as an &quot;abstract&quot; socket address,
+If the first byte of the socket pathname is <code>\0</code> then Linux instead interprets it as an "abstract" socket address,
 not subject to the usual filesystem permission rules.</p>
 <p>Trying to anticipate these kinds of special cases is just too much work.
 Linux really wants everything on by default, and you have to find and disable every feature individually.
@@ -431,7 +431,7 @@ SpectrumOS aims to use one virtual machine per application, using shared directo
 simplifying management.
 It uses <a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/">crosvm</a> from the ChromiumOS project instead of qemu, because it has a driver that allows forwarding Wayland connections
 (and also because it's written in Rust rather than C).
-The project's single developer is currently taking a break from the project, and says &quot;I'm currently working towards a proof of concept&quot;.</p>
+The project's single developer is currently taking a break from the project, and says "I'm currently working towards a proof of concept".</p>
 <p>However, there is some useful stuff in the <a href="https://spectrum-os.org/git/nixpkgs/">SpectrumOS repository</a> (which is a fork of nixpkgs).
 In particular, it contains:</p>
 <ul>
@@ -495,7 +495,7 @@ with all the other VM root consoles.</p>
 with their windows appearing on the host desktop like any other application.
 However, I also had some problems:</p>
 <ul>
-<li>A stated goal of Wayland is &quot;every frame is perfect&quot;. However, applications generally seemed to open at the wrong size and then jump to their correct size, which was a bit jarring.
+<li>A stated goal of Wayland is "every frame is perfect". However, applications generally seemed to open at the wrong size and then jump to their correct size, which was a bit jarring.
 </li>
 <li>Vim opened its window with the scrollbar at the far left of the window, making the text invisible until you resized the window.
 </li>
@@ -534,21 +534,21 @@ At the wire level there's no difference though.</p>
 <p>When the server gets the <code>get_registry</code> request it adds the registry,
 which immediately emits one event for each available service, giving the maximum supported version.
 The client receives these messages, followed by the callback notification from the <code>sync</code> message:</p>
-<pre><code>&lt;- wl_registry@2.global name:0 interface:&quot;wl_compositor&quot; version:4
-&lt;- wl_registry@2.global name:1 interface:&quot;wl_subcompositor&quot; version:1
-&lt;- wl_registry@2.global name:2 interface:&quot;wl_shm&quot; version:1
-&lt;- wl_registry@2.global name:3 interface:&quot;xdg_wm_base&quot; version:1
-&lt;- wl_registry@2.global name:4 interface:&quot;wl_output&quot; version:2
-&lt;- wl_registry@2.global name:5 interface:&quot;wl_data_device_manager&quot; version:3
-&lt;- wl_registry@2.global name:6 interface:&quot;zxdg_output_manager_v1&quot; version:3
-&lt;- wl_registry@2.global name:7 interface:&quot;gtk_primary_selection_device_manager&quot; version:1
-&lt;- wl_registry@2.global name:8 interface:&quot;wl_seat&quot; version:5
+<pre><code>&lt;- wl_registry@2.global name:0 interface:"wl_compositor" version:4
+&lt;- wl_registry@2.global name:1 interface:"wl_subcompositor" version:1
+&lt;- wl_registry@2.global name:2 interface:"wl_shm" version:1
+&lt;- wl_registry@2.global name:3 interface:"xdg_wm_base" version:1
+&lt;- wl_registry@2.global name:4 interface:"wl_output" version:2
+&lt;- wl_registry@2.global name:5 interface:"wl_data_device_manager" version:3
+&lt;- wl_registry@2.global name:6 interface:"zxdg_output_manager_v1" version:3
+&lt;- wl_registry@2.global name:7 interface:"gtk_primary_selection_device_manager" version:1
+&lt;- wl_registry@2.global name:8 interface:"wl_seat" version:5
 &lt;- wl_callback@3.done callback_data:1129040
 </code></pre>
 <p>The callback tells the client it has seen all the available services, and so it now picks the ones it wants.
 It has to choose a version no higher than the one offered by the server.
 Protocols starting with <code>wl_</code> are from the core Wayland protocol; the others are extensions.
-The leading <code>z</code> in <code>zxdg_output_manager_v1</code> indicates that the protocol is &quot;unstable&quot; (under development).</p>
+The leading <code>z</code> in <code>zxdg_output_manager_v1</code> indicates that the protocol is "unstable" (under development).</p>
 <p>The protocols are defined in various XML files, which are scattered over the web.
 The core protocol is defined in <a href="https://github.com/wayland-project/wayland/blob/master/protocol/wayland.xml">wayland.xml</a>.
 These XML files can be used to generate typed bindings for your programming language of choice.</p>
@@ -565,7 +565,7 @@ it continues by using the new objects to create a top-level window:</p>
 <pre><code>-&gt; wl_compositor@4.create_surface id:+7
 -&gt; xdg_wm_base@6.get_xdg_surface id:+8 surface:7
 -&gt; xdg_surface@8.get_toplevel id:+9
--&gt; xdg_toplevel@9.set_title title:&quot;example app&quot;
+-&gt; xdg_toplevel@9.set_title title:"example app"
 -&gt; wl_surface@7.commit 
 </code></pre>
 <p>This API is pretty strange.
@@ -580,7 +580,7 @@ The client now processes the last message in that batch, which is the server des
 <pre><code>&lt;- wl_display@1.delete_id id:3
 </code></pre>
 <p>Object destruction is a bit strange in Wayland.
-Normally, clients ask for things to be destroyed (by sending a &quot;destructor&quot; message)
+Normally, clients ask for things to be destroyed (by sending a "destructor" message)
 and the server confirms by sending <code>delete_id</code> from object 1.
 But this isn't symmetrical: there is no standard way for a client to confirm deletion when the server calls
 a destructor (such as the callback's <code>done</code>), so these have to be handled on a case-by-case basis.
@@ -594,7 +594,7 @@ and gets a bunch of replies:</p>
 &lt;- wl_shm@5.format format:875708993
 &lt;- xdg_wm_base@6.ping serial:1129043
 -&gt; xdg_wm_base@6.pong serial:1129043
-&lt;- xdg_toplevel@9.configure width:0 height:0 states:&quot;&quot;
+&lt;- xdg_toplevel@9.configure width:0 height:0 states:""
 &lt;- xdg_surface@8.configure serial:1129042
 -&gt; xdg_surface@8.ack_configure serial:1129042
 </code></pre>
@@ -609,7 +609,7 @@ shares the file descriptor with the server (<code>create_pool</code>), and then 
 </code></pre>
 <p>In this case it used the whole memory region. It could also have allocated two buffers for double-buffering.
 The client then draws whatever it wants into the buffer (mapping the file into its memory and writing to it directly),
-attaches the buffer to the window's surface, marks the whole area as &quot;damaged&quot; (in need of being redrawn) and calls <code>commit</code>,
+attaches the buffer to the window's surface, marks the whole area as "damaged" (in need of being redrawn) and calls <code>commit</code>,
 telling the server the surface is ready for display:</p>
 <pre><code>-&gt; wl_surface@7.attach buffer:10 x:0 y:0
 -&gt; wl_surface@7.damage x:0 y:0 width:2147483647 height:2147483647
@@ -625,7 +625,7 @@ The server lets the client know it has finished with the buffer and the client d
 Sway now suddenly remembers that it's a tiling window manager.
 It sends another <code>configure</code> event with the correct size, causing the client to allocate a fresh memory pool of the correct size,
 allocate a fresh buffer from it, redraw everything at the new size, and tell the server to draw it.</p>
-<pre><code>&lt;- xdg_toplevel@9.configure width:1534 height:1029 states:&quot;&quot;
+<pre><code>&lt;- xdg_toplevel@9.configure width:1534 height:1029 states:""
 ...
 </code></pre>
 <p>This process of telling the client to pick a size and then overruling it explains why Firefox draws itself incorrectly at first and then flickers into position a moment later. It probably also explains why Vim tries to open a 0x0 window.</p>
@@ -651,11 +651,11 @@ I wrote my own Wayland library, <a href="https://github.com/talex5/ocaml-wayland
 With that, adding support for copying text was fairly easy.</p>
 <p>For each Wayland interface we need to handle each incoming message from the client and forward it to the host,
 and also forward each message from the host to the client.
-Here's <a href="https://github.com/talex5/wayland-virtwl-proxy/blob/29333ac7e6071a1c08ece77b513f4b0ee3ee8f8e/relay.ml#L587">the code</a> to handle the &quot;selection&quot; event in OCaml,
+Here's <a href="https://github.com/talex5/wayland-virtwl-proxy/blob/29333ac7e6071a1c08ece77b513f4b0ee3ee8f8e/relay.ml#L587">the code</a> to handle the "selection" event in OCaml,
 which we receive from the host and send to the client (<code>c</code>):</p>
 <figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="k">method</span> <span class="n">on_selection</span> <span class="o">_</span> <span class="n">offer</span> <span class="o">=</span> <span class="nn">C</span><span class="p">.</span><span class="nn">Wl_data_device</span><span class="p">.</span><span class="n">selection</span> <span class="n">c</span> <span class="o">(</span><span class="nn">Option</span><span class="p">.</span><span class="n">map</span> <span class="n">to_client</span> <span class="n">offer</span><span class="o">)</span>
-</span></code></pre></td></tr></tbody></table></div></figure><p>The host passes us an &quot;offer&quot; argument, which is a previously-created host offer object.
+</span></code></pre></td></tr></tbody></table></div></figure><p>The host passes us an "offer" argument, which is a previously-created host offer object.
 We look up the corresponding client object with <code>to_client</code> and pass that as the argument
 to the client.</p>
 <p>For comparison, here's <a href="https://chromium.googlesource.com/chromiumos/platform2/+/7ea49bbabed436e608a0b8974ec90366a787d841/vm_tools/sommelier/sommelier-data-device-manager.cc#492">sommelier's equivalent</a> to this line of code, in C++:</p>
@@ -669,23 +669,23 @@ to the client.</p>
 <span class="line-number">8</span>
 <span class="line-number">9</span>
 <span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="k">static</span> <span class="kt">void</span> <span class="n">sl_data_device_selection</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span>
-</span><span class="line">                                     <span class="k">struct</span> <span class="nc">wl_data_device</span><span class="o">*</span> <span class="n">data_device</span><span class="p">,</span>
-</span><span class="line">                                     <span class="k">struct</span> <span class="nc">wl_data_offer</span><span class="o">*</span> <span class="n">data_offer</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">  <span class="k">struct</span> <span class="nc">sl_host_data_device</span><span class="o">*</span> <span class="n">host</span> <span class="o">=</span> <span class="n">static_cast</span><span class="o">&lt;</span><span class="n">sl_host_data_device</span><span class="o">*&gt;</span><span class="p">(</span>
-</span><span class="line">      <span class="n">wl_data_device_get_user_data</span><span class="p">(</span><span class="n">data_device</span><span class="p">));</span>
-</span><span class="line">  <span class="k">struct</span> <span class="nc">sl_host_data_offer</span><span class="o">*</span> <span class="n">host_data_offer</span> <span class="o">=</span>
-</span><span class="line">      <span class="n">static_cast</span><span class="o">&lt;</span><span class="n">sl_host_data_offer</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">wl_data_offer_get_user_data</span><span class="p">(</span><span class="n">data_offer</span><span class="p">));</span>
+</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sl_data_device_selection</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+</span><span class="line"><span class="w">                                     </span><span class="k">struct</span><span class="w"> </span><span class="nc">wl_data_device</span><span class="o">*</span><span class="w"> </span><span class="n">data_device</span><span class="p">,</span>
+</span><span class="line"><span class="w">                                     </span><span class="k">struct</span><span class="w"> </span><span class="nc">wl_data_offer</span><span class="o">*</span><span class="w"> </span><span class="n">data_offer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="line"><span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">sl_host_data_device</span><span class="o">*</span><span class="w"> </span><span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">static_cast</span><span class="o">&lt;</span><span class="n">sl_host_data_device</span><span class="o">*&gt;</span><span class="p">(</span>
+</span><span class="line"><span class="w">      </span><span class="n">wl_data_device_get_user_data</span><span class="p">(</span><span class="n">data_device</span><span class="p">));</span>
+</span><span class="line"><span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">sl_host_data_offer</span><span class="o">*</span><span class="w"> </span><span class="n">host_data_offer</span><span class="w"> </span><span class="o">=</span>
+</span><span class="line"><span class="w">      </span><span class="n">static_cast</span><span class="o">&lt;</span><span class="n">sl_host_data_offer</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">wl_data_offer_get_user_data</span><span class="p">(</span><span class="n">data_offer</span><span class="p">));</span>
 </span><span class="line">
-</span><span class="line">  <span class="n">wl_data_device_send_selection</span><span class="p">(</span><span class="n">host</span><span class="o">-&gt;</span><span class="n">resource</span><span class="p">,</span> <span class="n">host_data_offer</span><span class="o">-&gt;</span><span class="n">resource</span><span class="p">);</span>
+</span><span class="line"><span class="w">  </span><span class="n">wl_data_device_send_selection</span><span class="p">(</span><span class="n">host</span><span class="o">-&gt;</span><span class="n">resource</span><span class="p">,</span><span class="w"> </span><span class="n">host_data_offer</span><span class="o">-&gt;</span><span class="n">resource</span><span class="p">);</span>
 </span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></tbody></table></div></figure><p>I think this is a great demonstration of the difference between &quot;type safety&quot; and &quot;type ceremony&quot;.
+</span></code></pre></td></tr></tbody></table></div></figure><p>I think this is a great demonstration of the difference between "type safety" and "type ceremony".
 The C++ code is covered in types, making the code very hard to read, yet it crashes at runtime because it
 fails to consider that <code>data_offer</code> can be <code>NULL</code>.</p>
 <p>By contract, the OCaml version has no type annotations, but the compiler would reject if I forgot to handle this (with <code>Option.map</code>).</p>
 <h3>Security</h3>
 <p>According to <a href="https://wiki.gnome.org/Initiatives/Wayland/PrimarySelection">the GNOME wiki</a>, the original justification for not supporting selection copies was
-&quot;security concerns with unexpected data stealing if the mere act of selecting a text fragment makes it available to all running applications&quot;.
+"security concerns with unexpected data stealing if the mere act of selecting a text fragment makes it available to all running applications".
 The implication is that applications stealing data instead from the clipboard is OK,
 and that you should therefore never put anything confidential on the clipboard.</p>
 <p>This seemed a bit odd, so I read the <a href="https://wayland.freedesktop.org/docs/html/ch04.html#sect-Protocol-Security-and-Authentication">security section</a> of the Wayland specification to learn more about its security model.

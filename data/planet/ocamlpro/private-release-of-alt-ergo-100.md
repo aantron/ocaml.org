@@ -7,14 +7,14 @@ description: 'altergo logo After the public release of Alt-Ergo 0.99.1 last Dece
   we provide a private access to our internal repositories for academia users and
   o...'
 url: https://ocamlpro.com/blog/2015_01_29_private_release_of_alt_ergo_1_00
-date: 2015-01-29T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2015-01-29T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Mohamed Iguernlala\n  "
 source:
 ---
 
-<p><img src="https://ocamlpro.com/blog/assets/img/logo_alt_ergo.png" alt="altergo logo"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/logo_alt_ergo.png" alt="altergo logo"></p>
 <p>After the public release of Alt-Ergo 0.99.1 last December, it's time to announce a new major private version (1.00) of our SMT solver. As usual:</p>
 <ul>
 <li>we freely provide a JavaScript version on Alt-Ergo's website
@@ -28,11 +28,11 @@ source:
 <thead>
 <tr>
 <td></td>
-<th>public release<br/>
+<th>public release<br>
 0.95.2</th>
-<th>public release<br/>
+<th>public release<br>
 0.99.1</th>
-<th>private release<br/>
+<th>private release<br>
 1.00</th>
 </tr>
 </thead>
@@ -56,7 +56,7 @@ source:
 <td>9767</td>
 </tr>
 <tr>
-<th>Average speed<br/>
+<th>Average speed<br>
 (valid formulas per second)</th>
 <td>1,47</td>
 <td>1,55</td>
@@ -77,9 +77,9 @@ source:
 </li>
 <li>linear integer arithmetic: we re-implemented several parts of linear arithmetic and introduced important improvements in the Fourier-Motzkin algorithm to make it run on smaller sub-problems and avoid some useless executions. These optimizations allowed a significant speed up on our internal benchmarks
 </li>
-<li>data structures: we optimized hash-consing and some functions in the &quot;formula&quot; and &quot;literal&quot; modules
+<li>data structures: we optimized hash-consing and some functions in the "formula" and "literal" modules
 </li>
-<li>SAT solving: we made a lot of improvements in the default SAT-solver and in the SatML plugin. In particular, the solvers now send lists of facts (literals) to &quot;the decision procedure part&quot; instead of sending them one by one. This avoids intermediate calls to some &quot;expensive&quot; algorithms, such as Fourier-Motzkin
+<li>SAT solving: we made a lot of improvements in the default SAT-solver and in the SatML plugin. In particular, the solvers now send lists of facts (literals) to "the decision procedure part" instead of sending them one by one. This avoids intermediate calls to some "expensive" algorithms, such as Fourier-Motzkin
 </li>
 <li>Matching: we extended the E-matching algorithm to also perform matching modulo the theory of records. In addition, we simplified matching heuristics and optimized the E-matching process to avoid computing the same instances several times
 </li>
@@ -90,28 +90,28 @@ source:
 </ul>
 <h4>Bug Fixes</h4>
 <ul>
-<li>6 in the &quot;inequalities&quot; module of linear arithmetic
+<li>6 in the "inequalities" module of linear arithmetic
 </li>
-<li>4 in the &quot;formula&quot; module
+<li>4 in the "formula" module
 </li>
-<li>3 in the &quot;ty&quot; module used for types representation and manipulation
+<li>3 in the "ty" module used for types representation and manipulation
 </li>
-<li>2 in the &quot;theories front-end&quot; module that interacts with the SAT solvers
+<li>2 in the "theories front-end" module that interacts with the SAT solvers
 </li>
-<li>1 in the &quot;congruence closure&quot; algorithm
+<li>1 in the "congruence closure" algorithm
 </li>
-<li>1 in &quot;existential quantifiers elimination&quot; module
+<li>1 in "existential quantifiers elimination" module
 </li>
-<li>1 in the &quot;type-checker&quot;
+<li>1 in the "type-checker"
 </li>
-<li>1 in the &quot;AC theory&quot; of associative and commutative function symbols
+<li>1 in the "AC theory" of associative and commutative function symbols
 </li>
-<li>1 in the &quot;union-find&quot; module
+<li>1 in the "union-find" module
 </li>
 </ul>
 <h4>New OCamlPro Plugins</h4>
 <ul>
-<li>profiling plugin: when activated, this plugin records and prints some information about the current execution of Alt-Ergo every 'x' seconds: In particular, one can observe a module being activated, a function being called, the amount of time spent in every module/function, the current decision/instantiation level, the number of decisions/instantiations that have been made so far, the number of case-splits, of boolean/theory conflicts, of assumptions in the decision procedure, of generated instances per axiom, &hellip;.
+<li>profiling plugin: when activated, this plugin records and prints some information about the current execution of Alt-Ergo every 'x' seconds: In particular, one can observe a module being activated, a function being called, the amount of time spent in every module/function, the current decision/instantiation level, the number of decisions/instantiations that have been made so far, the number of case-splits, of boolean/theory conflicts, of assumptions in the decision procedure, of generated instances per axiom, ….
 </li>
 <li>fm-simplex plugin: when activated, this plugin is used instead of the Fourier-Motzkin method to infer bounds for linear integer arithmetic affine forms (which are used in the case-split analysis process). This module uses the Simplex algorithm to simulate particular runs of Fourier-Motzkin, which makes it scale better on linear integer arithmetic problems containing a lot of inequalities
 </li>
@@ -125,7 +125,7 @@ source:
 <p>no-theory: deactivate theory reasoning. In this case, only the SAT-solver and the matching parts are working</p>
 </li>
 <li>
-<p>inequalities-plugin: specify a plugin to use, instead of the &quot;default&quot; Fourier-Motzkin algorithm, to handle inequalities of linear arithmetic</p>
+<p>inequalities-plugin: specify a plugin to use, instead of the "default" Fourier-Motzkin algorithm, to handle inequalities of linear arithmetic</p>
 </li>
 <li>
 <p>tighten-vars: when this option is set, the Fm-Simplex plugin will try to infer bounds for integer variables as well. Note that this option may be very expensive</p>

@@ -25,10 +25,10 @@ brings several major features to Coq:
   Arnaud Spiwack);</li>
 <li>a new reduction procedure called <tt>native_compute</tt> to evaluate terms
   using the OCaml native compiler, for proofs with large computational
-  steps (by Maxime D&eacute;n&egrave;s).</li>
+  steps (by Maxime Dénès).</li>
 </ul>
 
 More information about the changes from 8.4 to 8.5 can be found in the
-<a href="https://coq.inria.fr/distrib/V8.5/CHANGES">CHANGES</a> file. Feedback and
+<a href="https://coq-distrib.s3-website.fr-par.scw.cloud/V8.5/CHANGES">CHANGES</a> file. Feedback and
 <a href="https://coq.inria.fr/bugs">bug reports</a> are extremely welcome. Enjoy!  
  

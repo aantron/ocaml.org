@@ -11,12 +11,11 @@ source:
 ---
 
 <p>
-I can't help but want to share my joy at coming across this pearl of a program from the &quot;Pascal User Manual and Report&quot; - Jensen and Wirth (circa 1974). In my edition, it's program 4.7 (graph1.pas).
+I can't help but want to share my joy at coming across this pearl of a program from the "Pascal User Manual and Report" - Jensen and Wirth (circa 1974). In my edition, it's program 4.7 (graph1.pas).
 </p>
 <p>
 This is it, rephrased in OCaml.
-</p><pre class="prettyprint ml">
-(* Graph of f x = exp (-x) * sin (2 * pi * x)
+</p><pre class="prettyprint ml">(* Graph of f x = exp (-x) * sin (2 * pi * x)
 
   Program 4.7, Pascal User Manual and Report, Jensen &amp; Wirth
 *)
@@ -42,15 +41,14 @@ let graph (oc : out_channel) : unit =
     let y = exp (-.x) *. sin (c *. x) in
     let n = round (s *. y) + h in
     for _ = n downto 0 do output_char oc ' '; done;
-    output_string oc &quot;*\n&quot;
+    output_string oc "*\n"
   done
 
 let () = print_newline (); graph stdout; print_newline ()
 </pre>
-
+<p></p>
 <p>The output from the above is wonderful :)
-</p><pre>
-                                   *
+</p><pre>                                   *
                                                *
                                                        *
                                                             *
@@ -84,4 +82,4 @@ let () = print_newline (); graph stdout; print_newline ()
                                  *
                                    *
 </pre>
-
+<p></p>

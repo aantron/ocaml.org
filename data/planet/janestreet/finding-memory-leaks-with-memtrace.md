@@ -12,7 +12,7 @@ source:
 ---
 
 <p>Memory issues can be hard to track down. A function that only
-allocates a few small objects can cause a space leak if it&rsquo;s called
+allocates a few small objects can cause a space leak if it’s called
 often enough and those objects are never collected. Even then, many
 objects are <em>supposed</em> to be long-lived. How can a tool, armed with data
 on allocations and their lifetimes,

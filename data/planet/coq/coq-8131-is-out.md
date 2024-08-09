@@ -22,7 +22,7 @@ Hotfix:
 <li>Fix arities of VM opcodes for some floating-point operations
   that could cause memory corruption </li>
 </ul>
-
+<p></p>
 
 
 <p>Please see <a href="https://coq.github.io/doc/v8.13/refman/changes.html#version-8-13" rel="nofollow">the changelog</a> to learn more about this release.</p>

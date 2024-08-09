@@ -19,7 +19,7 @@ source:
  
 <li>support for polymorphic variants</li> 
  
-<li>a way to specify &ldquo;abstract&rdquo; interfaces that can be instantiated for synchronous, asynchronous, and Lwt clients and servers</li> 
+<li>a way to specify “abstract” interfaces that can be instantiated for synchronous, asynchronous, and Lwt clients and servers</li> 
  
 <li>bug fixes</li> 
 </ul> 

@@ -30,7 +30,7 @@ Riakc is a Riak Protobuf client for Ocaml.  Riakc uses Jane St Core/Async for co
 <li>put</li>
 <li>delete</li>
 </ul>
-
+<p></p>
 
 <h2>A note on GET</h2>
 <p>

@@ -11,7 +11,7 @@ source:
 
 
 <a href="https://coq.inria.fr/coq-86">Version 8.6.1 of Coq</a> is available. It fixes several bugs
-of version 8.6. More information can be found in the <a href="https://coq.inria.fr/distrib/V8.6.1/CHANGES">CHANGES</a> file. Feedback and
+of version 8.6. More information can be found in the <a href="https://coq-distrib.s3-website.fr-par.scw.cloud/V8.6.1/CHANGES">CHANGES</a> file. Feedback and
 <a href="https://coq.inria.fr/bugs">bug reports</a> are extremely welcome.
 
  

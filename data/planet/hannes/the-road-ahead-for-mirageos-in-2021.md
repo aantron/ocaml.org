@@ -10,9 +10,9 @@ source:
 ---
 
 <h2>Introduction</h2>
-<p>2020 was an intense year. I hope you're healthy and keep being healthy. I am privileged (as lots of software engineers and academics are) to be able to work from home during the pandemic. Let's not forget people in less privileged situations,  and let&rsquo;s try to give them as much practical, psychological and financial support as we can these days. And as much joy as possible to everyone around :)</p>
+<p>2020 was an intense year. I hope you're healthy and keep being healthy. I am privileged (as lots of software engineers and academics are) to be able to work from home during the pandemic. Let's not forget people in less privileged situations,  and let’s try to give them as much practical, psychological and financial support as we can these days. And as much joy as possible to everyone around :)</p>
 <p>I cancelled the autumn MirageOS retreat due to the pandemic. Instead I collected donations for our hosts in Marrakech - they were very happy to receive our financial support, since they had a difficult year, since their income is based on tourism. I hope that in autumn 2021 we'll have an on-site retreat again.</p>
-<p>For 2021, we (at <a href="https://robur.coop">robur</a>) got a grant from the EU (via <a href="https://pointer.ngi.eu">NGI pointer</a>) for &quot;Deploying MirageOS&quot; (more details below), and another grant from <a href="https://ocaml-sf.org">OCaml software foundation</a> for securing the opam supply chain (using <a href="https://github.com/hannesm/conex">conex</a>). Some long-awaited releases for MirageOS libraries, namely a <a href="https://discuss.ocaml.org/t/ann-first-release-of-awa-ssh">ssh implementation</a> and a rewrite of our <a href="https://discuss.ocaml.org/t/ann-release-of-ocaml-git-v3-0-duff-encore-decompress-etc/">git implementation</a> have already been published.</p>
+<p>For 2021, we (at <a href="https://robur.coop">robur</a>) got a grant from the EU (via <a href="https://pointer.ngi.eu">NGI pointer</a>) for "Deploying MirageOS" (more details below), and another grant from <a href="https://ocaml-sf.org">OCaml software foundation</a> for securing the opam supply chain (using <a href="https://github.com/hannesm/conex">conex</a>). Some long-awaited releases for MirageOS libraries, namely a <a href="https://discuss.ocaml.org/t/ann-first-release-of-awa-ssh">ssh implementation</a> and a rewrite of our <a href="https://discuss.ocaml.org/t/ann-release-of-ocaml-git-v3-0-duff-encore-decompress-etc/">git implementation</a> have already been published.</p>
 <p>With my MirageOS view, 2020 was a pretty successful year, where we managed to add more features, fixed lots of bugs, and paved the road ahead. I want to thank <a href="https://ocamllabs.io/">OCamlLabs</a> for funding work on MirageOS maintenance.</p>
 <h2>Recap 2020</h2>
 <p>Here is a very subjective random collection of accomplishments in 2020, where I was involved with some degree.</p>
@@ -56,7 +56,7 @@ source:
 <h2>2021</h2>
 <p>The year started with a release of <a href="https://discuss.ocaml.org/t/ann-first-release-of-awa-ssh">awa</a>, a SSH implementation in OCaml (thanks to <a href="https://github.com/haesbaert">haesbaert</a> for initial code). This was followed by a <a href="https://discuss.ocaml.org/t/ann-release-of-ocaml-git-v3-0-duff-encore-decompress-etc/">git 3.0 release</a> (thanks to <a href="https://github.com/dinosaure">dinosaure</a>).</p>
 <h3>Deploying MirageOS - NGI Pointer</h3>
-<p>For 2021 we at robur received funding from the EU (via <a href="https://pointer.ngi.eu/">NGI pointer</a>) for &quot;Deploying MirageOS&quot;, which boils down into three parts:</p>
+<p>For 2021 we at robur received funding from the EU (via <a href="https://pointer.ngi.eu/">NGI pointer</a>) for "Deploying MirageOS", which boils down into three parts:</p>
 <ul>
 <li>reproducible binary releases of MirageOS unikernels,
 </li>
@@ -67,7 +67,7 @@ source:
 </ul>
 <p>Of course this will all be available open source. Please get in touch via eMail (team aT robur dot coop) if you're eager to integrate MirageOS unikernels into your infrastructure.</p>
 <p>We discovered at an initial meeting with an infrastructure provider that a DNS resolver is of interest - even more now that dnsmasq suffered from <a href="https://www.jsof-tech.com/wp-content/uploads/2021/01/DNSpooq_Technical-Whitepaper.pdf">dnspooq</a>. We are already working on an <a href="https://github.com/mirage/ocaml-dns/pull/251">implementation of DNSSec</a>.</p>
-<p>MirageOS unikernels are binary reproducible, and <a href="https://github.com/rjbou/orb/pull/1">infrastructure tools are available</a>. We are working hard on a web interface (and REST API - think of it as &quot;Docker Hub for MirageOS unikernels&quot;), and more tooling to verify reproducibility.</p>
+<p>MirageOS unikernels are binary reproducible, and <a href="https://github.com/rjbou/orb/pull/1">infrastructure tools are available</a>. We are working hard on a web interface (and REST API - think of it as "Docker Hub for MirageOS unikernels"), and more tooling to verify reproducibility.</p>
 <h3>Conex - securing the supply chain</h3>
 <p>Another funding from the <a href="http://ocaml-sf.org/">OCSF</a> is to continue development and deploy <a href="https://github.com/hannesm/conex">conex</a> - to bring trust into opam-repository. This is a great combination with the reproducible build efforts, and will bring much more trust into retrieving OCaml packages and using MirageOS unikernels.</p>
 <h3>MirageOS 4.0</h3>

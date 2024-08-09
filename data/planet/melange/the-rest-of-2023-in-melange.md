@@ -12,8 +12,8 @@ source:
 <p>As October 2023 unfolds, we'd like to present what we're planning to work on
 during what remains of 2023. Built upon the invaluable feedback of our users and
 our vision for Melange, we are excited about what's next.</p>
-<hr/>
-<p><img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https:%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F98530216-e8ed-478a-925e-e365ae5b2136_1792x1024.webp" alt=""/></p>
+<hr>
+<p><img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https:%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F98530216-e8ed-478a-925e-e365ae5b2136_1792x1024.webp" alt=""></p>
 <h3 tabindex="-1">Melange v3 <a href="https://melange.re/blog/feed.rss#melange-v3" class="header-anchor" aria-label="Permalink to &quot;Melange v3&quot;"></a></h3>
 <p>By the close of Q4 2023, we're set to launch Melange v3. Here's a breakdown of
 our main focus for shipping a new major release:</p>

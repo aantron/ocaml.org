@@ -5,8 +5,8 @@ description: As you may know, there is a subset of Javascript that compiles effi
   We'd like to present you in the same spirit how never to allocate in OCaml. Before
   starting to write anything, we must know how to find ...
 url: https://ocamlpro.com/blog/2016_04_01_asm_ocaml
-date: 2016-04-01T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2016-04-01T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    chambart\n  "
 source:
@@ -33,8 +33,8 @@ source:
 <pre><code class="language-lisp">(function fib (n: val)
   (if (!= n 1)
   (if (!= n 3)
-    (let Paddint_arg (app &quot;fib&quot; (+ n -4) val)
-    (+ (+ (app &quot;fib&quot; (+ n -2) val) Paddint_arg) -1))
+    (let Paddint_arg (app "fib" (+ n -4) val)
+    (+ (+ (app "fib" (+ n -2) val) Paddint_arg) -1))
     3)
   1))
 </code></pre>
@@ -128,7 +128,7 @@ let keep_min_max (min, max) v =
 
 let find_min_max l =
   match l with
-  | [] -&gt; invalid_arg &quot;find_min_max&quot;
+  | [] -&gt; invalid_arg "find_min_max"
   | h :: t -&gt;
     fold_left keep_min_max (h, h) t
 </code></pre>
@@ -175,7 +175,7 @@ val keep_min_max_k : 'a * 'a -&gt; 'a -&gt; ('a * 'a -&gt; 'b) -&gt; 'b
 
 let find_min_max_k l k =
   match l with
-  | [] -&gt; invalid_arg &quot;find_min_max&quot;
+  | [] -&gt; invalid_arg "find_min_max"
   | h :: t -&gt;
     fold_left_k keep_min_max (h, h) t k
 val find_min_max_k : 'a list -&gt; ('a * 'a -&gt; 'b) -&gt; 'b
@@ -206,7 +206,7 @@ val keep_min_max_k2 :
 
 let find_min_max_k2 l k =
   match l with
-  | [] -&gt; invalid_arg &quot;find_min_max&quot;
+  | [] -&gt; invalid_arg "find_min_max"
   | h :: t -&gt;
     fold_left_k2 keep_min_max_k2 h h t k
 
@@ -215,24 +215,24 @@ val find_min_max_k2 : 'a list -&gt; ('a -&gt; 'a -&gt; 'b) -&gt; 'b
 <p>For some reason, we now need to activate 'rectypes' to allow functions to have a recursive type (the 'as 'a') but we managed to completely get rid of allocations.</p>
 <pre><code class="language-lisp">(function fold_left_k2 (f: val init1: val init2: val l: val k: val)
   (if (!= l 1)
-  (app &quot;caml_apply6&quot; init1 init2 (load val l) l &quot;fold_left_k2&quot; k f val))
-  (app &quot;caml_apply2&quot; init1 init2 k val)))
+  (app "caml_apply6" init1 init2 (load val l) l "fold_left_k2" k f val))
+  (app "caml_apply2" init1 init2 k val)))
 
 (function keep_min_max_k2 (min: val max: val v: val k: val k: val k2: val)
   (let
   (min
-  (if (!= (extcall &quot;caml_lessthan&quot; v min val) 1)
+  (if (!= (extcall "caml_lessthan" v min val) 1)
   v min)
   max
-  (if (!= (extcall &quot;caml_greaterthan&quot; v max val) 1)
+  (if (!= (extcall "caml_greaterthan" v max val) 1)
   v max))
-  (app &quot;caml_apply5&quot; &quot;keep_min_max_k2&quot; min max k k2 k val)))
+  (app "caml_apply5" "keep_min_max_k2" min max k k2 k val)))
 
 (function find_min_max_k2 (l: val k: val)
   (if (!= l 1)
   (let h (load val l)
-  (app &quot;fold_left_k2&quot; &quot;keep_min_max_k2&quot; h h t k val))
-  (raise &quot;exception&quot;)))
+  (app "fold_left_k2" "keep_min_max_k2" h h t k val))
+  (raise "exception")))
 </code></pre>
 <p>So we can turn return points into call points and get rid of a lot of potential allocations like that. But of course there is no way to handle functions passing or returning sum types like that ! Well, I'm not so sure.</p>
 <h2>Sum types</h2>
@@ -262,7 +262,7 @@ let add_an_option_value (type t) (opt: (int, t) option_case) (n:t) v =
 let n1 = add_an_option_value Some' 3 4
 let n2 = add_an_option_value None' () 4
 </code></pre>
-<p>And voil&agrave;, no allocation anymore !</p>
+<p>And voilà, no allocation anymore !</p>
 <p>Combining that with the CPS transformation can get you quite far without allocating !</p>
 <h2>Manipulating Memory</h2>
 <p>Now that we can manage almost any control flow without allocating, we need also to manipulate some values. That's the point where we simply suggest to use the same approach as ASM.js: allocate a single large bigarray (this is some kind of malloc), consider integers as pointers and you can do anything. We won't go into too much details here as this would require another post for that topic.</p>
@@ -273,8 +273,8 @@ let n2 = add_an_option_value None' () 4
 <p>Gaetan Dubreil (3 April 2016 at 11 h 16 min):</p>
 <blockquote>
 <p>Thank you for this attractive and informative post.
-Just to be sure, is it not &lsquo;t&rsquo; rather than &lsquo;l&rsquo; that must be past to the fold_left function?
-You said &ldquo;we only have tail calls now&rdquo; but I don&rsquo;t see any none tail calls in the first place, am I wrong?</p>
+Just to be sure, is it not ‘t’ rather than ‘l’ that must be past to the fold_left function?
+You said “we only have tail calls now” but I don’t see any none tail calls in the first place, am I wrong?</p>
 </blockquote>
 <p>Pierre Chambart (4 April 2016 at 14 h 48 min):</p>
 <blockquote>
@@ -283,8 +283,8 @@ You said &ldquo;we only have tail calls now&rdquo; but I don&rsquo;t see any non
 </blockquote>
 <p>kantien (25 May 2016 at 13 h 57 min):</p>
 <blockquote>
-<p>Interesting article, but i have one question. Can we say, from the proof theory point of view, that turning the code in CPS style not to allocate is just an application of the Gentzen&rsquo;s cut-elimination theorem ?
-I explain in more details this interpretation : if we have a proof P1 of the proposition A and a proof P2 of the proposition A &rArr; B, we can produce a proof P3 of proposition B by applying the cut rule or modus ponens, but the theorem says that we can eliminate the use of cut rule and produce a direct proof P4 of the proposition B. But modus ponens (or cut rule) is just the rule for typing function application : if f has type &lsquo;a -&gt; &lsquo;b and x has type &lsquo;a then f x has type &lsquo;b. And so the cut-elimination theorem says that we can produce an object of type &lsquo;b without allocate an object of type &lsquo;a (this is not necessary to produce the P1 proof, or more exactly this is not necessary to put the P1&rsquo;s conclusion in the environment in order to use it as a premise of the P2 proof ). Am I right ?</p>
+<p>Interesting article, but i have one question. Can we say, from the proof theory point of view, that turning the code in CPS style not to allocate is just an application of the Gentzen’s cut-elimination theorem ?
+I explain in more details this interpretation : if we have a proof P1 of the proposition A and a proof P2 of the proposition A ⇒ B, we can produce a proof P3 of proposition B by applying the cut rule or modus ponens, but the theorem says that we can eliminate the use of cut rule and produce a direct proof P4 of the proposition B. But modus ponens (or cut rule) is just the rule for typing function application : if f has type ‘a -&gt; ‘b and x has type ‘a then f x has type ‘b. And so the cut-elimination theorem says that we can produce an object of type ‘b without allocate an object of type ‘a (this is not necessary to produce the P1 proof, or more exactly this is not necessary to put the P1’s conclusion in the environment in order to use it as a premise of the P2 proof ). Am I right ?</p>
 </blockquote>
 <p>jdxu (4 January 2021 at 11 h 36 min):</p>
 <blockquote>

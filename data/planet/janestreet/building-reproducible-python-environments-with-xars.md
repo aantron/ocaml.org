@@ -13,7 +13,7 @@ source:
 <p>Our traders and researchers love Python for its agility and for its huge
 open-source ecosystem, especially when it comes to machine learning. But
 the heavy use of notebooks can make it difficult to support. Notebooks
-have a very different lifecycle than regular code, and aren&rsquo;t always
+have a very different lifecycle than regular code, and aren’t always
 rigorously version controlled. And while most of our code (much of it
 written in OCaml) lives in a monorepo, putting all notebooks there is
 difficult; many notebooks end up being stored all over the place.</p>

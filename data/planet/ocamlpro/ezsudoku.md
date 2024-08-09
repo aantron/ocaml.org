@@ -5,8 +5,8 @@ description: As you may have noticed, on the begining of April I have some urge 
   like to tackle that through sudoku. It appeard that Sudoku is of great importance
   considering the number of posts explaining how to write a solver....
 url: https://ocamlpro.com/blog/2017_04_01_ezsudoku
-date: 2017-04-01T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2017-04-01T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    chambart\n  "
 source:
@@ -16,7 +16,7 @@ source:
 <p>It appeard that Sudoku is of great importance considering the number of posts explaining how to write a solver. Following that trend I will explain how to write one in OCaml. But with a twist.</p>
 <p>We will try to optimize it. I won't show you anything as obvious as how to micro-optimize your code or some smart heuristc. No we are not aiming for being merely algorithmically good. We will try to make something serious, we are want it to be solved even before the program starts.</p>
 <p>Yes really. Before. And I will show you how to use a feature of OCaml 4.03 that is sadly not well known.</p>
-<hr/>
+<hr>
 <p>First of all, as we do like type and safe programs, we will define what a well formed sudoku solution looks like. And by defining of course I mean declaring some GADTs with enough constraints to ensure that only well correct solutions are valid.</p>
 <p>I assume tha you know the rules of Sudoku and will refrain from infuriating you by explaining it. But we will still need some vocabulary.</p>
 <p>So the aim of sudoku is to fill a 'grid' with 'symbols' satisfying some 'row' 'column' and 'square' constraints.</p>

@@ -30,7 +30,7 @@ On Friday I posted a somewhat flippant comment to
 </p>
 
 <blockquote>
-Using exceptions for control flow is the root of many evils in software.&iuml;&raquo;&iquest;
+Using exceptions for control flow is the root of many evils in software.ï»¿
 </blockquote>
 
 <p>
@@ -39,20 +39,20 @@ Lennart Kolmodin who I remember from my very earliest days of using Haskell in
 </p>
 
 <blockquote>
-Yet what to do if you want composable code? Currently I have<br/>
-type Rpc a = ExceptT RpcError IO a<br/>
+Yet what to do if you want composable code? Currently I have<br>
+type Rpc a = ExceptT RpcError IO a<br>
 which is terrible
 </blockquote>
 
 <p>
-But what do we mean by &quot;composable&quot;?
+But what do we mean by "composable"?
 I like the
 	<a href="https://en.wikipedia.org/wiki/Composability">wikipedia</a>
 definition:
 </p>
 
 <blockquote>
-&iuml;&raquo;&iquest;Composability is a system design principle that deals with the inter-relationships
+ï»¿Composability is a system design principle that deals with the inter-relationships
 of components. A highly composable system provides recombinant components that
 can be selected and assembled in various combinations to satisfy specific user
 requirements.
@@ -110,21 +110,21 @@ handling at all.
     args &lt;- getArgs
     case args of
       [inFile1, infile2, outFile] -&gt; processFiles inFile1 infile2 outFile
-      _ -&gt; putStrLn &quot;Expected three file names.&quot; &gt;&gt; exitFailure
+      _ -&gt; putStrLn "Expected three file names." &gt;&gt; exitFailure
 
   readCatFile :: FilePath -&gt; IO Cat
   readCatFile fpath = do
-    putStrLn &quot;Reading Cat file.&quot;
+    putStrLn "Reading Cat file."
     parseCat &lt;$&gt; readFile fpath
 
   readDogFile :: FilePath -&gt; IO Dog
   readDogFile fpath = do
-    putStrLn &quot;Reading Dog file.&quot;
+    putStrLn "Reading Dog file."
     parseDog &lt;$&gt; readFile fpath
 
   writeResultFile :: FilePath -&gt; Result -&gt; IO ()
   writeResultFile fpath result = do
-    putStrLn &quot;Writing Result file.&quot;
+    putStrLn "Writing Result file."
     writeFile fpath $ renderResult result
 
   processFiles :: FilePath -&gt; FilePath -&gt; FilePath -&gt; IO ()
@@ -222,7 +222,7 @@ Lets see what that looks like:
       [inFile1, infile2, outFile] -&gt;
               report =&lt;&lt; runExceptT (processFiles inFile1 infile2 outFile)
       _ -&gt; do
-          putStrLn &quot;Expected three file names, the first two are input, the last output.&quot;
+          putStrLn "Expected three file names, the first two are input, the last output."
           exitFailure
 
   report :: Either ProcessError () -&gt; IO ()
@@ -235,14 +235,14 @@ Lets see what that looks like:
     case pe of
       ECat ec -&gt; renderCatParseError ec
       EDog ed -&gt; renderDogParseError ed
-      EReadFile fpath msg -&gt; &quot;Error reading '&quot; &lt;&gt; T.pack fpath &lt;&gt; &quot;' : &quot; &lt;&gt; msg
-      EWriteFile fpath msg -&gt; &quot;Error writing '&quot; &lt;&gt; T.pack fpath &lt;&gt; &quot;' : &quot; &lt;&gt; msg
+      EReadFile fpath msg -&gt; "Error reading '" &lt;&gt; T.pack fpath &lt;&gt; "' : " &lt;&gt; msg
+      EWriteFile fpath msg -&gt; "Error writing '" &lt;&gt; T.pack fpath &lt;&gt; "' : " &lt;&gt; msg
       EDb dbe -&gt; renderDbError dbe
 
 
   readCatFile :: FilePath -&gt; ExceptT ProcessError IO Cat
   readCatFile fpath = do
-    liftIO $ putStrLn &quot;Reading Cat file.&quot;
+    liftIO $ putStrLn "Reading Cat file."
     bs &lt;- handleExceptT handler $ readFile fpath
     hoistEither . fmapL ECat $ parseCat bs
     where
@@ -251,7 +251,7 @@ Lets see what that looks like:
 
   readDogFile :: FilePath -&gt; ExceptT ProcessError IO Dog
   readDogFile fpath = do
-    liftIO $ putStrLn &quot;Reading Dog file.&quot;
+    liftIO $ putStrLn "Reading Dog file."
     bs &lt;- handleExceptT handler $ readFile fpath
     hoistEither . fmapL EDog $ parseDog bs
     where
@@ -260,7 +260,7 @@ Lets see what that looks like:
 
   writeResultFile :: FilePath -&gt; Result -&gt; ExceptT ProcessError IO ()
   writeResultFile fpath result = do
-    liftIO $ putStrLn &quot;Writing Result file.&quot;
+    liftIO $ putStrLn "Writing Result file."
     handleExceptT handler . writeFile fpath $ renderResult result
     where
       handler :: SomeException -&gt; ProcessError

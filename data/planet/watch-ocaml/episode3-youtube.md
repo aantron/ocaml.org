@@ -15,12 +15,12 @@ source:
 <p>At the time of this video publication, the <a href="http://ocaml.org" target="_blank" rel="noopener noreferrer">ocaml.org</a> website had not been updated to include the instructions in this video. However, the video is self-contained.</p>
 <p>Helpful callouts from the video:</p>
 <p>1- Using PowerShell to create initial files for a new project:</p>
-<p>New-Item dune-project -Value &quot;(lang dune 3.12)&quot;<br/>
-New-Item dune -Value &quot;(executable (name main))&quot;<br/>
-New-Item <a href="http://main.ml" target="_blank" rel="noopener noreferrer">main.ml</a> -Value &quot;let = print_endline {|Hello! Press ENTER to quit.|} ; input_char stdin&quot;</p>
+<p>New-Item dune-project -Value "(lang dune 3.12)"<br>
+New-Item dune -Value "(executable (name main))"<br>
+New-Item <a href="http://main.ml" target="_blank" rel="noopener noreferrer">main.ml</a> -Value "let = print_endline {|Hello! Press ENTER to quit.|} ; input_char stdin"</p>
 <p>2- The .ocamlformat to enable formatting of your source code:</p>
-<p>version=0.25.1<br/>
-profile=conventional<br/>
-exp-grouping=preserve<br/>
+<p>version=0.25.1<br>
+profile=conventional<br>
+exp-grouping=preserve<br>
 nested-match=align</p>
 

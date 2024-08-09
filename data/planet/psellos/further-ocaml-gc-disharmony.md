@@ -35,9 +35,9 @@ rectangle with randomly chosen origin and size (uniform values in [0,
 #include &lt;limits.h&gt;
 
 #define CAML_NAME_SPACE
-#include &quot;caml/memory.h&quot;
-#include &quot;caml/alloc.h&quot;
-#include &quot;caml/callback.h&quot;
+#include "caml/memory.h"
+#include "caml/alloc.h"
+#include "caml/callback.h"
 
 double dran()
 {
@@ -84,7 +84,7 @@ int main(int ac, char *av[])
     caml_main(av);
 
     point = Val_point(0.5, 0.5);
-    inside = caml_named_value(&quot;inside&quot;);
+    inside = caml_named_value("inside");
 
     ct = 0;
     for (i = 0; i &lt; 1000000000; i++) {
@@ -92,7 +92,7 @@ int main(int ac, char *av[])
         if (Bool_val(isinside))
             ct++;
     }
-    printf(&quot;%d (%f)\n&quot;, ct, (double) ct / (double) 1000000000);
+    printf("%d (%f)\n", ct, (double) ct / (double) 1000000000);
     CAMLreturnT(int, 0);
 }</code></pre>
 
@@ -102,7 +102,7 @@ int main(int ac, char *av[])
 <pre><code>let inside (px, py) (x, y, w, h) =
     px &gt;= x &amp;&amp; px &lt;= x +. w &amp;&amp; py &gt;= y &amp;&amp; py &lt;= y +. h
 
-let () = Callback.register &quot;inside&quot; inside</code></pre>
+let () = Callback.register "inside" inside</code></pre>
 
 <p>The basic idea is sound, but if you build and run this code in OS X you
 see the following:</p>
@@ -137,7 +137,7 @@ either a crash (as here) or, worse, the wrong answer.</p>
     caml_main(av);
 
     point = Val_point(0.5, 0.5);
-    inside = caml_named_value(&quot;inside&quot;);
+    inside = caml_named_value("inside");
 
     ct = 0;
     for (i = 0; i &lt; 1000000000; i++) {
@@ -146,7 +146,7 @@ either a crash (as here) or, worse, the wrong answer.</p>
         if (Bool_val(isinside))
             ct++;
     }
-    printf(&quot;%d (%f)\n&quot;, ct, (double) ct / (double) 1000000000);
+    printf("%d (%f)\n", ct, (double) ct / (double) 1000000000);
     CAMLreturnT(int, 0);
 }</code></pre>
 
@@ -160,14 +160,14 @@ $ r4b
 <p>(If my calculations are correct, the expected fraction is indeed 9/64,
 or 0.140625.)</p>
 
-<p>In retrospect the problem is obvious, but I&rsquo;ve wondered for years
-whether this construct is OK. As far as I can tell it isn&rsquo;t
+<p>In retrospect the problem is obvious, but I’ve wondered for years
+whether this construct is OK. As far as I can tell it isn’t
 explicitly forbidden by any of the <a href="http://caml.inria.fr/pub/docs/manual-ocaml/intfc.html#sec440">GC Harmony Rules</a>. In
-many ways, though, it&rsquo;s related to Rule 4: the calculated value to be
-passed is like a global value, in that it&rsquo;s outside the reach of the
+many ways, though, it’s related to Rule 4: the calculated value to be
+passed is like a global value, in that it’s outside the reach of the
 <code>CAMLlocal()</code> macros.</p>
 
-<p>A good rule of thumb seems to be that you shouldn&rsquo;t write an expression
+<p>A good rule of thumb seems to be that you shouldn’t write an expression
 as an argument to a function if it can cause OCaml allocation. If
 necessary, evaluate the expression before the call.</p>
 

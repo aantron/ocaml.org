@@ -5,8 +5,8 @@ description: For 12 years now, OCamlPro has been empowering a large range of cus
   and Rust. Our not-so-small-anymore company steadily grew into a team of highly-skilled
   and passionate engineers, experts in Computer Science, fro...
 url: https://ocamlpro.com/blog/2023_06_30_2022_at_ocamlpro
-date: 2023-06-30T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2023-06-30T13:31:53-00:00
+preview_image: /blog/assets/img/ocp_beach_2023.png
 authors:
 - "\n    Dario Pinto\n  "
 source:
@@ -17,14 +17,14 @@ source:
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/ocp_beach_2023.png">
-      <img src="https://ocamlpro.com/blog/assets/img/ocp_beach_2023.png" alt="Clear skies on OCamlPro's way of life."/>
+      <img src="https://ocamlpro.com/blog/assets/img/ocp_beach_2023.png" alt="Clear skies on OCamlPro's way of life.">
     </a>
     </p><div class="caption">
       Clear skies on OCamlPro's way of life.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>For 12 years now, OCamlPro has been empowering a large range of customers,
 allowing them to harness state-of-the-art technologies and languages like OCaml
 and Rust. Our not-so-small-anymore company steadily grew into a team of
@@ -36,7 +36,7 @@ year's post</a>) - albeit
 later than we do usually, we review some of the work we did during 2022, in
 many different worlds as shows the wide range of the missions we achieved.</p>
 <p></p><div>
-<strong>Table of contents</strong>
+<strong>Table of contents</strong><p></p>
 <p><a href="https://ocamlpro.com/blog/feed#people">Newcomers at OCamlPro</a></p>
 <p><a href="https://ocamlpro.com/blog/feed#apps">Modernizing Core Parts of Real Life Applications</a></p>
 <ul>
@@ -92,12 +92,12 @@ many different worlds as shows the wide range of the missions we achieved.</p>
 <ul>
 <li><a href="https://ocamlpro.com/blog/feed#ocamlworkshop">The OCaml Workshop 2022 - ICFP Ljubljana</a>
 </li>
-<li><a href="https://ocamlpro.com/blog/feed#jfla2022">Journ&eacute;es Francophones Langages Applicatif 2022</a>
+<li><a href="https://ocamlpro.com/blog/feed#jfla2022">Journées Francophones Langages Applicatif 2022</a>
 </li>
 </ul>
-<p></p></div>
+<p></p></div><p></p>
 <h2>
-<a class="anchor"></a>Newcomers at OCamlPro<a href="https://ocamlpro.com/blog/feed#people">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#people" class="anchor-link">Newcomers at OCamlPro</a>
           </h2>
 <p>OCamlPro is not just a R&amp;D software company, we like to think about it
 more as a team of people who like to work together. So, we are proud
@@ -109,13 +109,13 @@ Weizmann Institute on transcendental measures in Arithmetical Geometry, he was
 recruited and became the main maintainer of the Alt-Ergo Theorem Prover.</p>
 </li>
 <li>
-<p><em>Mil&agrave;n Martos</em> joined us in July. He studied Chemistry and Computer Science at
+<p><em>Milàn Martos</em> joined us in July. He studied Chemistry and Computer Science at
 ENS, and he holds an MBA. He joined the Team as a Presales Engineer and as a
 Junior OCaml Web Developer.</p>
 </li>
 <li>
-<p><em>Nathana&euml;lle Courant</em> joined us in September. She holds a Master's degree
-from &Eacute;cole Normale Sup&eacute;rieure in Paris, and is finishing her Ph.D. on
+<p><em>Nathanaëlle Courant</em> joined us in September. She holds a Master's degree
+from École Normale Supérieure in Paris, and is finishing her Ph.D. on
 efficient and verified reduction and convertibility tests for theorem
 provers. She joined OCamlPro in 2022 and works on the OCaml optimizer, in the
 Flambda team.</p>
@@ -125,7 +125,7 @@ Flambda team.</p>
 interested in performance optimization, software design, and crafting
 powerful and user-friendly tools. After completing his M.Sc. in Computer
 Science at ENS Ulm, he obtained a Ph.D. in Mathematics and Computer Science
-from Universit&eacute; de Paris.</p>
+from Université de Paris.</p>
 </li>
 <li>
 <p><em>Emilien Lemaire</em> joined us in December 2022. After an internship on
@@ -134,7 +134,7 @@ team on creating a studio of modern tools for COBOL.</p>
 </li>
 </ul>
 <h2>
-<a class="anchor"></a>Modernizing Core Parts of Real Life Applications<a href="https://ocamlpro.com/blog/feed#apps">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#apps" class="anchor-link">Modernizing Core Parts of Real Life Applications</a>
           </h2>
 <p>We love to harness our IT expertise to give a competitive advantage to
 our clients by modernizing core chunks of key infrastructures. For
@@ -144,20 +144,20 @@ language used for the computation of the Income Tax (<a href="https://ocamlpro.c
 and to provide support on the GnuCOBOL compiler used by the MedocDB
 application (<a href="https://ocamlpro.com/blog/feed#cobol">COBOL</a>).</p>
 <h3>
-<a class="anchor"></a>MLANG, keystone of the French citizens' Income Tax Calculation<a href="https://ocamlpro.com/blog/feed#mlang">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#mlang" class="anchor-link">MLANG, keystone of the French citizens' Income Tax Calculation</a>
           </h3>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/dgfip_2023_at_ocp.jpg">
-      <img src="https://ocamlpro.com/blog/assets/img/dgfip_2023_at_ocp.jpg" alt="The M language, designed in the 80s to compute the French Income Tax, is still being rewritten in OCaml!"/>
+      <img src="https://ocamlpro.com/blog/assets/img/dgfip_2023_at_ocp.jpg" alt="The M language, designed in the 80s to compute the French Income Tax, is still being rewritten in OCaml!">
     </a>
     </p><div class="caption">
       The M language, designed in the 80s to compute the French Income Tax, is still being rewritten in OCaml!
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>In 2022, our work on MLANG has passed a significant milestone: our work may no
 longer be considered a prototype! Code generation is now behaviourly compliant
 with the upstream compiler. David focused on rewriting the C architecture,
@@ -177,20 +177,20 @@ stay tuned if you are interested in this great project.</p>
 post</a> on the matter.</p>
 </blockquote>
 <h3>
-<a class="anchor"></a>Contributing to GnuCOBOL, the Free Open-Source COBOL Alternative<a href="https://ocamlpro.com/blog/feed#cobol">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#cobol" class="anchor-link">Contributing to GnuCOBOL, the Free Open-Source COBOL Alternative</a>
           </h3>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/COBOL_DEFENSE_2.jpg">
-      <img src="https://ocamlpro.com/blog/assets/img/COBOL_DEFENSE_2.jpg" alt="Cobol is ran in gargantuan infrastructures of many an insurance companies and banks across the globe."/>
+      <img src="https://ocamlpro.com/blog/assets/img/COBOL_DEFENSE_2.jpg" alt="Cobol is ran in gargantuan infrastructures of many an insurance companies and banks across the globe.">
     </a>
     </p><div class="caption">
       Cobol is ran in gargantuan infrastructures of many an insurance companies and banks across the globe.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>In 2022, we started contributing to <a href="https://github.com/ocamlpro/gnucobol">the GnuCOBOL
 project</a>: the GnuCOBOL compiler
 is, today, the only free, open-source, industrial-grade alternative to
@@ -218,20 +218,20 @@ for COBOL, and especially GnuCOBOL, based on an OCaml parser for COBOL
 that we have been improving during the year to support the full COBOL
 standard. More on this next year, hopefully !</p>
 <h2>
-<a class="anchor"></a>Rust Expertise and Developments<a href="https://ocamlpro.com/blog/feed#rust">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#rust" class="anchor-link">Rust Expertise and Developments</a>
           </h2>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/florian_gilcher_ferrous_praises_ocp.png">
-      <img src="https://ocamlpro.com/blog/assets/img/florian_gilcher_ferrous_praises_ocp.png" alt="Kind words sent our way by Florian Gilcher (skade), managing director at Ferrous Systems!"/>
+      <img src="https://ocamlpro.com/blog/assets/img/florian_gilcher_ferrous_praises_ocp.png" alt="Kind words sent our way by Florian Gilcher (skade), managing director at Ferrous Systems!">
     </a>
     </p><div class="caption">
       Kind words sent our way by Florian Gilcher (skade), managing director at Ferrous Systems!
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>OCamlPro's culture is one of human values and appeal for everything scientific.</p>
 <p>Programming languages of all nature have caught our attention at some point in
 time. As a consequence of years of expertise in all kinds of languages, we have
@@ -246,23 +246,23 @@ seven of which being solely in Rust.</p>
 <p>Strong of our collective experiences, 2022 was indeed the stage for many
 contributions and missions, some of which we will share with you right now.</p>
 <h3>
-<a class="anchor"></a>Ecore, a heart of Rust for EMF<a href="https://ocamlpro.com/blog/feed#ecore">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#ecore" class="anchor-link">Ecore, a heart of Rust for EMF</a>
           </h3>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/EMF_ARCHITECTURE.png">
-      <img src="https://ocamlpro.com/blog/assets/img/EMF_ARCHITECTURE.png" alt="Ecore is the code generator at the heart of the EMF Architecture."/>
+      <img src="https://ocamlpro.com/blog/assets/img/EMF_ARCHITECTURE.png" alt="Ecore is the code generator at the heart of the EMF Architecture.">
     </a>
     </p><div class="caption">
       Ecore is the code generator at the heart of the EMF Architecture.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>In 2022, we have seized the opportunity to work at the threshold between Java
 and Rust for our clients and academic partners of the CEA (Commissariat aux
-&Eacute;nergies Atomiques et aux &Eacute;nergies Alternatives). The product was a
+Énergies Atomiques et aux Énergies Alternatives). The product was a
 Rust-written and Rust-encoded Java class hierarchy code generator.</p>
 <p>Ecore is the core metamodel at the heart of the <a href="https://en.wikipedia.org/wiki/Eclipse_Modeling_Framework">Eclipse Modeling Framework
 (EMF)</a>, which is used
@@ -285,25 +285,25 @@ embedded-programming compliant platform, the runtime safety and even Rust's
 broader WebAssembly-ready toolchain have cleared a new path for the
 future iterations of their internal projects.</p>
 <h3>
-<a class="anchor"></a>Open-Source Rust Contributions<a href="https://ocamlpro.com/blog/feed#osource">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#osource" class="anchor-link">Open-Source Rust Contributions</a>
           </h3>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/ferris_stained_glass_2023.png">
-      <img src="https://ocamlpro.com/blog/assets/img/ferris_stained_glass_2023.png" alt="Ferris the Crab is the mascot of the Rust Language. No wonder why we converged as well!"/>
+      <img src="https://ocamlpro.com/blog/assets/img/ferris_stained_glass_2023.png" alt="Ferris the Crab is the mascot of the Rust Language. No wonder why we converged as well!">
     </a>
     </p><div class="caption">
       Ferris the Crab is the mascot of the Rust Language. No wonder why we converged as well!
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>As we continue scouring the market for more and more Rust projects, and whenever
 the opportunity shows up, we still actively contribute to the open-source
 community, here are some of this year's OS work:</p>
 <h4>
-<a class="anchor"></a>Lean4<a href="https://ocamlpro.com/blog/feed#lean4">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#lean4" class="anchor-link">Lean4</a>
           </h4>
 <p>Here's a project suited for all who, like us, are Formal Methods, functional
 programming and formal methods enthousiasts:
@@ -326,7 +326,7 @@ lean4</a>:</p>
 </li>
 </ul>
 <h4>
-<a class="anchor"></a>Matla, TLA+ Projects Manager<a href="https://ocamlpro.com/blog/feed#matla">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#matla" class="anchor-link">Matla, TLA+ Projects Manager</a>
           </h4>
 <p><a href="https://ocamlpro.com/blog/2022_01_31_2021_at_ocamlpro/#matla">Last year, we shared a sneakpeek of Matla</a>,
 introducing its use-case and the motivations for implementing such manager for
@@ -350,7 +350,7 @@ changes and <a href="https://github.com/OCamlPro/matla/releases">releases</a>:</
 <p>You are welcome to <a href="https://github.com/OCamlPro/matla">contribute</a> if you happen
 to find yourself in the same situation we were in when we started the project.</p>
 <h4>
-<a class="anchor"></a>Agnos, for Let's Encrypt Wildcard Certificates<a href="https://ocamlpro.com/blog/feed#agnos">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#agnos" class="anchor-link">Agnos, for Let's Encrypt Wildcard Certificates</a>
           </h4>
 <p>Agnos is a single-binary program allowing you to easily obtain certificates
 (including wildcards) from Let's Encrypt using DNS-01 challenges. It answers
@@ -362,20 +362,20 @@ DNS provider, and strives to offer a user-friendly and easy configuration.</p>
 <a href="https://ocamlpro.com/blog/2022_10_05_agnos_0.1.0-beta/">this article</a>.</p>
 <p>Make sure to give us some feedback when you end up using it!</p>
 <h2>
-<a class="anchor"></a>The WebAssembly Garbage Collection Working-Group<a href="https://ocamlpro.com/blog/feed#wasm">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#wasm" class="anchor-link">The WebAssembly Garbage Collection Working-Group</a>
           </h2>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/wasm.png">
-      <img src="https://ocamlpro.com/blog/assets/img/wasm.png" alt="WebAssembly is used to compile many languages to an efficient portable code for web-browsers."/>
+      <img src="https://ocamlpro.com/blog/assets/img/wasm.png" alt="WebAssembly is used to compile many languages to an efficient portable code for web-browsers.">
     </a>
     </p><div class="caption">
       WebAssembly is used to compile many languages to an efficient portable code for web-browsers.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>Late 2022 was finally time for us to put into practice the knowledge we have
 acquired about <a href="https://webassembly.org/">WebAssembly</a> over the years by
 writing and presenting the first compiler of a real-world functional language
@@ -391,8 +391,8 @@ and server applications.</p>
 </blockquote>
 <p><a href="https://github.com/WebAssembly/gc">WasmGC</a> is the name of the on-going working
 group and proposal towards eventually adding support for garbage collection to
-Wasm. December 2022 saw a significant amount of work accomplished by both L&eacute;o
-Andr&egrave;s (whose thesis work is directed by Pierre and Jean-Christophe Filli&acirc;tre)
+Wasm. December 2022 saw a significant amount of work accomplished by both Léo
+Andrès (whose thesis work is directed by Pierre and Jean-Christophe Filliâtre)
 and Pierre Chambart towards finding viable compilation strategies from OCaml to
 WasmGC. The goal was three-fold: make a prototype compiler to demonstrate the
 soundness of the proposal, show that our compilation strategies were viable
@@ -421,14 +421,14 @@ It provides and interpreter as an executable and a library.
 </li>
 </ul>
 <h2>
-<a class="anchor"></a>Tooling for Formal Methods<a href="https://ocamlpro.com/blog/feed#formal-methods">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#formal-methods" class="anchor-link">Tooling for Formal Methods</a>
           </h2>
 <p>Programming languages theory is closely tied with the idea of proper
 mathematical formalisation. Hence the strong scientific background in Formal
 Methods that we draw from both for language design or formal verification for
 cybersecurity.</p>
 <h3>
-<a class="anchor"></a>The Alt-Ergo Theorem Prover<a href="https://ocamlpro.com/blog/feed#prover">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#prover" class="anchor-link">The Alt-Ergo Theorem Prover</a>
           </h3>
 <p>OCamlPro develops and maintains <a href="https://alt-ergo.ocamlpro.com/">Alt-Ergo</a>, an
 automatic solver of mathematical formulas designed for program verification and
@@ -439,16 +439,16 @@ of Paris-Saclay</a>.</p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/Blackboard_with_formulas_and_geometry.jpg">
-      <img src="https://ocamlpro.com/blog/assets/img/Blackboard_with_formulas_and_geometry.jpg" alt="Alt-Ergo proves mathematical formulas corresponding to software program properties."/>
+      <img src="https://ocamlpro.com/blog/assets/img/Blackboard_with_formulas_and_geometry.jpg" alt="Alt-Ergo proves mathematical formulas corresponding to software program properties.">
     </a>
     </p><div class="caption">
       Alt-Ergo proves mathematical formulas corresponding to software program properties.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <h4>
-<a class="anchor"></a>The Alt-Ergo Users' Club<a href="https://ocamlpro.com/blog/feed#club">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#club" class="anchor-link">The Alt-Ergo Users' Club</a>
           </h4>
 <p>The Alt-Ergo Users' Club was launched in 2019. Its 4th annual meeting was held
 in late March 2022.</p>
@@ -464,23 +464,23 @@ full-time R&amp;D engineer.</p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/clubAE.png">
-      <img src="https://ocamlpro.com/blog/assets/img/clubAE.png" alt="The dedicated members of the Club!"/>
+      <img src="https://ocamlpro.com/blog/assets/img/clubAE.png" alt="The dedicated members of the Club!">
     </a>
     </p><div class="caption">
       The dedicated members of the Club!
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>This is the reason why we would like to thank our partners from the <a href="https://alt-ergo.ocamlpro.com/#club">Alt-Ergo
-Users&rsquo; Club</a>, for their trust: Thales,
+Users’ Club</a>, for their trust: Thales,
 Trust-in-Soft, AdaCore, MERCE (Mitsubishi Electric R&amp;D Centre Europe) and the
 CEA. Their support allows us to maintain our tool.</p>
 <p>Congratulations and many thanks to our partners at Trust-In-Soft, who have
 upgraded their subscription to the Club to Gold-tier, allowing this great
 open-source tool to live on!</p>
 <h4>
-<a class="anchor"></a>Developing Alt-Ergo<a href="https://ocamlpro.com/blog/feed#alt-ergo">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#alt-ergo" class="anchor-link">Developing Alt-Ergo</a>
           </h4>
 <p>In 2022, the Alt-Ergo team welcomed Pierre Villemot as full-time maintainer of
 the project! His recruitement shows our commitment to the project's long term
@@ -510,26 +510,26 @@ of the tool. You can already benefit from these changes by using Alt-Ergo's
 <code>dev</code> version.</p>
 <p>Finally, let us inform you that our candidacy for the DECYSIF project was
 approved. Indeed, we and our partners at Adacore, Trust-In-Soft and the
-<em>Laboratoire M&eacute;thodes Formelles</em> have been selected to conduct this funded
+<em>Laboratoire Méthodes Formelles</em> have been selected to conduct this funded
 research project as consultant in Formal Methods. Now, we hope to be part of
 collaborative R&amp;D projects to further fund core Alt-Ergo developments. This
 should allow us to deepen collaboration with old partners like the Why3 team at
 the Formal Methods Lab (LMF) and the ProofinUse consortium members. Stay tuned!</p>
 <h3>
-<a class="anchor"></a>Dolmen Library for Automated Deduction Languages<a href="https://ocamlpro.com/blog/feed#dolmen">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#dolmen" class="anchor-link">Dolmen Library for Automated Deduction Languages</a>
           </h3>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/dolmen_2023.jpg">
-      <img src="https://ocamlpro.com/blog/assets/img/dolmen_2023.jpg" alt="Dolmens are Neolithic megalithic structures composed of menhirs and they can range from a few centimeters to several meters high!"/>
+      <img src="https://ocamlpro.com/blog/assets/img/dolmen_2023.jpg" alt="Dolmens are Neolithic megalithic structures composed of menhirs and they can range from a few centimeters to several meters high!">
     </a>
     </p><div class="caption">
       Dolmens are Neolithic megalithic structures composed of menhirs and they can range from a few centimeters to several meters high!
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p><a href="https://github.com/Gbury/dolmen">Dolmen</a> is an OCaml Library developed by
 Guillaume Bury as part of our Research and Development processes around Formal
 Methods and our development efforts for our automated SMT-Solver
@@ -548,29 +548,29 @@ specification which makes Dolmen its <em>de facto</em> reference implementation.
 time, Dolmen will become the default frontend for Alt-Ergo and, we hope, any
 other OCaml written SMT-Solver from now on.</p>
 <h2>
-<a class="anchor"></a>Contributions to OCaml<a href="https://ocamlpro.com/blog/feed#ocaml">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#ocaml" class="anchor-link">Contributions to OCaml</a>
           </h2>
-<p>Last but not least, OCamlPro&rsquo;s DNA built itself on one of the most powerful and
+<p>Last but not least, OCamlPro’s DNA built itself on one of the most powerful and
 elegant programming languages ever, born from more than 30 years of French
 public Research in Computer Science, and widely used in safety critical
-industries. OCaml&rsquo;s traits pervasively inspired many new languages (like F#).
+industries. OCaml’s traits pervasively inspired many new languages (like F#).
 We are proud to be part of this great community of researchers and computer
 scientists.</p>
 <h3>
-<a class="anchor"></a>About opam, the OCaml Package Manager<a href="https://ocamlpro.com/blog/feed#opam">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#opam" class="anchor-link">About opam, the OCaml Package Manager</a>
           </h3>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/opam-banniere-e1600868011587.png">
-      <img src="https://ocamlpro.com/blog/assets/img/opam-banniere-e1600868011587.png" alt="opam, the OCaml Package Manager, remains one of OCamlPro's greatest achievements!"/>
+      <img src="https://ocamlpro.com/blog/assets/img/opam-banniere-e1600868011587.png" alt="opam, the OCaml Package Manager, remains one of OCamlPro's greatest achievements!">
     </a>
     </p><div class="caption">
       opam, the OCaml Package Manager, remains one of OCamlPro's greatest achievements!
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>2022 has been the theatre of a sustained and continuous effort from the opam
 team.</p>
 <p>The fruits of their labor have been compiled into an <a href="https://opam.ocaml.org/blog/opam-2-2-0-alpha/">alpha release of version
@@ -605,20 +605,20 @@ changes were compliant with the current ecosystem (opam
 repository, OCaml tooling) and the public's feedback and vision.</p>
 <p><em><strong>This work is allowed thanks to Jane Street's funding.</strong></em></p>
 <h3>
-<a class="anchor"></a>The Flambda2 Optimizing Compiler<a href="https://ocamlpro.com/blog/feed#flambda">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#flambda" class="anchor-link">The Flambda2 Optimizing Compiler</a>
           </h3>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/flambda_camel_2023.png">
-      <img src="https://ocamlpro.com/blog/assets/img/flambda_camel_2023.png" alt="Flambda2 is a powerful code optimizer for the OCaml compiler strong of many years of R&amp;D."/>
+      <img src="https://ocamlpro.com/blog/assets/img/flambda_camel_2023.png" alt="Flambda2 is a powerful code optimizer for the OCaml compiler strong of many years of R&amp;D.">
     </a>
     </p><div class="caption">
       Flambda2 is a powerful code optimizer for the OCaml compiler strong of many years of R&amp;D.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>OCamlPro is proud to be working on Flambda2, an ambitious OCaml
 optimizing compiler project, initiated with Mark Shinwell from Jane
 Street, our long-term partner and client. Flambda2 builds upon its
@@ -635,7 +635,7 @@ development and support as it has been for years now.</p>
 <p>This achievement comes along having our engineers take more and more
 action in maintaining the OCaml compiler. Being part of the OCaml
 Core-Team is an honour.</p>
-<p>Finally, in 2022, the Flambda Team welcomed a new member: Nathana&euml;lle
+<p>Finally, in 2022, the Flambda Team welcomed a new member: Nathanaëlle
 Courant will be joining forces with Pierre Chambart, Damien Doligez,
 Vincent Laviron, Guillaume Bury to tackle the challenges inherent to
 maintaining Flambda2 and that of the Core-Team.</p>
@@ -653,23 +653,23 @@ own.</p>
 OCaml distribution!</p>
 <p>What a time to be an OCaml enthousiast!</p>
 <h2>
-<a class="anchor"></a>Organizing Meetups for the OCaml Community<a href="https://ocamlpro.com/blog/feed#meetups">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#meetups" class="anchor-link">Organizing Meetups for the OCaml Community</a>
           </h2>
 <h3>
-<a class="anchor"></a>OCaml Users in PariS (OUPS)<a href="https://ocamlpro.com/blog/feed#oups">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#oups" class="anchor-link">OCaml Users in PariS (OUPS)</a>
           </h3>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/camels_going_to_oups.jpg">
-      <img src="https://ocamlpro.com/blog/assets/img/camels_going_to_oups.jpg" alt="Camels going to their pluri-annual OUPS Meet-up."/>
+      <img src="https://ocamlpro.com/blog/assets/img/camels_going_to_oups.jpg" alt="Camels going to their pluri-annual OUPS Meet-up.">
     </a>
     </p><div class="caption">
       Camels going to their pluri-annual OUPS Meet-up.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>Just under 10 years ago, Fabrice Le Fessant initiated the <a href="https://www.meetup.com/fr-FR/ocaml-paris/events/99222322/">very first OCaml
 Users in Paris</a>.</p>
 <p>This event allowed OCaml users in Paris, professionals and amateurs alike, to
@@ -698,20 +698,20 @@ Foundation</a> who graciously pays for the pizzas.</p>
 </li>
 </ul>
 <h3>
-<a class="anchor"></a>OCaml Meet-Up in Toulouse<a href="https://ocamlpro.com/blog/feed#octo">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#octo" class="anchor-link">OCaml Meet-Up in Toulouse</a>
           </h3>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/Hopital_de_la_Grave-Toulouse-2012-06-23.jpg">
-      <img src="https://ocamlpro.com/blog/assets/img/Hopital_de_la_Grave-Toulouse-2012-06-23.jpg" alt="Toulouse also has its set of enthousiastic OCaml supporters."/>
+      <img src="https://ocamlpro.com/blog/assets/img/Hopital_de_la_Grave-Toulouse-2012-06-23.jpg" alt="Toulouse also has its set of enthousiastic OCaml supporters.">
     </a>
     </p><div class="caption">
       Toulouse also has its set of enthousiastic OCaml supporters.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>Fortunately for OCaml Users that live in the French South-West, <a href="https://www.meetup.com/ocaml-toulouse/events/288464047/">a new Meet-up
 is now available</a> to
 them. On the 11th of October 2022, the first OCaml meet-up in
@@ -728,31 +728,31 @@ OCaml.</p>
 </blockquote>
 <p>Here's to sharing a slice or two with you soon!</p>
 <h2>
-<a class="anchor"></a>Participation to External Events<a href="https://ocamlpro.com/blog/feed#confs">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#confs" class="anchor-link">Participation to External Events</a>
           </h2>
 <h3>
-<a class="anchor"></a>The OCaml Workshop 2022 - ICFP Ljubljana<a href="https://ocamlpro.com/blog/feed#ocamlworkshop">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#ocamlworkshop" class="anchor-link">The OCaml Workshop 2022 - ICFP Ljubljana</a>
           </h3>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/ljubjana_slovenie_icfp_2022.jpg">
-      <img src="https://ocamlpro.com/blog/assets/img/ljubjana_slovenie_icfp_2022.jpg" alt="ICFP 2022 took place in the beautiful town of Ljubjana, Slovenia."/>
+      <img src="https://ocamlpro.com/blog/assets/img/ljubjana_slovenie_icfp_2022.jpg" alt="ICFP 2022 took place in the beautiful town of Ljubjana, Slovenia.">
     </a>
     </p><div class="caption">
       ICFP 2022 took place in the beautiful town of Ljubjana, Slovenia.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>The OCaml Workshop is an international conference that focuses on everything
 OCaml and is part of the ICFP (International Conference on Functional
 Programming).</p>
 <p>We attended many of these and have presented numerous papers throughout the
 years.</p>
 <p>In 2022, a paper co-authored by the maintainers of opam, the OCaml Package
-Manager, was submitted and approved for presentation: &quot;Supporting a decade of
-opam&quot;.</p>
+Manager, was submitted and approved for presentation: "Supporting a decade of
+opam".</p>
 <p>You can find the textual references of the talk
 <a href="https://icfp22.sigplan.org/details/ocaml-2022-papers/11/Supporting-a-decade-of-opam">here</a>
 and a replay of the presentation
@@ -760,22 +760,22 @@ and a replay of the presentation
 <p>You can expect more papers and interesting talks coming from us in upcoming
 editions of the conference!</p>
 <h3>
-<a class="anchor"></a>Journ&eacute;es Francophones Langages Applicatifs 2022<a href="https://ocamlpro.com/blog/feed#jfla2022">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#jfla2022" class="anchor-link">Journées Francophones Langages Applicatifs 2022</a>
           </h3>
 <p>
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/picture_jfla2022_domaine_essendieras.jpg">
-      <img src="https://ocamlpro.com/blog/assets/img/picture_jfla2022_domaine_essendieras.jpg" alt="the JFLA'2022 took place in the beautiful Domaine d'Essendi&eacute;ras in P&eacute;rigord, France."/>
+      <img src="https://ocamlpro.com/blog/assets/img/picture_jfla2022_domaine_essendieras.jpg" alt="the JFLA'2022 took place in the beautiful Domaine d'Essendiéras in Périgord, France.">
     </a>
     </p><div class="caption">
-      the JFLA'2022 took place in the beautiful Domaine d'Essendi&eacute;ras in P&eacute;rigord, France.
+      the JFLA'2022 took place in the beautiful Domaine d'Essendiéras in Périgord, France.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>Among the many scientific conferences we attend on an annual basis, the
-<a href="https://jfla.inria.fr/">JFLA</a> (<em>Journ&eacute;e Francophones des Langages Applicatifs</em>
+<a href="https://jfla.inria.fr/">JFLA</a> (<em>Journée Francophones des Langages Applicatifs</em>
 or <em>French-Speaking annual gathering on Application Programming Languages</em>,
 mainly Functional Languages) is the one we feel most at home since 2016.</p>
 <p>Ever since have we remained among their faithful supporters and participants.
@@ -796,7 +796,7 @@ blogpost)</a>;
 blog post</a> as
 well as the links to the actual (french-written) submitted papers.</p>
 <h2>
-<a class="anchor"></a>Conclusion<a href="https://ocamlpro.com/blog/feed#conclusion">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#conclusion" class="anchor-link">Conclusion</a>
           </h2>
 <p>As always, we warmly thank all our clients, partners, and friends, for their
 support and collaboration throughout the year,</p>

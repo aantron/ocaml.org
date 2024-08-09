@@ -10,7 +10,7 @@ authors:
 source:
 ---
 
-<p>I&rsquo;ve been <a href="https://blog.janestreet.com/incrementality-and-the-web/">thinking recently</a> about how to
+<p>I’ve been <a href="https://blog.janestreet.com/incrementality-and-the-web/">thinking recently</a> about how to
 structure dynamic web applications, and in particular about the role that
 incremental computation should play.</p>
 

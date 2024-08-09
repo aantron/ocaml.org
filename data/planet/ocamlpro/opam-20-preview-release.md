@@ -5,8 +5,8 @@ description: We are pleased to announce a preview release for opam 2.0, with ove
   to be more widely tested. This version brings many new features and changes, the
   most notable one being that OCaml compiler packages are no longer spe...
 url: https://ocamlpro.com/blog/2016_09_20_opam_2.0_preview_release
-date: 2016-09-20T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2016-09-20T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:
@@ -92,10 +92,10 @@ failed upgrade.</p>
 and package formats are not compatible. Indeed, the move of the compilers to
 standard packages implies some conversions, and updates to the relationships
 between packages and their compiler. For example, package constraints like</p>
-<pre><code class="language-shell-session">available: [ ocaml-version &gt;= &quot;4.02&quot; ]
+<pre><code class="language-shell-session">available: [ ocaml-version &gt;= "4.02" ]
 </code></pre>
 <p>are now written as normal package dependencies:</p>
-<pre><code class="language-shell-session">depends: [ &quot;ocaml&quot; {&gt;= &quot;4.02&quot;} ]
+<pre><code class="language-shell-session">depends: [ "ocaml" {&gt;= "4.02"} ]
 </code></pre>
 <p>To make the transition easier,</p>
 <ul>
@@ -132,7 +132,7 @@ variables;
 </li>
 <li>custom fields <code>x-foo:</code> can be used for extensions and external tools;
 </li>
-<li>allow <code>&quot;&quot;&quot;</code> delimiters around unescaped strings
+<li>allow <code>"""</code> delimiters around unescaped strings
 </li>
 <li><code>&amp;</code> is now parsed with higher priority than <code>|</code>
 </li>
@@ -152,8 +152,8 @@ as:</p>
 <pre><code class="language-shell-session">opam install opam-devel
 </code></pre>
 <p>This doesn't install the new opam to your PATH within the current opam root for
-obvious reasons, so you can manually install it as e.g. &quot;opam2&quot; using:</p>
-<pre><code class="language-shell-session">sudo cp $(opam config var &quot;opam-devel:lib&quot;)/opam /usr/local/bin/opam2
+obvious reasons, so you can manually install it as e.g. "opam2" using:</p>
+<pre><code class="language-shell-session">sudo cp $(opam config var "opam-devel:lib")/opam /usr/local/bin/opam2
 </code></pre>
 <p>You can otherwise install as usual:</p>
 <ul>

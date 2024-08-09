@@ -9,7 +9,7 @@ authors:
 source:
 ---
 
-<p>Over the past few weeks, at <a href="http://ocamllabs.io/">OCaml Labs</a>, we&rsquo;ve deployed
+<p>Over the past few weeks, at <a href="http://ocamllabs.io/">OCaml Labs</a>, we’ve deployed
 continuous benchmarking infrastructure for <a href="https://github.com/ocamllabs/ocaml-multicore">Multicore
 OCaml</a>. Live results are available
 at <a href="http://ocamllabs.io/multicore">http://ocamllabs.io/multicore</a>. Continuous
@@ -25,7 +25,7 @@ aim is to quantify the performance impact of running single-threaded OCaml
 programs using the multicore compiler. Moving forward, would would include
 multi-threaded benchmarks and other architectures.</p>
 
-<p>The benchmarks and the benchmarking infrastructure were adapted from <a href="https://github.com/OCamlPro/ocamlbench-repo">OCamlPro&rsquo;s
+<p>The benchmarks and the benchmarking infrastructure were adapted from <a href="https://github.com/OCamlPro/ocamlbench-repo">OCamlPro’s
 benchmark suite</a> aimed at
 benchmarking <a href="https://bench.flambda.ocamlpro.com/">Flambda optimisation passes</a>.
 The difference with the new infrastructure is that all the data is generated as
@@ -37,7 +37,7 @@ JavaScript. I find the new setup easier to manage and deploy.</p>
 <p>If you observe the results, you will see that multicore is slowest compared to
 trunk OCaml on <code class="language-plaintext highlighter-rouge">menhir-standard</code> and <code class="language-plaintext highlighter-rouge">menhir-fancy</code>. But if you look closely:</p>
 
-<p><img src="https://kcsrk.info/assets/menhir-too-fast.png" alt="Binary tree"/></p>
+<p><img src="https://kcsrk.info/assets/menhir-too-fast.png" alt="Binary tree"></p>
 
 <p>these benchmarks complete in less than 10 milliseconds. This is not enough time
 to faithfully compare the implementations as constant factors such as runtime

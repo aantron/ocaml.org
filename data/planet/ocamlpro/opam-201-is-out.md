@@ -9,8 +9,8 @@ description: 'We are pleased to announce the release of opam 2.0.1. This new ver
 
   Fix compilation of mccs on MacOS and Nix p...'
 url: https://ocamlpro.com/blog/2018_10_24_opam_2.0.1_is_out
-date: 2018-10-24T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2018-10-24T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Raja Boujbel\n  "
 source:
@@ -49,7 +49,7 @@ source:
 <li>list: as opam 2.0.0 <code>list</code> doesn't return non-zero code if list is empty, add <code>--silent</code> option for a silent output and returns 1 if list is empty
 </li>
 </ul>
-<hr/>
+<hr>
 <p>Installation instructions (unchanged):</p>
 <ol>
 <li>From binaries: run
@@ -57,7 +57,7 @@ source:
 </ol>
 <pre><code class="language-shell-session">sh &lt;(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.1">the Github &quot;Releases&quot; page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.1">the Github "Releases" page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed.</p>
 <ol start="2">
 <li>From source, using opam:
 </li>

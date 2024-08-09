@@ -5,8 +5,8 @@ description: Here is a short report on the different projects we have been worki
   inlining have raised big expectations, we have been working hard on fixing the few
   remaining bugs. An enhanced alias/constant analysis was added, ...
 url: https://ocamlpro.com/blog/2013_09_04_ocamlpro_highlights_august_2013
-date: 2013-09-04T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2013-09-04T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    \xC7agdas Bozman\n  "
 source:
@@ -28,13 +28,13 @@ tested and quite stable, we started some cleanup to make it more
 modular, easier to understand and extend. We also worked on improving
 the performance of the profiler (the tool that analyzes the heap
 snapshots), by caching some expensive computations, such as extracting
-type information from &lsquo;cmt&rsquo; files associated with each location, in
+type information from ‘cmt’ files associated with each location, in
 files that are shared between executions. We have started testing the
 profiler on <a href="https://why3.lri.fr/">the Why3 verification platform</a>, and these optimizations proved very useful to analyze longer traces.</p>
 <h4>OPAM Package Manager</h4>
 <p>On OPAM, we are still preparing the release of version 1.1. The
-release date has shifted a little bit &mdash; it is now planned to happen
-mid-September, before the <a href="https://ocaml.org/meetings/ocaml/2013/">OCaml&rsquo;2013 meeting</a> &mdash; because we are focusing on getting speed and stability improvements in a very good shape. We are now relying on <a href="https://github.com/OCamlPro/opam-rt">opam-rt</a>, our new regression testing infrastructure, to be sure to get the best level of quality for the release.</p>
+release date has shifted a little bit — it is now planned to happen
+mid-September, before the <a href="https://ocaml.org/meetings/ocaml/2013/">OCaml’2013 meeting</a> — because we are focusing on getting speed and stability improvements in a very good shape. We are now relying on <a href="https://github.com/OCamlPro/opam-rt">opam-rt</a>, our new regression testing infrastructure, to be sure to get the best level of quality for the release.</p>
 <p>Regarding the package and compiler <a href="https://github.com/OCamlPro/opam-repository">metadata</a>,
 we are very proud to announce that our community has crossed an
 important line, with more than 100 contributors and 500 different
@@ -47,16 +47,16 @@ repository to use <a href="https://github.com/OCamlPro/opam-repository/issues/95
 features a new, much more expressive package description language :
 ocp-build can now be used to build arbitrary files, for example to
 generate new source files, or to compile files in other languages than
-OCaml. We successfully used the new language to build <a href="https://try.ocamlpro.com/">Try-ocaml</a> and <a href="https://www.typerex.org/ocplib-wxOCaml.html">wxOCaml</a>, completely avoiding the use of &ldquo;make&rdquo;.</p>
+OCaml. We successfully used the new language to build <a href="https://try.ocamlpro.com/">Try-ocaml</a> and <a href="https://www.typerex.org/ocplib-wxOCaml.html">wxOCaml</a>, completely avoiding the use of “make”.</p>
 <p>It can also automatically generate <a href="https://www.typerex.org/ocplib-wxOCaml/doc.0.1/index.html">basic HTML documentation</a>
-for libraries using ocamldoc with &ldquo;ocp-build make -doc&rdquo;. There are
+for libraries using ocamldoc with “ocp-build make -doc”. There are
 still some improvements on our TODO list before an official release, for
 example improving the support of META files, but we are getting very
 close ! ocp-build is very efficient: compiling <a href="https://www.typerex.org/ocp-build/merlin.ocp">Merlin with ocp-build</a> takes only 4s on a quad-core while ocamlbuild needs 13s in similar conditions and with the same parallelisation settings.</p>
 <h4>Graphics on Try-OCaml</h4>
 <p><a href="https://try.ocamlpro.com/">Try-OCaml</a> has been improved
-with a dedicated implementation of the Graphics module: type &ldquo;lesson
-19&rdquo;, and you will get some fun examples, including a simple game by
+with a dedicated implementation of the Graphics module: type “lesson
+19”, and you will get some fun examples, including a simple game by
 Sylvain Conchon.</p>
 <h4>Alt-Ergo Theorem Prover</h4>
 <p>We are also happy to welcome Mohamed Iguernelala in the team,
@@ -99,9 +99,9 @@ months, we have now started to implement a new tool, <a href="https://github.com
 to perform some of this analysis on whole Scilab projects and report
 warnings on suspect code. We hope this tool will soon be used by every
 Scilab user, to avoid wasting hours of computation before reaching an
-easy-to-catch error, such as a misspelled &mdash; thus undefined &mdash; variable.</p>
+easy-to-catch error, such as a misspelled — thus undefined — variable.</p>
 <h3>Meeting with the Community</h3>
-<p>Some of us are going to present part of this work at <a href="https://ocaml.org/meetings/ocaml/2013/program.html">OCaml&rsquo;2013</a>,
+<p>Some of us are going to present part of this work at <a href="https://ocaml.org/meetings/ocaml/2013/program.html">OCaml’2013</a>,
 the OCaml Users and Developers Workshop in Boston. We expect it to be a
 good opportunity to get some feedback on these projects from the
 community!</p>

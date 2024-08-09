@@ -15,7 +15,7 @@ source:
 
 <p>(Update: there's a <a href="http://caml.inria.fr/mantis/view.php?id=6318">Mantis issue open</a> to discuss this proposal.)</p>
 
-<p>OCaml's <code>try</code> construct is good at dealing with exceptions, but not so good at handling the case where no exception is raised.  This post describes a simple extension to <code>try</code> that adds support for handling the &quot;success&quot; case.</p>
+<p>OCaml's <code>try</code> construct is good at dealing with exceptions, but not so good at handling the case where no exception is raised.  This post describes a simple extension to <code>try</code> that adds support for handling the "success" case.</p>
 
 <p>Here's an example of code that benefits from the extension.  On a recent <a href="http://caml.inria.fr/resources/forums.en.html">caml-list</a> thread, <a href="http://cedeela.fr/~simon/">Simon Cruanes</a> posted <a href="https://sympa.inria.fr/sympa/arc/caml-list/2014-01/msg00113.html">the following function</a> for iterating over a stream:</p>
 
@@ -60,7 +60,7 @@ source:
     <span class="k">if</span> <span class="n">bi</span><span class="o">.</span><span class="n">sign</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">then</span> <span class="o">-</span> <span class="n">n</span> <span class="k">else</span> <span class="n">n</span>
   <span class="k">with</span> <span class="nc">Failure</span> <span class="o">_</span> <span class="o">-&gt;</span>
     <span class="k">if</span> <span class="n">eq_big_int</span> <span class="n">bi</span> <span class="n">monster_big_int</span> <span class="k">then</span> <span class="n">monster_int</span>
-    <span class="k">else</span> <span class="n">failwith</span> <span class="s2">&quot;int_of_big_int&quot;</span>
+    <span class="k">else</span> <span class="n">failwith</span> <span class="s2">"int_of_big_int"</span>
 </code></pre></div>
 <p>The core of the function --- the call to <code>int_of_nat</code> --- is rather buried in the complex control flow.  There are two <code>if</code>-<code>then</code>-<code>else</code> constructs, a <code>let</code> binding, and a <code>try</code> expression with a complex body.  Using handler case we can disentangle the code to make the four possible outcomes from the call to <code>int_of_nat</code> explicit:</p>
 <div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span></span><span class="k">let</span> <span class="n">int_of_big_int</span> <span class="n">bi</span> <span class="o">=</span>
@@ -72,7 +72,7 @@ source:
   <span class="o">|</span> <span class="nc">Failure</span> <span class="o">_</span> <span class="k">when</span> <span class="n">eq_big_int</span> <span class="n">bi</span> <span class="n">monster_big_int</span> <span class="o">-&gt;</span>
      <span class="n">monster_int</span>
   <span class="o">|</span> <span class="nc">Failure</span> <span class="o">_</span> <span class="o">-&gt;</span>
-     <span class="n">failwith</span> <span class="s2">&quot;int_of_big_int&quot;</span>
+     <span class="n">failwith</span> <span class="s2">"int_of_big_int"</span>
 </code></pre></div>
 <p>Here's a simpler example from <a href="https://github.com/ocaml/ocaml/blob/6a296a02/stdlib/string.ml#L195">the String module</a>, which also involves code that cannot raise an exception in the body of a <code>try</code> block:</p>
 <div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span></span><span class="k">try</span> <span class="n">ignore</span> <span class="o">(</span><span class="n">index_rec</span> <span class="n">s</span> <span class="n">l</span> <span class="n">i</span> <span class="n">c</span><span class="o">);</span> <span class="bp">true</span> <span class="k">with</span> <span class="nc">Not_found</span> <span class="o">-&gt;</span> <span class="bp">false</span>
@@ -184,7 +184,7 @@ summary:     Bring alpha100 revision back to mainline
 
 <h4>Erlang</h4>
 
-<p>The 2004 paper <a href="http://erlang.se/workshop/2004/exception.pdf">Erlang's Exception Handling Revisited</a> (Richard Carlsson, Bj&ouml;rn Gustavsson and Patrik Nyblom) proposed an exception-handling construct for Erlang along the same lines as exceptional syntax, although apparently developed independently.  In the proposed extension to Erlang we might write <code>iter_stream</code> as follows:</p>
+<p>The 2004 paper <a href="http://erlang.se/workshop/2004/exception.pdf">Erlang's Exception Handling Revisited</a> (Richard Carlsson, Björn Gustavsson and Patrik Nyblom) proposed an exception-handling construct for Erlang along the same lines as exceptional syntax, although apparently developed independently.  In the proposed extension to Erlang we might write <code>iter_stream</code> as follows:</p>
 <div class="highlight"><pre><code class="language-erlang" data-lang="erlang"><span></span><span class="nf">iter_stream</span><span class="p">(</span><span class="nv">F</span><span class="p">,</span> <span class="nv">S</span><span class="p">)</span> <span class="o">-&gt;</span>
    <span class="k">try</span> <span class="nv">Mystream</span><span class="p">:</span><span class="nb">get</span><span class="p">(</span><span class="nv">S</span><span class="p">)</span> <span class="k">of</span>
       <span class="p">{</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S_</span><span class="p">}</span> <span class="o">-&gt;</span>
@@ -204,7 +204,7 @@ summary:     Bring alpha100 revision back to mainline
 </code></pre></div>
 <p>The second argument in the <code>end_of_stream</code> clauses binds the continuation of the effect, allowing handling strategies other than the usual stack unwinding.  Since we ignore the continuation argument the behaviour is the same as for a regular exception handler.</p>
 
-<p>The <a href="https://github.com/matijapretnar/eff/blob/2a9a36cc/src/parser.mly#L4-L7">eff implementation</a> uses the term &quot;handler case&quot; for the clauses of the <code>handle</code> construct.</p>
+<p>The <a href="https://github.com/matijapretnar/eff/blob/2a9a36cc/src/parser.mly#L4-L7">eff implementation</a> uses the term "handler case" for the clauses of the <code>handle</code> construct.</p>
 
 <h4>OCaml</h4>
 
@@ -247,7 +247,7 @@ In their 2008 paper <a href="http://www.univ-orleans.fr/lifo/Members/David.Telle
 
 <h3>Postscript: a symmetric extension</h3>
 
-<p>The <code>try</code> construct in current OCaml supports matching against raised exceptions but not against the value produced when no exception is raised.  Contrariwise, the <code>match</code> construct supports matching against the value produced when no exception is raised, but does not support matching against raised exceptions.  As implemented, the patch addresses this asymmetry, extending <code>match</code> with clauses that specify the &quot;failure continuation&quot;:</p>
+<p>The <code>try</code> construct in current OCaml supports matching against raised exceptions but not against the value produced when no exception is raised.  Contrariwise, the <code>match</code> construct supports matching against the value produced when no exception is raised, but does not support matching against raised exceptions.  As implemented, the patch addresses this asymmetry, extending <code>match</code> with clauses that specify the "failure continuation":</p>
 <div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span></span><span class="k">match</span> <span class="n">expr</span>
 <span class="k">with</span> <span class="n">pattern_1</span> <span class="o">-&gt;</span> <span class="n">expr_1</span>
    <span class="o">|</span> <span class="o">...</span>

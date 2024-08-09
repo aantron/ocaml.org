@@ -5,8 +5,8 @@ description: A few days ago, we released opam 2.0.0~rc4, and explained that this
   the opam package repository. So here are the details about this! If you are an opam
   user, and don't maintain opam packages You are encouraged to u...
 url: https://ocamlpro.com/blog/2018_08_02_last_stretch_repository_upgrade_and_opam_2.0.0_roadmap
-date: 2018-08-02T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2018-08-02T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Raja Boujbel\n  "
 source:
@@ -22,7 +22,7 @@ source:
 <p>All packages installing in opam 1.2.2 should exist and install fine on 2.0.0~rc4 (if you find one that doesn't, <a href="https://github.com/ocaml/opam/issues">please report</a>!)</p>
 </li>
 <li>
-<p>If you haven't updated by <strong>September 17th</strong>, the amount of updates and new packages you receive may become limited<a href="https://ocamlpro.com/blog/feed#foot-1">&sup1;</a>.</p>
+<p>If you haven't updated by <strong>September 17th</strong>, the amount of updates and new packages you receive may become limited<a href="https://ocamlpro.com/blog/feed#foot-1">¹</a>.</p>
 </li>
 </ul>
 <h2>So what will happen on September 17th ?</h2>
@@ -58,7 +58,7 @@ source:
 <p>You can publish 1.2 packages while using opam 2.0.0 by installing <code>opam-publish.0.3.5</code> (running <code>opam pin opam-publish 0.3.5</code> is recommended)</p>
 </li>
 <li>
-<p>You should only need to keep an opam 1.2 installation for more complex setups (multiple packages, or if you need to be able to test the 1.2 package installations locally). In this case you might want to use an alias, <em>e.g.</em> <code>alias opam.1.2=&quot;OPAMROOT=$HOME/.opam.1.2 ~/local/bin/opam.1.2</code>. You should also probably disable opam 2.0.0's automatic environment update in that case (<code>opam init --disable-shell-hook</code>)</p>
+<p>You should only need to keep an opam 1.2 installation for more complex setups (multiple packages, or if you need to be able to test the 1.2 package installations locally). In this case you might want to use an alias, <em>e.g.</em> <code>alias opam.1.2="OPAMROOT=$HOME/.opam.1.2 ~/local/bin/opam.1.2</code>. You should also probably disable opam 2.0.0's automatic environment update in that case (<code>opam init --disable-shell-hook</code>)</p>
 </li>
 <li>
 <p><code>opam-publish.2.0.0~beta</code> has a fully revamped interface, and many new features, like filing a single PR for multiple packages. It files pull-request <strong>in 2.0 format only</strong>, however. At the moment, it will file PR only to the 2.0.0 branch of the repository, but pushing 1.2 format packages to master is still preferred until September 17th.</p>
@@ -79,5 +79,5 @@ source:
 <p>It's your place to decide when/if you want to switch your base repository to 2.0.0 format. You'll benefit from many new possibilities and safety features, but that will exclude users of earlier opam versions, as there is no backwards conversion tool.</p>
 </li>
 </ul>
-<p><a>&sup1;</a> Sorry for the inconvenience. We'd be happy if we could keep maintaining the 1.2.2 repository for more time; repository maintainers are doing an awesome job, but just don't have the resources to maintain both versions in parallel.</p>
+<p><a>¹</a> Sorry for the inconvenience. We'd be happy if we could keep maintaining the 1.2.2 repository for more time; repository maintainers are doing an awesome job, but just don't have the resources to maintain both versions in parallel.</p>
 

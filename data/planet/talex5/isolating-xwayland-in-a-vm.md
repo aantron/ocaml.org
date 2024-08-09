@@ -63,11 +63,11 @@ However, on newer systems the display is managed by a <em>Wayland compositor</em
 <a href="https://wayland.freedesktop.org/docs/html/ch05.html">Xwayland</a> can be used to allow unmodified X11 applications to run in a Wayland desktop environment.
 However, setting this up wasn't as easy as I'd hoped.
 Ideally, Xwayland would completely isolate the Wayland compositor from needing to know anything about X11:</p>
-<p><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/xwayland/fantasy-xwayland.png" title="Fantasy Xwayland architecture" class="caption"/><span class="caption-text">Fantasy Xwayland architecture</span></span></p>
+<p><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/xwayland/fantasy-xwayland.png" title="Fantasy Xwayland architecture" class="caption"><span class="caption-text">Fantasy Xwayland architecture</span></span></p>
 <p>However, it doesn't work like this.
 Xwayland handles X11 drawing operations, but it doesn't handle lots of other details, including window management (e.g. telling the Wayland compositor what the window title should be), copy-and-paste, and selections.
 Instead, the Wayland compositor is supposed to connect back to Xwayland over the X11 protocol and act as an X11 window manager to provide the missing features:</p>
-<p><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/xwayland/real-xwayland.png" title="Actual Xwayland architecture" class="caption"/><span class="caption-text">Actual Xwayland architecture</span></span></p>
+<p><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/xwayland/real-xwayland.png" title="Actual Xwayland architecture" class="caption"><span class="caption-text">Actual Xwayland architecture</span></span></p>
 <p>This is a problem for several reasons:</p>
 <ol>
 <li>It means that every Wayland compositor has to implement not only the new Wayland protocol, but also the old X11 protocol.
@@ -105,19 +105,19 @@ xwininfo: Window id: 0x47 (the root window) (has no name)
   Root window id: 0x47 (the root window) (has no name)
   Parent window id: 0x0 (none)
      9 children:
-     0x800112 &quot;~/Projects/wayland/wayland-proxy-virtwl&quot;: (&quot;ROX-Filer&quot; &quot;ROX-Filer&quot;)  2184x2076+0+0  +0+0
+     0x800112 "~/Projects/wayland/wayland-proxy-virtwl": ("ROX-Filer" "ROX-Filer")  2184x2076+0+0  +0+0
         1 child:
         0x800113 (has no name): ()  1x1+-1+-1  +-1+-1
      0x800123 (has no name): ()  1x1+-1+-1  +-1+-1
-     0x800003 &quot;ROX-Filer&quot;: ()  10x10+-100+-100  +-100+-100
-     0x800001 &quot;ROX-Filer&quot;: (&quot;ROX-Filer&quot; &quot;ROX-Filer&quot;)  10x10+10+10  +10+10
+     0x800003 "ROX-Filer": ()  10x10+-100+-100  +-100+-100
+     0x800001 "ROX-Filer": ("ROX-Filer" "ROX-Filer")  10x10+10+10  +10+10
         1 child:
         0x800002 (has no name): ()  1x1+-1+-1  +9+9
-     0x600002 &quot;main.ml (~/Projects/wayland/wayland-proxy-virtwl) - GVIM1&quot;: (&quot;gvim&quot; &quot;Gvim&quot;)  1648x1012+0+0  +0+0
+     0x600002 "main.ml (~/Projects/wayland/wayland-proxy-virtwl) - GVIM1": ("gvim" "Gvim")  1648x1012+0+0  +0+0
         1 child:
         0x600003 (has no name): ()  1x1+-1+-1  +-1+-1
      0x600007 (has no name): ()  1x1+-1+-1  +-1+-1
-     0x600001 &quot;Vim&quot;: (&quot;gvim&quot; &quot;Gvim&quot;)  10x10+10+10  +10+10
+     0x600001 "Vim": ("gvim" "Gvim")  10x10+10+10  +10+10
      0x200002 (has no name): ()  1x1+0+0  +0+0
      0x200001 (has no name): ()  1x1+0+0  +0+0
 </code></pre>
@@ -136,14 +136,14 @@ WM_NORMAL_HINTS(WM_SIZE_HINTS):
 		program specified minimum size: 188 by 59
 		program specified base size: 188 by 59
 		window gravity: NorthWest
-WM_CLASS(STRING) = &quot;gvim&quot;, &quot;Gvim&quot;
-WM_NAME(STRING) = &quot;main.ml (~/Projects/wayland/wayland-proxy-virtwl) - GVIM1&quot;
+WM_CLASS(STRING) = "gvim", "Gvim"
+WM_NAME(STRING) = "main.ml (~/Projects/wayland/wayland-proxy-virtwl) - GVIM1"
 ...
 </code></pre>
 <p>The X server itself doesn't know anything about e.g. window title bars.
 Instead, a <em>window manager</em> process connects and handles that.
 A window manager is just another X11 application.
-It asks to be notified when an application tries to show (&quot;map&quot;) a window inside the root,
+It asks to be notified when an application tries to show ("map") a window inside the root,
 and when that happens it typically creates a slightly larger window (with room for the title bar, etc)
 and moves the other application's window inside that.</p>
 <p>This design gives X a lot of flexibility.
@@ -180,14 +180,14 @@ If we run <code>DISPLAY=:1 xterm</code> then we see Xwayland creating some buffe
 ...
 </code></pre>
 <p>We need to run Xwayland as <code>Xwayland :1 -rootless -wm FD</code>, where FD is a socket we will use to speak the X11 protocol and act as a window manager.</p>
-<p>It's a little hard to find information about Xwayland's rootless mode, because &quot;rootless&quot; has two separate common meanings in xorg:</p>
+<p>It's a little hard to find information about Xwayland's rootless mode, because "rootless" has two separate common meanings in xorg:</p>
 <ol>
 <li>Running xorg without root privileges.
 </li>
 <li>Using xorg's miext/rootless extension to display application windows on some other desktop.
 </li>
 </ol>
-<p>After a while, it became clear that Xwayland's rootless mode isn't either of these, but a third xorg feature also called &quot;rootless&quot;.</p>
+<p>After a while, it became clear that Xwayland's rootless mode isn't either of these, but a third xorg feature also called "rootless".</p>
 <h2>The X11 protocol</h2>
 <p><a href="https://xcb.freedesktop.org/">libxcb</a> provides C bindings to the X11 protocol, but I wanted to program in OCaml.
 Luckily, the <a href="https://www.x.org/releases/X11R7.7/doc/xproto/x11protocol.html">X11 protocol</a> is well documented, and generating the messages directly didn't look any harder than binding libxcb,
@@ -246,14 +246,14 @@ For example, every event has a sequence number at offset 2, except for <code>Key
 <p>Using <code>Xwayland -wm FD</code> actually prevents any client applications from connecting at all at first,
 because Xwayland then waits for the window manager to be ready before accepting any client connections.</p>
 <p>To fix that, we need to claim ownership of the <code>WM_S0</code> <em>selection</em>.
-A &quot;selection&quot; is something that can be owned by only one application at a time.
+A "selection" is something that can be owned by only one application at a time.
 Selections were originally used to track ownership of the currently-selected text, and later also used for the clipboard.
-<code>WM_S0</code> means &quot;Window Manager for Screen 0&quot; (Xwayland only has one screen).</p>
+<code>WM_S0</code> means "Window Manager for Screen 0" (Xwayland only has one screen).</p>
 <figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 </pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="c">(* Become the window manager. This allows other clients to connect. *)</span>
-</span><span class="line"><span class="k">let</span><span class="o">*</span> <span class="n">wm_sn</span> <span class="o">=</span> <span class="n">intern</span> <span class="n">t</span> <span class="o">~</span><span class="n">only_if_exists</span><span class="o">:</span><span class="bp">false</span> <span class="o">(</span><span class="s2">&quot;WM_S&quot;</span> <span class="o">^</span> <span class="n">string_of_int</span> <span class="n">i</span><span class="o">)</span> <span class="k">in</span>
+</span><span class="line"><span class="k">let</span><span class="o">*</span> <span class="n">wm_sn</span> <span class="o">=</span> <span class="n">intern</span> <span class="n">t</span> <span class="o">~</span><span class="n">only_if_exists</span><span class="o">:</span><span class="bp">false</span> <span class="o">(</span><span class="s2">"WM_S"</span> <span class="o">^</span> <span class="n">string_of_int</span> <span class="n">i</span><span class="o">)</span> <span class="k">in</span>
 </span><span class="line"><span class="nn">X11</span><span class="p">.</span><span class="nn">Selection</span><span class="p">.</span><span class="n">set_owner</span> <span class="n">x11</span> <span class="o">~</span><span class="n">owner</span><span class="o">:(</span><span class="nc">Some</span> <span class="n">root</span><span class="o">)</span> <span class="o">~</span><span class="n">timestamp</span><span class="o">:`</span><span class="nc">CurrentTime</span> <span class="n">wm_sn</span>
 </span></code></pre></td></tr></tbody></table></div></figure><p>Instead of passing things like <code>WM_S0</code> as strings in each request, X11 requires us to first <em>intern</em> the string.
 This returns a unique 32-bit ID for it, which we use in future messages.
@@ -304,7 +304,7 @@ make any changes it requires.</p>
 </span><span class="line">  <span class="k">method</span> <span class="n">client_message</span> <span class="o">~</span><span class="n">window</span> <span class="o">~</span><span class="n">ty</span> <span class="n">body</span> <span class="o">=</span>
 </span><span class="line">      <span class="k">if</span> <span class="n">ty</span> <span class="o">=</span> <span class="n">wl_surface_id</span> <span class="k">then</span> <span class="o">(</span>
 </span><span class="line">        <span class="k">let</span> <span class="n">wayland_id</span> <span class="o">=</span> <span class="nn">Cstruct</span><span class="p">.</span><span class="nn">LE</span><span class="p">.</span><span class="n">get_uint32</span> <span class="n">body</span> <span class="mi">0</span> <span class="k">in</span>
-</span><span class="line">        <span class="nn">Log</span><span class="p">.</span><span class="n">info</span> <span class="o">(</span><span class="k">fun</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="s2">&quot;X window %a corresponds to Wayland surface %ld&quot;</span> <span class="nn">X11</span><span class="p">.</span><span class="nn">Window</span><span class="p">.</span><span class="n">pp</span> <span class="n">window</span> <span class="n">wayland_id</span><span class="o">);</span>
+</span><span class="line">        <span class="nn">Log</span><span class="p">.</span><span class="n">info</span> <span class="o">(</span><span class="k">fun</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="s2">"X window %a corresponds to Wayland surface %ld"</span> <span class="nn">X11</span><span class="p">.</span><span class="nn">Window</span><span class="p">.</span><span class="n">pp</span> <span class="n">window</span> <span class="n">wayland_id</span><span class="o">);</span>
 </span><span class="line">        <span class="n">pair_when_ready</span> <span class="o">~</span><span class="n">x11</span> <span class="n">t</span> <span class="n">window</span> <span class="n">wayland_id</span>
 </span><span class="line">      <span class="o">)</span>
 </span></code></pre></td></tr></tbody></table></div></figure><p>Having two separate connections to Xwayland is quite annoying, because messages can arrive in any order.
@@ -334,15 +334,15 @@ so I just pause the X11 event handling until that has arrived:</p>
 </span><span class="line"><span class="k">let</span> <span class="k">rec</span> <span class="n">pair_when_ready</span> <span class="o">~</span><span class="n">x11</span> <span class="n">t</span> <span class="n">window</span> <span class="n">wayland_id</span> <span class="o">=</span>
 </span><span class="line">  <span class="k">match</span> <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">find_opt</span> <span class="n">t</span><span class="o">.</span><span class="n">unpaired</span> <span class="n">wayland_id</span> <span class="k">with</span>
 </span><span class="line">  <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span>
-</span><span class="line">    <span class="nn">Log</span><span class="p">.</span><span class="n">info</span> <span class="o">(</span><span class="k">fun</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="s2">&quot;Unknown Wayland object %ld; waiting for surface to be created...&quot;</span> <span class="n">wayland_id</span><span class="o">);</span>
+</span><span class="line">    <span class="nn">Log</span><span class="p">.</span><span class="n">info</span> <span class="o">(</span><span class="k">fun</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="s2">"Unknown Wayland object %ld; waiting for surface to be created..."</span> <span class="n">wayland_id</span><span class="o">);</span>
 </span><span class="line">    <span class="k">let</span><span class="o">*</span> <span class="bp">()</span> <span class="o">=</span> <span class="nn">Lwt_condition</span><span class="p">.</span><span class="n">wait</span> <span class="n">t</span><span class="o">.</span><span class="n">unpaired_added</span> <span class="k">in</span>
 </span><span class="line">    <span class="n">pair_when_ready</span> <span class="o">~</span><span class="n">x11</span> <span class="n">t</span> <span class="n">window</span> <span class="n">wayland_id</span>
 </span><span class="line">  <span class="o">|</span> <span class="nc">Some</span> <span class="o">{</span> <span class="n">client_surface</span> <span class="o">=</span> <span class="o">_;</span> <span class="n">host_surface</span><span class="o">;</span> <span class="n">set_configured</span> <span class="o">}</span> <span class="o">-&gt;</span>
-</span><span class="line">    <span class="nn">Log</span><span class="p">.</span><span class="n">info</span> <span class="o">(</span><span class="k">fun</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="s2">&quot;Setting up Wayland surface %ld using X11 window %a&quot;</span> <span class="n">wayland_id</span> <span class="nn">X11</span><span class="p">.</span><span class="nn">Xid</span><span class="p">.</span><span class="n">pp</span> <span class="n">window</span><span class="o">);</span>
+</span><span class="line">    <span class="nn">Log</span><span class="p">.</span><span class="n">info</span> <span class="o">(</span><span class="k">fun</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="s2">"Setting up Wayland surface %ld using X11 window %a"</span> <span class="n">wayland_id</span> <span class="nn">X11</span><span class="p">.</span><span class="nn">Xid</span><span class="p">.</span><span class="n">pp</span> <span class="n">window</span><span class="o">);</span>
 </span><span class="line">    <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">remove</span> <span class="n">t</span><span class="o">.</span><span class="n">unpaired</span> <span class="n">wayland_id</span><span class="o">;</span>
 </span><span class="line">    <span class="nn">Lwt</span><span class="p">.</span><span class="n">async</span> <span class="o">(</span><span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span> <span class="n">pair</span> <span class="n">t</span> <span class="o">~</span><span class="n">set_configured</span> <span class="o">~</span><span class="n">host_surface</span> <span class="n">window</span><span class="o">);</span>
 </span><span class="line">    <span class="nn">Lwt</span><span class="p">.</span><span class="n">return_unit</span>
-</span></code></pre></td></tr></tbody></table></div></figure><p>Another complication is that Wayland doesn't allow you to attach a buffer to a surface until the window has been &quot;configured&quot;.
+</span></code></pre></td></tr></tbody></table></div></figure><p>Another complication is that Wayland doesn't allow you to attach a buffer to a surface until the window has been "configured".
 Doing so is a protocol error, and Sway will disconnect us if we try!
 But Xwayland likes to attach the buffer immediately after creating the surface.</p>
 <p>To avoid this, I use a queue:</p>
@@ -395,8 +395,8 @@ if it supports that:</p>
 </span><span class="line">    <span class="k">method</span> <span class="n">on_close</span> <span class="o">_</span> <span class="o">=</span>
 </span><span class="line">      <span class="nn">Lwt</span><span class="p">.</span><span class="n">async</span> <span class="o">(</span><span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span>
 </span><span class="line">          <span class="k">let</span><span class="o">*</span> <span class="n">x11</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">x11</span> <span class="k">in</span>
-</span><span class="line">          <span class="k">let</span><span class="o">*</span> <span class="n">wm_protocols</span> <span class="o">=</span> <span class="nn">X11</span><span class="p">.</span><span class="nn">Atom</span><span class="p">.</span><span class="n">intern</span> <span class="n">x11</span> <span class="s2">&quot;WM_PROTOCOLS&quot;</span>
-</span><span class="line">          <span class="ow">and</span><span class="o">*</span> <span class="n">wm_delete_window</span> <span class="o">=</span> <span class="nn">X11</span><span class="p">.</span><span class="nn">Atom</span><span class="p">.</span><span class="n">intern</span> <span class="n">x11</span> <span class="s2">&quot;WM_DELETE_WINDOW&quot;</span> <span class="k">in</span>
+</span><span class="line">          <span class="k">let</span><span class="o">*</span> <span class="n">wm_protocols</span> <span class="o">=</span> <span class="nn">X11</span><span class="p">.</span><span class="nn">Atom</span><span class="p">.</span><span class="n">intern</span> <span class="n">x11</span> <span class="s2">"WM_PROTOCOLS"</span>
+</span><span class="line">          <span class="ow">and</span><span class="o">*</span> <span class="n">wm_delete_window</span> <span class="o">=</span> <span class="nn">X11</span><span class="p">.</span><span class="nn">Atom</span><span class="p">.</span><span class="n">intern</span> <span class="n">x11</span> <span class="s2">"WM_DELETE_WINDOW"</span> <span class="k">in</span>
 </span><span class="line">          <span class="k">let</span><span class="o">*</span> <span class="n">protocols</span> <span class="o">=</span> <span class="nn">X11</span><span class="p">.</span><span class="nn">Property</span><span class="p">.</span><span class="n">get_atoms</span> <span class="n">x11</span> <span class="n">window</span> <span class="n">wm_protocols</span> <span class="k">in</span>
 </span><span class="line">          <span class="k">if</span> <span class="nn">List</span><span class="p">.</span><span class="n">mem</span> <span class="n">wm_delete_window</span> <span class="n">protocols</span> <span class="k">then</span> <span class="o">(</span>
 </span><span class="line">            <span class="k">let</span> <span class="n">data</span> <span class="o">=</span> <span class="nn">Cstruct</span><span class="p">.</span><span class="n">create</span> <span class="mi">8</span> <span class="k">in</span>
@@ -537,7 +537,7 @@ As cursors have two colours and a mask, each cursor is two glyphs: even numbered
 <span class="line-number">9</span>
 <span class="line-number">10</span>
 </pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="c">(* Load the default cursor image *)</span>
-</span><span class="line"><span class="k">let</span><span class="o">*</span> <span class="n">cursor_font</span> <span class="o">=</span> <span class="nn">X11</span><span class="p">.</span><span class="nn">Font</span><span class="p">.</span><span class="n">open_font</span> <span class="n">x11</span> <span class="s2">&quot;cursor&quot;</span> <span class="k">in</span>
+</span><span class="line"><span class="k">let</span><span class="o">*</span> <span class="n">cursor_font</span> <span class="o">=</span> <span class="nn">X11</span><span class="p">.</span><span class="nn">Font</span><span class="p">.</span><span class="n">open_font</span> <span class="n">x11</span> <span class="s2">"cursor"</span> <span class="k">in</span>
 </span><span class="line"><span class="k">let</span><span class="o">*</span> <span class="n">default_cursor</span> <span class="o">=</span> <span class="nn">X11</span><span class="p">.</span><span class="nn">Font</span><span class="p">.</span><span class="n">create_glyph_cursor</span> <span class="n">x11</span>
 </span><span class="line">    <span class="o">~</span><span class="n">source_font</span><span class="o">:</span><span class="n">cursor_font</span> <span class="o">~</span><span class="n">mask_font</span><span class="o">:</span><span class="n">cursor_font</span>
 </span><span class="line">    <span class="o">~</span><span class="n">source_char</span><span class="o">:</span><span class="mi">68</span> <span class="o">~</span><span class="n">mask_char</span><span class="o">:</span><span class="mi">69</span>
@@ -570,13 +570,13 @@ I have so far found no less than four separate Wayland protocols for copying tex
 </li>
 <li><code>wl_data_device_manager</code> supports clipboard transfers but not the primary selection.
 </li>
-<li><code>zwlr_data_control_manager_v1</code> supports both, but it's for a &quot;privileged client&quot; to be a clipboard manager.
+<li><code>zwlr_data_control_manager_v1</code> supports both, but it's for a "privileged client" to be a clipboard manager.
 </li>
 </ol>
 <p><code>gtk_primary_selection</code> and <code>wl_data_device_manager</code> both say they're stable, while the other two are unstable.
 However, Sway dropped support for <code>gtk_primary_selection</code> a while ago, breaking many applications
 (luckily, I had a handy Wayland proxy and was able to add some adaptor code
-to route <code>gtk_primary_selection</code> messages to the new &quot;unstable&quot; protocol).</p>
+to route <code>gtk_primary_selection</code> messages to the new "unstable" protocol).</p>
 <p>For this project, I went with <code>wp_primary_selection_unstable_v1</code> and <code>wl_data_device_manager</code>.
 On the Wayland side, everything has to be written twice for the two protocols, which are almost-but-not-quite the same.
 In particular, <code>wl_data_device_manager</code> also has a load of drag-and-drop stuff you need to ignore.</p>
@@ -733,14 +733,14 @@ which might be handy if I ever get some time to try that.
 It also avoids having many thousands of lines of legacy C code in the highly-trusted compositor code.</p>
 <p>If Wayland had an official protocol for letting applications know the window layout then I could make drag-and-drop between X11 applications within the same VM work, but it still wouldn't work between VMs or to Wayland applications, so it's probably not worth it.</p>
 <p>Having two separate connections to Xwayland creates a lot of unnecessary race conditions.
-A simple solution might be a Wayland extension that allows the Wayland server to say &quot;please read N bytes from the X11 socket now&quot;,
+A simple solution might be a Wayland extension that allows the Wayland server to say "please read N bytes from the X11 socket now",
 and likewise in the other direction.
 Then messages would always arrive in the order in which they were sent.</p>
 <p>The code is all available at <a href="https://github.com/talex5/wayland-proxy-virtwl">https://github.com/talex5/wayland-proxy-virtwl</a> if you want to try it.
 It works with the applications I use when running under Sway,
 but will probably require some tweaking for other programs or compositors.
 Here's a screenshot of my desktop using it:</p>
-<p><a href="https://roscidus.com/blog/images/xwayland/desktop.png"><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/xwayland/desktop.png" title="Screenshot of my desktop" class="caption"/><span class="caption-text">Screenshot of my desktop</span></span></a></p>
+<p><a href="https://roscidus.com/blog/images/xwayland/desktop.png"><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/xwayland/desktop.png" title="Screenshot of my desktop" class="caption"><span class="caption-text">Screenshot of my desktop</span></span></a></p>
 <p>The windows with <code>[dev]</code> in the title are from my Debian VM, while <code>[com]</code> is a SpectrumOS VM I use for email, etc.
 Gitk, GVim and ROX-Filer are X11 applications using Xwayland,
 while Firefox and xfce4-terminal are using plain Wayland proxying.</p>

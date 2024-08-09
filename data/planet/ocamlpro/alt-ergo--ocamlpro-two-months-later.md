@@ -5,8 +5,8 @@ description: As announced in a previous post, I joined OCamlPro at the beginning
   and the work we have done during the two last months. Alt-Ergo at a Glance Alt-Ergo
   is an open source automatic theorem prover based on SMT technol...
 url: https://ocamlpro.com/blog/2013_10_02_alt_ergo_ocamlpro_two_months_later
-date: 2013-10-02T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2013-10-02T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Mohamed Iguernlala\n  "
 source:
@@ -29,8 +29,8 @@ source:
 </li>
 </ul>
 <p>Moreover, Alt-Ergo is used in the context of cryptographic protocols verification by <a href="https://www.easycrypt.info">EasyCrypt</a> and in SMT-based model checking by <a href="https://cubicle.lri.fr">Cubicle</a>.</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/graph_ae_spider.png" alt="ae-spider"/></p>
-<h3>Some &quot;Hello World&quot; Examples</h3>
+<p><img src="https://ocamlpro.com/blog/assets/img/graph_ae_spider.png" alt="ae-spider"></p>
+<h3>Some "Hello World" Examples</h3>
 <p>Below are some basic formulas written in the why input syntax. Each example is proved valid by Alt-Ergo. The first formulas is very simple and is proved with a straightforward arithmetic reasoning. <code>goal g2</code> requires reasoning in the combination of functional arrays and linear arithmetic, etc. The last example contains a quantified sub-formula with a polymorphic variable <code>x</code>. Generating four ground instances of this axiom where <code>x</code> is replaced by <code>1</code>, <code>true</code>, <code>1.4</code> and <code>a</code> respectively is necessary to prove <code>goal g5</code>.</p>
 <p>** Simple arithmetic operation **</p>
 <pre><code class="language-ocaml">goal g1 : 1 + 2 = 3
@@ -54,11 +54,11 @@ goal g5 : P(1) and P(true) and P(1.4) and P(a)
 </code></pre>
 <p>** formula with quantifiers and polymorphism **</p>
 <pre><code class="language-shell-session">$$ alt-ergo examples.why
-File &quot;examples.why&quot;, line 2, characters 1-21:Valid (0.0120) (0)
-File &quot;examples.why&quot;, line 6, characters 1-53:Valid (0.0000) (1)
-File &quot;examples.why&quot;, line 10, characters 1-81:Valid (0.0000) (3)
-File &quot;examples.why&quot;, line 15, characters 1-59:Valid (0.0000) (6)
-File &quot;examples.why&quot;, line 19, characters 1-47:Valid (0.0000) (10)
+File "examples.why", line 2, characters 1-21:Valid (0.0120) (0)
+File "examples.why", line 6, characters 1-53:Valid (0.0000) (1)
+File "examples.why", line 10, characters 1-81:Valid (0.0000) (3)
+File "examples.why", line 15, characters 1-59:Valid (0.0000) (6)
+File "examples.why", line 19, characters 1-47:Valid (0.0000) (10)
 </code></pre>
 <h3>Alt-Ergo @ OCamlPro</h3>
 <p>On September 20, we officially announced the distribution and the support of Alt-Ergo by OCamlPro and launched its <a href="https://alt-ergo.ocamlpro.com">new website</a>. This site allows to download public releases of the prover and to discover available support offerings. It'll be enriched with additional content progressively. The former Alt-Ergo's web page hosted by LRI is now devoted to theoretical foundations and academic aspects of the solver.</p>
@@ -82,13 +82,13 @@ File &quot;examples.why&quot;, line 19, characters 1-47:Valid (0.0000) (10)
 <thead>
 <tr>
 <td></td>
-<th>Alt-Ergo<br/>
+<th>Alt-Ergo<br>
 version 0.95.1</th>
-<th>Alt-Ergo<br/>
+<th>Alt-Ergo<br>
 version 0.95.2</th>
-<th>Alt-Ergo<br/>
+<th>Alt-Ergo<br>
 master branch*</th>
-<th>Ctrl-Alt-Ergo<br/>
+<th>Ctrl-Alt-Ergo<br>
 master branch*</th>
 </tr>
 </thead>
@@ -97,40 +97,40 @@ master branch*</th>
 <th>Release date</th>
 <td>Mar. 05, 2013</td>
 <td>Sep. 20, 2013</td>
-<td>&ndash; &ndash; &ndash;</td>
-<td>&ndash; &ndash; &ndash;</td>
+<td>– – –</td>
+<td>– – –</td>
 </tr>
 <tr>
 <th>Why3 benchmark</th>
-<td>2270<br/>
+<td>2270<br>
 (91.90 %)</td>
-<td>2288<br/>
+<td>2288<br>
 (92.63 %)</td>
-<td>2308<br/>
+<td>2308<br>
 (93.44 %)</td>
-<td>2363<br/>
+<td>2363<br>
 (95.67 %)</td>
 </tr>
 <tr>
 <th>SPARK benchmark</th>
-<td>2351<br/>
+<td>2351<br>
 (74.23 %)</td>
-<td>2360<br/>
+<td>2360<br>
 (74.52 %)</td>
-<td>2373<br/>
+<td>2373<br>
 (74.93 %)</td>
-<td>2404<br/>
+<td>2404<br>
 (75.91 %)</td>
 </tr>
 <tr>
 <th>BWare benchmark</th>
-<td>5609<br/>
+<td>5609<br>
 (53.05 %)</td>
-<td>9437<br/>
+<td>9437<br>
 (89.26 %)</td>
-<td>10072<br/>
+<td>10072<br>
 (95.27 %)</td>
-<td>10373<br/>
+<td>10373<br>
 (98.12 %)</td>
 </tr>
 </tbody>

@@ -9,7 +9,7 @@ authors:
 source:
 ---
 
-<p>I gave a talk &ldquo;Variations on Weihrauch degrees&rdquo; at <a href="https://www.viam.science.tsu.ge/cie2023/">Computability in Europe
+<p>I gave a talk “Variations on Weihrauch degrees” at <a href="https://www.viam.science.tsu.ge/cie2023/">Computability in Europe
 2023</a>, which took place in Tbilisi, Georgia. The talk was a remote one,
 unfortunately. I spoke about generalizations of Weihrauch degrees, a largely unexplored territory that seems to offer
 many opportunities to explore new directions of research. I am unlikely to pursue them myself, but will gladly talk with

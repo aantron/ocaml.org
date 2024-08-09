@@ -12,7 +12,7 @@ source:
 ---
 
 <p>Jane Street is excited to announce our sponsorship of
-<a href="https://some.3b1b.co/">SoME3</a>, Grant Sanderson and James Schloss&rsquo;s
+<a href="https://some.3b1b.co/">SoME3</a>, Grant Sanderson and James Schloss’s
 third Summer of Math Exposition. SoME is a contest that Grant and
 James created to encourage the development of fun and interesting
 mathematics education videos.</p>

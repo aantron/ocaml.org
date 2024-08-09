@@ -17,7 +17,7 @@ Coq 8.7 includes:
 
 <ul>
   <li>A large amount of work on cleaning and speeding up the code base, notably
-    the work of Pierre-Marie P&eacute;drot on making the tactic-level system
+    the work of Pierre-Marie Pédrot on making the tactic-level system
     insensitive to existential variable expansion, providing a safer API to
     plugin writers and making the code more robust.</li>
   <li>New tactics:
@@ -35,13 +35,13 @@ Coq 8.7 includes:
     Matthieu Sozeau.</li>
   <li>The SSReflect plugin by Georges Gonthier, Assia Mahboubi and Enrico Tassi
     was integrated (with its documentation in the reference manual) by Maxime
-    D&eacute;n&egrave;s, Assia Mahboubi and Enrico Tassi.</li>
+    Dénès, Assia Mahboubi and Enrico Tassi.</li>
   <li>The <tt>coq_makefile</tt> tool was completely redesigned to improve its
     maintainability and the extensibility of generated Makefiles, and to make
     <tt>_CoqProject</tt> files more palatable to IDEs by Enrico Tassi.</li>
 </ul>
 
-<p>More information can be found in the <a href="https://coq.inria.fr/distrib/V8.7+beta1/CHANGES">CHANGES</a> file. Feedback and
+<p>More information can be found in the <a href="https://coq-distrib.s3-website.fr-par.scw.cloud/V8.7+beta1/CHANGES">CHANGES</a> file. Feedback and
 <a href="https://coq.inria.fr/bugs">bug reports</a> are extremely welcome.</p>
 
 <p>This is the second release of Coq developed on a time-based development

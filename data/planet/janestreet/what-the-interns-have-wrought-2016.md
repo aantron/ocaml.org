@@ -11,9 +11,9 @@ authors:
 source:
 ---
 
-<p>Now that the interns have mostly gone back to school, it&rsquo;s a good time to look
-back at what they did while they were here. We had a bumper crop &ndash; more than 30
-dev interns between our London, New York and Hong Kong offices &ndash; and they
+<p>Now that the interns have mostly gone back to school, it’s a good time to look
+back at what they did while they were here. We had a bumper crop – more than 30
+dev interns between our London, New York and Hong Kong offices – and they
 worked on just about every corner of our code-base.</p>
 
 

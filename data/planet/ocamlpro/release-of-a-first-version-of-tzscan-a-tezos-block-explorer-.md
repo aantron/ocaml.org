@@ -8,14 +8,14 @@ description: 'OCamlPro is proud to release a first version of TzScan, its Tezos 
 
   Blocks, operations, accoun...'
 url: https://ocamlpro.com/blog/2018_02_14_release_of_a_first_version_of_tzscan_io_a_tezos_block_explorer
-date: 2018-02-14T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2018-02-14T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    \xC7agdas Bozman\t\n  "
 source:
 ---
 
-<p><img src="https://ocamlpro.com/blog/assets/img/logo_tzscan_tezos_b_e.png" alt=""/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/logo_tzscan_tezos_b_e.png" alt=""></p>
 <p>OCamlPro is proud to release a first version of <a href="https://tzscan.io/">TzScan</a>, its Tezos
 block explorer to ease the use of the Tezos network.</p>
 <p>What TzScan can do for you :</p>

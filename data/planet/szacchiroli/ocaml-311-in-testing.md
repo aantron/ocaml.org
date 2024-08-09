@@ -12,8 +12,8 @@ source:
 <h1>OCaml 3.11 has migrated to testing</h1>
 <p><a href="http://lists.debian.org/debian-ocaml-maint/2009/04/msg00029.html">Quoting</a>
 from <a href="http://chistera.yi.org/~adeodato/blog/planetd.html">Dato</a>:</p>
-<pre><code>* St&eacute;phane Glondu [Sat, 04 Apr 2009 14:01:35 +0200]:
-&gt; Adeodato Sim&oacute; a &eacute;crit :
+<pre><code>* Stéphane Glondu [Sat, 04 Apr 2009 14:01:35 +0200]:
+&gt; Adeodato Simó a écrit :
 &gt; &gt;&gt; Please schedule the attached requests for the OCaml 3.11.0 transition.
 &gt; &gt; Scheduled, with the glitches noted below. Please get back to us with the
 &gt; &gt; needed wanna-build actions.
@@ -27,7 +27,7 @@ ocaml  | 3.11.0-5 | testing
 ocaml  | 3.11.0-5 | unstable
 
 Congratulations for making of this transition one of the less painful
-I&rsquo;ve ever had to deal with, though I guess being a quite self-contained
+I’ve ever had to deal with, though I guess being a quite self-contained
 set of packages and not having ties to other ongoing
 transitions really
 helped. ;-)

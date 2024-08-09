@@ -23,7 +23,7 @@ interesting but the compiler has to infer the type of every subexpression):</p>
 <p>Because the compiler does so much work, it is reasonable to wonder whether it is
 efficient. The theoretical answer to this question is that type inference is
 EXP-complete, but given reasonable constraints on the program, it can be done in
-quasi-linear time (<span class="math inline"><em>n</em>&nbsp;log&#8198;&nbsp;<em>n</em></span> where <span class="math inline"><em>n</em></span> is the size of the program).</p>
+quasi-linear time (<span class="math inline"><em>n</em>&nbsp;log &nbsp;<em>n</em></span> where <span class="math inline"><em>n</em></span> is the size of the program).</p>
 <p>Still, one may wonder what kind of pathological cases show this exponential
 effect. Here is one such example:</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span><a href="http://blog.emillon.org/feeds/ocaml.xml#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> p x y = <span class="kw">fun</span> z -&gt; z x y ;;</span>
@@ -56,7 +56,7 @@ val r :
     'd) -&gt;
    'e) -&gt;
   'e</code></pre>
-<p>But what&rsquo;s interesting about this program is that we can add (or remove) lines
+<p>But what’s interesting about this program is that we can add (or remove) lines
 to study how input size can alter the processing time and output type size. It
 explodes:</p>
 <table>
@@ -108,4 +108,4 @@ programmers annotate the top-level declarations with their types. In that case,
 the size of the types would be merely proportional to the size of the program,
 because the type annotation would be gigantic.</p>
 <p>Also, programmers tend to write functions that do something useful, which these
-do not seem to do &#9786;.</p>
+do not seem to do ☺.</p>

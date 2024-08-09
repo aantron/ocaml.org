@@ -39,7 +39,7 @@ is available</p>
 
 <p>Ocsigen Start provides the basic features for user management
 (registration, activation links, password recovery, etc.), and some
-useful libraries.  Remove the parts you don&rsquo;t need for your own app.</p>
+useful libraries.  Remove the parts you don’t need for your own app.</p>
 
 <p>Ocsigen Start also contains many examples of code: remote procedure
 calls, push notifications from the server, reactive pages, database
@@ -47,7 +47,7 @@ interaction, session data, internationalization, and some widgets from
 Ocsigen Toolkit.</p>
 
 <p>Ocsigen Toolkit contains common widgets for mobile and Web apps,
-written natively in OCaml and specifically designed for Eliom&rsquo;s
+written natively in OCaml and specifically designed for Eliom’s
 multi-tier and multi-platform programming style.  You can also use
 them in client-only Js_of_ocaml programs.  Many new widgets will be
 added in future versions.</p>

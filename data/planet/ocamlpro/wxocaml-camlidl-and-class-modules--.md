@@ -5,8 +5,8 @@ description: "Last week, I was bored doing some paperwork, so I decided to hack 
   time ago, at OCamlPro, we had discussed the fact that OCaml was lacking more GUI
   frameworks. Lablgtk is powerful, but I don\u2019t like it (and I expect ..."
 url: https://ocamlpro.com/blog/2013_04_02_wxocaml_camlidl_and_class_modules
-date: 2013-04-02T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2013-04-02T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    \xC7agdas Bozman\n  "
 source:
@@ -14,9 +14,9 @@ source:
 
 <p>Last week, I was bored doing some paperwork, so I decided to hack a little to relieve my mind...</p>
 <h2>Looking for a GUI Framework for OCaml Beginners</h2>
-<p>Some time ago, at OCamlPro, we had discussed the fact that OCaml was lacking more GUI frameworks. Lablgtk is powerful, but I don&rsquo;t like it (and I expect that some other people in the OCaml community share my opinion) for several reasons:</p>
+<p>Some time ago, at OCamlPro, we had discussed the fact that OCaml was lacking more GUI frameworks. Lablgtk is powerful, but I don’t like it (and I expect that some other people in the OCaml community share my opinion) for several reasons:</p>
 <ul>
-<li>LablGTK makes an extensive use of objects, labels and polymorphic variants. Although using these advanced features of OCaml can help expert OCaml developers, it makes LablGTK hard to use for beginners&hellip; and a good reason to have better GUIs is actually to attract beginners!
+<li>LablGTK makes an extensive use of objects, labels and polymorphic variants. Although using these advanced features of OCaml can help expert OCaml developers, it makes LablGTK hard to use for beginners… and a good reason to have better GUIs is actually to attract beginners!
 </li>
 <li>GTK does not look native under Windows and Mac OS X, giving an outdated feeling about interfaces written with it.
 </li>
@@ -29,14 +29,14 @@ source:
     return self-&gt;Close(_force);
 }
 </code></pre>
-<p>From what I understood, they stopped maintaining this library, so the wxHaskell developers took the code and maintained it for wxHaskell. In wxHaskell, a few include files describe all these C functions. Then, they use a program &lsquo;wxc&rsquo; that generates Haskell stubs for all these functions, in a class hierarchy.</p>
+<p>From what I understood, they stopped maintaining this library, so the wxHaskell developers took the code and maintained it for wxHaskell. In wxHaskell, a few include files describe all these C functions. Then, they use a program ‘wxc’ that generates Haskell stubs for all these functions, in a class hierarchy.</p>
 <p>In the first version of wxCaml, <a href="http://forge.ocamlcore.org/projects/camlidl/">camlidl</a> was used to generate OCaml stubs from these header files. The header files had to be modified a little, for two reasons:</p>
 <ul>
 <li>They are actually not correct: some parts of these header files have not been updated to match the evolution of wxWidgets API. Some of the classes for which they describe stubs does not exist anymore. The tool used by wxHaskell filters out these classes, because their names are hardcoded in its code, but camlidl cannot.
 </li>
 <li>camlidl needs to know more information than just what is written in C header files. It needs some attributes on types and arguments, like the fact that a char pointer is actually a string, or that a pointer argument to a function is used to return a value. See <a href="https://github.com/OCamlPro/wxOCaml/blob/master/idl/wxc_types.idl">wxc_types.idl</a> for macros to automate parts of this step.
 </li>
-<li>camlidl was not used a lot, and not maintained for a long time, so there are some bugs in it. For example, the names of the arguments given in IDL header files can conflict with variables generated in C by camlidl (such as &ldquo;_res&rdquo;) or with types of the caml C API (such as &ldquo;value&rdquo;).
+<li>camlidl was not used a lot, and not maintained for a long time, so there are some bugs in it. For example, the names of the arguments given in IDL header files can conflict with variables generated in C by camlidl (such as “_res”) or with types of the caml C API (such as “value”).
 </li>
 </ul>
 <p>Since the version of wxCaml I downloaded used outdated versions of wxWidgets (wxWindows 2.4.2 when current version is wxWidgets 2.9) and wxHaskell (0.7 when current version is 0.11), I decided to upgrade wxCaml to the current versions. I copied the ELJ library and the header files from the GitHub repository of wxHaskell. Unfortunately, the corresponding wxWidgets version is 2.9.4, which is not yet officially distributed by mainstream Linux distributions, so I had to compile it also.</p>
@@ -50,27 +50,27 @@ source:
 <h2>wxCamlidl, modifying camlidl for wxOCaml</h2>
 <p>So, I decided to write a new typed interface, where each class would be translated into an abstract type, a module containing its methods as functions, and a few cast functions, from children to ancestors.</p>
 <p>I wrote just what was needed to make two simple examples work (<a href="https://github.com/OCamlPro/wxOCaml/blob/master/examples/hello_world/hello.ml">hello_world</a> and <a href="https://github.com/OCamlPro/wxOCaml/blob/master/examples/two_panels/two_panels.ml">two_panels</a>, from wxWidgets tutorials), I was happy with the result:</p>
-<p><a href="https://github.com/OCamlPro/wxOCaml/blob/master/examples/hello_world/hello.ml"><img src="http://ocamlpro.com//files/wxOCaml-screenshot-hello.png" alt="wxOCaml-screenshot-hello.png"/></a></p>
-<p><a href="https://github.com/OCamlPro/wxOCaml/blob/master/examples/two_panels/two_panels.ml"><img src="http://ocamlpro.com//files/wxOCaml-screenshot-panels.png" alt="wxOCaml-screenshot-panels.png"/></a></p>
+<p><a href="https://github.com/OCamlPro/wxOCaml/blob/master/examples/hello_world/hello.ml"><img src="http://ocamlpro.com//files/wxOCaml-screenshot-hello.png" alt="wxOCaml-screenshot-hello.png"></a></p>
+<p><a href="https://github.com/OCamlPro/wxOCaml/blob/master/examples/two_panels/two_panels.ml"><img src="http://ocamlpro.com//files/wxOCaml-screenshot-panels.png" alt="wxOCaml-screenshot-panels.png"></a></p>
 <p>But writting by hand the complete interface for all classes and methods would not be possible, so I decided it was time to write a tool for that task.</p>
-<p>My first attempt at automating the generation of the typed interface failed because the basic tool I wrote didn&rsquo;t have enough information to correctly do the task: sometimes, methods would be inherited by a class from an ancestor, without noticing that the descendant had its own implementation of the method. Moreover, I didn&rsquo;t like the fact that camlidl would write all the stubs into a single file, and my tool into another file, making any small wxOCaml application links itself with these two huge modules and the complete ELJ library, even if it would use only a few of its classes.</p>
+<p>My first attempt at automating the generation of the typed interface failed because the basic tool I wrote didn’t have enough information to correctly do the task: sometimes, methods would be inherited by a class from an ancestor, without noticing that the descendant had its own implementation of the method. Moreover, I didn’t like the fact that camlidl would write all the stubs into a single file, and my tool into another file, making any small wxOCaml application links itself with these two huge modules and the complete ELJ library, even if it would use only a few of its classes.</p>
 <p>As a consequence, I decided that the best spot to generate a modular and typed interface would be camlidl itself. I got a copy of its sources, and created a <a href="https://github.com/OCamlPro/wxOCaml/blob/master/wxCamlidl/wxmore.ml">new module in it</a>, using the symbolic IDL representation to generate the typed version, instead of the untyped version. The module would compute the hierarchy of classes, to be able to propagate statically methods from ancestors to children, and to generate cast functions from children to ancestors.</p>
 <p>A first generated module, called <a href="https://github.com/OCamlPro/wxOCaml/blob/master/wxWidgets/wxClasses.mli">WxClasses</a> defines all the wxWidgets classes as abstract types:</p>
 <pre><code class="language-ocaml">type eLJDragDataObject  
 and eLJMessageParameters  
-&hellip;  
+…  
 and wxDocument  
 and wxFrameLayout  
 and wxMenu  
 and wxMenuBar  
 and wxProcess  
-and &hellip;  
+and …  
 </code></pre>
-<p>Types started by &ldquo;eLJ&hellip;&rdquo; are classes defined in the ELJ library for wxWidgets classes where methods have to be defined to override basic behaviors.</p>
+<p>Types started by “eLJ…” are classes defined in the ELJ library for wxWidgets classes where methods have to be defined to override basic behaviors.</p>
 <h2>Classes as modules</h2>
 <p>For each wxWidget class, a specific module is created with:</p>
 <ul>
-<li>the constructor function, usually called &ldquo;wxnew&rdquo;
+<li>the constructor function, usually called “wxnew”
 </li>
 <li>the methods of the class, and the methods of the ancestors
 </li>
@@ -83,23 +83,23 @@ and &hellip;
 external wxnew : (* constructor *)  
 wxWindow -&gt; int -&gt; wxString -&gt; int -&gt; int -&gt; int -&gt; int -&gt; int  
 -&gt; wxFrame  
-= &ldquo;camlidl_wxc_idl_wxFrame_Create_bytecode&rdquo;  
-&hellip; (* direct methods *)  
+= “camlidl_wxc_idl_wxFrame_Create_bytecode”  
+… (* direct methods *)  
 external setToolBar : wxFrame -&gt; wxToolBar -&gt; unit  
-= &ldquo;camlidl_wxc_idl_wxFrame_SetToolBar&rdquo;  
-&hellip; (* inherited methods *)  
+= “camlidl_wxc_idl_wxFrame_SetToolBar”  
+… (* inherited methods *)  
 external setToolTip : wxFrame -&gt; wxString -&gt; unit  
-= &ldquo;camlidl_wxc_idl_wxWindow_SetToolTip&rdquo;  
-&hellip;  
+= “camlidl_wxc_idl_wxWindow_SetToolTip”  
+…  
 (* string wrappers *)  
 val wxnew : wxWindow -&gt; int -&gt; string -&gt; int -&gt; int -&gt; int -&gt; int -&gt; int -&gt; wxFr  
 ame  
 val setToolTip : wxFrame -&gt; string -&gt; unit  
-&hellip;  
+…  
 val ptrNULL : wxFrame (* a NULL pointer *)  
-&hellip;  
-external wxWindow : wxFrame -&gt; wxWindow = &ldquo;%identity&rdquo; (* cast function *)  
-&hellip;  
+…  
+external wxWindow : wxFrame -&gt; wxWindow = “%identity” (* cast function *)  
+…  
 </code></pre>
 <p>In this example, we can see that:</p>
 <ul>
@@ -107,26 +107,26 @@ external wxWindow : wxFrame -&gt; wxWindow = &ldquo;%identity&rdquo; (* cast fun
 </li>
 <li>Stubs are then created for direct methods, i.e. functions corresponding to new methods of the class wxFrame. String wrappers are also produced if necessary.
 </li>
-<li>Stubs are also created for inherited methods. Here, &ldquo;setToolTip&rdquo; is a method of the class wxWindow (thus, its stub name wxWindow_SetToolTip). Normally, this function is in the WxWindow module, and takes a wxWindow as first argument. But to avoid the need for a cast from wxFrame to wxWindow to use it, we define it again here, allowing a wxFrame directly as first argument.
+<li>Stubs are also created for inherited methods. Here, “setToolTip” is a method of the class wxWindow (thus, its stub name wxWindow_SetToolTip). Normally, this function is in the WxWindow module, and takes a wxWindow as first argument. But to avoid the need for a cast from wxFrame to wxWindow to use it, we define it again here, allowing a wxFrame directly as first argument.
 </li>
 <li>The module also defines a ptrNULL value that can be used wherever a NULL pointer is expected instead of an object of the class.
 </li>
-<li>Finally, functions like &ldquo;wxWindow&rdquo; are cast functions from children to ancestor, allowing to use a value of type wxFrame wherever a value of type wxWindow is expected.
+<li>Finally, functions like “wxWindow” are cast functions from children to ancestor, allowing to use a value of type wxFrame wherever a value of type wxWindow is expected.
 </li>
 </ul>
 <p>All functions that could not be put in such files are gathered in a module <a href="https://github.com/OCamlPro/wxOCaml/blob/master/wxWidgets/wxMisc.mli">WxMisc</a>. Finally, the tool also generates a module <a href="https://github.com/OCamlPro/wxOCaml/blob/master/wxWidgets/wxWidgets.mli">WxWidgets</a> containing a copy of all constructors with simpler names:</p>
-<pre><code class="language-ocaml">&hellip;  
+<pre><code class="language-ocaml">…  
 val wxFrame : wxWindow -&gt; int -&gt; string -&gt; int -&gt; int -&gt; int -&gt; int -&gt; int -&gt; wxFrame  
 val wxFontMapper : unit -&gt; wxFontMapper  
-&hellip;  
+…  
 </code></pre>
 <p>and functions to ignore the results of functions:</p>
-<pre><code class="language-ocaml">&hellip;  
-external ignore_wxFontMapper : wxFontMapper -&gt; unit = &ldquo;%ignore&rdquo;  
-external ignore_wxFrame : wxFrame -&gt; unit = &ldquo;%ignore&rdquo;  
-&hellip;  
+<pre><code class="language-ocaml">…  
+external ignore_wxFontMapper : wxFontMapper -&gt; unit = “%ignore”  
+external ignore_wxFrame : wxFrame -&gt; unit = “%ignore”  
+…  
 </code></pre>
-<p>We expect wxOCaml applications to just start with &ldquo;open WxWidgets&rdquo; to get access to these constructors, to use functions prefixed by the class module names, and to use constants from the <a href="https://github.com/OCamlPro/wxOCaml/blob/master/wxWidgets/wxdefs.ml">Wxdefs module</a>.</p>
+<p>We expect wxOCaml applications to just start with “open WxWidgets” to get access to these constructors, to use functions prefixed by the class module names, and to use constants from the <a href="https://github.com/OCamlPro/wxOCaml/blob/master/wxWidgets/wxdefs.ml">Wxdefs module</a>.</p>
 <p>Here is how the minimal application looks like:</p>
 <pre><code class="language-ocaml">open WxWidgets  
 let _ =  
@@ -136,19 +136,19 @@ let quit_id = wxID() in
 let about_id = wxID() in
 
 (* Create toplevel frame *)  
-let frame = wxFrame WxWindow.ptrNULL frame_id &ldquo;Hello World&rdquo;  
+let frame = wxFrame WxWindow.ptrNULL frame_id “Hello World”  
 50 50 450 350 Wxdefs.wxDEFAULT_FRAME_STYLE in  
-WxFrame.setStatusText frame &ldquo;Welcome to wxWidgets!&rdquo; 0;
+WxFrame.setStatusText frame “Welcome to wxWidgets!” 0;
 
 (* Create a menu *)  
-let menuFile = wxMenu &ldquo;&rdquo; 0 in  
-WxMenu.append menuFile about_id &ldquo;About&rdquo; &ldquo;About the application&rdquo; false;  
+let menuFile = wxMenu “” 0 in  
+WxMenu.append menuFile about_id “About” “About the application” false;  
 WxMenu.appendSeparator menuFile;  
-WxMenu.append menuFile quit_id &ldquo;Exit&rdquo; &ldquo;Exit from the application&rdquo; false;
+WxMenu.append menuFile quit_id “Exit” “Exit from the application” false;
 
 (* Add the menu to the frame menubar *)  
 let menuBar = wxMenuBar 0 in  
-ignore_int (WxMenuBar.append menuBar menuFile &ldquo;&amp;File&rdquo;);  
+ignore_int (WxMenuBar.append menuBar menuFile “&amp;File”);  
 WxFrame.setMenuBar frame menuBar;  
 ignore_wxStatusBar (WxFrame.createStatusBar frame 1 0);
 
@@ -160,8 +160,8 @@ WxFrame.connect frame quit_id Wxdefs.wxEVT_COMMAND_MENU_SELECTED
 WxFrame.connect frame about_id Wxdefs.wxEVT_COMMAND_MENU_SELECTED  
 (fun _ -&gt;  
 ignore_int (  
-WxMisc.wxcMessageBox &ldquo;wxWidgets Hello World example.&rdquo;  
-&ldquo;About Hello World&rdquo;  
+WxMisc.wxcMessageBox “wxWidgets Hello World example.”  
+“About Hello World”  
 (Wxdefs.wxOK lor Wxdefs.wxICON_INFORMATION)  
 (WxFrame.wxWindow frame)  
 Wxdefs.wxDefaultCoord  

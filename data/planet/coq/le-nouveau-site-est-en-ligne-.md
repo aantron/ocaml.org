@@ -10,7 +10,7 @@ source:
 ---
 
 
-<p>Apr&egrave;s des mois douloureux de gestation, le nouveau site de Coq est
+<p>Après des mois douloureux de gestation, le nouveau site de Coq est
   enfin en ligne. Enjoy it !</p>
 
  

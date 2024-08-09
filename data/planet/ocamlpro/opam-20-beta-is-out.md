@@ -5,8 +5,8 @@ description: 'UPDATE (2017-02-14): A beta2 is online, which fixes issues and per
   and replace the previous binary. We are pleased to announce that the beta release
   of opam 2.0 is now live! You can try it already, bootstrap...'
 url: https://ocamlpro.com/blog/2017_02_09_opam_2.0_beta_is_out
-date: 2017-02-09T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2017-02-09T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:
@@ -69,7 +69,7 @@ your build fails after you updated an existing git clone, try to clean it up
 <p>Some users have been using the alpha for the past months without problems, but
 you may want to keep your opam 1.2 installation intact until the release is out.
 An easy way to do this is with an alias:</p>
-<pre><code class="language-shell-session">alias opam2=&quot;OPAMROOT=~/.opam2 path/to/opam-2-binary&quot;
+<pre><code class="language-shell-session">alias opam2="OPAMROOT=~/.opam2 path/to/opam-2-binary"
 </code></pre>
 <h2>Changes to be aware of</h2>
 <h3>Command-line interface</h3>
@@ -147,8 +147,8 @@ instructions, using the <code>{test}</code> and <code>{doc}</code> filters. The 
 <code>build-doc:</code> fields are still supported.
 </li>
 <li>It is now possible to use opam variables within dependencies, for example
-<code>depends: [ &quot;foo&quot; {= version} ]</code>, for a dependency to package <code>foo</code> at the
-same version as the package being defined, or <code>depends: [ &quot;bar&quot; {os = &quot;linux&quot;} ]</code> for a dependency that only applies on Linux.
+<code>depends: [ "foo" {= version} ]</code>, for a dependency to package <code>foo</code> at the
+same version as the package being defined, or <code>depends: [ "bar" {os = "linux"} ]</code> for a dependency that only applies on Linux.
 </li>
 <li>The new <code>conflict-class:</code> field allows mutual conflicts among a set of
 packages to be declared. Useful, for example, when there are many concurrent,
@@ -168,7 +168,7 @@ variables;
 </li>
 <li>Custom fields <code>x-foo:</code> can be used for extensions and external tools
 </li>
-<li><code>&quot;&quot;&quot;</code> delimiters allow unescaped strings
+<li><code>"""</code> delimiters allow unescaped strings
 </li>
 <li><code>&amp;</code> has now the customary higher precedence than <code>|</code> in formulas
 </li>
@@ -205,7 +205,7 @@ outside of opam
 <ul>
 <li>The <code>compilers/</code> directory is ignored
 </li>
-<li>A <code>repo</code> file should be present, containing at least the line <code>opam-version: &quot;2.0&quot;</code>
+<li>A <code>repo</code> file should be present, containing at least the line <code>opam-version: "2.0"</code>
 </li>
 <li>The indexes for serving over HTTP have been simplified, and <code>urls.txt</code> is no
 longer needed. See <code>opam admin index --help</code>

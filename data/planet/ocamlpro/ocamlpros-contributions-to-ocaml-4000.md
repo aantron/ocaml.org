@@ -5,8 +5,8 @@ description: OCaml 4.00.0 has been released on July 27, 2012. For the first time
   In this article, I will present our main contributions, mostly funded by Jane Street
   and Lexifi. Binary Annotations for Advanced Development Tools OCa...
 url: https://ocamlpro.com/blog/2012_08_20_ocamlpro_contributions_to_400
-date: 2012-08-20T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2012-08-20T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Fabrice Le Fessant\n  "
 source:
@@ -27,7 +27,7 @@ features, based on the full knowledge of types in the sources. One of
 the first tools to use it is the new version of <code>ocamlspotter</code>, by Jun
 Furuse.</p>
 <p>This new option will probably make the old option <code>-annot</code> obsolete
-(except, maybe, in specific contextes where you don&rsquo;t want to depend
+(except, maybe, in specific contextes where you don’t want to depend
 on the internal representation of the typedtree, for example when you
 are modifying this representation !). Generated files are much smaller
 than with the <code>-annot</code> option, and much faster to write (during
@@ -94,7 +94,7 @@ dynamically allocated in in the following example ?</p>
 let sum_list_offsets orig list = List.fold_left (f orig) 0 list
 let sum = sum_list_offsets 10 [1;2;3]
 </code></pre>
-<p>Most programmers would reply one, <code>f orig</code>, but that&rsquo;s not all
+<p>Most programmers would reply one, <code>f orig</code>, but that’s not all
 (indeed, f and sum_list_offsets are allocated statically, not
 dynamically, as they have no free variables). Actually, three more
 closures are allocated, when <code>List.fold_left</code> is executed on the list,
@@ -128,8 +128,8 @@ f1 x;;
 is executed with multiple arguments.</p>
 <p>In OCaml 4.00.0, we optimized these operators by providing native
 operators, for which no partial closures are generated:</p>
-<pre><code class="language-ocaml">external (|&gt;) : &lsquo;a -&gt; (&lsquo;a -&gt; &lsquo;b) -&gt; &lsquo;b = &quot;%revapply&quot;;;
-external ( @@ ) : (&lsquo;a -&gt; &lsquo;b) -&gt; &lsquo;a -&gt; &lsquo;b = &quot;%apply&quot;
+<pre><code class="language-ocaml">external (|&gt;) : ‘a -&gt; (‘a -&gt; ‘b) -&gt; ‘b = "%revapply";;
+external ( @@ ) : (‘a -&gt; ‘b) -&gt; ‘a -&gt; ‘b = "%apply"
 </code></pre>
 <p>Now, the previous example is equivalent to:</p>
 <pre><code class="language-ocaml">List.map print_int (List.map ( (+) 1 ) [1;2;3])
@@ -137,7 +137,7 @@ external ( @@ ) : (&lsquo;a -&gt; &lsquo;b) -&gt; &lsquo;a -&gt; &lsquo;b = &quo
 <h2>Bug Fixing</h2>
 <p>Of course, a lot of our contributions are not always as visible as the
 previous ones. We also spent a lot of time fixing small bugs. Although
-it doesn&rsquo;t sound very fun, fixing bugs in OCaml is also fun, because
+it doesn’t sound very fun, fixing bugs in OCaml is also fun, because
 bugs are often challenging to understand, and even more challenging to
 remove without introducing new ones !</p>
 

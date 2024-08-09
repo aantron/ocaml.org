@@ -5,15 +5,15 @@ description: In some discussions among OCaml developers around the empty type (P
   telling the compiler that the function should be trivial, and always return a value
   strictly equivalent to its argument.Curious about the feas...
 url: https://ocamlpro.com/blog/2021_07_16_detecting_identity_functions_in_flambda
-date: 2021-07-16T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2021-07-16T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Leo Boitel\n  "
 source:
 ---
 
 <blockquote>
-<p>In some discussions among OCaml developers around the empty type (<a href="https://github.com/ocaml/ocaml/issues/9459">PR#9459</a>), some people mused about the possibility of annotating functions with an attribute telling the compiler that the function should be trivial, and always return a value strictly equivalent to its argument.<br/>Curious about the feasibility of implementing this feature, we advertised an internship with our compiler team aimed at exploring this subject.<br/>We welcomed L&eacute;o Boitel during three months to work on this topic, with Vincent Laviron as mentor, and we're proud to let him show off what he has achieved in this post.</p>
+<p>In some discussions among OCaml developers around the empty type (<a href="https://github.com/ocaml/ocaml/issues/9459">PR#9459</a>), some people mused about the possibility of annotating functions with an attribute telling the compiler that the function should be trivial, and always return a value strictly equivalent to its argument.<br>Curious about the feasibility of implementing this feature, we advertised an internship with our compiler team aimed at exploring this subject.<br>We welcomed Léo Boitel during three months to work on this topic, with Vincent Laviron as mentor, and we're proud to let him show off what he has achieved in this post.</p>
 </blockquote>
 <h3>The problem at hand</h3>
 <p>OCaml's strong typing system is one of its main perks: it allows to write safe code thanks to the abstraction it provides. Most of the basic design mistakes will directly result into a typing error and the user cannot mess up the memory as it is automatically handled by the compiler and runtime.</p>
@@ -43,9 +43,9 @@ let id (x,y) = { a = x; b = y }
 <h3>Theoretical results</h3>
 <p>We worked on extensions of lambda-calculus (implemented in OCaml) in order to gradually test our ideas in a simpler framework than the full Flambda.</p>
 <h4>Pairs</h4>
-<p>We started with a lambda-calculus to which we only added the concept of pairs. To prove identities, every function has to be annotated as identity or not. We then prove these annotations by &beta;-reducing the function bodies. After each recursive reduction, we apply a rule that states that a pair made of the first and second projection of a variable is equal to that variable. We do not reduce applications, but we replace them by the argument if the concerned function is annotated as identity.</p>
-<p>Using this method, we maintain a reasonable complexity compared to a full &beta;-reduction which would be unrealistic on a big program.</p>
-<p>We then add higher-order capabilities by allowing annotations of the form <code>Annotation &rarr; Annotation</code>. Functions as <code>List.map</code> can that way be abstracted as <code>Id &rarr; Id</code>. Even though this solution doesn't cover every case, most real-world usage are recognized by these patterns.</p>
+<p>We started with a lambda-calculus to which we only added the concept of pairs. To prove identities, every function has to be annotated as identity or not. We then prove these annotations by β-reducing the function bodies. After each recursive reduction, we apply a rule that states that a pair made of the first and second projection of a variable is equal to that variable. We do not reduce applications, but we replace them by the argument if the concerned function is annotated as identity.</p>
+<p>Using this method, we maintain a reasonable complexity compared to a full β-reduction which would be unrealistic on a big program.</p>
+<p>We then add higher-order capabilities by allowing annotations of the form <code>Annotation → Annotation</code>. Functions as <code>List.map</code> can that way be abstracted as <code>Id → Id</code>. Even though this solution doesn't cover every case, most real-world usage are recognized by these patterns.</p>
 <h4>Tuple reconstruction</h4>
 <p>We then move from just pairs to tuples of arbitrary size. This adds a new problem: if we make a pair out of the first two fields of a variable, this is no longer necessarily that variable, as it may have more than two fields.</p>
 <p>We then have two solutions: we can first annotate every projection with the size of the involved tuple to know if we are indeed reconstructing the entire variable. As an example, if we make a pair from the fields of a triplet, we know there is no way to simplify this reconstruction.</p>
@@ -56,7 +56,7 @@ let id (x,y) = { a = x; b = y }
 <p>We now add recursive definitions to our language, through the use of a fixpoint operator.</p>
 <p>To prove that a recursive function is the identity, we have to use induction. The main difficulty is to prove that the function indeed terminates to ensure the validity of the induction.</p>
 <p>We can separate this into three different levels of safety. The first option is to not prove termination at all, and let the user state which function they know will return. We can then assume the function is the identity and replace its body on that hypothesis. This approach is enough for most practical cases, but its main problem lies in the fact that it allows to write unsafe code (as we've already seen).</p>
-<p>Our second option is to limit our induction hypothesis to recursive applications on &quot;smaller&quot; elements than the argument. An element is defined as smaller if it is a projection of the argument or a projection of a smaller element. This is not enough to prove that the function will terminate (the argument might be cyclic, for example) but is enough to ensure type safety. The reason is that any possibly returned value is constructed (as it cannot directly come from a recursive call) and have therefore a defined type. Typing would fail if the function was to return a value that cannot be identified to its argument.</p>
+<p>Our second option is to limit our induction hypothesis to recursive applications on "smaller" elements than the argument. An element is defined as smaller if it is a projection of the argument or a projection of a smaller element. This is not enough to prove that the function will terminate (the argument might be cyclic, for example) but is enough to ensure type safety. The reason is that any possibly returned value is constructed (as it cannot directly come from a recursive call) and have therefore a defined type. Typing would fail if the function was to return a value that cannot be identified to its argument.</p>
 <p>Finally, we may want to establish a perfect equivalence between the function and the identity function before simplifying it. In that case, we propose to create a special annotation for functions that are the identity when applied to a non-cyclical object. We can prove they have this property with the already described induction. The difficulty now lies into applying the simplification only to valid applications: if an object is immutable, wasn't recursively defined and is made of components that also have that property, we can declare that object inductive and simplify applications on it. The inductive state of variables can be propagated during our recursive pass of optimization.</p>
 <h3>Block reconstruction</h3>
 <p>The representation of blocks in Flambda provides interesting challenges in terms of equality detection, which is often crucial to prove an identity. It is very hard to detect an identical block reconstruction.</p>

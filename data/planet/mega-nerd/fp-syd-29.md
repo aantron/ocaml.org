@@ -22,23 +22,23 @@ up to hear our two presenters.
 First up we had
 	<a href="http://benjaminjohnston.com.au/">
 	Benjamin Johnston</a>
-with a presentation titled <i>&quot;How to Dance the Robot&quot;</i>.
+with a presentation titled <i>"How to Dance the Robot"</i>.
 As part of his work an University of Technology here in Sydney, Ben gets to
 program robots.
 One of the results, is robots that dance (thanks to Mark Wotton for capturing
 this video on his iPhone):
 </p>
 
-<br/><br/>
+<br><br>
 
 <center>
 <object type="application/x-shockwave-flash" width="480" height="385" data="http://www.youtube.com/v/PhlN_o2CrA0?fs=1&amp;hl=en_US">
-	<param name="movie" value="http://www.youtube.com/v/PhlN_o2CrA0?fs=1&amp;hl=en_US"/>
-	<param name="wmode" value="transparent"/>
+	<param name="movie" value="http://www.youtube.com/v/PhlN_o2CrA0?fs=1&amp;hl=en_US">
+	<param name="wmode" value="transparent">
 </object>
 </center>
 
-<br/><br/>
+<br><br>
 
 <p>
 Ben's language of choice is Prolog (not functional but definitely
@@ -66,16 +66,16 @@ was uploaded to the robot.
 Our second presenter for the evening was
 	<a href="http://seanseefried.com/">
 	Sean Seefried</a>
-on the subject of the <i>&quot;The Expression Problem&quot;</i>, in Haskell.
+on the subject of the <i>"The Expression Problem"</i>, in Haskell.
 In Sean's paper (with Manuel M. T. Chakravarty),
 	<a href="http://www.cse.unsw.edu.au/~chak/papers/exp-problem.pdf">
-	<i>&quot;Solving the expression problem with true separate compilation&quot;</i></a>
+	<i>"Solving the expression problem with true separate compilation"</i></a>
 he describes the expression problem as:
 </p>
 
 <blockquote><i>
-&quot;the difficulty of extending the variants and methods on a data type without
-modifying existing code and while respecting separate compilation&quot;
+"the difficulty of extending the variants and methods on a data type without
+modifying existing code and while respecting separate compilation"
 </i></blockquote>
 
 <p>

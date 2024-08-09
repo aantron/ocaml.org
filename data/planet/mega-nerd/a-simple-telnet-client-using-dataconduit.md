@@ -37,8 +37,8 @@ and
 	IterIO</a>.
 All of these first generation libraries use the the term <i>enumerator</i>
 for data producers and <i>iteratee</i> for data consumers.
-The new Conduit library calls data producers <i>&quot;sources&quot;</i> and data consumers
-<i>&quot;sinks&quot;</i> to make them a little more approachable.
+The new Conduit library calls data producers <i>"sources"</i> and data consumers
+<i>"sinks"</i> to make them a little more approachable.
 </p>
 
 <p>
@@ -80,7 +80,7 @@ The client looks like this
     where
       usageExit = do
           name &lt;- getProgName
-          putStrLn $ &quot;Usage : &quot; ++ name ++ &quot; host port&quot;
+          putStrLn $ "Usage : " ++ name ++ " host port"
 
 
   telnet :: String -&gt; Int -&gt; IO ()

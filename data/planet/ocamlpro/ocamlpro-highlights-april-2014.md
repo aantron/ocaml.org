@@ -5,8 +5,8 @@ description: Here is a short report on some of our activities in April 2014, and
   still working on release 1.2. It was decided to include quite a few new features
   in this release, which delayed it a little bit since we want to be...
 url: https://ocamlpro.com/blog/2014_05_20_ocamlpro_highlights_april_2014
-date: 2014-05-20T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2014-05-20T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    \xC7agdas Bozman\n  "
 source:
@@ -25,7 +25,7 @@ source:
 <h3>The Evolution of OCaml Sources</h3>
 <p>This month, there was also a lot of activity for the Core team, as we are closing to the feature freeze for OCaml 4.02. We took this opportunity to have a look at the evolution of OCaml sources since the first release of OCaml 1.00, in 1996.</p>
 <p>Our first graph plots the size of uncompressed OCaml sources in bytes, from the first release to the current trunk:</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/graph_ocaml_bytes.png" alt="ocaml-bytes"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/graph_ocaml_bytes.png" alt="ocaml-bytes"></p>
 <p>The graph shows four interesting events:</p>
 <ul>
 <li>in 2002-2003, between 3.02 and 3.06, an increase of 4 MB
@@ -38,7 +38,7 @@ source:
 </li>
 </ul>
 <p>Our second graph plots the number of files per kind (OCaml sources, OCaml interfaces, C sources and C headers):</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/graph_ocaml_files.png" alt="ocaml-file"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/graph_ocaml_files.png" alt="ocaml-file"></p>
 <p>We can now check the files that were added and removed at the four events that we noticed on the first graph:</p>
 <ul>
 <li>the first event corresponds to the addition of 174 files for <code>camlp4</code> in 3.04, and then 70 files for <code>ocamldoc</code> in 3.06. Also, <code>labltk</code> increased a lot, with many new examples;
@@ -51,8 +51,8 @@ source:
 </li>
 </ul>
 <p>Our third graph shows the number of lines per kind of file, again:</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/graph_ocaml_lines.png" alt="ocaml-lines"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/graph_ocaml_lines.png" alt="ocaml-lines"></p>
 <p>This graph does not show us much more than what we have seen by number of files, but what might be interesting is to compute the ratio, i.e. the number of lines per file, for each kind of file:</p>
-<p><img src="https://ocamlpro.com/blog/assets/img/graph_ocaml_ratio.png" alt="ocaml-ratio"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/graph_ocaml_ratio.png" alt="ocaml-ratio"></p>
 <p>There is a general trend to increase the number of lines per file, from about 200 lines in an OCaml source file in 1996 to about 330 lines in 2014. This ratio increased considerably for release 3.04, because <code>camlp4</code> used to generate a huge bootstrap file of its own pre-preprocessed OCaml sources. More interestingly, the ratio didn't decrease in 2014, when <code>camlp4</code> was removed from the distribution ! Interface files also grew bigger, but most of the increase was in 3.06, when <code>ocamldoc</code> was added to the distribution, and an effort was done to document <code>mli</code> files.</p>
 

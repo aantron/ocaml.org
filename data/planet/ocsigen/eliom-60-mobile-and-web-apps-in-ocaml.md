@@ -16,7 +16,7 @@ and <a href="https://github.com/ocsigen/js_of_ocaml/releases/tag/2.8.3">Ocsigen 
 
 <p>New features include a friendlier service API that retains the
 expressive power of our service system. Additionally, Eliom can now be
-used to build cross-platform Web/mobile applications (Android, iOS, &hellip;).</p>
+used to build cross-platform Web/mobile applications (Android, iOS, …).</p>
 
 <h2>What is Eliom?</h2>
 
@@ -38,7 +38,7 @@ various actions, and so on. Eliom 6.0 provides a friendlier API for
 defining and registering services, thus making Eliom more
 approachable.</p>
 
-<p>The new API makes extensive use of OCaml&rsquo;s <a href="https://en.wikipedia.org/wiki/Generalized_algebraic_data_type">GADTs</a>, and provides
+<p>The new API makes extensive use of OCaml’s <a href="https://en.wikipedia.org/wiki/Generalized_algebraic_data_type">GADTs</a>, and provides
 a single entry-point that supports most kinds of services
 (<a href="https://ocsigen.org/eliom/api/server/Eliom_service#VALcreate">Eliom_service.create</a>). For more information, refer
 to the <a href="https://ocsigen.org/eliom/dev/manual/server-services">Eliom manual</a>.</p>

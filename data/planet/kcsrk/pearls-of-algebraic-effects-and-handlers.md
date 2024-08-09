@@ -103,17 +103,17 @@ and string typed state computations, each with its own handler:</p>
 <span class="k">module</span> <span class="nc">SS</span> <span class="o">=</span> <span class="nc">State</span> <span class="p">(</span><span class="k">struct</span> <span class="k">type</span> <span class="n">t</span> <span class="o">=</span> <span class="kt">string</span> <span class="k">end</span><span class="p">)</span>
 
 <span class="k">let</span> <span class="n">foo</span> <span class="bp">()</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span>
-  <span class="n">printf</span> <span class="s2">&quot;%d</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="nn">IS</span><span class="p">.</span><span class="n">get</span> <span class="bp">()</span><span class="p">);</span>
+  <span class="n">printf</span> <span class="s2">"%d</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="nn">IS</span><span class="p">.</span><span class="n">get</span> <span class="bp">()</span><span class="p">);</span>
   <span class="nn">IS</span><span class="p">.</span><span class="n">put</span> <span class="mi">42</span><span class="p">;</span>
-  <span class="n">printf</span> <span class="s2">&quot;%d</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="nn">IS</span><span class="p">.</span><span class="n">get</span> <span class="bp">()</span><span class="p">);</span>
+  <span class="n">printf</span> <span class="s2">"%d</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="nn">IS</span><span class="p">.</span><span class="n">get</span> <span class="bp">()</span><span class="p">);</span>
   <span class="nn">IS</span><span class="p">.</span><span class="n">put</span> <span class="mi">21</span><span class="p">;</span>
-  <span class="n">printf</span> <span class="s2">&quot;%d</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="nn">IS</span><span class="p">.</span><span class="n">get</span> <span class="bp">()</span><span class="p">);</span>
-  <span class="nn">SS</span><span class="p">.</span><span class="n">put</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
-  <span class="n">printf</span> <span class="s2">&quot;%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="nn">SS</span><span class="p">.</span><span class="n">get</span> <span class="bp">()</span><span class="p">);</span>
-  <span class="nn">SS</span><span class="p">.</span><span class="n">put</span> <span class="s2">&quot;world&quot;</span><span class="p">;</span>
-  <span class="n">printf</span> <span class="s2">&quot;%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="nn">SS</span><span class="p">.</span><span class="n">get</span> <span class="bp">()</span><span class="p">)</span>
+  <span class="n">printf</span> <span class="s2">"%d</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="nn">IS</span><span class="p">.</span><span class="n">get</span> <span class="bp">()</span><span class="p">);</span>
+  <span class="nn">SS</span><span class="p">.</span><span class="n">put</span> <span class="s2">"hello"</span><span class="p">;</span>
+  <span class="n">printf</span> <span class="s2">"%s</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="nn">SS</span><span class="p">.</span><span class="n">get</span> <span class="bp">()</span><span class="p">);</span>
+  <span class="nn">SS</span><span class="p">.</span><span class="n">put</span> <span class="s2">"world"</span><span class="p">;</span>
+  <span class="n">printf</span> <span class="s2">"%s</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="nn">SS</span><span class="p">.</span><span class="n">get</span> <span class="bp">()</span><span class="p">)</span>
 
-<span class="k">let</span> <span class="n">_</span> <span class="o">=</span> <span class="nn">IS</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span><span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span> <span class="nn">SS</span><span class="p">.</span><span class="n">run</span> <span class="n">foo</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="mi">0</span></code></pre></figure>
+<span class="k">let</span> <span class="n">_</span> <span class="o">=</span> <span class="nn">IS</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span><span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span> <span class="nn">SS</span><span class="p">.</span><span class="n">run</span> <span class="n">foo</span> <span class="s2">""</span><span class="p">)</span> <span class="mi">0</span></code></pre></figure>
 
 <p>which prints:</p>
 
@@ -160,7 +160,7 @@ references</a>:</p>
       <span class="o">|</span> <span class="n">effect</span> <span class="p">(</span><span class="nc">Read</span> <span class="p">{</span><span class="n">inj</span><span class="p">;</span> <span class="n">prj</span><span class="p">})</span> <span class="n">k</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="k">fun</span> <span class="n">s</span> <span class="o">-&gt;</span>
           <span class="k">match</span> <span class="n">find</span> <span class="n">prj</span> <span class="n">s</span> <span class="k">with</span>
           <span class="o">|</span> <span class="nc">Some</span> <span class="n">v</span> <span class="o">-&gt;</span> <span class="n">continue</span> <span class="n">k</span> <span class="n">v</span> <span class="n">s</span>
-          <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">&quot;Ref.run: Impossible -&gt; ref not found&quot;</span><span class="p">)</span>
+          <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">"Ref.run: Impossible -&gt; ref not found"</span><span class="p">)</span>
       <span class="o">|</span> <span class="n">effect</span> <span class="p">(</span><span class="nc">Write</span> <span class="p">({</span><span class="n">inj</span><span class="p">;</span> <span class="n">prj</span><span class="p">}</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span> <span class="n">k</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="k">fun</span> <span class="n">s</span> <span class="o">-&gt;</span>
           <span class="n">continue</span> <span class="n">k</span> <span class="bp">()</span> <span class="p">(</span><span class="n">inj</span> <span class="n">v</span><span class="o">::</span><span class="n">s</span><span class="p">))</span>
     <span class="k">in</span> <span class="n">comp</span> <span class="bp">[]</span>
@@ -199,17 +199,17 @@ re-raising the exception. For example, in the following code snippet:</p>
 
 <span class="k">let</span> <span class="bp">()</span> <span class="o">=</span> <span class="n">atomically</span> <span class="p">(</span><span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span> <span class="c">(* T0 *)</span>
   <span class="k">let</span> <span class="n">r</span> <span class="o">=</span> <span class="n">ref</span> <span class="mi">10</span> <span class="k">in</span>
-  <span class="n">printf</span> <span class="s2">&quot;T0: %d</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="o">!</span><span class="n">r</span><span class="p">);</span>
+  <span class="n">printf</span> <span class="s2">"T0: %d</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="o">!</span><span class="n">r</span><span class="p">);</span>
   <span class="k">try</span> <span class="n">atomically</span> <span class="p">(</span><span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span> <span class="c">(* T1 *)</span>
     <span class="n">r</span> <span class="o">:=</span> <span class="mi">20</span><span class="p">;</span>
     <span class="n">r</span> <span class="o">:=</span> <span class="mi">21</span><span class="p">;</span>
-    <span class="n">printf</span> <span class="s2">&quot;T1: Before abort %d</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="o">!</span><span class="n">r</span><span class="p">);</span>
+    <span class="n">printf</span> <span class="s2">"T1: Before abort %d</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="o">!</span><span class="n">r</span><span class="p">);</span>
     <span class="k">raise</span> <span class="p">(</span><span class="nc">Res</span> <span class="o">!</span><span class="n">r</span><span class="p">);</span>
-    <span class="n">printf</span> <span class="s2">&quot;T1: After abort %d</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">(</span><span class="o">!</span><span class="n">r</span><span class="p">);</span>
+    <span class="n">printf</span> <span class="s2">"T1: After abort %d</span><span class="se">\n</span><span class="s2">"</span> <span class="p">(</span><span class="o">!</span><span class="n">r</span><span class="p">);</span>
     <span class="n">r</span> <span class="o">:=</span> <span class="mi">30</span><span class="p">)</span>
   <span class="k">with</span>
-  <span class="o">|</span> <span class="nc">Res</span> <span class="n">v</span> <span class="o">-&gt;</span> <span class="n">printf</span> <span class="s2">&quot;T0: T1 aborted with %d</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="n">v</span><span class="p">;</span>
-  <span class="n">printf</span> <span class="s2">&quot;T0: %d</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">!</span><span class="n">r</span><span class="p">)</span></code></pre></figure>
+  <span class="o">|</span> <span class="nc">Res</span> <span class="n">v</span> <span class="o">-&gt;</span> <span class="n">printf</span> <span class="s2">"T0: T1 aborted with %d</span><span class="se">\n</span><span class="s2">"</span> <span class="n">v</span><span class="p">;</span>
+  <span class="n">printf</span> <span class="s2">"T0: %d</span><span class="se">\n</span><span class="s2">"</span> <span class="o">!</span><span class="n">r</span><span class="p">)</span></code></pre></figure>
 
 <p>the updates to reference <code class="language-plaintext highlighter-rouge">r</code> by transaction <code class="language-plaintext highlighter-rouge">T1</code> are discarded on exception and
 the program prints the following:</p>
@@ -228,7 +228,7 @@ function is invoked, where <code class="language-plaintext highlighter-rouge">v<
 function returns <code class="language-plaintext highlighter-rouge">None</code> if the traversal is complete. Unlike an iterator, the
 generator hands over control of the traversal to the client of the library.</p>
 
-<p>Gabriel Scherer&rsquo;s insightful article on <a href="http://gallium.inria.fr/blog/generators-iterators-control-and-continuations/">generators, iterators, control and
+<p>Gabriel Scherer’s insightful article on <a href="http://gallium.inria.fr/blog/generators-iterators-control-and-continuations/">generators, iterators, control and
 continuations</a>
 nicely distinguish, motivate and provide implementation of different kinds of
 iterators and generators for binary trees. While the iterator implementation is
@@ -396,7 +396,7 @@ which implements the echo server in CPS style:</p>
        <span class="n">echo_server</span> <span class="n">sock</span> <span class="n">addr</span><span class="p">)</span>
     <span class="k">else</span>
       <span class="k">let</span> <span class="n">cn</span> <span class="o">=</span> <span class="n">string_of_sockaddr</span> <span class="n">addr</span> <span class="k">in</span>
-      <span class="p">(</span><span class="n">printf</span> <span class="s2">&quot;echo_server : client (%s) disconnected.</span><span class="se">\n</span><span class="s2">%!&quot;</span> <span class="n">cn</span><span class="p">;</span>
+      <span class="p">(</span><span class="n">printf</span> <span class="s2">"echo_server : client (%s) disconnected.</span><span class="se">\n</span><span class="s2">%!"</span> <span class="n">cn</span><span class="p">;</span>
        <span class="n">close</span> <span class="n">sock</span><span class="p">)</span>
   <span class="k">with</span>
   <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">close</span> <span class="n">sock</span></code></pre></figure>
@@ -418,10 +418,10 @@ tracker</a>.</p>
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li role="doc-endnote">
-      <p><a href="http://arxiv.org/pdf/1203.1539v1.pdf">Programming with Algebraic Effects and Handlers (pdf)</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:Eff" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p><a href="http://arxiv.org/pdf/1203.1539v1.pdf">Programming with Algebraic Effects and Handlers (pdf)</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:Eff" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li role="doc-endnote">
-      <p><a href="http://eb.host.cs.st-andrews.ac.uk/drafts/effects.pdf">Programming and Reasoning with Algebraic Effects and Dependent Types (pdf)</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:Idris-eff" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p><a href="http://eb.host.cs.st-andrews.ac.uk/drafts/effects.pdf">Programming and Reasoning with Algebraic Effects and Dependent Types (pdf)</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:Idris-eff" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
   </ol>
 </div>

@@ -11,7 +11,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2015/01/mutable_2.jpg#hero" alt="mutable"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/mutable_2.jpg#hero" alt="mutable"></p>
 
 <p>While OCaml is a functional programming language and emphasises pure functional style, it allows <em>mutable</em> (variables and values) and hence imperative programming style. The reason is said in <a href="https://realworldocaml.org/v1/en/html/imperative-programming-1.html">Real World OCaml</a>:</p>
 
@@ -306,7 +306,7 @@ let fib_rec n = fib_norec fib_rec n
 
 <p>Moreover, one more suggestion on using imperative style is that <em>don't expose imperative interface to public if you can</em>. That means we should try to embed imperative code inside pure function as much as possible, so that the users of our functions cannot access the mutable parts. This way can let our functional code continue being pure enough while enjoying the juice of imperative programming internally.</p>
 
-<hr/>
+<hr>
 
 <p><strong>[1].</strong> glacialthinker has commented <a href="http://www.reddit.com/r/ocaml/comments/2t49p9/mutable_and_when_shall_we_use_imperative/cnvryku">here</a>. This technique is called <em>untying the recursive knot</em>.</p>
 

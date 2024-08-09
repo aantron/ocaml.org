@@ -90,9 +90,9 @@ When this happens the trick is to write a third function:
           slow = functionSlow a b
       in if fast == slow
            then fast
-           else error $ &quot;functionFast &quot; ++ show a ++ &quot; &quot; ++ show b
-                ++ &quot;\nreturns    &quot; ++ show fast
-                ++ &quot;\n should be &quot; ++ show slow
+           else error $ "functionFast " ++ show a ++ " " ++ show b
+                ++ "\nreturns    " ++ show fast
+                ++ "\n should be " ++ show slow
 
 </pre>
 

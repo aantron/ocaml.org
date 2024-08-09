@@ -5,8 +5,8 @@ description: Feedback on this post is welcomed on Discuss! We are happy to annou
   or release notes for the details), but here are a few highlights. What's new in
   opam 2.1? Integration of system dependencies (formerly the op...
 url: https://ocamlpro.com/blog/2021_08_04_opam_2.1.0_is_released
-date: 2021-08-04T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2021-08-04T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    David Allsopp (OCamlLabs)\n  "
 source:
@@ -26,7 +26,7 @@ increasing their reliability as it integrates the solving step
 <li>Creation of lock files for reproducible installations (formerly the opam-lock
 plugin)
 </li>
-<li>Switch invariants, replacing the &quot;base packages&quot; in opam 2.0 and allowing for
+<li>Switch invariants, replacing the "base packages" in opam 2.0 and allowing for
 easier compiler upgrades
 </li>
 <li>Improved options configuration (see the new <code>option</code> and expanded <code>var</code> sub-commands)
@@ -40,7 +40,7 @@ improvements to semantics in future without breaking backwards-compatibility
 areas
 </li>
 </ul>
-<h3>Seamless integration of System dependencies handling (a.k.a. &quot;depexts&quot;)</h3>
+<h3>Seamless integration of System dependencies handling (a.k.a. "depexts")</h3>
 <p>opam has long included the ability to install system dependencies automatically
 via the <a href="https://github.com/ocaml-opam/opam-depext">depext plugin</a>. This plugin
 has been promoted to a native feature of opam 2.1.0 onwards, giving the
@@ -98,7 +98,7 @@ dependencies in a fresh switch.
 <code>--freeze</code> to freeze all VCS to their current commit.</em></p>
 <h3>Switch invariants</h3>
 <p>In opam 2.0, when a switch is created the packages selected are put into the
-&ldquo;base&rdquo; of the switch. These packages are not normally considered for upgrade,
+“base” of the switch. These packages are not normally considered for upgrade,
 in order to ease pressure on opam's solver. This was a much bigger concern
 early on in opam 2.0's development, but is less of a problem with the default
 mccs solver.</p>
@@ -111,13 +111,13 @@ invariant is a package formula which must be satisfied on every upgrade and
 install. All existing switches' base packages could just be expressed as
 <code>package1 &amp; package2 &amp; package3</code> etc. but opam 2.1 recognises many existing
 patterns and simplifies them, so in most cases the invariant will be
-<code>&quot;ocaml-base-compiler&quot; {= &quot;4.11.1&quot;}</code>, etc. This means that <code>opam switch create my_switch ocaml-system</code> now creates a <em>switch invariant</em> of <code>&quot;ocaml-system&quot;</code>
+<code>"ocaml-base-compiler" {= "4.11.1"}</code>, etc. This means that <code>opam switch create my_switch ocaml-system</code> now creates a <em>switch invariant</em> of <code>"ocaml-system"</code>
 rather than a specific version of the <code>ocaml-system</code> package. If your system
 OCaml package is updated, <code>opam upgrade</code> will seamlessly switch to the new
 package.</p>
 <p>This also allows you to have switches which automatically install new point
 releases of OCaml. For example:</p>
-<pre><code class="language-shell-session">opam switch create ocaml-4.11 --formula='&quot;ocaml-base-compiler&quot; {&gt;= &quot;4.11.0&quot; &amp; &lt; &quot;4.12.0~&quot;}' --repos=old=git+https://github.com/ocaml/opam-repository#a11299d81591
+<pre><code class="language-shell-session">opam switch create ocaml-4.11 --formula='"ocaml-base-compiler" {&gt;= "4.11.0" &amp; &lt; "4.12.0~"}' --repos=old=git+https://github.com/ocaml/opam-repository#a11299d81591
 opam install utop
 </code></pre>
 <p>Creates a switch with OCaml 4.11.0 (the <code>--repos=</code> was just to select a version
@@ -128,7 +128,7 @@ opam upgrade
 <p>and opam 2.1 will automatically offer to upgrade OCaml 4.11.1 along with a
 rebuild of the switch. There's not yet a clean CLI for specifying the formula,
 but we intend to iterate further on this with future opam releases so that
-there is an easier way of saying &ldquo;install OCaml 4.11.x&rdquo;.</p>
+there is an easier way of saying “install OCaml 4.11.x”.</p>
 <p><em>Hint: You can set up a default invariant that will apply for all new switches,
 via a specific <code>opamrc</code>. The default one is <code>ocaml &gt;= 4.05.0</code></em></p>
 <h3>Configuring opam from the command-line</h3>
@@ -236,9 +236,9 @@ helped with issue reports, comments, feedback...</strong></p>
 <li>Either from binaries: run
 </li>
 </ol>
-<pre><code class="language-shell-session">bash -c &quot;sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.1.0&quot;
+<pre><code class="language-shell-session">bash -c "sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.1.0"
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.1.0">the Github &quot;Releases&quot; page</a> to your PATH.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.1.0">the Github "Releases" page</a> to your PATH.</p>
 <ol start="2">
 <li>Or from source, manually: see the instructions in the <a href="https://github.com/ocaml/opam/tree/2.1.0#compiling-this-repo">README</a>.
 </li>

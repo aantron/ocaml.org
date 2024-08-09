@@ -9,6 +9,6 @@ authors:
 source:
 ---
 
-<p>It&rsquo;s been an unusual internship season.</p>
+<p>It’s been an unusual internship season.</p>
 
 

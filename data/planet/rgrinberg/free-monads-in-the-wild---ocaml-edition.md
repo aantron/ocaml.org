@@ -9,8 +9,8 @@ authors:
 source:
 ---
 
-<p>OCaml programmers don&rsquo;t seem to resort to free monads much. I like to imagine
-that this is the case because we&rsquo;re a practical bunch. But it could simply be
+<p>OCaml programmers don’t seem to resort to free monads much. I like to imagine
+that this is the case because we’re a practical bunch. But it could simply be
 that this technique like other monads is a bit heavyweight syntactically, let
 alone the performance implications it might have.</p>
 

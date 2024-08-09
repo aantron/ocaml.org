@@ -5,8 +5,8 @@ description: Welcome, dear reader, to a new opam blog post! Today we take an add
   ride on the development version of a package in opam. We are aware that our readers
   are eager to see these blog posts venture on the developer s...
 url: https://ocamlpro.com/blog/2024_03_25_opam_102_pinning_packages
-date: 2024-03-25T13:48:01-00:00
-preview_image: https://ocamlpro.com/assets/img/logo_ocp_icon.svg
+date: 2024-03-25T13:31:53-00:00
+preview_image: https://ocamlpro.com/blog/assets/img/opam102_og.png
 authors:
 - "\n    Dario Pinto\n  "
 source:
@@ -17,21 +17,21 @@ source:
 </p><div class="figure">
   <p>
     <a href="https://ocamlpro.com/blog/assets/img/opam102_pins.svg">
-      <img src="https://ocamlpro.com/blog/assets/img/opam102_pins.svg" alt="Pins standout. They help us anchor interest points, thus helping us focus on what's important. They become the catalyst for experimentation and help us navigating the strong safety features that opam provides users with."/>
+      <img src="https://ocamlpro.com/blog/assets/img/opam102_pins.svg" alt="Pins standout. They help us anchor interest points, thus helping us focus on what's important. They become the catalyst for experimentation and help us navigating the strong safety features that opam provides users with.">
     </a>
     </p><div class="caption">
       Pins standout. They help us anchor interest points, thus helping us focus on what's important. They become the catalyst for experimentation and help us navigating the strong safety features that opam provides users with.
     </div>
-  
+  <p></p>
 </div>
-
+<p></p>
 <p>Welcome, dear reader, to a new opam blog post!</p>
 <p>Today we take an additional step down the metaphorical rabbit hole with <code>opam pin</code>, the easiest way to catch a ride on the development version of a package
 in <code>opam</code>.</p>
 <p>We are aware that our readers are eager to see these blog posts venture on the
 developer side of the <code>opam</code> experience, and so are we, but we need to spend
 just a bit little more time on the beginner and user-side of it for now so
-please, bear with us! &#128059;</p>
+please, bear with us! 🐻</p>
 <blockquote>
 <p>This tutorial is the second one in this on-going series about the OCaml
 package manager <code>opam</code>.
@@ -48,7 +48,7 @@ game changer for the OCaml distribution, since it first saw the day of light
 here, almost a decade ago.</p>
 </blockquote>
 <p></p><div>
-<strong>Table of contents</strong>
+<strong>Table of contents</strong><p></p>
 <ul>
 <li><a href="https://ocamlpro.com/blog/feed#opampincontext">Tutorial context</a>
 </li>
@@ -85,9 +85,9 @@ here, almost a decade ago.</p>
 </ul>
 </li>
 <li><a href="https://ocamlpro.com/blog/feed#conclusion">Conclusion</a>
+</li></ul></div>
 
-</li>
-</ul>
+
 <h2>
 <a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#opampincontext" class="anchor-link">Tutorial context and basis</a>
           </h2>
@@ -145,7 +145,7 @@ use-cases for <code>opam pin</code>, namely the one dealing with pinning a versi
 package that is already available on the <a href="https://opam.ocaml.org/packages/">opam <code>repository</code></a>, and that of pinning
 a version of an unreleased package, directly from its public URL.</p>
 <p>After all the basics have been laid out, we will eventually cover some of the
-more underground &#9935; and dangerous &#128293; features available when pinning packages.</p>
+more underground ⛏ and dangerous 🔥 features available when pinning packages.</p>
 <blockquote>
 <p><strong>Important Notice</strong></p>
 <p>For the sake of convenience and brevity, we will breakdown the <code>opam pin</code>
@@ -169,19 +169,19 @@ command.</p>
 hc is now pinned to git+https://git.zapashcanon.fr/zapashcanon/hc.git (version 0.3)
 
 The following actions will be performed:
-  &lowast; install dune 3.14.0 [required by hc]
-  &lowast; install hc   0.3*
-===== &lowast; 2 =====
+  ∗ install dune 3.14.0 [required by hc]
+  ∗ install hc   0.3*
+===== ∗ 2 =====
 Do you want to continue? [Y/n] y
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&#11015; retrieved hc.0.3  (no changes)
-&#11015; retrieved dune.3.14.0  (https://opam.ocaml.org/cache)
-&lowast; installed dune.3.14.0
-&lowast; installed hc.0.3
+⬇ retrieved hc.0.3  (no changes)
+⬇ retrieved dune.3.14.0  (https://opam.ocaml.org/cache)
+∗ installed dune.3.14.0
+∗ installed hc.0.3
 Done.
 </code></pre>
-<hr/>
+<hr>
 <h2>So what exactly did <code>opam pin</code> do here?</h2>
 <pre><code class="language-shell-session">$ opam pin add --dev-repo hc
 [hc.0.3] synchronised (git+https://git.zapashcanon.fr/zapashcanon/hc.git)
@@ -203,28 +203,28 @@ all-versions 0.0.1  0.2  0.3
 &lt;&gt;&lt;&gt; Version-specific details &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
 version      0.3
 repository   default
-url.src      &quot;https://git.zapashcanon.fr/zapashcanon/hc/archive/0.3.tar.gz&quot;
+url.src      "https://git.zapashcanon.fr/zapashcanon/hc/archive/0.3.tar.gz"
 url.checksum
-          &quot;sha256=61b443056adec3f71904c5775b8521b3ac8487df618a8dcea3f4b2c91bedc314&quot;
-          &quot;sha512=a1d213971230e9c7362749d20d1bec6f5e23af191522a65577db7c0f9123ea4c0fc678e5f768418d6dd88c1f3689a49cf564b5c744995a9db9a304f4b6d2c68a&quot;
-homepage     &quot;https://git.zapashcanon.fr/zapashcanon/hc&quot;
-doc          &quot;https://doc.zapashcanon.fr/hc/&quot;
-bug-reports  &quot;https://git.zapashcanon.fr/zapashcanon/hc/issues&quot;
-dev-repo     &quot;git+https://git.zapashcanon.fr/zapashcanon/hc.git&quot;
-authors      &quot;L&eacute;o Andr&egrave;s &lt;contact@ndrs.fr&gt;&quot;
-maintainer   &quot;L&eacute;o Andr&egrave;s &lt;contact@ndrs.fr&gt;&quot;
-license      &quot;ISC&quot;
-depends      &quot;dune&quot; {&gt;= &quot;3.0&quot;} &quot;ocaml&quot; {&gt;= &quot;4.14&quot;} &quot;odoc&quot; {with-doc}
+          "sha256=61b443056adec3f71904c5775b8521b3ac8487df618a8dcea3f4b2c91bedc314"
+          "sha512=a1d213971230e9c7362749d20d1bec6f5e23af191522a65577db7c0f9123ea4c0fc678e5f768418d6dd88c1f3689a49cf564b5c744995a9db9a304f4b6d2c68a"
+homepage     "https://git.zapashcanon.fr/zapashcanon/hc"
+doc          "https://doc.zapashcanon.fr/hc/"
+bug-reports  "https://git.zapashcanon.fr/zapashcanon/hc/issues"
+dev-repo     "git+https://git.zapashcanon.fr/zapashcanon/hc.git"
+authors      "Léo Andrès &lt;contact@ndrs.fr&gt;"
+maintainer   "Léo Andrès &lt;contact@ndrs.fr&gt;"
+license      "ISC"
+depends      "dune" {&gt;= "3.0"} "ocaml" {&gt;= "4.14"} "odoc" {with-doc}
 synopsis     Hashconsing library
 description  hc is an OCaml library for hashconsing. It provides
              easy ways to use hashconsing, in a type-safe and
              modular way and the ability to get forgetful
-             memo&iuml;zation.
+             memoïzation.
 </code></pre>
 <p>Here, you can see the <code>dev-repo</code> field which contains the URL of the
 development repository of that package. Opam will use that information to
 retrieve package sources for you.</p>
-<hr/>
+<hr>
 <pre><code class="language-shell-session">hc is now pinned to git+https://git.zapashcanon.fr/zapashcanon/hc.git (version 0.3)
 </code></pre>
 <p>Once it has retrieved <code>hc</code> sources, opam will then store the status of the pin
@@ -240,7 +240,7 @@ all pinned packages in the current active switch.</p>
 <p>On the other hand, the default behaviour for <code>opam pin &lt;target&gt;</code> command is the
 <code>add</code> option. Keep it in mind if you happen to grow tired of typing <code>opam pin add &lt;target&gt;</code> every time.</p>
 </blockquote>
-<hr/>
+<hr>
 <p>Opam will then analyse <code>hc</code> dependencies and compute a solution that respects
 the dependencies constraints and state of your current switch (i.e. the
 compatibility constraints between the packages currently installed in your
@@ -248,9 +248,9 @@ switch).</p>
 <p>If it manages to do so, it will come forth with a prompt to install the pinned
 package and its dependencies.</p>
 <pre><code class="language-shell-session">The following actions will be performed:
-  &lowast; install dune 3.14.0 [required by hc]
-  &lowast; install hc   0.3*
-===== &lowast; 2 =====
+  ∗ install dune 3.14.0 [required by hc]
+  ∗ install hc   0.3*
+===== ∗ 2 =====
 Do you want to continue? [Y/n] y
 </code></pre>
 <p>Pressing <code>Enter</code> or <code>y + Enter</code> will perform the installation.</p>
@@ -261,10 +261,10 @@ at a quick glance when <code>opam</code> outputs the actions to perform for you 
 what to look for.</p>
 </blockquote>
 <pre><code class="language-shell-session">&lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&#11015; retrieved hc.0.3  (no changes)
-&#11015; retrieved dune.3.14.0  (https://opam.ocaml.org/cache)
-&lowast; installed dune.3.14.0
-&lowast; installed hc.0.3
+⬇ retrieved hc.0.3  (no changes)
+⬇ retrieved dune.3.14.0  (https://opam.ocaml.org/cache)
+∗ installed dune.3.14.0
+∗ installed hc.0.3
 Done.
 </code></pre>
 <p>Congratulations, you now have a pinned <em>development</em> version of the <code>hc</code> package. You
@@ -287,15 +287,15 @@ Package opam-otopop does not exist, create as a NEW package? [Y/n] y
 opam-otopop is now pinned to git+https://github.com/rjbou/opam-otopop (version 0.1)
 
 The following actions will be performed:
-  &lowast; install opam-client 2.0.10 [required by opam-otopop]
-  &lowast; install opam-otopop 0.1*
-===== &lowast; 2 =====
+  ∗ install opam-client 2.0.10 [required by opam-otopop]
+  ∗ install opam-otopop 0.1*
+===== ∗ 2 =====
 Do you want to continue? [Y/n] y
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&#11015; retrieved opam-client.2.0.10  (https://opam.ocaml.org/cache)
-&lowast; installed opam-client.2.0.10
-&lowast; installed opam-otopop.0.1
+⬇ retrieved opam-client.2.0.10  (https://opam.ocaml.org/cache)
+∗ installed opam-client.2.0.10
+∗ installed opam-otopop.0.1
 Done.
 </code></pre>
 <p>As you can see, the course of an <code>opam pin add &lt;url&gt;</code> call is very close to
@@ -308,14 +308,14 @@ installation is synchronised with, <code>opam</code> doesn't know about it.</p>
 <p>That's why it will ask you if you want to <code>create it as a NEW package</code>.</p>
 <p>Once pinned, that package is available in your switch as any other ordinarily
 available <code>repository</code> package.</p>
-<hr/>
+<hr>
 <p>You can see here that <code>opam</code> has pinned the <code>opam-otopop</code> package to a specific
 <code>0.1</code> version.</p>
 <pre><code class="language-shell-session">opam-otopop is now pinned to git+https://github.com/rjbou/opam-otopop (version 0.1)
 </code></pre>
 <p>The reason for that is found inside the <a href="https://github.com/rjbou/opam-otopop/blob/master/opam-otopop.opam#L2"><code>opam file</code></a> at
 the root of the source repository for that package:</p>
-<pre><code class="language-shell-session">version: &quot;0.1&quot;
+<pre><code class="language-shell-session">version: "0.1"
 </code></pre>
 <p>In any instance where this specific field is not found in the <code>opam file</code>, the
 version name would then be pinned to the verbatim <code>~dev</code> version.</p>
@@ -360,11 +360,11 @@ linked source, and then proceed to recompiling.</p>
 [opam-otopop.0.1] synchronised (git+https://github.com/rjbou/opam-otopop#master)
 
 The following actions will be performed:
-  &#8635; recompile opam-otopop 0.1*
+  ↻ recompile opam-otopop 0.1*
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&#8856; removed   opam-otopop.0.1
-&lowast; installed opam-otopop.0.1
+⊘ removed   opam-otopop.0.1
+∗ installed opam-otopop.0.1
 Done.
 </code></pre>
 <p>In the above code block, <code>opam-otopop</code> has been upgraded by that <code>opam install</code>
@@ -386,11 +386,11 @@ Now run 'opam upgrade' to apply any package updates.
 <p>Then you run <code>upgrade</code> as you would in any other package upgrade scenario.</p>
 <pre><code class="language-shell-session">$ opam upgrade
 The following actions will be performed:
-  &#8635; recompile opam-otopop 0.1* [upstream or system changes]
+  ↻ recompile opam-otopop 0.1* [upstream or system changes]
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&#8856; removed   opam-otopop.0.1
-&lowast; installed opam-otopop.0.1
+⊘ removed   opam-otopop.0.1
+∗ installed opam-otopop.0.1
 Done.
 </code></pre>
 <h3>
@@ -420,13 +420,13 @@ hc.0.3    0.3         pinned to version 0.3 at git+https://git.zapashcanon.fr/za
 <pre><code class="language-shell-session">$ opam pin remove hc
 Ok, hc is no longer pinned to git+https://git.zapashcanon.fr/zapashcanon/hc.git (version 0.3)
 The following actions will be performed:
-  &#8635; recompile hc 0.3
+  ↻ recompile hc 0.3
 Do you want to continue? [Y/n] y
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&#11015; retrieved hc.0.3  (https://opam.ocaml.org/cache)
-&#8856; removed   hc.0.3
-&lowast; installed hc.0.3
+⬇ retrieved hc.0.3  (https://opam.ocaml.org/cache)
+⊘ removed   hc.0.3
+∗ installed hc.0.3
 Done.
 </code></pre>
 <pre><code class="language-shell-session">$ opam list hc
@@ -435,7 +435,7 @@ Done.
 hc.0.3    0.3         Hashconsing library
 </code></pre>
 <p>As we can see in the details:</p>
-<pre><code class="language-shell-session">&#11015; retrieved hc.0.3  (https://opam.ocaml.org/cache)
+<pre><code class="language-shell-session">⬇ retrieved hc.0.3  (https://opam.ocaml.org/cache)
 </code></pre>
 <p><code>opam</code> has retrieved the sources from the archive that is specified in the
 <code>opam file</code> of the relevant opam <code>repository</code>, thus pulling <code>hc</code> back down to
@@ -448,8 +448,8 @@ means the package is no longer pinned.</p>
 <a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#unreleasedpins" class="anchor-link">Unreleased packages</a>
           </h4>
 <p>On the other hand, an unreleased package, since its only definition
-source&mdash;meaning both the <strong>location of its source code</strong> as well as <strong>all
-information required for <code>opam</code> to operate</strong>, found in the corresponding <code>opam file</code>&mdash;<strong>is</strong> the pin itself, <code>opam</code> will have no other choice than to offer to
+source—meaning both the <strong>location of its source code</strong> as well as <strong>all
+information required for <code>opam</code> to operate</strong>, found in the corresponding <code>opam file</code>—<strong>is</strong> the pin itself, <code>opam</code> will have no other choice than to offer to
 remove it for you.</p>
 <pre><code class="language-shell-session">$ opam pin list
 opam-otopop.0.1    git  git+https://github.com/rjbou/opam-otopop#master
@@ -458,11 +458,11 @@ opam-otopop.0.1    git  git+https://github.com/rjbou/opam-otopop#master
 <pre><code class="language-shell-session">$ opam pin remove opam-otopop
 Ok, opam-otopop is no longer pinned to git+https://github.com/rjbou/opam-otopop#master (version 0.1)
 The following actions will be performed:
-  &#8856; remove opam-otopop 0.1
+  ⊘ remove opam-otopop 0.1
 Do you want to continue? [Y/n] y
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&#8856; removed   opam-otopop.0.1
+⊘ removed   opam-otopop.0.1
 Done.
 </code></pre>
 <h4>
@@ -508,17 +508,17 @@ ocp-browser is now pinned to git+https://github.com/OCamlPro/ocp-index (version 
 ocp-index is now pinned to git+https://github.com/OCamlPro/ocp-index (version 1.3.6)
 
 The following actions will be performed:
-  &lowast; install ocp-indent  1.8.1  [required by ocp-index]
-  &lowast; install ocp-index   1.3.6*
-  &lowast; install ocp-browser 1.3.6*
-===== &lowast; 3 =====
+  ∗ install ocp-indent  1.8.1  [required by ocp-index]
+  ∗ install ocp-index   1.3.6*
+  ∗ install ocp-browser 1.3.6*
+===== ∗ 3 =====
 Do you want to continue? [Y/n] y
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&#11015; retrieved ocp-indent.1.8.1  (https://opam.ocaml.org/cache)
-&lowast; installed ocp-indent.1.8.1
-&lowast; installed ocp-index.1.3.6
-&lowast; installed ocp-browser.1.3.6
+⬇ retrieved ocp-indent.1.8.1  (https://opam.ocaml.org/cache)
+∗ installed ocp-indent.1.8.1
+∗ installed ocp-index.1.3.6
+∗ installed ocp-browser.1.3.6
 Done.
 </code></pre>
 <p>As you can see, this process is exactly the same as before, but with 3 packages
@@ -532,15 +532,15 @@ like we did at the beginning of this tutorial!</p>
 ocp-index is now pinned to git+https://github.com/OCamlPro/ocp-index (version 1.3.6)
 
 The following actions will be performed:
-  &lowast; install ocp-indent 1.8.1  [required by ocp-index]
-  &lowast; install ocp-index  1.3.6*
-===== &lowast; 2 =====
+  ∗ install ocp-indent 1.8.1  [required by ocp-index]
+  ∗ install ocp-index  1.3.6*
+===== ∗ 2 =====
 Do you want to continue? [Y/n] y
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&#11015; retrieved ocp-indent.1.8.1  (cached)
-&lowast; installed ocp-indent.1.8.1
-&lowast; installed ocp-index.1.3.6
+⬇ retrieved ocp-indent.1.8.1  (cached)
+∗ installed ocp-indent.1.8.1
+∗ installed ocp-index.1.3.6
 Done.
 </code></pre>
 <p>If you do not know the exact names of these different packages, you may also
@@ -595,15 +595,15 @@ not even in the <a href="https://github.com/OCamlPro/directories/blob/master/dir
 a different version number than it <strong>actually</strong> is in the most purely technical
 aspect...</p>
 <p><strong>But why would we want to do such a thing?</strong></p>
-<hr/>
+<hr>
 <p>Let's consider a reasonable use-case for <code>opam pin add &lt;package&gt;.&lt;my-version-number&gt; &lt;url&gt;</code>:</p>
 <p>You have been working on a project called <code>my-project</code> for some time and you
 are using a package named <code>fst-dep</code> for your development.</p>
 <p>Below, you will find an excerpt of the <code>fst-dep.opam</code> file, specifically its
 dependencies:</p>
 <pre><code class="language-shell-session">depends: [
-  &quot;dep-to-try&quot; { &lt;= &quot;3.0.0&quot; }
-  &quot;other-dep&quot;
+  "dep-to-try" { &lt;= "3.0.0" }
+  "other-dep"
 ]
 </code></pre>
 <p>All three packages (<code>fst-dep</code>,<code>dep-to-try</code> and <code>other-dep</code>) are
@@ -629,7 +629,7 @@ arbitrary amount of time which is unsatisfying at best.
 <li>Another suboptimal solution would be to copy the current state of the
 entire opam <code>repository</code> relevant to your package distribution, go to the
 corresponding directory for <code>fst-dep</code> inside that <code>repository</code>, relax the hard
-dependency <code>&quot;dep-to-try&quot; { &lt;= &quot;3.0.0&quot; }</code> and reinstall all the packages that
+dependency <code>"dep-to-try" { &lt;= "3.0.0" }</code> and reinstall all the packages that
 are directly or indirectly affected by that change. A very time consuming
 task for such a small edit to the global dependency tree.
 </li>
@@ -653,7 +653,7 @@ pertaining to a larger operation on the global graph of packages.</p>
 [dep-to-try.3.0.0] synchronised (file:///home/rjbou/ocamlpro/opam_bps_examples/dep-to-try)
 dep-to-try is now pinned to git+https://github.com/OCamlPro/dep-to-try#master (version 3.0.0)
 </code></pre>
-<p><code>opam</code> will still think that <code>dep-to-try</code>'s version is valid (<code>{ &lt;= &quot;3.0.0&quot;}</code>),
+<p><code>opam</code> will still think that <code>dep-to-try</code>'s version is valid (<code>{ &lt;= "3.0.0"}</code>),
 even if you are synchronised with the state of its <em>development</em> branch, thus giving
 you access to the latest changes with the minimal amount of manual editing
 required. Pretty neat, right?</p>
@@ -695,19 +695,19 @@ ocp-browser is now pinned to git+https://github.com/OCamlPro/ocp-index (version 
 ocp-index is now pinned to git+https://github.com/OCamlPro/ocp-index (version 2.0.0)
 
 The following actions will be performed:
-  &lowast; install ocp-indent  1.8.1  [required by ocp-index]
-  &lowast; install ocp-index   2.0.0*
-  &lowast; install ocp-browser 2.0.0*
-===== &lowast; 3 =====
+  ∗ install ocp-indent  1.8.1  [required by ocp-index]
+  ∗ install ocp-index   2.0.0*
+  ∗ install ocp-browser 2.0.0*
+===== ∗ 3 =====
 Do you want to continue? [Y/n] y
 
 &lt;&gt;&lt;&gt; Processing actions &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
-&#11015; retrieved ocp-indent.1.8.1  (cached)
-&#11015; retrieved ocp-index.2.0.0  (no changes)
-&#11015; retrieved ocp-browser.2.0.0  (no changes)
-&lowast; installed ocp-indent.1.8.1
-&lowast; installed ocp-index.2.0.0
-&lowast; installed ocp-browser.2.0.0
+⬇ retrieved ocp-indent.1.8.1  (cached)
+⬇ retrieved ocp-index.2.0.0  (no changes)
+⬇ retrieved ocp-browser.2.0.0  (no changes)
+∗ installed ocp-indent.1.8.1
+∗ installed ocp-index.2.0.0
+∗ installed ocp-browser.2.0.0
 Done.
 </code></pre>
 <p>You can see that all these packages are pinned to <code>2.0.0</code> now.</p>
@@ -731,8 +731,8 @@ ordinary options like <code>--no-action</code>, <code>--dev-repo</code> and subc
 allow us to get into some really neat features soon.</p>
 <p>Be sure to stay tuned with our blog, the journey into the rabbit hole has only
 started and <code>opam</code> is a deep one indeed!</p>
-<hr/>
+<hr>
 <p>Thank you for reading,</p>
 <p>From 2011, with love,</p>
 <p>The OCamlPro Team</p>
-</div>
+

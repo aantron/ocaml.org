@@ -5,8 +5,8 @@ description: opam-lib 1.3 The package for opam-lib version 1.3 has just been rel
   this is an intermediate version of the library that retains compatibility of the
   file formats with 1.2.2. The purpose of this release is twofold...
 url: https://ocamlpro.com/blog/2016_11_20_opam_lib_1.3_available
-date: 2016-11-20T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2016-11-20T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:

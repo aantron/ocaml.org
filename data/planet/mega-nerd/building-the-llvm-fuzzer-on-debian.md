@@ -54,7 +54,7 @@ Building Clang from the git mirror can be done as follows:
   (cd llvm/projects/ &amp;&amp; git clone http://llvm.org/git/libcxxabi)
 
   mkdir -p llvm-build
-  (cd llvm-build/ &amp;&amp; cmake -G &quot;Unix Makefiles&quot; -DCMAKE_INSTALL_PREFIX=$(HOME)/Clang/3.8 ../llvm)
+  (cd llvm-build/ &amp;&amp; cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=$(HOME)/Clang/3.8 ../llvm)
   (cd llvm-build/ &amp;&amp; make install)
 
 </pre>

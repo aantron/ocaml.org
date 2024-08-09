@@ -8,8 +8,8 @@ description: 'We are pleased to announce the release of opam 2.0.3. This new ver
   Regenerate missing environment file Installation instructions (unchanged): From
   binaries: run or download manually from the Github...'
 url: https://ocamlpro.com/blog/2019_01_28_opam_2.0.3_release
-date: 2019-01-28T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2019-01-28T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Raja Boujbel\n  "
 source:
@@ -25,7 +25,7 @@ source:
 <li>Regenerate missing environment file
 </li>
 </ul>
-<hr/>
+<hr>
 <p>Installation instructions (unchanged):</p>
 <ol>
 <li>From binaries: run
@@ -33,7 +33,7 @@ source:
 </ol>
 <pre><code class="language-shell-session">sh &lt;(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.3">the Github &quot;Releases&quot; page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update you sandbox script.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.3">the Github "Releases" page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed or to update you sandbox script.</p>
 <ol start="2">
 <li>From source, using opam:
 </li>

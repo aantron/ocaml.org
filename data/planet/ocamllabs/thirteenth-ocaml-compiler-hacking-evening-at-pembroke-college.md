@@ -11,7 +11,7 @@ source:
 
 <p>It's Spring, and time for the thirteenth Cambridge OCaml compiler-hacking evening! We'll be back in <a href="http://www.pem.cam.ac.uk/">Pembroke College</a> again, in the centre of Cambridge.</p>
 
-<p><a href="https://twitter.com/pembroke1347/status/729615893425225728?lang=en-gb"><img src="http://ocamllabs.io/compiler-hacking/imgs/pembroke-spring.jpg" alt="Pembroke"/></a></p>
+<p><a href="https://twitter.com/pembroke1347/status/729615893425225728?lang=en-gb"><img src="http://ocamllabs.io/compiler-hacking/imgs/pembroke-spring.jpg" alt="Pembroke"></a></p>
 
 <p>If you're planning to come along, it'd be helpful if you could <a href="http://doodle.com/poll/qx649tkmmq7kg5u4">indicate interest via Doodle</a> and <a href="http://lists.ocaml.org/admin/cam-compiler-hacking">sign up to the mailing list</a> to receive updates.</p>
 
@@ -25,7 +25,7 @@ source:
 
 <p><em><strong>Wiki</strong></em>: https://github.com/ocamllabs/compiler-hacking/wiki</p>
 
-<p>We're defining &quot;compiler&quot; pretty broadly, to include anything that's part of the standard distribution, which means at least the
+<p>We're defining "compiler" pretty broadly, to include anything that's part of the standard distribution, which means at least the
  <a href="https://github.com/ocaml/ocaml/tree/trunk/stdlib">standard library</a>,
  <a href="https://github.com/ocaml/ocaml/tree/trunk/byterun">run</a><a href="https://github.com/ocaml/ocaml/tree/trunk/asmrun">time</a>, tools
     (<a href="http://caml.inria.fr/pub/docs/manual-ocaml/depend.html">ocamldep</a>,

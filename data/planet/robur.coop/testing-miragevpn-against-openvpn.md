@@ -9,4 +9,4 @@ authors:
 source:
 ---
 
-Some notes about how we test MirageVPN against OpenVPN&trade;
+Some notes about how we test MirageVPN against OpenVPN™

@@ -10,10 +10,10 @@ source:
 ---
 
 <p>Creating truly static binaries for Linux like golang is a capability that is
-occasionally useful. I&rsquo;ve seen questions about it on IRC a few times, and I&rsquo;ve
+occasionally useful. I’ve seen questions about it on IRC a few times, and I’ve
 personally found this approach is particularly useful when deploying to
-environments where installing libraries isn&rsquo;t easy, such as AWS Lambda.
-Unfortunately for me, the approach that I will explain in this article wasn&rsquo;t as
-approachable. So I&rsquo;ve prepared a quick tutorial on how to easily create a static
+environments where installing libraries isn’t easy, such as AWS Lambda.
+Unfortunately for me, the approach that I will explain in this article wasn’t as
+approachable. So I’ve prepared a quick tutorial on how to easily create a static
 binary in OCaml and test it.</p>
 

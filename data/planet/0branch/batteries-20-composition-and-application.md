@@ -16,29 +16,29 @@ source:
       <a href="https://blog.0branch.com/index.html">#</a> February 24, 2013
     </div>
   </div>
-  <hr/>
+  <hr>
   <div>
-    <p>A <a href="https://blog.0branch.com/posts/2012-04-17-haskell-application-ocaml.html">while back</a>, I discussed an implementation of the application operator (Haskell&rsquo;s <code>$</code>) in OCaml. In the closing section of that post, a couple of problems were raised regarding treatment of associativity and composition in <em>OCaml Batteries</em>. These issues have been addressed in <em>Batteries</em> 2.0, released in January 2013; the improvements are outlined here.</p>
+    <p>A <a href="https://blog.0branch.com/posts/2012-04-17-haskell-application-ocaml.html">while back</a>, I discussed an implementation of the application operator (Haskell’s <code>$</code>) in OCaml. In the closing section of that post, a couple of problems were raised regarding treatment of associativity and composition in <em>OCaml Batteries</em>. These issues have been addressed in <em>Batteries</em> 2.0, released in January 2013; the improvements are outlined here.</p>
 <h2>Quick recap</h2>
 <p>Batteries <a href="http://ocaml-batteries-team.github.com/batteries-included/hdoc/BatPervasives.html">1.x</a> defines the following operators for composition and application:</p>
 <ul>
 <li><code>val ( -| ) : ('a -&gt; 'b) -&gt; ('c -&gt; 'a) -&gt; 'c -&gt; 'b</code>
 <ul>
-<li>&ldquo;Function composition. <code>f -| g</code> is <code>fun x -&gt; f (g x)</code>. Mathematically, this is operator <code>o</code>.&rdquo;</li>
+<li>“Function composition. <code>f -| g</code> is <code>fun x -&gt; f (g x)</code>. Mathematically, this is operator <code>o</code>.”</li>
 </ul></li>
 <li><code>val ( **&gt; ) : ('a -&gt; 'b) -&gt; 'a -&gt; 'b</code>
 <ul>
-<li>&ldquo;Function application. <code>f **&gt; x</code> is equivalent to <code>f x</code>. This [operator] may be useful for composing sequences of function calls without too many parenthesis.&rdquo;</li>
+<li>“Function application. <code>f **&gt; x</code> is equivalent to <code>f x</code>. This [operator] may be useful for composing sequences of function calls without too many parenthesis.”</li>
 </ul></li>
 </ul>
 <p>The problem pointed out in the comments section (now the closing <em>Update</em>) of the <a href="https://blog.0branch.com/posts/2012-04-17-haskell-application-ocaml.html">post</a> was that</p>
 <blockquote>
-<p>the precedence you&rsquo;d expect coming from Haskell is inverted. We&rsquo;d need to define a new application operator to address this problem as the commenter suggested&hellip;</p>
+<p>the precedence you’d expect coming from Haskell is inverted. We’d need to define a new application operator to address this problem as the commenter suggested…</p>
 </blockquote>
-<p>Specifically, the following code sample was shown to exhibit surprising behaviour for anyone familiar with Haskell&rsquo;s <code>.</code> and <code>$</code>,</p>
+<p>Specifically, the following code sample was shown to exhibit surprising behaviour for anyone familiar with Haskell’s <code>.</code> and <code>$</code>,</p>
 <pre><code># print_endline -| string_of_int **&gt; succ **&gt; sum [1; 2; 3];;
 Error: This expression has type string but an expression was expected of type 'a -&gt; string</code></pre>
-<h2>What&rsquo;s up, doc?</h2>
+<h2>What’s up, doc?</h2>
 <p>In Batteries <a href="http://ocaml-batteries-team.github.com/batteries-included/hdoc2/BatPervasives.html">2.0</a>, both operators have been renamed:</p>
 <ul>
 <li>Composition:
@@ -95,7 +95,7 @@ Error: This expression has type string but an expression was expected of type 'a
 </ul></li>
 </ul>
 <h2>No surprises</h2>
-<p>Reworking the above code sample for Batteries 2.0 is trivial&mdash;simply substitute <code>(%)</code> for <code>(-|)</code> and <code>(@@)</code> for <code>(**&gt;)</code>. With these changes in place, the code behaves as follows:</p>
+<p>Reworking the above code sample for Batteries 2.0 is trivial—simply substitute <code>(%)</code> for <code>(-|)</code> and <code>(@@)</code> for <code>(**&gt;)</code>. With these changes in place, the code behaves as follows:</p>
 <pre><code># print_endline % string_of_int @@ succ @@ sum [1; 2; 3];;
 7
 - : unit = ()</code></pre>
@@ -104,13 +104,13 @@ Error: This expression has type string but an expression was expected of type 'a
 <blockquote>
 <p>This operator is redundant, since ordinary application <code>(f x)</code> means the same as <code>(f $ x)</code>. However, <code>$</code> has low, right-associative binding precedence, so it sometimes allows parentheses to be omitted.</p>
 </blockquote>
-<p>it should be apparent that these new operators closely conform to Haskell&rsquo;s treatment of application and composition (in particular, associativity and precedence), allowing for a straightforward translation of the above expression:</p>
+<p>it should be apparent that these new operators closely conform to Haskell’s treatment of application and composition (in particular, associativity and precedence), allowing for a straightforward translation of the above expression:</p>
 <pre><code>Prelude&gt; putStrLn . show $ succ $ sum [1, 2, 3]
 7</code></pre>
   </div>
 </div>
 
-<hr/>
+<hr>
 
 <div></div>
 

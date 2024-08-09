@@ -11,18 +11,18 @@ authors:
 source:
 ---
 
-<p>So I took a look at the Haskell <a href="http://www.cse.unsw.edu.au/~dons/papers/CLS07.html">Stream Fusion</a> <a href="http://hackage.haskell.org/packages/archive/stream-fusion/0.1.2.2/doc/html/Data-Stream.html">library</a> the other day, and got the idea to write a new <code>append</code> combinator that would merge the two streams in sort order. This seemed simple enough to code directly using Streams, but my first instinct is always to write the code using lists, and then translate it into the more complicated syntax. Here&rsquo;s what a sorting merge function looks like over lists:</p>
-<p><code></code></p>
+<p>So I took a look at the Haskell <a href="http://www.cse.unsw.edu.au/~dons/papers/CLS07.html">Stream Fusion</a> <a href="http://hackage.haskell.org/packages/archive/stream-fusion/0.1.2.2/doc/html/Data-Stream.html">library</a> the other day, and got the idea to write a new <code>append</code> combinator that would merge the two streams in sort order. This seemed simple enough to code directly using Streams, but my first instinct is always to write the code using lists, and then translate it into the more complicated syntax. Here’s what a sorting merge function looks like over lists:</p>
+<p><code></code></p><code>
 <pre>merge :: Ord a =&gt; [a] -&gt; [a] -&gt; [a]
 merge []     bs                 = bs
 merge as     []                 = as
 merge (a:as) (b:bs) | a &lt; b     = a : merge as (b:bs)
                     | otherwise = b : merge (a:as) bs
 </pre>
-<p></p>
+</code><p><code></code></p>
 <p>We have two base cases where either one of the argument lists may be null, in which case we just return the other. For the recursive case, we just <code>cons</code> the lesser of the two list heads onto the rest of the list, and leave the other list head attached to its list in-place. Simple and elegant.</p>
-<p>So the Stream version should be just as easy, right? Let&rsquo;s see.</p>
-<p><code></code></p>
+<p>So the Stream version should be just as easy, right? Let’s see.</p>
+<p><code></code></p><code>
 <pre>mergeS_wrong :: Ord a =&gt; Stream a -&gt; Stream a -&gt; Stream a
 mergeS_wrong (Stream nexta sa0) (Stream nextb sb0) = Stream next (sa0, sb0)
     where
@@ -49,11 +49,11 @@ mergeS_wrong (Stream nexta sa0) (Stream nextb sb0) = Stream next (sa0, sb0)
                         Yield b sb' | a &lt; b     -&gt; Yield a (sa', sb0)
                                     | otherwise -&gt; Yield b (sa0, sb')
 </pre>
-<p></p>
-<p>Looks like a wordier version of the first. We take the first element of each stream, and use a case expression to check each of our cases. The first two base cases are a little longer this time because we can&rsquo;t just return the other stream, but instead have to either <code>Skip</code> or <code>Yield</code> over the remainder of the Stream. In the third case, we must <code>Skip</code> over the first Stream until we <code>Yield</code> a value, and then do the same for the second stream. We compare the two values, <code>Yield</code> the lesser, and return the two remaining Streams.</p>
-<p>The only problem is that this won&rsquo;t compile. <code>GHCi</code> gives us the following error message:</p>
-<p><code></code></p>
-<pre>*Main&gt; :load &quot;/home/mike/Projects/Haskell_SVN/NumWords.hs&quot;
+</code><p><code></code></p>
+<p>Looks like a wordier version of the first. We take the first element of each stream, and use a case expression to check each of our cases. The first two base cases are a little longer this time because we can’t just return the other stream, but instead have to either <code>Skip</code> or <code>Yield</code> over the remainder of the Stream. In the third case, we must <code>Skip</code> over the first Stream until we <code>Yield</code> a value, and then do the same for the second stream. We compare the two values, <code>Yield</code> the lesser, and return the two remaining Streams.</p>
+<p>The only problem is that this won’t compile. <code>GHCi</code> gives us the following error message:</p>
+<p><code></code></p><code>
+<pre>*Main&gt; :load "/home/mike/Projects/Haskell_SVN/NumWords.hs"
 [1 of 1] Compiling Main             ( /home/mike/Projects/Haskell_SVN/NumWords.hs, interpreted )
 
 /home/mike/Projects/Haskell_SVN/NumWords.hs:59:53:
@@ -61,17 +61,17 @@ mergeS_wrong (Stream nexta sa0) (Stream nextb sb0) = Stream next (sa0, sb0)
       from the context (Data.Stream.Unlifted s1)
       arising from a use of `Stream'
 </pre>
-<p></p>
-<p>What&rsquo;s this <code>Data.Stream.Unlifted</code> type? Turns out that our Stream data type is encapsulated by a universally quantified type <code>s</code> that is an instance of the hidden type class <code>Unlifted</code>. The standard Haskell pair type <code>(,)</code> isn&rsquo;t, unfortunately, an exposed instance of this class. Which means that we can&rsquo;t make a Stream out of a pair of Streams, as we did on the second line of code with <code>Stream next (sa0, sb0)</code>.</p>
-<p>Or so I thought. That is, until I realized (after much hand wringing) that the library did expose a data type that would allow us to use our own types &mdash; or, indeed, all of the standard Haskell types, such as pair. The type we need is</p>
-<p><code></code></p>
+</code><p><code></code></p>
+<p>What’s this <code>Data.Stream.Unlifted</code> type? Turns out that our Stream data type is encapsulated by a universally quantified type <code>s</code> that is an instance of the hidden type class <code>Unlifted</code>. The standard Haskell pair type <code>(,)</code> isn’t, unfortunately, an exposed instance of this class. Which means that we can’t make a Stream out of a pair of Streams, as we did on the second line of code with <code>Stream next (sa0, sb0)</code>.</p>
+<p>Or so I thought. That is, until I realized (after much hand wringing) that the library did expose a data type that would allow us to use our own types — or, indeed, all of the standard Haskell types, such as pair. The type we need is</p>
+<p><code></code></p><code>
 <pre>data L a = L a
 instance Unlifted (L a) where
   expose (L _) s = s
 </pre>
-<p></p>
+</code><p><code></code></p>
 <p>Now we have a wrapper data type that acts as a dummy instance of class <code>Unlifted</code>! So (after about four hours of head scratching), we can make the following small changes to our code:</p>
-<p><code></code></p>
+<p><code></code></p><code>
 <pre>mergeS :: Ord a =&gt; Stream a -&gt; Stream a -&gt; Stream a
 mergeS (Stream nexta sa0) (Stream nextb sb0) = Stream next <strong>(L (sa0, sb0))</strong>
     where
@@ -98,6 +98,6 @@ mergeS (Stream nexta sa0) (Stream nextb sb0) = Stream next <strong>(L (sa0, sb0)
                         Yield b sb' | a &lt; b     -&gt; Yield a <strong>(L (sa', sb0))</strong>
                                     | otherwise -&gt; Yield b <strong>(L (sa0, sb'))</strong>
 </pre>
-<p></p>
-<p>All we had to do was wrap our Stream pairs in the type constructor <code>L</code> to give our Stream pairs access to &ldquo;free&rdquo; instance deriving from the <code>Unlifted</code> class. Easy? Well, once you notice that unassuming <code>data L a = L a</code> in the documentation. But hey, it sure beats trying to do something like this in C!</p>
+</code><p><code></code></p>
+<p>All we had to do was wrap our Stream pairs in the type constructor <code>L</code> to give our Stream pairs access to “free” instance deriving from the <code>Unlifted</code> class. Easy? Well, once you notice that unassuming <code>data L a = L a</code> in the documentation. But hey, it sure beats trying to do something like this in C!</p>
 

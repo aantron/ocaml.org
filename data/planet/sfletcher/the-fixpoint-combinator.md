@@ -33,7 +33,7 @@ source:
         \left(\lambda fac.\;\left(\lambda
         n.\;IF\left(=\;n\;0\right)\;1\;\left(*\;n\;\left(fac\;\left(-\;n\;1\right)\right)\right)\right)\right)$
         is without recursion. We see also that $FAC$ is a fixed point
-        (&quot;fixpoint&quot;) of $g$. It is clear this fixed point can only
+        ("fixpoint") of $g$. It is clear this fixed point can only
         depend on $g$ so supposing there were a function $Y$ which
         takes a function and delivers a fixpoint of the function as
         the result, we'd have $FAC = Y\;g = g\;(Y\;g)$. Under the
@@ -44,7 +44,7 @@ source:
         \[
           \begin{eqnarray}
            &amp;FAC&amp; = Y\;g \nonumber \\
-           &amp;g&amp; = \lambda fac.\;\left(\lambda n.\;IF\left(=\;n\;0\right)\;1\;\left(*\;n\;\left(fac\;\left(-\;n\;1\right)\right)\right)\right) \nonumber
+           &gt;&amp; = \lambda fac.\;\left(\lambda n.\;IF\left(=\;n\;0\right)\;1\;\left(*\;n\;\left(fac\;\left(-\;n\;1\right)\right)\right)\right) \nonumber
           \end{eqnarray}
         \]
 
@@ -85,7 +85,7 @@ source:
         The application of this term has produced a fixpoint of
         $g$. That is, we are satisfied that this term will serve as a
         definition for $Y$ having the property we need and call it the
-        &quot;fixpoint combinator&quot;.
+        "fixpoint combinator".
     </p>
 
     <p>In the untyped $\lambda$-calculus, $Y$ can be defined and that
@@ -124,10 +124,10 @@ source:
         \end{equation}
       \]
     </p>
-    <hr/>
+    <hr>
     <p>
-      References:<br/>
-      [1] <cite>The Implementation of Functional Programming Languages</cite>,Simon Peyton Jones, 1987.<br/>
+      References:<br>
+      [1] <cite>The Implementation of Functional Programming Languages</cite>,Simon Peyton Jones, 1987.<br>
       [2] <cite>The Functional Approach to Programming</cite>, Guy Cousineau, Michel Mauny, 1998.
     </p>
 

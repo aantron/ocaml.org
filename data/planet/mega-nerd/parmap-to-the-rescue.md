@@ -32,8 +32,8 @@ pointed me to the
 <p>
 Changing the existing sequential <tt>map</tt> operation into a parallel map
 required a 3 line change (one of them to import the required module).
-I then added &quot;<tt>-threaded</tt>&quot; to the compile command line to enable the
-threaded runtime system in the generated executable and &quot;<tt>+RTS -N6</tt>&quot; to
+I then added "<tt>-threaded</tt>" to the compile command line to enable the
+threaded runtime system in the generated executable and "<tt>+RTS -N6</tt>" to
 the executable's command line.
 The resulting program went from using 100% of 1 CPU to using 560% of 1 CPU on an
 8 CPU box.

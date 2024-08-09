@@ -10,7 +10,7 @@ authors:
 source:
 ---
 
-<p><em>Update: I&rsquo;m excited to say that we&rsquo;ve now hired a (great!) technical
+<p><em>Update: I’m excited to say that we’ve now hired a (great!) technical
 writer, so the position is closed.</em></p>
 
 

@@ -12,7 +12,7 @@ source:
 ---
 
 <p>The Dojima rice market, established around 1716, is widely considered to
-be the world&rsquo;s first organized futures exchange. Instead of directly
+be the world’s first organized futures exchange. Instead of directly
 exchanging money for rice on the spot, merchants would agree on a price
 and future date at which rice and money would be exchanged. This allowed
 farmers and consumers to hedge their risk. As a result, information

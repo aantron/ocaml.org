@@ -9,19 +9,19 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2015/02/pear-2.jpg#hero" alt="pear-2"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/pear-2.jpg#hero" alt="pear-2"></p>
 
 <blockquote>
   <p>In a list of unsorted numbers (not necessarily distinct), such as</p>
 </blockquote>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/problem_description_1-1.jpg" alt="problem1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/problem_description_1-1.jpg" alt="problem1"></p>
 
 <blockquote>
   <p>The surpassers of an element are all elements whose indices are bigger and values are larger. For example, the element <code>1</code>'s surpassers are <code>9</code>, <code>5</code>, <code>5</code>, and <code>6</code>, so its number of surpassers is 4. </p>
 </blockquote>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/problem_description_2.jpg" alt="problem2"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/problem_description_2.jpg" alt="problem2"></p>
 
 <blockquote>
   <p>And also we can see that <code>9</code> doesn't have any surpassers so its number of surpassers is 0. </p>
@@ -43,8 +43,8 @@ source:
 <li>After we finish on all elements, the <code>max</code> of all the <code>ns</code>es is what we are looking for.</li>
 </ol>
 
-<p>The diagram below demonstrates the process on <code>1</code>. <br/>
-<img src="http://typeocaml.com/content/images/2015/02/trivial_solution-2.jpg" alt="trivial solution"/></p>
+<p>The diagram below demonstrates the process on <code>1</code>. <br>
+<img src="http://typeocaml.com/content/images/2015/02/trivial_solution-2.jpg" alt="trivial solution"></p>
 
 <pre><code class="ocaml">let num_surpasser p l = List.fold_left (fun c x -&gt; if x &gt; p then c+1 else c) 0 l
 
@@ -67,7 +67,7 @@ let max_num_surpasser l =
 
 <h1>Introducing Divide and Conquer</h1>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/conquer-1.jpg" alt="hero"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/conquer-1.jpg" alt="hero"></p>
 
 <p>The algorithm design technique <em>divide and conquer</em> was mentioned in <a href="http://typeocaml.com/2014/12/04/recursion-reloaded/">Recursion Reloaded</a>. I believe it is a good time to properly introduce it now as it provides a elegant approach towards a better solution for pearl 2.</p>
 
@@ -75,19 +75,19 @@ let max_num_surpasser l =
 
 <p>Suppose we want to replace the dragon lady and become the king of the land below (<em>[2]</em>).</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/game_of_thrones_color-1.jpg" alt="game_of_thrones"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/game_of_thrones_color-1.jpg" alt="game_of_thrones"></p>
 
 <p>We are very lucky that we have got a strong army and now the only question is how to overcome the realm.</p>
 
-<p>One &quot;good&quot; plan is <em>no plan</em>. We believe in our troops so much that we can just let all of them enter the land and pwn everywhere.</p>
+<p>One "good" plan is <em>no plan</em>. We believe in our troops so much that we can just let all of them enter the land and pwn everywhere.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/game_of_thrones_strategy_1.jpg" alt="pwn"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/game_of_thrones_strategy_1.jpg" alt="pwn"></p>
 
 <p>Maybe our army is very good in terms of both <em>quality</em> and <em>quantity</em> and eventually this plan will lead us to win. However, is it really a good plan? Some soldiers may march to places that have already been overcome; Some soldiers may leave too soon for more wins after one winning and have to come back due to local rebel... the whole process won't be efficient and it cost too much gold on food for men and horses.</p>
 
 <p>Fortunately, we have a better plan.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/game_of_thrones_dragon-2.jpg" alt="better"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/game_of_thrones_dragon-2.jpg" alt="better"></p>
 
 <p>We divide the land into smaller regions and further smaller ones inside until unnecessary. And for each small region, we put ideal amount of soldiers there for battles. After soldiers finish their assigned region, they don't need to move and just make sure the region stay with us. This is more oganised and more efficient in terms of both gold and time. After all, if we conquer all the tiny regions, who would say we were not the king?</p>
 
@@ -157,13 +157,13 @@ let max_num_surpasser l =
 
 <h1>Divide the problem of pearl 2</h1>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/problem_description_1-1.jpg" alt="problem1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/problem_description_1-1.jpg" alt="problem1"></p>
 
 <p>We have such as list and we want to get a new list that have the same elements and each element is associated with the number of its surpassers. Now we want to divide the original list (problem set).</p>
 
 <p>Can we directly halve the list?</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/divide_1-3.jpg" alt="divide_1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/divide_1-3.jpg" alt="divide_1"></p>
 
 <p>As pearl 2 stated, an element only cares about all elements that are behind it. So if we split the list in the middle, we know the numbers of surpassers for all elements in <code>sub-problem 2</code> do not need any special operations and the answers can directly be part of the future resulting list. </p>
 
@@ -180,7 +180,7 @@ let max_num_surpasser l =
 <li>A list with only one element.</li>
 </ol>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/conquer-2.jpg" alt="conquer"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/conquer-2.jpg" alt="conquer"></p>
 
 <p>For empty list, we just need to return an empty list as there is no element for us to count the number of surpassers. For an one-element list, we also return an one-element resulting list where the only element has <code>0</code> surpassers.</p>
 
@@ -188,35 +188,35 @@ let max_num_surpasser l =
 
 <p>Now we finished dividing and conquering like below and it is time to accumulate (take <code>sub-problem 1</code> only for illustration).</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_1.jpg" alt="accumulate 1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_1.jpg" alt="accumulate 1"></p>
 
 <p>It is easy to combine solutions of <code>sp 111</code> and <code>sp 112</code>: just compare <code>8</code> from <code>sp 111</code> with <code>1</code> from <code>sp112</code>, update <code>8</code>'s number of surpassers if necessary and we can leave <code>sp 112</code> alone as we talked about during <em>divide</em>. The same way can be applied on <code>sp 121</code> and <code>sp 122</code>. Then we get:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_2.jpg" alt="accumulate 2"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_2.jpg" alt="accumulate 2"></p>
 
 <p>Now both <code>sp 11</code> and <code>sp 12</code> have more than one element. In order to get the solution for <code>sp 1</code>, <code>sp 12</code> can stay put. How about <code>sp 11</code>? An obvious approach is just let every element in <code>sp 11</code> to compare every element in <code>sp 12</code>, and update their numbers of surpassers accordingly. This can be a candidate for <em>accumulate</em> action, however, it is <code>O(n^2)</code>. We need to accumulate better.</p>
 
 <p>We said in the very beginning of this post during our trivial solution that the original order of the list matters. However, is it still sensitive after we get the solution (for a sub-problem)? </p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_3-1.jpg" alt="accumulate 3"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_3-1.jpg" alt="accumulate 3"></p>
 
 <p>As we can see once the answer of <code>sp 11</code> is obtained, the order between <code>8</code> and <code>1</code> doesn't matter as they don't rely on each for their number of surpassers any more.</p>
 
 <p>If we can obtain the solution in a sorted manner, it will help us a lot. For example, assume the resulting lists for <code>sp 11</code> and <code>sp 12</code> are sorted like this:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_4.jpg" alt="accumulate 4"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_4.jpg" alt="accumulate 4"></p>
 
 <p>Then we can avoid comparing every pair of elements by using <em>merge</em> like this:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_5-1.jpg" alt="accumulate 5"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_5-1.jpg" alt="accumulate 5"></p>
 
 <p>We can see that <code>8</code> in the left hand side list doesn't have to compare to <code>-10</code> any more. However, this example has not shown the full picture yet. <strong>If keep tracking the length of resulting list on the right hand side, we can save more comparisons</strong>. Let's assume both <code>sp 1</code> and <code>sp 2</code> have been solved as sorted list with lengths attached.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_6.jpg" alt="accumulate 6"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_6.jpg" alt="accumulate 6"></p>
 
 <p>We begin our <em>merge</em>.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_7-2.jpg" alt="accumulate 7"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_7-2.jpg" alt="accumulate 7"></p>
 
 <p>Have you noticed the fascinating part? Because <code>-10 &lt; -2</code>, without further going down along the resulting list on the right hand side, we can directly update the number of surpassers of <code>-10</code> and get it out. Why? Because <code>-2</code> is the smallest element on the right, and if it is bigger than <code>-10</code>, then the rest of the elements on the right must all be bigger than <code>-10</code>, right? Through only one comparison (instead of 4), we get the number of surpassers. </p>
 
@@ -230,7 +230,7 @@ let max_num_surpasser l =
 
 <p>The full process of accumulating <code>sp 1</code> and <code>sp 2</code> is illustrated as follows:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_8-1.jpg" alt="accumulate 8"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/02/accumulate_8-1.jpg" alt="accumulate 8"></p>
 
 <p>Two things might need to be clarified:</p>
 
@@ -301,7 +301,7 @@ let max_num_surpassers = function
     Some (List.fold_left (fun max_ns (_, ns) -&gt; max max_ns ns) 0 nss)
 </code></pre>
 
-<hr/>
+<hr>
 
 <p><strong>[1]</strong> Unless I can see an optimal solution instantly, I always intend to think of the most straightforward one even though it sometimes sounds stupid. I believe this is not a bad habit. Afterall, many good solutions come out from brute-force ones. As long as we anyway have a solution, we can work further based on it and see whether we can make it better. </p>
 

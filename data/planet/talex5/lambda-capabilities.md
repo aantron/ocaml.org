@@ -9,7 +9,7 @@ authors:
 source:
 ---
 
-<p>&quot;Is this software safe?&quot; is a question software engineers should be able to answer,
+<p>"Is this software safe?" is a question software engineers should be able to answer,
 but doing so can be difficult.
 Capabilities offer an elegant solution, but seem to be little known among functional programmers.
 This post is an introduction to capabilities in the context of ordinary programming
@@ -81,7 +81,7 @@ I would like to be able to check, quickly and easily, that the application canno
 </li>
 </ul>
 <p>For example, here are some of the OCaml packages I use just to generate this blog:</p>
-<p><a href="https://roscidus.com/blog/images/lambda-caps/blog-deps.svg"><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/lambda-caps/blog-deps.svg" title="Dependency graph for this blog" class="caption"/><span class="caption-text">Dependency graph for this blog</span></span></a></p>
+<p><a href="https://roscidus.com/blog/images/lambda-caps/blog-deps.svg"><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/lambda-caps/blog-deps.svg" title="Dependency graph for this blog" class="caption"><span class="caption-text">Dependency graph for this blog</span></span></a></p>
 <p>Having to read every line of every version of each of these packages in order to decide whether it's safe
 to generate the blog clearly isn't practical.</p>
 <p>I'll start by looking at traditional solutions to this problem, using e.g. containers or VMs,
@@ -137,11 +137,11 @@ In pure functional languages, such as Haskell, the only way to interact with the
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="haskell"><span class="line"><span class="nf">f</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">String</span>
-</span><span class="line"><span class="nf">f</span> <span class="n">x</span> <span class="ow">=</span> <span class="o">...</span>
+</pre></td><td class="code"><pre><code class="haskell"><span class="line"><span class="nf">f</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">String</span>
+</span><span class="line"><span class="nf">f</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="o">...</span>
 </span><span class="line">
-</span><span class="line"><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
-</span><span class="line"><span class="nf">main</span> <span class="ow">=</span> <span class="n">putStr</span> <span class="p">(</span><span class="n">f</span> <span class="mi">42</span><span class="p">)</span>
+</span><span class="line"><span class="nf">main</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">IO</span><span class="w"> </span><span class="nb">()</span>
+</span><span class="line"><span class="nf">main</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">putStr</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="mi">42</span><span class="p">)</span>
 </span></code></pre></td></tr></tbody></table></div></figure><p>Even if we don't look at the code of <code>f</code>, we can be sure it only returns a <code>String</code> and performs no other actions
 (assuming <a href="https://downloads.haskell.org/ghc/latest/docs/users_guide/exts/safe_haskell.html">Safe Haskell</a> is being used).
 Assuming we trust <code>putStr</code>, we can be sure this program will only output a string to stdout and not perform any other actions.</p>
@@ -223,7 +223,7 @@ We can just pass it a suitable function:</p>
 <span class="line-number">3</span>
 </pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="k">let</span> <span class="n">set</span> <span class="n">v</span> <span class="o">=</span>
 </span><span class="line">  <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">then</span> <span class="n">set</span> <span class="n">v</span>
-</span><span class="line">  <span class="k">else</span> <span class="n">invalid_arg</span> <span class="s2">&quot;Positive values only!&quot;</span>
+</span><span class="line">  <span class="k">else</span> <span class="n">invalid_arg</span> <span class="s2">"Positive values only!"</span>
 </span></code></pre></td></tr></tbody></table></div></figure><p>Or we can allow access to be revoked:</p>
 <figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -237,7 +237,7 @@ We can just pass it a suitable function:</p>
 </span><span class="line"><span class="k">let</span> <span class="n">set</span> <span class="n">v</span> <span class="o">=</span>
 </span><span class="line">  <span class="k">match</span> <span class="o">!</span><span class="n">r</span> <span class="k">with</span>
 </span><span class="line">  <span class="o">|</span> <span class="nc">Some</span> <span class="n">fn</span> <span class="o">-&gt;</span> <span class="n">fn</span> <span class="n">v</span>
-</span><span class="line">  <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">invalid_arg</span> <span class="s2">&quot;Access revoked!&quot;</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">None</span> <span class="o">-&gt;</span> <span class="n">invalid_arg</span> <span class="s2">"Access revoked!"</span>
 </span><span class="line"><span class="k">in</span>
 </span><span class="line"><span class="o">...</span>
 </span><span class="line"><span class="n">r</span> <span class="o">:=</span> <span class="nc">None</span>		<span class="c">(* Revoke *)</span>
@@ -249,7 +249,7 @@ We can just pass it a suitable function:</p>
 </pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="k">let</span> <span class="n">used</span> <span class="o">=</span> <span class="n">ref</span> <span class="mi">0</span> <span class="k">in</span>
 </span><span class="line"><span class="k">let</span> <span class="n">set</span> <span class="n">v</span> <span class="o">=</span>
 </span><span class="line">  <span class="k">if</span> <span class="o">!</span><span class="n">used</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="k">then</span> <span class="o">(</span><span class="n">incr</span> <span class="n">used</span><span class="o">;</span> <span class="n">set</span> <span class="n">v</span><span class="o">)</span>
-</span><span class="line">  <span class="k">else</span> <span class="n">invalid_arg</span> <span class="s2">&quot;Quota exceeded&quot;</span>
+</span><span class="line">  <span class="k">else</span> <span class="n">invalid_arg</span> <span class="s2">"Quota exceeded"</span>
 </span></code></pre></td></tr></tbody></table></div></figure><p>Or log each time it is used, tagged with a label that's meaningful to us
 (e.g. the function to which we granted access):</p>
 <figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
@@ -262,15 +262,15 @@ We can just pass it a suitable function:</p>
 <span class="line-number">8</span>
 </pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="k">let</span> <span class="n">log</span> <span class="o">=</span> <span class="n">ref</span> <span class="bp">[]</span> <span class="k">in</span>
 </span><span class="line"><span class="k">let</span> <span class="n">set</span> <span class="n">name</span> <span class="n">v</span> <span class="o">=</span>
-</span><span class="line">  <span class="k">let</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">sprintf</span> <span class="s2">&quot;%S set it to %d&quot;</span> <span class="n">name</span> <span class="n">v</span> <span class="k">in</span>
+</span><span class="line">  <span class="k">let</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">sprintf</span> <span class="s2">"%S set it to %d"</span> <span class="n">name</span> <span class="n">v</span> <span class="k">in</span>
 </span><span class="line">  <span class="n">log</span> <span class="o">:=</span> <span class="n">msg</span> <span class="o">::</span> <span class="o">!</span><span class="n">log</span><span class="o">;</span>
 </span><span class="line">  <span class="n">set</span> <span class="n">v</span>
 </span><span class="line"><span class="k">in</span>
-</span><span class="line"><span class="n">f</span> <span class="o">(</span><span class="n">set</span> <span class="s2">&quot;f&quot;</span><span class="o">);</span>
-</span><span class="line"><span class="n">g</span> <span class="o">(</span><span class="n">set</span> <span class="s2">&quot;g&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="n">f</span> <span class="o">(</span><span class="n">set</span> <span class="s2">"f"</span><span class="o">);</span>
+</span><span class="line"><span class="n">g</span> <span class="o">(</span><span class="n">set</span> <span class="s2">"g"</span><span class="o">)</span>
 </span></code></pre></td></tr></tbody></table></div></figure><p>Or all of the above.</p>
 <p>In these examples, our function <code>f</code> never got direct access (permission) to <code>x</code>, yet was still able to affect it.
-Therefore, in capability systems people often talk about &quot;authority&quot; rather than permission.
+Therefore, in capability systems people often talk about "authority" rather than permission.
 Roughly speaking, the <em>authority</em> of a subject is the set of actions that the subject could cause to happen,
 now or in the future, on currently-existing resources.
 Since it's only things that <em>might</em> happen, and we don't want to read all the code to find out exactly what
@@ -290,7 +290,7 @@ Here's a simple web-server (we are defining the <code>main</code> function, whic
 </span></code></pre></td></tr></tbody></table></div></figure><p>To use it, we pass it access to some network (<code>net</code>) and a directory tree with the content (<code>htdocs</code>).
 Immediately we can see that this server does not access any part of the file-system outside of <code>htdocs</code>,
 but that it may use the network. Here's a picture of the situation:</p>
-<p><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/lambda-caps/web1.svg" title="Initial reference graph" class="caption"/><span class="caption-text">Initial reference graph</span></span></p>
+<p><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/lambda-caps/web1.svg" title="Initial reference graph" class="caption"><span class="caption-text">Initial reference graph</span></span></p>
 <p>Notes on reading the diagram:</p>
 <ul>
 <li>The diagram shows a model of the reference graph, where each node represents some value (function, record, tuple, etc)
@@ -350,7 +350,7 @@ we would have to assume that <code>app</code> might give <code>net</code> access
 We could also have used a record and written <code>net.listen</code> instead, which may look more familiar to some readers.</p>
 <p>Here's an updated diagram, showing the moment when <code>Http.serve</code> is called.
 The <code>app</code> group has been opened to show <code>socket</code> and <code>handler</code> separately:</p>
-<p><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/lambda-caps/web2.svg" title="After reading the code of main" class="caption"/><span class="caption-text">After reading the code of main</span></span></p>
+<p><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/lambda-caps/web2.svg" title="After reading the code of main" class="caption"><span class="caption-text">After reading the code of main</span></span></p>
 <p>We can see that the code in the HTTP library can only access the network via <code>socket</code>,
 and can only access <code>htdocs</code> by using <code>handler</code>.
 Assuming <code>Net.listen</code> is trust-worthy (we'll normally trust the platform's networking layer),
@@ -391,7 +391,7 @@ In particular, we didn't have to read <code>handle_connection</code> or any of t
 </span></code></pre></td></tr></tbody></table></div></figure><p>OCaml syntax note: I used <code>~</code> to make <code>tls_config</code> a named argument; we wouldn't want to get this directory confused with <code>htdocs</code>!</p>
 <p>We can see that only the TLS library gets access to the key.
 The HTTP library interacts only with the TLS socket, which presumably does not reveal it.</p>
-<p><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/lambda-caps/web3.svg" title="Updated graph showing TLS" class="caption"/><span class="caption-text">Updated graph showing TLS</span></span></p>
+<p><span class="caption-wrapper center"><img src="https://roscidus.com/blog/images/lambda-caps/web3.svg" title="Updated graph showing TLS" class="caption"><span class="caption-text">Updated graph showing TLS</span></span></p>
 <p>Notice too how this fixes the problem we had with our original policy enforcement system.
 There, an attacker could request <code>https://example.com/../tls_config/server.key</code> and the HTTP server might send the key.
 But here, the handler cannot do that even if it wants to.
@@ -438,7 +438,7 @@ yet still be able to expand groups as needed right down to the level of individu
 <ul>
 <li>
 <p>Library code can be imported and called without it getting access to any pre-existing state,
-except that given to it explicitly. There is no &quot;ambient authority&quot; available to the library.</p>
+except that given to it explicitly. There is no "ambient authority" available to the library.</p>
 </li>
 <li>
 <p>A function's side-effects are bounded by its arguments.
@@ -446,27 +446,27 @@ We can understand (get a bound on) the behaviour of a function call just by look
 </li>
 <li>
 <p>If <code>a</code> has access to <code>b</code> and to <code>c</code>, then <code>a</code> can introduce them (e.g. by performing the function call <code>b c</code>).
-Note that there is no capability equivalent to making something &quot;world readable&quot;;
+Note that there is no capability equivalent to making something "world readable";
 to perform an introduction,
-you need access to both the resource being granted and to the recipient (&quot;only connectivity begets connectivity&quot;).</p>
+you need access to both the resource being granted and to the recipient ("only connectivity begets connectivity").</p>
 </li>
 <li>
 <p>Instead of passing the <em>name</em> of a resource, we pass a capability reference (pointer) to it,
-thereby proving that we have access to it and sharing that access (&quot;no designation without authority&quot;).</p>
+thereby proving that we have access to it and sharing that access ("no designation without authority").</p>
 </li>
 <li>
 <p>The caller of a function decides what it should access, and can provide restricted access by wrapping
 another capability, or substituting something else entirely.</p>
 <p>I am sometimes unable to install a messaging app on my phone because it requires me to grant it
 access to my address book.
-A capability system should never say &quot;This application requires access to the address book. Continue?&quot;;
-it should say &quot;This application requires access to <em>an</em> address book; which would you like to use?&quot;.</p>
+A capability system should never say "This application requires access to the address book. Continue?";
+it should say "This application requires access to <em>an</em> address book; which would you like to use?".</p>
 </li>
 <li>
 <p>A capability must behave the same way regardless of who uses it.
 When we do <code>f x</code>, <code>f</code> can perform exactly the same operations on <code>x</code> that we can.</p>
-<p>It is tempting to add a traditional policy language alongside capabilities for &quot;extra security&quot;,
-saying e.g. &quot;<code>f</code> cannot write to <code>x</code>, even if it has a reference to it&quot;.
+<p>It is tempting to add a traditional policy language alongside capabilities for "extra security",
+saying e.g. "<code>f</code> cannot write to <code>x</code>, even if it has a reference to it".
 However, apart from being complicated and annoying,
 this creates an incentive for <code>f</code> to smuggle <code>x</code> to another context with more powers.
 This is the root cause of many real-world attacks, such as click-jacking or cross-site request forgery,
@@ -491,7 +491,7 @@ This is actually not much of a problem, for a couple of reasons:</p>
 <p>We already do this with most things anyway.
 If your program uses a database, you probably establish a connection to it at the start and pass the connection around as needed.
 You probably also pass around open file handles, configuration settings, HTTP connection pools, arrays, queues, ref-cells, etc.
-Handling &quot;the file-system&quot; and &quot;the network&quot; the same way as everything else isn't a big deal.</p>
+Handling "the file-system" and "the network" the same way as everything else isn't a big deal.</p>
 </li>
 <li>
 <p>You can often bundle up a capability with something else.
@@ -512,8 +512,8 @@ Instead, <code>handle_request</code> can take a function for connecting to Redis
 </pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="nn">Http</span><span class="p">.</span><span class="n">serve</span> <span class="n">socket</span> <span class="o">(</span><span class="n">handle_request</span> <span class="n">redis</span><span class="o">)</span>
 </span></code></pre></td></tr></tbody></table></div></figure><p>Then there is only one argument to pass around again.
 Instead of writing the connection logic in <code>handle_request</code>, we write the same logic outside and just pass in the function.
-And now someone looking at the code can see &quot;the handler can connect to Redis&quot;,
-rather than the less precise &quot;the handler accesses the network&quot;.
+And now someone looking at the code can see "the handler can connect to Redis",
+rather than the less precise "the handler accesses the network".
 Of course, if Redis required more than one configuration setting then you'd probably already be doing it this way.</p>
 <p>The main problematic case is providing <em>defaults</em>.
 For example, a TLS library might allow us to specify the location of the system's certificate store,
@@ -547,12 +547,12 @@ In Eio, an application will typically start something like this:</p>
 </pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="nn">Eio_main</span><span class="p">.</span><span class="n">run</span> <span class="o">@@</span> <span class="k">fun</span> <span class="n">env</span> <span class="o">-&gt;</span>
 </span><span class="line"><span class="k">let</span> <span class="n">net</span> <span class="o">=</span> <span class="nn">Eio</span><span class="p">.</span><span class="nn">Stdenv</span><span class="p">.</span><span class="n">net</span> <span class="n">env</span> <span class="k">in</span>
 </span><span class="line"><span class="k">let</span> <span class="n">fs</span> <span class="o">=</span> <span class="nn">Eio</span><span class="p">.</span><span class="nn">Stdenv</span><span class="p">.</span><span class="n">fs</span> <span class="n">env</span> <span class="k">in</span>
-</span><span class="line"><span class="nn">Eio</span><span class="p">.</span><span class="nn">Path</span><span class="p">.</span><span class="n">with_open_dir</span> <span class="o">(</span><span class="n">fs</span> <span class="o">/</span> <span class="s2">&quot;/srv/www&quot;</span><span class="o">)</span> <span class="o">@@</span> <span class="k">fun</span> <span class="n">htdocs</span> <span class="o">-&gt;</span>
+</span><span class="line"><span class="nn">Eio</span><span class="p">.</span><span class="nn">Path</span><span class="p">.</span><span class="n">with_open_dir</span> <span class="o">(</span><span class="n">fs</span> <span class="o">/</span> <span class="s2">"/srv/www"</span><span class="o">)</span> <span class="o">@@</span> <span class="k">fun</span> <span class="n">htdocs</span> <span class="o">-&gt;</span>
 </span><span class="line"><span class="n">main</span> <span class="n">net</span> <span class="n">htdocs</span>
 </span></code></pre></td></tr></tbody></table></div></figure><p><code>Eio_main.run</code> starts the Eio event loop and then runs the callback.
 The <code>env</code> argument gives full access to the process's environment.
 Here, the callback extracts network and filesystem access from this,
-gets access to just &quot;/srv/www&quot; from <code>fs</code>,
+gets access to just "/srv/www" from <code>fs</code>,
 and then calls the <code>main</code> function as before.</p>
 <p>Note that <code>Eio_main.run</code> itself is not a capability-safe function (it magics up <code>env</code> from nothing).
 A capability-enforcing compiler would flag this bit up as needing to be audited manually.</p>
@@ -561,7 +561,7 @@ A capability-enforcing compiler would flag this bit up as needing to be audited 
 Traditional security systems are more widely available, better tested, and approved by your employer,
 and you want to use that instead.
 Still, to write the policy, you're going to need a list of resources the program might access.
-Looking at the above code, we can immediately see that the policy need allow access only to the &quot;/srv/www&quot; directory,
+Looking at the above code, we can immediately see that the policy need allow access only to the "/srv/www" directory,
 and so we could call e.g. <a href="https://man.openbsd.org/unveil">unveil</a> here.
 And if <code>main</code> later changes to use TLS,
 the type-checker will let us know to update this code to provide the TLS configuration
@@ -627,8 +627,8 @@ you pass a capability to a base directory and a string path relative to that.
 In the case of our web-server, we'd use a capability for <code>htdocs</code>, but use strings to reference things inside it, allowing the server to follow symlinks within that sub-tree, but not outside.</p>
 <p>The main problem is that it makes the API a bit confusing. Consider:</p>
 <figure class="code"><div class="highlight"><table><tbody><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="n">save_to</span> <span class="o">(</span><span class="n">htdocs</span> <span class="o">/</span> <span class="s2">&quot;uploads&quot;</span><span class="o">)</span>
-</span></code></pre></td></tr></tbody></table></div></figure><p>It might look like <code>save_to</code> is only getting access to the &quot;uploads&quot; directory,
+</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="n">save_to</span> <span class="o">(</span><span class="n">htdocs</span> <span class="o">/</span> <span class="s2">"uploads"</span><span class="o">)</span>
+</span></code></pre></td></tr></tbody></table></div></figure><p>It might look like <code>save_to</code> is only getting access to the "uploads" directory,
 but in Eio it actually gets access to the whole of <code>htdocs</code>.
 If you want to restrict access, you have to do that explicitly
 (as we did when creating <code>htdocs</code> from <code>fs</code>).</p>
@@ -650,7 +650,7 @@ You can then just record a good trace of a test's operations and check that it d
 <h3>Power boxes</h3>
 <p>Interactive applications that load and save files present a small problem:
 since the user might load or save anywhere, it seems they need access to the whole file-system.
-The solution is a &quot;powerbox&quot;.
+The solution is a "powerbox".
 The powerbox has access to the file-system and the rest of the application only has access to the powerbox.
 When the application wants to save a file, it asks the powerbox, which pops up a GUI asking the user to choose the location.
 Then it opens the file and passes that back to the application.</p>
@@ -658,9 +658,9 @@ Then it opens the file and passes that back to the application.</p>
 <p>Currently-popular security mechanisms are complex and have many shortcomings.
 Yet, the lambda calculus already contains an excellent security mechanism,
 and making use of it requires little more than avoiding global variables.</p>
-<p>This is known as &quot;capability-based security&quot;.
-The word &quot;capabilities&quot; has also been used for several unrelated concepts (such as &quot;POSIX capabilities&quot;),
-and for clarity much of the community rebranded a while back as &quot;Object Capabilities&quot;,
+<p>This is known as "capability-based security".
+The word "capabilities" has also been used for several unrelated concepts (such as "POSIX capabilities"),
+and for clarity much of the community rebranded a while back as "Object Capabilities",
 but this can make it seem irrelevant to functional programmers.
 In fact, I wrote this blog post because several OCaml programmers have asked me what the point of capabilities is.
 I was expecting it to be quite short (basically: applying functions to arguments good, global variables bad),

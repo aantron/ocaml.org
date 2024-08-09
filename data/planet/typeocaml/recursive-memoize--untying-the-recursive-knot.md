@@ -10,7 +10,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2015/01/knot-1.jpg#hero" alt=""/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/knot-1.jpg#hero" alt=""></p>
 
 <p>When I wrote the section of <em>When we need later substitution</em> in  <a href="http://typeocaml.com/2015/01/20/mutable/">Mutable</a>, I struggled. I found out that I didn't fully understand the recursive memoize myself, so what I had to do was just copying the knowledge from <a href="https://realworldocaml.org/v1/en/html/imperative-programming-1.html#memoization-and-dynamic-programming">Real World OCaml</a>. Luckily, after the post was published, <em>glacialthinker</em> <a href="http://www.reddit.com/r/ocaml/comments/2t49p9/mutable_and_when_shall_we_use_imperative/cnvryku">commented</a> in <a href="http://www.reddit.com/r/ocaml/comments/2t49p9/mutable_and_when_shall_we_use_imperative/">reddit</a>:</p>
 
@@ -19,7 +19,7 @@ source:
     <p>(I never thought before that a recursive function can be split like this, honestly. I don't know how to induct such a way and can't explain more. I guess we just learn it as it is and continue. More descriptions of it is in the book.)</p>
   </blockquote>
   
-  <p>This is &quot;untying the recursive knot&quot;. And I thought I might find a nice wikipedia or similiar entry... but I mostly find Harrop. :) He actually had a nice article on this many years back in his OCaml Journal. Anyway, if the author swings by, searching for that phrase may turn up more material on the technique.</p>
+  <p>This is "untying the recursive knot". And I thought I might find a nice wikipedia or similiar entry... but I mostly find Harrop. :) He actually had a nice article on this many years back in his OCaml Journal. Anyway, if the author swings by, searching for that phrase may turn up more material on the technique.</p>
 </blockquote>
 
 <p>It greatly enlightened me. Hence, in this post, I will share with you my futher understanding on <em>recursive memoize</em> together with the key cure <em>untying the recursive knot</em> that makes it possible. </p>
@@ -41,7 +41,7 @@ source:
   g
 </code></pre>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/simple_memoize-1.jpg" alt=""/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/simple_memoize-1.jpg" alt=""></p>
 
 <blockquote>
   <p>The greatness of <code>memoize</code> is its flexibility: as long as <code>f</code> takes a single argument, <code>memoize</code> can make a <em>memo version</em> out of it without touching anything inside <code>f</code>.  </p>
@@ -51,7 +51,7 @@ source:
 
 <p><strong>Unfortunately, the simple <code>memoize</code> cannot handle recursive functions.</strong> If we try to do <code>memoize f_rec</code>, we will get this:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/simple_memoize_rec.jpg" alt=""/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/simple_memoize_rec.jpg" alt=""></p>
 
 <p><code>f_rec</code> is a recursive function so it will call itself inside its body. <code>memoize f_rec</code> will produce <code>f_rec_memo</code> which is a little similar as the previous <code>f_memo</code>, yet with the difference that it is not a simple single call of <code>f_rec arg</code> like we did <code>f arg</code>. Instead, <code>f_rec arg</code> may call <code>f_rec</code> again and again with new arguments. </p>
 
@@ -75,11 +75,11 @@ source:
 
 <p>What we really want for memoizing a recursive function is to blend the <em>memo</em> ability deep inside, like this:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/memoize_rec_wish-1.jpg" alt=""/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/memoize_rec_wish-1.jpg" alt=""></p>
 
 <p>Essentially we have to replace <code>f_rec</code> inside with <code>f_rec_memo</code>:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/transform-1.jpg" alt=""/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/transform-1.jpg" alt=""></p>
 
 <p>And only in this way, <code>f_rec</code> can be fully memoized. However, we have one problem: **it seems that we have to change the internal of <code>f_rec</code>.</p>
 
@@ -127,7 +127,7 @@ source:
 
 <p>Every recursive function somehow follows a similar pattern where it calls itself inside its body:</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/single_f_rec.jpg" alt=""/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/single_f_rec.jpg" alt=""></p>
 
 <p>Once a recursive function application starts, it is out of our hands and we know it will continue and continue by calling itself until the <em>STOP</em> condition is satisfied. <strong>What if the users of our recursive function need some more control even after it gets started?</strong> </p>
 
@@ -156,7 +156,7 @@ source:
 <p>Going back to the printing requirement, a user can now build its own version of <code>fib_rec_with_trace</code> like this:</p>
 
 <pre><code class="ocaml">let rec fib_rec_with_trace n =  
-  Printf.printf &quot;now fibbing %d\n&quot; n; 
+  Printf.printf "now fibbing %d\n" n; 
   fib_norec fib_rec_with_trace n
 </code></pre>
 
@@ -164,7 +164,7 @@ source:
   <p>Untying the recusive knot is a functional design pattern. It turns the recursive part inside the body into a new parameter <code>f</code>. In this  way, it breaks the iteration and turns a recursive function into a pattern where new or additional logic can be injected into via <code>f</code>. </p>
 </blockquote>
 
-<p><img src="http://typeocaml.com/content/images/2015/01/untie_f_rec.jpg" alt=""/></p>
+<p><img src="http://typeocaml.com/content/images/2015/01/untie_f_rec.jpg" alt=""></p>
 
 <p>It is very easy to untie the knots for recusive functions. You just give an addition parameter <code>f</code> and replace <code>f_rec</code> everywhere inside with it. For example, for <code>quicksort</code>:</p>
 

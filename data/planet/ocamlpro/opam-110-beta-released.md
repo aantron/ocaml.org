@@ -5,8 +5,8 @@ description: We are very happy to announce the beta release of OPAM version 1.1.
   compiler installations, flexible package constraints, and a Git-friendly development
   workflow which. OPAM is edited and maintained by OCamlPro, wi...
 url: https://ocamlpro.com/blog/2013_09_20_opam_1.1.0_beta_released
-date: 2013-09-20T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2013-09-20T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Thomas Gazagnaire\n  "
 source:

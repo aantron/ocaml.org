@@ -5,14 +5,14 @@ description: Most package managers support some pin functionality to ensure that
   OPAM 1.1 already supported this by allowing any existing package to be pinned to
   a target, which could be a specific released version, a local filesy...
 url: https://ocamlpro.com/blog/2014_08_19_opam_1.2_repository_pinning
-date: 2014-08-19T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2014-08-19T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:
 ---
 
-<p><img src="https://ocamlpro.com/blog/assets/img/picture_camel_pin.jpg"/></p>
+<p><img src="https://ocamlpro.com/blog/assets/img/picture_camel_pin.jpg"></p>
 <p>Most package managers support some <em>pin</em> functionality to ensure that a given
 package remains at a particular version without being upgraded.
 The stable OPAM 1.1 already supported this by allowing any existing package to be
@@ -45,7 +45,7 @@ relying on this workflow.</p>
 never released: <a href="https://github.com/OCamlPro/ocp-reloc" title="ocp-reloc repo on Github">ocp-reloc</a>.  It's a simple binary that fixes up the
 headers of OCaml bytecode files to make them relocatable, which I'd like
 to release into the public OPAM repository.</p>
-<h4>&quot;opam pin add&quot;</h4>
+<h4>"opam pin add"</h4>
 <p>The command <code>opam pin add &lt;name&gt; &lt;target&gt;</code> pins package <code>&lt;name&gt;</code> to
 <code>&lt;target&gt;</code>. We're interested in pinning the <code>ocp-reloc</code> package
 name to the project's source directory.</p>
@@ -73,26 +73,26 @@ that's where templates kick in, the above triggering an editor with a pre-filled
 looking up the documentation, it also helps getting consistent package
 definitions, reduces errors, and promotes filling in optional but recommended
 fields (homepage, etc.).</p>
-<pre><code class="language-shell-session">opam-version: &quot;1.2&quot;
-name: &quot;ocp-reloc&quot;
-version: &quot;0.1&quot;
-maintainer: &quot;Louis Gesbert &lt;louis.gesbert@ocamlpro.com&gt;&quot;
-authors: &quot;Louis Gesbert &lt;louis.gesbert@ocamlpro.com&gt;&quot;
-homepage: &quot;&quot;
-bug-reports: &quot;&quot;
-license: &quot;&quot;
+<pre><code class="language-shell-session">opam-version: "1.2"
+name: "ocp-reloc"
+version: "0.1"
+maintainer: "Louis Gesbert &lt;louis.gesbert@ocamlpro.com&gt;"
+authors: "Louis Gesbert &lt;louis.gesbert@ocamlpro.com&gt;"
+homepage: ""
+bug-reports: ""
+license: ""
 build: [
-  [&quot;./configure&quot; &quot;--prefix=%{prefix}%&quot;]
+  ["./configure" "--prefix=%{prefix}%"]
   [make]
 ]
-install: [make &quot;install&quot;]
-remove: [&quot;ocamlfind&quot; &quot;remove&quot; &quot;ocp-reloc&quot;]
-depends: &quot;ocamlfind&quot; {build}
+install: [make "install"]
+remove: ["ocamlfind" "remove" "ocp-reloc"]
+depends: "ocamlfind" {build}
 </code></pre>
 <p>After adding some details (most importantly the dependencies and
 build instructions), I can just save and exit.  Much like other system tools
 such as <code>visudo</code>, it checks for syntax errors immediately:</p>
-<pre><code>[ERROR] File &quot;/home/lg/.opam/4.01.0/overlay/ocp-reloc/opam&quot;, line 13, character 35-36: '.' is not a valid token.
+<pre><code>[ERROR] File "/home/lg/.opam/4.01.0/overlay/ocp-reloc/opam", line 13, character 35-36: '.' is not a valid token.
 Errors in /home/lg/.opam/4.01.0/overlay/ocp-reloc/opam, retry editing ? [Y/n]
 </code></pre>
 <h4>Installation</h4>

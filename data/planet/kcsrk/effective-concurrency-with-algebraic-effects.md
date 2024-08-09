@@ -134,14 +134,14 @@ argument type of the continuation, and the return type of the delimited
 continuation is <code class="language-plaintext highlighter-rouge">'b</code>.</p>
 
 <p>Observe that we represent the scheduler queue with a queue of delimited
-continuations, with functions to manipulate the queue (lines 2&ndash;6). In the case
+continuations, with functions to manipulate the queue (lines 2–6). In the case
 of normal or exceptional return, we pop the scheduler queue and resume the
 resultant continuation using the <code class="language-plaintext highlighter-rouge">continue</code> primitive (line 6). <code class="language-plaintext highlighter-rouge">continue k v</code>
 resumes the continuation <code class="language-plaintext highlighter-rouge">k : ('a,'b) continuation</code> with value <code class="language-plaintext highlighter-rouge">v : 'a</code> and
 returns a value of type <code class="language-plaintext highlighter-rouge">'b</code>. In the case of effectful return with <code class="language-plaintext highlighter-rouge">Fork f</code>
-effect (lines 16&ndash;17), we enqueue the current continuation to the scheduler
+effect (lines 16–17), we enqueue the current continuation to the scheduler
 queue and spawn a new thread of control for evaluating <code class="language-plaintext highlighter-rouge">f</code>. In the case of
-<code class="language-plaintext highlighter-rouge">Yield</code> effect (lines 14&ndash;15), we enqueue the current continuation, and resume
+<code class="language-plaintext highlighter-rouge">Yield</code> effect (lines 14–15), we enqueue the current continuation, and resume
 some other saved continuation from the scheduler queue.</p>
 
 <h3>Testing the scheduler</h3>
@@ -154,25 +154,25 @@ a binary tree of tasks. The sources for this test are available
 <figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">log</span> <span class="o">=</span> <span class="nn">Printf</span><span class="p">.</span><span class="n">printf</span>
 
 <span class="k">let</span> <span class="k">rec</span> <span class="n">f</span> <span class="n">id</span> <span class="n">depth</span> <span class="o">=</span>
-  <span class="n">log</span> <span class="s2">&quot;Starting number %i</span><span class="se">\n</span><span class="s2">%!&quot;</span> <span class="n">id</span><span class="p">;</span>
+  <span class="n">log</span> <span class="s2">"Starting number %i</span><span class="se">\n</span><span class="s2">%!"</span> <span class="n">id</span><span class="p">;</span>
   <span class="k">if</span> <span class="n">depth</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">then</span> <span class="k">begin</span>
-    <span class="n">log</span> <span class="s2">&quot;Forking number %i</span><span class="se">\n</span><span class="s2">%!&quot;</span> <span class="p">(</span><span class="n">id</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">log</span> <span class="s2">"Forking number %i</span><span class="se">\n</span><span class="s2">%!"</span> <span class="p">(</span><span class="n">id</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
     <span class="nn">Sched</span><span class="p">.</span><span class="n">fork</span> <span class="p">(</span><span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="p">(</span><span class="n">id</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">depth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
-    <span class="n">log</span> <span class="s2">&quot;Forking number %i</span><span class="se">\n</span><span class="s2">%!&quot;</span> <span class="p">(</span><span class="n">id</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">log</span> <span class="s2">"Forking number %i</span><span class="se">\n</span><span class="s2">%!"</span> <span class="p">(</span><span class="n">id</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
     <span class="nn">Sched</span><span class="p">.</span><span class="n">fork</span> <span class="p">(</span><span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="p">(</span><span class="n">id</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="n">depth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
   <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
-    <span class="n">log</span> <span class="s2">&quot;Yielding in number %i</span><span class="se">\n</span><span class="s2">%!&quot;</span> <span class="n">id</span><span class="p">;</span>
+    <span class="n">log</span> <span class="s2">"Yielding in number %i</span><span class="se">\n</span><span class="s2">%!"</span> <span class="n">id</span><span class="p">;</span>
     <span class="nn">Sched</span><span class="p">.</span><span class="n">yield</span> <span class="bp">()</span><span class="p">;</span>
-    <span class="n">log</span> <span class="s2">&quot;Resumed number %i</span><span class="se">\n</span><span class="s2">%!&quot;</span> <span class="n">id</span><span class="p">;</span>
+    <span class="n">log</span> <span class="s2">"Resumed number %i</span><span class="se">\n</span><span class="s2">%!"</span> <span class="n">id</span><span class="p">;</span>
   <span class="k">end</span><span class="p">;</span>
-  <span class="n">log</span> <span class="s2">&quot;Finishing number %i</span><span class="se">\n</span><span class="s2">%!&quot;</span> <span class="n">id</span>
+  <span class="n">log</span> <span class="s2">"Finishing number %i</span><span class="se">\n</span><span class="s2">%!"</span> <span class="n">id</span>
 
 <span class="k">let</span> <span class="bp">()</span> <span class="o">=</span> <span class="nn">Sched</span><span class="p">.</span><span class="n">run</span> <span class="p">(</span><span class="k">fun</span> <span class="bp">()</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="mi">0</span> <span class="mi">2</span><span class="p">)</span></code></pre></figure>
 
 <p>generates a binary tree of depth 2, where the tasks are numbered as shown
 below:</p>
 
-<p><img src="https://kcsrk.info/assets/tree.png" alt="Binary tree"/></p>
+<p><img src="https://kcsrk.info/assets/tree.png" alt="Binary tree"></p>
 
 <p>The program forks new tasks in a depth-first fashion and yields when it reaches
 maximum depth, logging the actions along the way. To run the program, first
@@ -263,19 +263,19 @@ save multicore-capable schedulers for another post.</p>
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li role="doc-endnote">
-      <p><a href="http://www.eff-lang.org/">Eff</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:Eff" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p><a href="http://www.eff-lang.org/">Eff</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:Eff" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li role="doc-endnote">
-      <p><a href="http://www.diku.dk/hjemmesider/ansatte/andrzej/papers/RM-abstract.html">Representing Monads</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:Filinski94" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p><a href="http://www.diku.dk/hjemmesider/ansatte/andrzej/papers/RM-abstract.html">Representing Monads</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:Filinski94" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li role="doc-endnote">
-      <p><a href="https://ocaml.org/meetings/ocaml/2014/ocaml2014_1.pdf">Multicore OCaml (pdf)</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:OW14" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p><a href="https://ocaml.org/meetings/ocaml/2014/ocaml2014_1.pdf">Multicore OCaml (pdf)</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:OW14" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li role="doc-endnote">
-      <p><a href="http://www.cs.indiana.edu/~dyb/pubs/call1cc-abstract.html">Representing Control in the presence of One-shot Continuations</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:Bruggeman96" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p><a href="http://www.cs.indiana.edu/~dyb/pubs/call1cc-abstract.html">Representing Control in the presence of One-shot Continuations</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:Bruggeman96" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li role="doc-endnote">
-      <p><a href="http://okmij.org/ftp/kakuritu/">Embedded domain-specific language HANSEI for probabilistic models and (nested) inference</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:Kiselyov09" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p><a href="http://okmij.org/ftp/kakuritu/">Embedded domain-specific language HANSEI for probabilistic models and (nested) inference</a>&nbsp;<a href="https://kcsrk.info/atom-ocaml.xml#fnref:Kiselyov09" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
   </ol>
 </div>

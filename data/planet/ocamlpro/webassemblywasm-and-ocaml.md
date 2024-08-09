@@ -5,8 +5,8 @@ description: In this first post about WebAssembly (Wasm) and OCaml, we introduce
   our participation in the Garbage-Collection (GC) Working Group for Wasm, and two
   related development projects in OCaml. WebAssembly, a fast and por...
 url: https://ocamlpro.com/blog/2022_12_14_wasm_and_ocaml
-date: 2022-12-14T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2022-12-14T13:31:53-00:00
+preview_image: https://www.ocamlpro.com/blog/assets/img/dalle_dragon_camel.png
 authors:
 - "\n    L\xE9o Andr\xE8s\n  "
 source:
@@ -15,11 +15,11 @@ source:
 <p></p>
 <div class="figure">
   <p>
-    <img src="https://ocamlpro.com/blog/assets/img/dalle_dragon_camel.png" alt=""/>
+    <img src="https://ocamlpro.com/blog/assets/img/dalle_dragon_camel.png" alt="">
     </p><div class="caption">
       The Dragon-Camel is raging at the sight of all the challenges we overcome!
     </div>
-  
+  <p></p>
 </div>
 <p>In this first post about <a href="https://webassembly.org/">WebAssembly</a> (Wasm) and OCaml, we introduce
 the work we have been doing for quite some time now, though without

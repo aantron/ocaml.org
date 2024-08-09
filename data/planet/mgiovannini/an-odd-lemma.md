@@ -14,17 +14,12 @@ source:
 While proving that every monad is an applicative functor, I extracted the following derivation as a lemma:
 
 
-  fmap f &#8728; (&lambda;h. fmap h x)
-&equiv; { defn. &#8728;, &beta;-reduction }
-  &lambda;g. fmap f (fmap g x)
-&equiv; { defn. &#8728; }
-  &lambda;g. (fmap f &#8728; fmap g) x
-&equiv; { Functor }
-  &lambda;g. fmap (f &#8728; g) x
-&equiv; { abstract f &#8728; g }
-  &lambda;g. (&lambda;h. fmap h x) (f &#8728; g)
-&equiv; { defn. &#8728;, &eta;-contraction }
-  (&lambda;h. fmap h x) &#8728; (f &#8728;)
-
-
-for all f, x. This is the Yoneda
+  fmap f ∘ (λh. fmap h x)
+≡ { defn. ∘, β-reduction }
+  λg. fmap f (fmap g x)
+≡ { defn. ∘ }
+  λg. (fmap f ∘ fmap g) x
+≡ { Functor }
+  λg. fmap (f ∘ g) x
+≡ { abstract f ∘ g }
+  λg. (λh.

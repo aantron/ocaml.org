@@ -51,7 +51,7 @@ The best collection of examples right now is the <a href="https://github.com/orb
   <font color="#990000">&gt;&gt;=</font> <b><font color="#0000FF">fun</font></b> s <font color="#990000">-&gt;</font>
   <b><font color="#000080">P</font></b><font color="#990000">.</font>run complex s
 </code></pre>
-
+<p></p>
 
 <p>
 The builder for this message looks like:
@@ -72,4 +72,4 @@ The builder for this message looks like:
   <b><font color="#000080">B</font></b><font color="#990000">.</font>embd_msg b <font color="#993399">3</font> i2 build_simple <font color="#990000">&gt;&gt;=</font> <b><font color="#0000FF">fun</font></b> <font color="#990000">()</font> <font color="#990000">-&gt;</font>
   <font color="#009900">Ok</font> <font color="#990000">(</font><b><font color="#000080">B</font></b><font color="#990000">.</font>to_string b<font color="#990000">)</font>
 </code></pre>
-
+<p></p>

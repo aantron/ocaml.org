@@ -16,7 +16,7 @@ evolved into a cohesive development experience within the <a href="https://ocaml
 Platform</a>.</p>
 <p>But we're not done yet. In the next few paragraphs, I'll tell you everything
 we've shipped so far in the first 3 months of 2024.</p>
-<hr/>
+<hr>
 <h2 tabindex="-1">Releasing <a href="https://melange.re/blog/announcing-melange-3.html">Melange 3</a> <a href="https://melange.re/blog/feed.rss#releasing-melange-3" class="header-anchor" aria-label="Permalink to &quot;Releasing [Melange 3](./announcing-melange-3)&quot;"></a></h2>
 <p>We released Melange 3.0 in February. This release mostly focused on addressing
 long-standing deprecations, crashes, error messages and making the Melange
@@ -55,8 +55,8 @@ Melange should emit ES6 features that your project requires.</p>
 <p>Until Melange 3, exceptions originating from OCaml code compiled with Melange
 are roughly thrown as such:</p>
 <div class="language-js vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">js</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">throw</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  MEL_EXN_ID: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">&quot;Assert_failure&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  _1: [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">&quot;x.ml&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">42</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  MEL_EXN_ID: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Assert_failure"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  _1: [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"x.ml"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">42</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  Error: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Error</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">};</span></span></code></pre>
 </div><p>As stated in an <a href="https://github.com/rescript-lang/rescript-compiler/issues/4506" target="_blank" rel="noreferrer">old ReScript
@@ -67,20 +67,20 @@ encoding above is at odds with user exception monitoring in popular vendors.</p>
 <a href="https://github.com/melange-re/melange/pull/1043" target="_blank" rel="noreferrer">melange#1043</a>, where we
 changed the encoding to throw a dedicated <code>MelangeError</code> instance:</p>
 <div class="language-diff vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">diff</span><pre class="shiki shiki-themes github-light github-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7">-throw {</span></span>
-<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">+throw new Caml_js_exceptions.MelangeError(&quot;Assert_failure&quot;, {</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  MEL_EXN_ID: &quot;Assert_failure&quot;,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  _1: [&quot;x.ml&quot;, 42, 8],</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">+throw new Caml_js_exceptions.MelangeError("Assert_failure", {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  MEL_EXN_ID: "Assert_failure",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  _1: ["x.ml", 42, 8],</span></span>
 <span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7">- Error: new Error()</span></span>
 <span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7">-};</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">+});</span></span></code></pre>
-</div><p>Besides fixing the immediate issue &ndash; vendor SDKs for error monitoring now
-understand Melange runtime errors &ndash; this change brings a few additional
+</div><p>Besides fixing the immediate issue – vendor SDKs for error monitoring now
+understand Melange runtime errors – this change brings a few additional
 benefits to users of Melange:</p>
 <ul>
 <li>Detecting an exception originating from Melange-compiled code is now as easy
 as using the JS <code>instanceof</code> operator to check if the exception is an
 instance of <code>Caml_js_exceptions.MelangeError</code>.</li>
-<li><code>MelangeError</code> adds support for &ndash; and polyfills, if necessary &ndash; the
+<li><code>MelangeError</code> adds support for – and polyfills, if necessary – the
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause" target="_blank" rel="noreferrer"><code>cause</code></a>
 property in instances of <code>Error</code>, which lets us squeeze out some extra
 <a href="https://caniuse.com/mdn-javascript_builtins_error_cause" target="_blank" rel="noreferrer">browser support</a>.
@@ -100,11 +100,11 @@ JS runtime, and their quality. In next release, we're adding more functions to
 cover <code>Map</code>, <code>Set</code>, <code>WeakMap</code>, <code>WeakSet</code>, <code>BigInt</code> and <code>Iterator</code>.</p>
 <p>We're also taking advantage of Dune's obscure extension that models libraries
 like the OCaml <code>Stdlib</code> (<code>(using experimental_building_ocaml_compiler_with_dune 0.1)</code> in <code>dune-project</code>, the <code>stdlib</code> field in <code>library</code> stanzas). Here's the
-difference between a &quot;stdlib library&quot; and a regular library: a stdlib library's
+difference between a "stdlib library" and a regular library: a stdlib library's
 main module depends on just a subset of the internal modules in the libraries,
 while others depend on this main module. Dune doesn't allow regular library
 modules to depend on their main module name.</p>
-<p>In the next release of Melange, we treat the <code>Js.*</code> modules like a &quot;stdlib&quot;
+<p>In the next release of Melange, we treat the <code>Js.*</code> modules like a "stdlib"
 library (<a href="https://github.com/melange-re/melange/pull/1091" target="_blank" rel="noreferrer">melange#1091</a>):
 modules are only accessible through the <code>Js.*</code> namespace; as a fortunate
 side-effect, we stop exposing <code>Js__Js_internal</code>, which could leak into some
@@ -150,13 +150,13 @@ file (<a href="https://github.com/ocaml/dune/pull/10322" target="_blank" rel="no
 <h3 tabindex="-1"><a href="https://dune.readthedocs.io/en/stable/variants.html" target="_blank" rel="noreferrer">Virtual libraries</a> in Melange <a href="https://melange.re/blog/feed.rss#virtual-libraries-in-melange" class="header-anchor" aria-label="Permalink to &quot;[Virtual libraries](https://dune.readthedocs.io/en/stable/variants.html) in Melange&quot;"></a></h3>
 <p>From Dune's own documentation:</p>
 <blockquote>
-<p>Virtual libraries correspond to Dune&rsquo;s ability to compile parameterised
+<p>Virtual libraries correspond to Dune’s ability to compile parameterised
 libraries and delay the selection of concrete implementations until linking an
 executable.</p>
 </blockquote>
 <p>In the Melange case there's no executable linking going on, but we can still
-delay the selection of concrete implementations until JavaScript emission &ndash; in
-practice, this means programming against the interface of &quot;virtual modules&quot; in
+delay the selection of concrete implementations until JavaScript emission – in
+practice, this means programming against the interface of "virtual modules" in
 libraries and deferring the dependency on the concrete implementation until the
 <code>melange.emit</code> stanza.</p>
 <p>Or rather, this is <em>now</em> possible after landing
@@ -183,7 +183,7 @@ default in <a href="https://github.com/ocaml/dune/pull/10312" target="_blank" re
 Melange tests in Dune.</p>
 <h2 tabindex="-1">Towards Universal React in OCaml <a href="https://melange.re/blog/feed.rss#towards-universal-react-in-ocaml" class="header-anchor" aria-label="Permalink to &quot;Towards Universal React in OCaml&quot;"></a></h2>
 <p>One of our goals for 2024 is to ship a good developer experience around
-&quot;universal libraries&quot; in OCaml, the ability to write a mixed OCaml / Melange
+"universal libraries" in OCaml, the ability to write a mixed OCaml / Melange
 codebase that shares most libraries and modules pertaining to DOM rendering
 logic.</p>
 <p><a href="https://twitter.com/davesnx" target="_blank" rel="noreferrer">Dave</a> wrote

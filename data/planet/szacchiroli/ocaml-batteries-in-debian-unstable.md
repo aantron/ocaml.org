@@ -18,8 +18,8 @@ days.</p>
 <p>In the meantime, a couple of days ago I've uploaded the Debian
 <a href="http://packages.debian.org/sid/ocaml-batteries-included"><strong>ocaml-batteries
 package</strong></a> to the unstable archive for the first time (it
-was only available from experimental thus far). It is an &ldquo;almost
-Beta&rdquo; release which you are <strong>encouraged to test</strong>
+was only available from experimental thus far). It is an “almost
+Beta” release which you are <strong>encouraged to test</strong>
 both for packaging aspects and for having a feeling of what
 batteries will look like in its final shape.</p>
 <p>To <strong>get started</strong> just do the following:</p>

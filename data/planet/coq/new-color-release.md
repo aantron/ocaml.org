@@ -10,10 +10,10 @@ source:
 ---
 
 
-Fr&eacute;d&eacute;ric Blanqui is pleased to announce  a new release of CoLoR.
-<br/> You can download it and find more details on <a href="http://color.loria.fr/">http://color.loria.fr/</a>.
-<br/> The most important new features are:
-<br/><br/>
+Frédéric Blanqui is pleased to announce  a new release of CoLoR.
+<br> You can download it and find more details on <a href="http://color.loria.fr/">http://color.loria.fr/</a>.
+<br> The most important new features are:
+<br><br>
 <ul>
 <li> arctic matrix interpretations [Koprowski, Waldmann]</li>
 
@@ -23,7 +23,7 @@ Fr&eacute;d&eacute;ric Blanqui is pleased to announce  a new release of CoLoR.
 
 <li> some support for classical reasoning [Blanqui]</li>
 </ul>
-<br/><br/>
+<br><br>
 enjoy!
 
  

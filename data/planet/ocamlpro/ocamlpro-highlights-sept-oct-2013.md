@@ -5,16 +5,16 @@ description: "Here is a short report of our activities in September-October 2013
   in Boston. The event was a great success, with a lot of interesting talks and many
   participants. It was a nice opportunity for us to present some ..."
 url: https://ocamlpro.com/blog/2013_11_01_ocamlpro_highlights_sept_oct_2013
-date: 2013-11-01T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2013-11-01T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    \xC7agdas Bozman\n  "
 source:
 ---
 
 <p>Here is a short report of our activities in September-October 2013.</p>
-<h3>OCamlPro at OCaml&rsquo;2013 in Boston</h3>
-<p>We were very happy to participate to OCaml&rsquo;2013, in Boston. The event
+<h3>OCamlPro at OCaml’2013 in Boston</h3>
+<p>We were very happy to participate to OCaml’2013, in Boston. The event
 was a great success, with a lot of interesting talks and many
 participants. It was a nice opportunity for us to present some of our
 recent work:</p>
@@ -37,13 +37,13 @@ quality to users.
 </li>
 <li>Pierre presented his work on <a href="https://ocaml.org/meetings/ocaml/2013/slides/chambart.pdf">Improving OCaml high level optimisations</a> that he also presented in a recent <a href="https://ocamlpro.com/blog/2013_05_24_optimisations_you_shouldnt_do">blog post</a>.
 </li>
-<li>Gr&eacute;goire presented his work with Jacques Garrigue on <a href="https://ocaml.org/meetings/ocaml/2013/proposals/runtime-types.pdf">Runtime types in OCaml</a>.
+<li>Grégoire presented his work with Jacques Garrigue on <a href="https://ocaml.org/meetings/ocaml/2013/proposals/runtime-types.pdf">Runtime types in OCaml</a>.
 In particular, he showed how abstraction is hard to deal with, as there
 is a dilemma between the ability to write powerful polytipic functions
 and the preservation of the abstraction wanted by the developer for code
 modularity.
 </li>
-<li>Finally, &Ccedil;agdas presented his work on <a href="https://ocaml.org/meetings/ocaml/2013/slides/bozman.pdf">Profiling the Memory Usage of OCaml Applications without Changing their Behavior</a>.
+<li>Finally, Çagdas presented his work on <a href="https://ocaml.org/meetings/ocaml/2013/slides/bozman.pdf">Profiling the Memory Usage of OCaml Applications without Changing their Behavior</a>.
 This new profiler will be able to provide precise memory information on
 production OCaml software, by snapshoting the memory and recovering
 type information. It is currently being tested on several projects, such
@@ -51,7 +51,7 @@ as the <a href="https://why3.lri.fr/">Why3 verification tool</a>.
 </li>
 </ul>
 <p>Of course, the day was full of interesting talks, and we can only advise to see all of them on the <a href="https://ocaml.org/meetings/ocaml/2013/program.html">complete program</a> that is now online.</p>
-<p><a href="http://cufp.org/conference/schedule/2013">CUFP&rsquo;2013 Program</a>
+<p><a href="http://cufp.org/conference/schedule/2013">CUFP’2013 Program</a>
 was also very dense. For OCaml users, Dave Thomas, first keynote,
 reminded us how important it is to build two-way bridges between OCaml
 and other languages: we have the bad habit to only build one-way bridges
@@ -70,9 +70,9 @@ lot of progress in the development of these projects:</p>
 pushed forward, with a beta and a RC available already. This release
 focuses on stability improvements and bug-fixes, but is nonetheless a
 large step from 1.0, with an enhanced update mechanism, extended
-metadata, an enhanced &lsquo;pin&rsquo; workflow for developers, and much more.</p>
+metadata, an enhanced ‘pin’ workflow for developers, and much more.</p>
 <p>We are delighted by the success met by OPAM, which was mentioned
-again and again at the OCaml&rsquo;2013 workshop, where we got a warming lot
+again and again at the OCaml’2013 workshop, where we got a warming lot
 of positive feedback. To be sure that this belongs to the community,
 after licensing all metadata of the repository under CC0 (as close to
 public domain as legally possible), we have worked hand in hand with
@@ -116,8 +116,8 @@ packs.</p>
 <p>The team is also evolving, and some of us are now leaving the team to join other projects:</p>
 <ul>
 <li>After two years with us, Thomas Gazagnaire has left OCamlPro in October to work most of his time on <a href="http://www.openmirage.org/">Mirage</a>
-in Cambridge (UK). Thomas was OCamlPro&rsquo;s first employee, and OCamlPro
-probably wouldn&rsquo;t exist without him. Thomas has also been the main
+in Cambridge (UK). Thomas was OCamlPro’s first employee, and OCamlPro
+probably wouldn’t exist without him. Thomas has also been the main
 architect of OPAM, and was involved in the design of many of our
 projects. Louis Gesbert will continue his work on developing and
 maintaining OPAM.
@@ -129,7 +129,7 @@ garbage collector. We hope to be able to upstream his work soon to the
 official OCaml distribution.
 </li>
 <li>After an internship with us, Pierrick Couderc, Souhire Kenawi and
-David Maison are back to their masters&rsquo; studies since September. Souhire
+David Maison are back to their masters’ studies since September. Souhire
 worked on testing the development of iOS applications on Linux with
 OCaml, a very challenging task ! Pierrick and David developed an online
 editor for OCaml that we are going to release very soon.

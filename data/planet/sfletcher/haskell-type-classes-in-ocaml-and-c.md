@@ -10,9 +10,7 @@ authors:
 source:
 ---
 
-
-<html>
-  <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html><head>
      
     
     <title>Haskell type-classes in OCaml and C++</title>
@@ -25,29 +23,27 @@ source:
     </p>
     <p>First stop, a simplified version of the <code>Show</code>
        type-class with a couple of simple instances.
-    </p><pre class="prettyprint haskell">
-    class Show a where
+    </p><pre class="prettyprint haskell">    class Show a where
       show :: a -&gt; string
 
     instance Show Int where
       show x = Prelude.show x -- internal
 
     instance Show Bool where
-      str True = &quot;True&quot;
-      str False = &quot;False&quot;
+      str True = "True"
+      str False = "False"
     </pre>
-    The OCaml equivalent shown here uses the &quot;dictionary passing&quot;
+    The OCaml equivalent shown here uses the "dictionary passing"
     technique for implementation. The type-class
     declaration <code>Show</code> in Haskell translates to a data-type
-    declaration for a polymorphic record <code>&alpha; show</code> in
+    declaration for a polymorphic record <code>α show</code> in
     OCaml.
-    <pre class="prettyprint ocaml">
-    type &alpha; show = {
-      show : &alpha; &rarr; string
+    <pre class="prettyprint ocaml">    type α show = {
+      show : α → string
     }
 
     let show_bool : bool show = {
-      show = function | true &rarr; &quot;True&quot; | false &rarr; &quot;False&quot;
+      show = function | true → "True" | false → "False"
     }
 
     let show_int : int show = {
@@ -56,8 +52,7 @@ source:
     </pre>
     In C++ we can use a template class to represent the type-class and
     specializations to represent the instances.
-    <pre class="prettyprint c++">
-      template &lt;class A&gt; struct Show {};
+    <pre class="prettyprint c++">      template &lt;class A&gt; struct Show {};
 
       template &lt;&gt;
       struct Show&lt;int&gt; {
@@ -69,38 +64,34 @@ source:
       struct Show&lt;bool&gt; {
         static std::string show (bool);
       };
-      std::string Show&lt;bool&gt;::show (bool b) { return b ? &quot;true&quot; : &quot;false&quot;; }
+      std::string Show&lt;bool&gt;::show (bool b) { return b ? "true" : "false"; }
     </pre>
-    
+    <p></p>
     <p>
     Next up <code>print</code>, a parametrically polymorphic function.
-    </p><pre class="prettyprint haskell">
-      print :: Show a =&gt; a -&gt; IO ()
+    </p><pre class="prettyprint haskell">      print :: Show a =&gt; a -&gt; IO ()
       print x = putStrLn$ show x
     </pre>
     According to our dictionary passing scheme in OCaml, this renders as the following.
-    <pre class="prettyprint ocaml">
-      let print : &alpha; show &rarr; &alpha; &rarr; unit = 
-        fun {show} &rarr; fun x &rarr; print_endline@@ show x
+    <pre class="prettyprint ocaml">      let print : α show → α → unit = 
+        fun {show} → fun x → print_endline@@ show x
     </pre>
     The key point to note here is that in OCaml, evidence of
-    the <code>&alpha;</code> value's membership in
+    the <code>α</code> value's membership in
     the <code>Show</code> class must be produced explicitly by the
     programmer. In C++, like Haskell, no evidence of the argument's
     membership is required, the compiler keeps track of that
     implicitly.
-    <pre class="prettyprint c++">
-    template &lt;class A&gt;
+    <pre class="prettyprint c++">    template &lt;class A&gt;
     void print (A const&amp; a) {
       std::cout &lt;&lt; Show&lt;A&gt;::show (a) &lt;&lt; std::endl;
     }
     </pre>
-    
+    <p></p>
     <p>This next simplified type-class shows a different pattern of
     overloading : the function <code>fromInt</code> is overloaded on
     the result type and the <code>(+)</code> function is binary.
-    </p><pre class="prettyprint haskell">
-    class Num a where
+    </p><pre class="prettyprint haskell">    class Num a where
       fromInt :: Int -&gt; a
       (+)     :: a -&gt; a -&gt; a
 
@@ -108,23 +99,21 @@ source:
     sum ls = foldr (+) (fromInt 0) ls
     </pre>
     Translation into OCaml is as in the following.
-    <pre class="prettyprint ocaml">
-    type &alpha; num = {
-      from_int : int &rarr; &alpha;;
-      add      : &alpha; &rarr; &alpha; &rarr; &alpha;;
+    <pre class="prettyprint ocaml">    type α num = {
+      from_int : int → α;
+      add      : α → α → α;
     }
 
-    let sum : &alpha; num &rarr; &alpha; list &rarr; &alpha; = 
-      fun {from_int; add= ( + )} &rarr; 
-        fun ls &rarr;
+    let sum : α num → α list → α = 
+      fun {from_int; add= ( + )} → 
+        fun ls →
           List.fold_right ( + ) ls (from_int 0)
     </pre>
     Translation into C++, reasonably mechanical. One slight
     disappointment is that it doesn't seem possible to get the
     operator '<code>+</code>' syntax as observed in both the Haskell
     and OCaml versions.
-    <pre class="prettyprint c++">
-    template &lt;class A&gt;
+    <pre class="prettyprint c++">    template &lt;class A&gt;
     struct Num {};
     
     namespace detail {
@@ -146,26 +135,23 @@ source:
     </pre>
     In Haskell, <code>Int</code> is made a member of <code>Num</code>
     with this declaration.
-    <pre class="prettyprint haskell">
-     instance Num Int where
+    <pre class="prettyprint haskell">     instance Num Int where
        fromInt x = x
        (+)       = (Prelude.+)
    </pre>
    Returning to OCaml, we can define a couple of instances including the one above like this.
-   <pre class="prettyprint ocaml">
-    let int_num  : int num  = { 
-      from_int = (fun x &rarr; x); 
+   <pre class="prettyprint ocaml">    let int_num  : int num  = { 
+      from_int = (fun x → x); 
       add      = Pervasives.( + ); 
     }
     
     let bool_num : bool num = {
-      from_int = (function | 0 &rarr; false | _ &rarr; true);
-      add = function | true &rarr; fun _ &rarr; true | false &rarr; fun x &rarr; x
+      from_int = (function | 0 → false | _ → true);
+      add = function | true → fun _ → true | false → fun x → x
     }
    </pre>
    The code defining those above instances in C++ follows.
-   <pre class="prettyprint c++">
-    template &lt;&gt;
+   <pre class="prettyprint c++">    template &lt;&gt;
     struct Num&lt;int&gt; {
       static int from_int (int);
       static int add (int, int);
@@ -184,19 +170,16 @@ source:
     bool Num&lt;bool&gt;::add (bool x, bool y) { if (x) return true; return y; }
    </pre>
    Here now is a function with two type-class constraints.
-   <pre class="prettyprint haskell">
-    print_incr :: (Show a, Num a) =&gt; a -&gt; IO ()
+   <pre class="prettyprint haskell">    print_incr :: (Show a, Num a) =&gt; a -&gt; IO ()
     print_incr x = print$ x + fromInt 1
    </pre>
    In OCaml this can be written like so.
-   <pre class="prettyprint ocaml">
-    let print_incr : (&alpha; show * &alpha; num) &rarr; &alpha; &rarr; unit = 
-      fun (show, {from_int; add= ( + )}) &rarr; 
-        fun x &rarr; print show (x + (from_int 1))
+   <pre class="prettyprint ocaml">    let print_incr : (α show * α num) → α → unit = 
+      fun (show, {from_int; add= ( + )}) → 
+        fun x → print show (x + (from_int 1))
    </pre>
    In C++, this is said as you see below.
-   <pre class="prettyprint c++">
-    template &lt;class A&gt;
+   <pre class="prettyprint c++">    template &lt;class A&gt;
     void print_incr (A x) {
       print (Num&lt;A&gt;::add (x, Num&lt;A&gt;::from_int (1)));
     }
@@ -205,43 +188,40 @@ source:
    types <code>A</code> that are members of both the <code>Show</code>
    and <code>Num</code> classes and will yield compile errors for
    types that are not.
-   
+   <p></p>
    <p>Moving on, we now look at another common pattern, an instance
    with a constraint : a <code>Show</code> instance for all list
    types <code>[a]</code> when the element instance <code></code> is a
    member of <code>Show</code>.
-   </p><pre class="prettyprint haskell">
-    instance Show a =&gt; Show [a] where
-      show xs = &quot;[&quot; ++ go True xs
+   </p><pre class="prettyprint haskell">    instance Show a =&gt; Show [a] where
+      show xs = "[" ++ go True xs
         where
-          go _ [] = &quot;]&quot;
+          go _ [] = "]"
           go first (h:t) =
-            (if first then &quot;&quot; else &quot;, &quot;) ++ show h ++ go False t
+            (if first then "" else ", ") ++ show h ++ go False t
    </pre>
-   
+   <p></p>
    In OCaml, this takes the form of a function. The idea is, given
-   evidence of a type <code>&alpha;</code>'s membership
+   evidence of a type <code>α</code>'s membership
    in <code>Show</code> the function produces evidence that the
-   type <code>&alpha; list</code> is also in <code>Show</code>.
-   <pre class="prettyprint ocaml">
-    let show_list : &alpha; show &rarr; &alpha; list show =
-      fun {show} &rarr;
-        {show = fun xs &rarr;
+   type <code>α list</code> is also in <code>Show</code>.
+   <pre class="prettyprint ocaml">    let show_list : α show → α list show =
+      fun {show} →
+        {show = fun xs →
           let rec go first = function
-            | [] &rarr; &quot;]&quot;
-            | h :: t &rarr;
-              (if (first) then &quot;&quot; else &quot;, &quot;) ^ show h ^ go false t in
-          &quot;[&quot; ^ go true xs
+            | [] → "]"
+            | h :: t →
+              (if (first) then "" else ", ") ^ show h ^ go false t in
+          "[" ^ go true xs
         }
    </pre>
    It might be possible to do better than the following partial
    specialization over <code>vector&lt;&gt;</code> in C++ (that is, to
    write something generic, just once, that works for a wider set
-   ofsequence types) using some advanced meta-programming &quot;hackery&quot;, I
+   ofsequence types) using some advanced meta-programming "hackery", I
    don't really know. I suspect finding out might be a bit of a rabbit
    hole best avoided for now.
-   <pre class="prettyprint c++">
-    template &lt;class A&gt;
+   <pre class="prettyprint c++">    template &lt;class A&gt;
     struct Show&lt;std::vector&lt;A&gt;&gt; {
       static std::string show (std::vector&lt;A&gt; const&amp; ls);
     };
@@ -250,27 +230,26 @@ source:
     std::string Show&lt;std::vector&lt;A&gt;&gt;::show (std::vector&lt;A&gt; const&amp; ls) {
       bool first=true;
       typename std::vector&lt;A&gt;::const_iterator begin=ls.begin (), end=ls.end ();
-      std::string s=&quot;[&quot;;
+      std::string s="[";
       while (begin != end) {
         if (first) first = false;
-        else s += &quot;, &quot;;
+        else s += ", ";
         //A compile time error will result here if if there is no
         //evidence that `A` is in `Show`
         s += Show&lt;A&gt;::show (*begin++);
       }
-      s += &quot;]&quot;;
+      s += "]";
     
       return s;
     }
    </pre>
-   
+   <p></p>
 
    <p>In this next example, we need a type-class describing types that
       can be compared for equality, <code>Eq</code>. That property and
       the <code>Num</code> class can be combined to produce a
       type-class with a super-class and a default.
-   </p><pre class="prettyprint haskell">
-    class Eq where
+   </p><pre class="prettyprint haskell">    class Eq where
       (==) :: a -&gt; a -&gt; bool
       (/=) :: a -&gt; a -&gt; bool
   
@@ -289,20 +268,19 @@ source:
    Modeling the above in OCaml is done with a dictionary for
    the <code>Mul</code> type-class and a function to generate
    instances from super-class instances.
-   <pre class="prettyprint ocaml">
-    type &alpha; mul = {
-      mul_super : &alpha; eq * &alpha; num;
-      mul : &alpha; &rarr; &alpha; &rarr; &alpha;
+   <pre class="prettyprint ocaml">    type α mul = {
+      mul_super : α eq * α num;
+      mul : α → α → α
     }
     
-    let mul_default : &alpha; eq * &alpha; num &rarr; &alpha; mul = 
-      fun (({eq}, {from_int; add = ( + )}) as super) &rarr; 
+    let mul_default : α eq * α num → α mul = 
+      fun (({eq}, {from_int; add = ( + )}) as super) → 
         {
           mul_super = super;
           mul = let rec loop x y = begin match () with
-          | () when eq x (from_int 0) &rarr; from_int 0
-          | () when eq x (from_int 1) &rarr; y
-          | () &rarr; y + loop (x + (from_int (-1))) y 
+          | () when eq x (from_int 0) → from_int 0
+          | () when eq x (from_int 1) → y
+          | () → y + loop (x + (from_int (-1))) y 
           end in loop
         }
     
@@ -314,14 +292,13 @@ source:
       mul = Pervasives.( * )
     }
 
-    let dot : &alpha; mul &rarr; &alpha; list &rarr; &alpha; list &rarr; &alpha; = 
-      fun {mul_super = (eq, num); mul} &rarr;
-        fun xs ys &rarr; sum num@@ List.map2 mul xs ys
+    let dot : α mul → α list → α list → α = 
+      fun {mul_super = (eq, num); mul} →
+        fun xs ys → sum num@@ List.map2 mul xs ys
    </pre>
    As one would expect, expressing the base class/derived class
    relationships in C++ is playing to its strengths.
-   <pre class="prettyprint c++">
-    template &lt;class A&gt; struct Eq {};
+   <pre class="prettyprint c++">    template &lt;class A&gt; struct Eq {};
     
     template &lt;&gt;
     struct Eq&lt;bool&gt; {
@@ -387,10 +364,9 @@ source:
       return sum (buf.begin (), buf.end ());
     }
    </pre>
-   
+   <p></p>
    <p>This very last example is in polymorphic recursion. The Haskell reads as follows.
-   </p><pre class="prettyprint haskell">
-   print_nested :: Show a =&gt; Int -&gt; a -&gt; IO ()
+   </p><pre class="prettyprint haskell">   print_nested :: Show a =&gt; Int -&gt; a -&gt; IO ()
    print_nested 0 x = print x
    print_nested n x = print_nested (n - 1) (replicate n x)
 
@@ -398,20 +374,19 @@ source:
      n &lt;- getLine
      print_nested (read n) (5::Int)
    </pre>
-   
+   <p></p>
    Those two functions are very interesting! Translating it to OCaml
    yields the following.
-   <pre class="prettyprint ocaml">
-    let rec replicate : int &rarr; &alpha; &rarr; &alpha; list = 
-      fun n x &rarr; if n &gt;= 0 then [] else x :: replicate (n - 1) x
+   <pre class="prettyprint ocaml">    let rec replicate : int → α → α list = 
+      fun n x → if n &gt;= 0 then [] else x :: replicate (n - 1) x
     
-    let rec print_nested : &alpha;. &alpha; show &rarr; int &rarr; &alpha; &rarr; unit =
-      fun show_dict &rarr; function
-      | 0 &rarr;
-          fun x &rarr;
+    let rec print_nested : α. α show → int → α → unit =
+      fun show_dict → function
+      | 0 →
+          fun x →
             print show_dict x
-      | n &rarr; 
-          fun x &rarr;
+      | n → 
+          fun x →
             print_nested (show_list show_dict) (n - 1) (replicate n x)
 
     let test_nested =
@@ -420,8 +395,7 @@ source:
    </pre>
    Now if you examine the output of the above if '4' (say) was
    entered, you'll see something like this:
-   <pre>
-   [[[[5, 5, 5, 5], [5, 5, 5, 5], [5, 5, 5, 5]], [[5, 5, 5, 5], [5, 5,
+   <pre>   [[[[5, 5, 5, 5], [5, 5, 5, 5], [5, 5, 5, 5]], [[5, 5, 5, 5], [5, 5,
    5, 5], [5, 5, 5, 5]]]]
    </pre>
    You can see, looking at this, that the type of the printed list is
@@ -434,11 +408,10 @@ source:
    branch of the <code>print_nested</code> function. Note also the
    requirement for the universal quantifier in the function
    signature. It's mandatory.
-   
+   <p></p>
    <p>OK, so how about the above code in C++? Well a naive
    transliteration gives the following.
-   </p><pre class="prettyprint c++">
-    namespace detail {
+   </p><pre class="prettyprint c++">    namespace detail {
       template&lt;class A, class ItT&gt;
       ItT replicate (int n, A x, ItT dst) {
         if (n &lt;= 0) return dst;
@@ -466,12 +439,12 @@ source:
    </pre>
    Unfortunately though, this program though exhibits unbounded
    compile time recursion (compilation doesn't terminate).
-   
-   <hr/>
+   <p></p>
+   <hr>
    <p>
-     References:<br/>
+     References:<br>
      [1] <a href="http://okmij.org/ftp/Computation/typeclass.html">Implementing, and Understanding Type Classes</a> -- Oleg Kiselyov
    </p>
-  </body>
-</html>
+  
 
+</body></html>

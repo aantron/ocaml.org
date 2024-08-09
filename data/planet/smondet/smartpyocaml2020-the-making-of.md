@@ -10,6 +10,6 @@ source:
 ---
 
 
-    A quick experience report&nbsp;&hellip;
+    A quick experience report&nbsp;…
     Tools used for the paper, the slides, and the video.
    

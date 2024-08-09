@@ -12,5 +12,5 @@ source:
 
     Statically typed interaction between smart contracts and application
     code:
-    &#128413;&nbsp;code-generator: Michelson-type &rarr; OCaml-modules
+    🖝&nbsp;code-generator: Michelson-type → OCaml-modules
    

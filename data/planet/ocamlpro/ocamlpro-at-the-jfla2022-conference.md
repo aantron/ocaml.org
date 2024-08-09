@@ -5,8 +5,8 @@ description: "In today's article, we share our contributions to the 2022 JFLAs, 
   Languages such as OCaml (Journ\xE9es Francophones des Langages Applicatifs). This
   much awaited event is organised by Inria, the French National..."
 url: https://ocamlpro.com/blog/2022_07_12_ocamlpro_at_the_jfla2022
-date: 2022-07-12T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2022-07-12T13:31:53-00:00
+preview_image: https://www.ocamlpro.com/blog/assets/img/picture_jfla2022_domaine_essendieras.jpg
 authors:
 - "\n    OCamlPro\n  "
 source:
@@ -15,26 +15,26 @@ source:
 <p></p>
 <div class="figure">
   <p>
-    <img src="https://ocamlpro.com/blog/assets/img/picture_jfla2022_domaine_essendieras.jpg" alt=""/>
+    <img src="https://ocamlpro.com/blog/assets/img/picture_jfla2022_domaine_essendieras.jpg" alt="">
     </p><div class="caption">
       <a href="https://www.essendieras.fr/" target="_blank">
-        Domaine d'Essendi&eacute;ras
+        Domaine d'Essendiéras
       </a>, located in French Region <em>Perigord</em>, where the JFLA2022 took place!
     </div>
-  
+  <p></p>
 </div>
-<p>In today's article, we share our contributions to the 2022 <a href="http://jfla.inria.fr/">JFLA</a>s, the French-Speaking annual gathering on Application Programming Languages, mainly Functional Languages such as OCaml (<em>Journ&eacute;es Francophones des Langages Applicatifs</em>).</p>
+<p>In today's article, we share our contributions to the 2022 <a href="http://jfla.inria.fr/">JFLA</a>s, the French-Speaking annual gathering on Application Programming Languages, mainly Functional Languages such as OCaml (<em>Journées Francophones des Langages Applicatifs</em>).</p>
 <p>This much awaited event is organised by <a href="https://www.inria.fr/fr">Inria</a>, the French National Institute for Research in Science and Digital Technologies.</p>
 <p>This is always the best occasion for us to directly share our latest works and contributions with this diverse community of researchers, professors, students and industrial actors alike. Moreover, it allows us to meet up with all our long known peers and get in contact with an ever changing pool of actors in the fields of functional languages in general, formal methods and everything OCaml!</p>
 <p>This year the three papers we submitted were selected, and this is what this article is about!</p>
 <p></p><div>
-<strong>Table of contents</strong>
+<strong>Table of contents</strong><p></p>
 <p><a href="https://ocamlpro.com/blog/feed#mikino">Mikino, formal verification made accessible</a></p>
 <p><a href="https://ocamlpro.com/blog/feed#SWH">Connecting Software Heritage with the OCaml ecosystem</a></p>
 <p><a href="https://ocamlpro.com/blog/feed#alt-ergo">Alt-Ergo-Fuzz, hunting the bugs of the bug hunter</a>
-</p></div>
+</p></div><p></p>
 <h2>
-<a class="anchor"></a>Mikino, formal verification made accessible<a href="https://ocamlpro.com/blog/feed#mikino">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#mikino" class="anchor-link">Mikino, formal verification made accessible</a>
           </h2>
 <p><em>Mikino and all correlated content mentionned in this article was made by Adrien Champion</em></p>
 <p>If you follow our Blog, you may have already read our <a href="https://ocamlpro.com/blog/2021_10_14_verification_for_dummies_smt_and_induction">Mikino blogpost</a>, but if you haven't here's a quick breakdown and a few pointers... In case you wish to play around or maybe contribute to the project. ;)</p>
@@ -46,9 +46,9 @@ source:
 <p>Have a go at it, learn and have fun!</p>
 <p>For further reading: <a href="https://hal.inria.fr/hal-03626850/">OCamlPro's paper for the JFLA2022 (Mikino) </a> (French-written article describing the entire project).</p>
 <h2>
-<a class="anchor"></a>Connecting Software Heritage with the OCaml ecosystem<a href="https://ocamlpro.com/blog/feed#SWH">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#SWH" class="anchor-link">Connecting Software Heritage with the OCaml ecosystem</a>
           </h2>
-<p><em>The archiving of OCaml packages into the SWH architecture, the release of <a href="https://github.com/OCamlPro/swhid/">swhid</a> library and the integration of SWH into opam was done by L&eacute;o Andr&egrave;s, Raja Boujbel, Louis Gesbert and Dario Pinto</em></p>
+<p><em>The archiving of OCaml packages into the SWH architecture, the release of <a href="https://github.com/OCamlPro/swhid/">swhid</a> library and the integration of SWH into opam was done by Léo Andrès, Raja Boujbel, Louis Gesbert and Dario Pinto</em></p>
 <p>Once again, if you follow our Blog, you must have seen <a href="https://www.softwareheritage.org/?lang=fr">Software Heritage</a> (SWH) mentioned in our <a href="https://ocamlpro.com/blog/2022_01_31_2021_at_ocamlpro#free_software">yearly review article</a>.</p>
 <p>Now you can also look at <a href="https://hal.archives-ouvertes.fr/hal-03626845/">SWH paper by OCamlPro for the JFLA2022 (French)</a> if you are looking for a detailed explanation of how important Software Heritage is to free software as a whole, and in what manner OCamlPro contributed to this gargantuan long-term  endeavour of theirs.</p>
 <p>This great collaboration was one of the highlights of last year from which arose an OCaml library called <a href="https://github.com/OCamlPro/swhid/">swhid</a> and the guaranteed perennity of all the packages found on opam.</p>
@@ -64,7 +64,7 @@ source:
 </li>
 </ul>
 <h2>
-<a class="anchor"></a>Alt-Ergo-Fuzz, hunting the bugs of the bug hunter<a href="https://ocamlpro.com/blog/feed#alt-ergo">&#9875;</a>
+<a class="anchor"></a><a href="https://ocamlpro.com/blog/feed#alt-ergo" class="anchor-link">Alt-Ergo-Fuzz, hunting the bugs of the bug hunter</a>
           </h2>
 <p><em>The fuzzing of the SMT-Solver Alt-Ergo was done by Hichem Rami Ait El Hara, Guillaume Bury and Steven de Oliveira</em></p>
 <p>As the last entry of OCamlPro's papers that have made it to this year's JFLA: a rundown of Hichem's work, guided by Guillaume and Steven, on developping a Fuzzer for <a href="https://github.com/OCamlPro/alt-ergo">Alt-Ergo</a>.</p>

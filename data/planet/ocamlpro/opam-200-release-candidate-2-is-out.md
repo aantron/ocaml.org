@@ -5,8 +5,8 @@ description: We are pleased to announce the release of a second release candidat
   and in addition to many fixes, features big performance enhancements over the RC1.
   Among the new features, we have squeezed in full sandboxing of packa...
 url: https://ocamlpro.com/blog/2018_05_22_opam_2.0.0_release_candidate_2_is_out
-date: 2018-05-22T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2018-05-22T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:
@@ -28,7 +28,7 @@ source:
 </ol>
 <pre><code class="language-shell-session">sh &lt;(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.0-rc2">the Github &quot;Releases&quot; page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.0.0-rc2">the Github "Releases" page</a> to your PATH. In this case, don't forget to run <code>opam init --reinit -ni</code> to enable sandboxing if you had version 2.0.0~rc manually installed.</p>
 <ol start="2">
 <li>From source, using opam:
 </li>

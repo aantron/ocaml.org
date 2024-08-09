@@ -6,8 +6,8 @@ description: Tezos Foundation and OCamlPro joint press release - October 17, 201
   to support its work on TzScan, a block explorer for the Tezos blockchain that will
   be made open-source. OCamlPro is a French company and R&D lab, f...
 url: https://ocamlpro.com/blog/2018_10_17_ocamlpros_tzscan_grant_proposal_accepted_by_the_tezos_foundation_joint_press_release
-date: 2018-10-17T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2018-10-17T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Muriel\n  "
 source:
@@ -16,8 +16,8 @@ source:
 <h2>Tezos Foundation and OCamlPro joint press release - October 17, 2018</h2>
 <p>We are pleased to announce that the Tezos Foundation has issued a grant to OCamlPro to support its work on <a href="https://tzscan.io/">TzScan</a>, a block explorer for the Tezos blockchain that will be made open-source.</p>
 <p>OCamlPro is a French company and R&amp;D lab, focused on OCaml and blockchain development. OCamlPro, which is an active community member and contributor to Tezos, has initiated several Tezos-related projects such as <a href="https://tzscan.io/">TzScan</a> and <a href="https://liquidity-lang.org/">Liquidity</a>, a high-level programming language for creating smart contracts in Tezos with an online editor, compiler and debugger, and features a decompiler to audit Michelson contracts.</p>
-<p>Open-source block explorers are a key component of a blockchain ecosystem by allowing users to more easily monitor transactions, network validators (&ldquo;bakers&rdquo;), and the health of a network. OCamlPro will also provide documentation on Tezos and continue to improve the TzScan API, which may be used by applications such as wallets.</p>
-<p>The Tezos Foundation&rsquo;s core mission is to support the long-term success of the Tezos protocol and ecosystem. By funding projects imagined by scientists, researchers, developers, entrepreneurs, and enthusiasts, the Foundation encourages decentralized development and robust participation.</p>
+<p>Open-source block explorers are a key component of a blockchain ecosystem by allowing users to more easily monitor transactions, network validators (“bakers”), and the health of a network. OCamlPro will also provide documentation on Tezos and continue to improve the TzScan API, which may be used by applications such as wallets.</p>
+<p>The Tezos Foundation’s core mission is to support the long-term success of the Tezos protocol and ecosystem. By funding projects imagined by scientists, researchers, developers, entrepreneurs, and enthusiasts, the Foundation encourages decentralized development and robust participation.</p>
 <p>More information <a href="https://tezos.foundation/news/tezos-foundation-issues-grant-to-ocamlpro-to-support-tzscan">here</a>.</p>
 <h3>Curious about OCamlPro's blockchain activities?</h3>
 <p>OCamlPro is a French software company and R&amp;D lab, born in 2011 and located in Paris and Essonne. We are dedicated to improving the quality of software, through the use of formal methods, and we promote the use of OCaml, a fast and expressive, statically typed state-of-the-art programming language, matured for more than 30 years in the French public research lab Inria.</p>

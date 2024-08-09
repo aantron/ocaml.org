@@ -54,7 +54,7 @@ against each other.
 My initial results looked like this:
 </p>
 
-<img src="http://www.mega-nerd.com/erikd/Img/integer-gmp-simple.png" border="0" alt="Integer performance (GMP vs Simple)"/>
+<img src="http://www.mega-nerd.com/erikd/Img/integer-gmp-simple.png" border="0" alt="Integer performance (GMP vs Simple)">
 
 <p>
 That confirmed the slowness for multiplication and division if nothing else.

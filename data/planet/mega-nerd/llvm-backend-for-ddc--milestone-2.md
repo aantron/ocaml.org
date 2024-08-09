@@ -99,10 +99,10 @@ for a bunch of more specific functions like these:
   unboxInt32 objptr
    | getVarType objptr == pObj
    = do     int32    &lt;- lift $ newUniqueReg i32
-            iptr0    &lt;- lift $ newUniqueNamedReg &quot;iptr0&quot; (pLift i32)
-            iptr1    &lt;- lift $ newUniqueNamedReg &quot;iptr1&quot; (pLift i32)
+            iptr0    &lt;- lift $ newUniqueNamedReg "iptr0" (pLift i32)
+            iptr1    &lt;- lift $ newUniqueNamedReg "iptr1" (pLift i32)
             addBlock
-                    [ Comment [ show int32 ++ &quot; = unboxInt32 (&quot; ++ show objptr ++ &quot;)&quot; ]
+                    [ Comment [ show int32 ++ " = unboxInt32 (" ++ show objptr ++ ")" ]
                     , Assignment iptr0 (GetElemPtr True objptr [llvmWordLitVar 0, i32LitVar 0])
                     , Assignment iptr1 (GetElemPtr True iptr0 [llvmWordLitVar 1])
                     , Assignment int32 (Load iptr1) ]
@@ -111,21 +111,21 @@ for a bunch of more specific functions like these:
 
   readSlot :: Int -&gt; LlvmM LlvmVar
   readSlot 0
-   = do   dstreg    &lt;- lift $ newUniqueNamedReg &quot;slot.0&quot; pObj
-          addBlock  [ Comment [ show dstreg ++ &quot; = readSlot 0&quot; ]
+   = do   dstreg    &lt;- lift $ newUniqueNamedReg "slot.0" pObj
+          addBlock  [ Comment [ show dstreg ++ " = readSlot 0" ]
                     , Assignment dstreg (Load localSlotBase) ]
           return    dstreg
 
   readSlot n
    | n &gt; 0
-   = do   dstreg    &lt;- lift $ newUniqueNamedReg (&quot;slot.&quot; ++ show n) pObj
+   = do   dstreg    &lt;- lift $ newUniqueNamedReg ("slot." ++ show n) pObj
           r0        &lt;- lift $ newUniqueReg pObj
-          addBlock  [ Comment [ show dstreg ++ &quot; = readSlot &quot; ++ show n ]
+          addBlock  [ Comment [ show dstreg ++ " = readSlot " ++ show n ]
                     , Assignment r0 (GetElemPtr True localSlotBase [llvmWordLitVar n])
                     , Assignment dstreg (Load (pVarLift r0)) ]
           return    dstreg
 
-  readSlot n = panic stage $ &quot;readSlot with slot == &quot; ++ show n
+  readSlot n = panic stage $ "readSlot with slot == " ++ show n
 
 </pre>
 

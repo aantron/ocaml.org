@@ -11,7 +11,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2017/10/cube-2-1.jpg#hero" alt="hero"/></p>
+<p><img src="http://typeocaml.com/content/images/2017/10/cube-2-1.jpg#hero" alt="hero"></p>
 
 <p>Here is the Pearl No.4:</p>
 
@@ -25,14 +25,14 @@ source:
   <li>The total number of all elements is larger than k</li>
   </ol>
   
-  <p><strong>Find the kth smallest element of A &cup; B.</strong></p>
+  <p><strong>Find the kth smallest element of A ∪ B.</strong></p>
   
   <p>By definition, the kth smallest element of a collection is one for which there are exactly k elements smaller than it, so the 0th smallest is the smallest, i.e., <strong>k starts from 0</strong>.</p>
 </blockquote>
 
 <p>Let's have a look at an example.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/12/example-4.jpg" alt="example"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/12/example-4.jpg" alt="example"></p>
 
 <h1>Easy Solution - Merge</h1>
 
@@ -64,7 +64,7 @@ source:
   <p>For binary search, we just go to the middle and then turn left or right depending on the comparison of the middle value and our target.</p>
 </blockquote>
 
-<p><img src="http://typeocaml.com/content/images/2015/12/binary_search.jpg" alt="binary search"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/12/binary_search.jpg" alt="binary search"></p>
 
 <p>Coming back to our current problem, </p>
 
@@ -82,11 +82,11 @@ source:
 
 <p>So here is the A and B, we want to find the <code>kth</code> smallest value</p>
 
-<p><img src="http://typeocaml.com/content/images/2017/10/ds_1-2.jpg" alt="ds_1"/></p>
+<p><img src="http://typeocaml.com/content/images/2017/10/ds_1-2.jpg" alt="ds_1"></p>
 
 <p>Since we are trying <em>binary search</em>, we can just split A and B by their middle values respectively.</p>
 
-<p><img src="http://typeocaml.com/content/images/2017/10/ds_2.jpg" alt="ds_2"/></p>
+<p><img src="http://typeocaml.com/content/images/2017/10/ds_2.jpg" alt="ds_2"></p>
 
 <p>So what now? </p>
 
@@ -105,7 +105,7 @@ source:
 
 <p>So if a &lt; b, what we can induct?</p>
 
-<p><img src="http://typeocaml.com/content/images/2017/10/ds_3-9.jpg" alt="ds_3"/></p>
+<p><img src="http://typeocaml.com/content/images/2017/10/ds_3-9.jpg" alt="ds_3"></p>
 
 <p>The relationships between all the parts (including <code>a</code> and <code>b</code>) are demonstrated as above. The position of <code>ha</code> is dynamic as we only know the middle points a &lt; b. However, the relationship between <code>la, a, lb</code> and <code>b</code> is determined and we know for sure that there are definitely at least <code>la + lb + 1 (lenth of a is 1)</code> numbers smaller than <code>b</code>. Thus considering the rank <code>k</code>, if <code>k &lt;= la + lb + 1</code>:</p>
 
@@ -116,7 +116,7 @@ source:
 
 <p>We therefore can know simply that <strong>if k &lt;= la + lb + 1, the kth smallest number definitely won't be in <code>hb</code></strong>.</p>
 
-<p><img src="http://typeocaml.com/content/images/2017/10/ds_4-3.jpg" alt="ds_4"/></p>
+<p><img src="http://typeocaml.com/content/images/2017/10/ds_4-3.jpg" alt="ds_4"></p>
 
 <p>What if k &gt; la + lb + 1? Going back to the 3 cases:</p>
 
@@ -129,7 +129,7 @@ source:
 
 <p>Thus <strong>if k &gt; la + lb + 1, the kth smallest number definitely won't be in <code>la</code></strong>.</p>
 
-<p><img src="http://typeocaml.com/content/images/2017/10/ds_5.jpg" alt="ds_5"/></p>
+<p><img src="http://typeocaml.com/content/images/2017/10/ds_5.jpg" alt="ds_5"></p>
 
 <p>So every time we compare <code>k</code> with <code>la + lb + 1</code> and at least one part can be eliminated out. If a &lt; b, then either <code>la</code> or <code>hb</code> is removed; otherwise, either <code>lb</code> or <code>ha</code> is removed (as said, we can simply swap A and B).</p>
 

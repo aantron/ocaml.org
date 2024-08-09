@@ -5,8 +5,8 @@ description: 'NOTE (September 2016): updated proposal from OCaml 2016 workshop i
   on signing the OPAM repository. Comments and discussion are expected on the platform
   mailing-list. The purpose of this proposal is to enable a secur...'
 url: https://ocamlpro.com/blog/2015_06_05_signing_the_opam_repository
-date: 2015-06-05T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2015-06-05T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:
@@ -167,7 +167,7 @@ in the event new top-level keys need to be added).</p>
 </li>
 <li>Thomas Gazagnaire, main repository maintainer, OCaml Labs
 </li>
-<li>Gr&eacute;goire Henry, OCamlPro safekeeper
+<li>Grégoire Henry, OCamlPro safekeeper
 </li>
 <li>Someone in the OCaml team ?
 </li>
@@ -188,16 +188,16 @@ their fingerprints, then fully trust them.
 <h3>End-to-end signing</h3>
 <p>This requires the end-user to be able to validate a signature made by the
 original developer. There are two trust paths for the chain of trust (where
-&quot;&rarr;&quot; stands for &quot;signs for&quot;):</p>
+"→" stands for "signs for"):</p>
 <ul>
-<li>(<em>high</em>) root keys &rarr;
-repository maintainer keys &rarr; (signs individually)
-package delegation + developer key &rarr;
+<li>(<em>high</em>) root keys →
+repository maintainer keys → (signs individually)
+package delegation + developer key →
 package files
 </li>
-<li>(<em>low</em>) root keys &rarr;
-snapshot key &rarr; (signs as part of snapshot)
-package delegation + developer key &rarr;
+<li>(<em>low</em>) root keys →
+snapshot key → (signs as part of snapshot)
+package delegation + developer key →
 package files
 </li>
 </ul>
@@ -215,12 +215,12 @@ rollbacks, mix-and-match, freeze, etc.)</p>
 server), using the <em>snapshot key</em>, which is signed directly by the root keys,
 hence the chain of trust:</p>
 <ul>
-<li>root keys &rarr;
-snapshot key &rarr;
+<li>root keys →
+snapshot key →
 commit-hash
 </li>
 </ul>
-<p>Where &quot;commit-hash&quot; is the head of the repository's git repository (and thus a
+<p>Where "commit-hash" is the head of the repository's git repository (and thus a
 valid cryptographic hash of the full repository state, as well as its history)</p>
 <h4>Repository maintainer (RM) keys</h4>
 <p>Repository maintainers hold the central role in monitoring the repository and
@@ -288,11 +288,11 @@ list, are erased
 </li>
 </ul>
 <p>The <code>signature:</code> field is a list with elements in the format of string triplets
-<code>[ &quot;&lt;keyid&gt;&quot; &quot;&lt;algorithm&gt;&quot; &quot;&lt;signature&gt;&quot; ]</code>. For example:</p>
-<pre><code>opam-version: &quot;1.2&quot;
-name: &quot;opam&quot;
+<code>[ "&lt;keyid&gt;" "&lt;algorithm&gt;" "&lt;signature&gt;" ]</code>. For example:</p>
+<pre><code>opam-version: "1.2"
+name: "opam"
 signature: [
-  [ &quot;louis.gesbert@ocamlpro.com&quot; &quot;RSASSA-PSS&quot; &quot;048b6fb4394148267df...&quot; ]
+  [ "louis.gesbert@ocamlpro.com" "RSASSA-PSS" "048b6fb4394148267df..." ]
 ]
 </code></pre>
 <p>Signed tags are git annotated tags, and their contents follow the same rules. In
@@ -338,14 +338,14 @@ commit-hash that is being signed and tagged.</p>
       `--developer2-email ...            and repo maint. once verified
 </code></pre>
 <p>Keys are provided in different files as string triplets
-<code>[ [ &quot;keyid&quot; &quot;algo&quot; &quot;key&quot; ] ]</code>. <code>keyid</code> must not conflict with any
-previously-defined keys, and <code>algo</code> may be &quot;rsa&quot; and keys encoded in PEM format,
+<code>[ [ "keyid" "algo" "key" ] ]</code>. <code>keyid</code> must not conflict with any
+previously-defined keys, and <code>algo</code> may be "rsa" and keys encoded in PEM format,
 with further options available later.</p>
 <p>For example, the <code>keys/root</code> file will have the format:</p>
 <pre><code class="language-shell-session">date=2015-06-04T13:53:00Z
-root-keys: [ [ &quot;keyid&quot; &quot;{expire-date}&quot; &quot;algo&quot; &quot;key&quot; ] ]
-snapshot-keys: [ [ &quot;keyid&quot; &quot;algo&quot; &quot;key&quot; ] ]
-repository-maintainer-keys: [ [ &quot;keyid&quot; &quot;algo&quot; &quot;key&quot; ] ]
+root-keys: [ [ "keyid" "{expire-date}" "algo" "key" ] ]
+snapshot-keys: [ [ "keyid" "algo" "key" ] ]
+repository-maintainer-keys: [ [ "keyid" "algo" "key" ] ]
 </code></pre>
 <p>This file is signed by current <em>and past</em> root keys -- to allow clients to
 update. The <code>date:</code> field provides further protection against rollback attacks:
@@ -356,8 +356,8 @@ Date is in the ISO 8601 standard with 0 UTC offset, as suggested in TUF.</p>
 <code>pkgname</code>. The file contains version constraints associated with keyids, <em>e.g.</em>:</p>
 <pre><code class="language-shell-session">name: pkgname
 delegates: [
-  &quot;thomas@gazagnaire.org&quot;
-  &quot;louis.gesbert@ocamlpro.com&quot; {&gt;= &quot;1.0&quot;}
+  "thomas@gazagnaire.org"
+  "louis.gesbert@ocamlpro.com" {&gt;= "1.0"}
 ]
 </code></pre>
 <p>The file is signed:</p>
@@ -390,12 +390,12 @@ archive. For example:</p>
 <pre><code class="language-shell-session">name: pkgname
 version: pkgversion
 package-files: [
-  &quot;opam&quot; {901 [ sha1 &quot;7f9bc3cc8a43bd8047656975bec20b578eb7eed9&quot; md5 &quot;1234567890&quot; ]}
-  &quot;descr&quot; {448 [ sha1 &quot;8541f98524d22eeb6dd669f1e9cddef302182333&quot; ]}
-  &quot;url&quot; {112 [ sha1 &quot;0a07dd3208baf4726015d656bc916e00cd33732c&quot; ]}
-  &quot;files/ocaml.4.02.patch&quot; {17243 [ sha1 &quot;b3995688b9fd6f5ebd0dc4669fc113c631340fde&quot; ]}
+  "opam" {901 [ sha1 "7f9bc3cc8a43bd8047656975bec20b578eb7eed9" md5 "1234567890" ]}
+  "descr" {448 [ sha1 "8541f98524d22eeb6dd669f1e9cddef302182333" ]}
+  "url" {112 [ sha1 "0a07dd3208baf4726015d656bc916e00cd33732c" ]}
+  "files/ocaml.4.02.patch" {17243 [ sha1 "b3995688b9fd6f5ebd0dc4669fc113c631340fde" ]}
 ]
-archive: [ 908460 [ sha1 &quot;ec5642fd2faf3ebd9a28f9de85acce0743e53cc2&quot; ] ]
+archive: [ 908460 [ sha1 "ec5642fd2faf3ebd9a28f9de85acce0743e53cc2" ] ]
 </code></pre>
 <p>This file is signed either:</p>
 <ul>
@@ -429,7 +429,7 @@ checking the validity of the update, periodically and after each change.</p>
 <h3>Linearity</h3>
 <p>The repository is served using git: this means, not only the latest version, but
 the full history of changes are known. This as several benefits, among them,
-incremental downloads &quot;for free&quot;; and a very easy way to sign snapshots. Another
+incremental downloads "for free"; and a very easy way to sign snapshots. Another
 good point is that we have a working full OCaml implementation.</p>
 <p>We mentioned above that we use the snapshot signatures not only for repository
 signing, but also as an initial guarantee for submitted developer's keys and
@@ -734,7 +734,7 @@ malicious commit.</p>
 <ul>
 <li>we use git
 </li>
-<li>thus get linearity &quot;for free&quot;
+<li>thus get linearity "for free"
 </li>
 <li>and already have a hash over the entire repository
 </li>

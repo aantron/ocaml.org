@@ -11,25 +11,25 @@ source:
 
 <div class="date">August 30, 2014</div>
 
-<p>Some indie gypsy polka-punk developers across the globe have now been asking me about the status of the OCaml-on-iOS-<em>Simulator</em> project. I&rsquo;ve made some progress here, too, and yesterday I built the first iOS app with OCaml 4.01.0, and ran it successfully in the iPhone Simulator (iOS 7.1).</p>
+<p>Some indie gypsy polka-punk developers across the globe have now been asking me about the status of the OCaml-on-iOS-<em>Simulator</em> project. I’ve made some progress here, too, and yesterday I built the first iOS app with OCaml 4.01.0, and ran it successfully in the iPhone Simulator (iOS 7.1).</p>
 
 <div class="flowaroundimg" style="margin-top: 1.0em;">
-<a href="http://psellos.com/ocaml/example-app-gamut.html"><img src="http://psellos.com/images/gamut-burnt-orange-p3.png" alt="Gamut app burnt orange screen"/></a>
+<a href="http://psellos.com/ocaml/example-app-gamut.html"><img src="http://psellos.com/images/gamut-burnt-orange-p3.png" alt="Gamut app burnt orange screen"></a>
 </div>
 
-<p>To get it working I applied the OCaml 4.00.0 OCaml-on-iOS-Simulator patches to the OCaml 4.01.0 compiler. The patches are quite simple, probably because the ABI of the 32-bit Intel architecture is well standardized. So there&rsquo;s nothing to change in the code generator.</p>
+<p>To get it working I applied the OCaml 4.00.0 OCaml-on-iOS-Simulator patches to the OCaml 4.01.0 compiler. The patches are quite simple, probably because the ABI of the 32-bit Intel architecture is well standardized. So there’s nothing to change in the code generator.</p>
 
 <p>Then I updated the <code>xsim-build</code> script that builds ocamlopt as a cross-compiler to the Simulator environment. <code>xsim-build</code> is described in <a href="http://psellos.com/ocaml/compile-to-iossim.html">Compile OCaml for iOS Simulator</a> (soon to be updated).</p>
 
 <p>There were two small problems with the generated compiler.</p>
 
-<p>First, the clang toolchain tracks the difference between OS X and the Simulator environment. (I wrote about the differences in <a href="http://psellos.com/2012/04/2012.04.iossim-vs-osx.html">iOS Simulator Vs. OS X</a>.) You need to tell the compiler you&rsquo;re compiling for iOS, or you&rsquo;ll see an error like this at link time:</p>
+<p>First, the clang toolchain tracks the difference between OS X and the Simulator environment. (I wrote about the differences in <a href="http://psellos.com/2012/04/2012.04.iossim-vs-osx.html">iOS Simulator Vs. OS X</a>.) You need to tell the compiler you’re compiling for iOS, or you’ll see an error like this at link time:</p>
 
 <blockquote>
   <p><code>ld: building for MacOSX, but linking against dylib built for iOS Simulator file</code></p>
 </blockquote>
 
-<p>The fix for this is to define a desired minimum version of iOS. What I&rsquo;m using for now is this command-line flag for clang:</p>
+<p>The fix for this is to define a desired minimum version of iOS. What I’m using for now is this command-line flag for clang:</p>
 
 <blockquote>
   <p><code>-miphoneos-version-min=6.0</code></p>
@@ -43,7 +43,7 @@ source:
   <p><code>ld: warning: could not create compact unwind for _caml_curry4_2_app</code></p>
 </blockquote>
 
-<p>I believe this happens because the OCaml code generator doesn&rsquo;t generate metadata to support &ldquo;compact unwind.&rdquo; This is something I know nothing about. I could learn, but if you, reader, know something about it I&rsquo;d be very happy to get some help.</p>
+<p>I believe this happens because the OCaml code generator doesn’t generate metadata to support “compact unwind.” This is something I know nothing about. I could learn, but if you, reader, know something about it I’d be very happy to get some help.</p>
 
 <p>For now, things seem to work if you turn off compact unwind with the following undocumented linker flag:</p>
 
@@ -51,11 +51,11 @@ source:
   <p><code>-no_compact_unwind</code></p>
 </blockquote>
 
-<p>One cool thing about compiling for the simulator is that you can run the generated code, if it&rsquo;s simple enough, from the OS X command line. Here&rsquo;s a session showing how to do it:</p>
+<p>One cool thing about compiling for the simulator is that you can run the generated code, if it’s simple enough, from the OS X command line. Here’s a session showing how to do it:</p>
 
 <pre><code>$ BIN=/usr/local/ocamlxsim/bin
 $ cat howitends.ml
-let main () = Printf.printf &quot;You already know how this will end.\n&quot;
+let main () = Printf.printf "You already know how this will end.\n"
 
 let () = main ()
 $ $BIN/ocamlopt -o howitends howitends.ml
@@ -65,11 +65,11 @@ $ SDK=/Developer/SDKs/iPhoneSimulator7.1.sdk
 $ DYLD_ROOT_PATH=$PLAT$SDK howitends
 You already know how this will end.</code></pre>
 
-<p>If you&rsquo;re interested, there are more details in <a href="http://psellos.com/2012/04/2012.04.iossim-vs-osx.html">iOS Simulator Vs. OS X</a>.</p>
+<p>If you’re interested, there are more details in <a href="http://psellos.com/2012/04/2012.04.iossim-vs-osx.html">iOS Simulator Vs. OS X</a>.</p>
 
-<p>Once the compiler was working I built the <a href="http://psellos.com/ocaml/example-app-gamut.html">Gamut</a> app, which does just enough to test whether OCaml is working in the Simulator. As far as I can tell, it&rsquo;s working perfectly.</p>
+<p>Once the compiler was working I built the <a href="http://psellos.com/ocaml/example-app-gamut.html">Gamut</a> app, which does just enough to test whether OCaml is working in the Simulator. As far as I can tell, it’s working perfectly.</p>
 
-<p>I want to try a few more things before releasing this version to the savants and lovers of wisdom. If I don&rsquo;t find any serious problems, a new release will be coming soon. In the meantime, the elder savants have released a new version of OCaml, 4.02.0, for which we can only thank them. Support for this new release will come in due time.</p>
+<p>I want to try a few more things before releasing this version to the savants and lovers of wisdom. If I don’t find any serious problems, a new release will be coming soon. In the meantime, the elder savants have released a new version of OCaml, 4.02.0, for which we can only thank them. Support for this new release will come in due time.</p>
 
 <p>If you have any comments or encouragement, leave them below or email me at <a href="mailto:jeffsco@psellos.com">jeffsco@psellos.com</a>.</p>
 

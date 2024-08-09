@@ -10,15 +10,15 @@ source:
 ---
 
 <p><a href="http://www.openmirage.org">MirageOS</a> is a library operating system. An application written for MirageOS is compiled to an operating system kernel that only contains the specific functionality required by the application - a <a href="http://queue.acm.org/detail.cfm?id=2566628">unikernel</a>. The MirageOS unikernels can be compiled for different targets, including standalone VMs that run under Xen. The Xen unikernels can be deployed directly to common cloud services such as <a href="http://openmirage.org/wiki/xen-boot">Amazon EC2</a> and <a href="http://christopherbothwell.com/ocaml/mirage/linode/2014/12/08/hello-linode.html">Linode</a>.</p>
-<p>I have done a lot of MirageOS development for Xen lately and it can be inconvenient to have to rely on an external server or service to be able to run and debug the unikernel. As an alternative I have set up a VM in Virtualbox with a Xen server. The MirageOS unikernels then run as VMs in Xen, which itself runs in a VM in Virtualbox. With the &quot;Host-only networking&quot; feature in Virtualbox the unikernels are accessible from the host operating system, which can be very useful for testing client/server applications. A unikernel that hosts a web page can for example be tested in a web browser in the host OS. I am hoping that this setup may be useful to others so I am documenting it in this blog post.</p>
+<p>I have done a lot of MirageOS development for Xen lately and it can be inconvenient to have to rely on an external server or service to be able to run and debug the unikernel. As an alternative I have set up a VM in Virtualbox with a Xen server. The MirageOS unikernels then run as VMs in Xen, which itself runs in a VM in Virtualbox. With the "Host-only networking" feature in Virtualbox the unikernels are accessible from the host operating system, which can be very useful for testing client/server applications. A unikernel that hosts a web page can for example be tested in a web browser in the host OS. I am hoping that this setup may be useful to others so I am documenting it in this blog post.</p>
 
 
 <p>My current VM is based on <a href="http://releases.ubuntu.com/14.04/">Ubuntu Server 14.04 LTS</a> with Xen hypervisor 4.4 installed. The steps described in this post should be transferrable to other distributions if they support newer versions of the Xen hypervisor (4.4+). I have also included a list of alternative development environments for Mirage <a href="http://www.skjegstad.com/feeds/ocaml.tag.atom.xml#alternatives">near the end</a>.</p>
 <h3>Install the Ubuntu VM</h3>
 <p>First, create a new Virtualbox VM with at least 1 GB RAM and 20 GB disk and start the Ubuntu Server installation. How to install Ubuntu in Virtualbox is covered in detail <a href="https://help.ubuntu.com/community/Ubuntu_as_Guest_OS">elsewhere</a>, so I will only briefly describe the most relevant steps. </p>
-<p>To keep the VM lightweight, install as few features as possible. We will use SSH to login to the server so select &quot;OpenSSH Server&quot;. You may want to install a desktop environment later, but keep in mind that the graphics support will be limited under two layers of virtualization (Virtualbox + Xen). </p>
-<p>Give the Linux VM a hostname that is unique on your network as we will use this to access it with SSH later. I use &quot;virtualxen&quot;. </p>
-<p>Add a user you want to use for development, for example &quot;mirage&quot;. </p>
+<p>To keep the VM lightweight, install as few features as possible. We will use SSH to login to the server so select "OpenSSH Server". You may want to install a desktop environment later, but keep in mind that the graphics support will be limited under two layers of virtualization (Virtualbox + Xen). </p>
+<p>Give the Linux VM a hostname that is unique on your network as we will use this to access it with SSH later. I use "virtualxen". </p>
+<p>Add a user you want to use for development, for example "mirage". </p>
 <p>You may also want to reserve some of the disk space for Mirage if you plan to run applications that use block storage. During guided partitioning in the Ubuntu installer, if you choose to use the entire disk, the next question will allow you to specify a percentage of the disk that you want to use. If you plan to use Xen VMs that need direct disk access you should leave some of it for this purpose, for example 50%.</p>
 <p>After completing the installation, run apt-get update/upgrade and install the Virtualbox guest utilities, then reboot:</p>
 <div class="highlight"><pre>sudo apt-get update
@@ -30,9 +30,9 @@ sudo reboot
 
 <h3>Install the Xen Hypervisor</h3>
 <p>After installing the Ubuntu Server VM, your configuration will be as in the following figure. Ubuntu runs in Virtualbox which runs under the main operating system (OS X in my case). </p>
-<p><img src="http://www.skjegstad.com/images/blog/mirage_dev/ubuntu_in_vm_overview.jpg" class="center"/></p>
+<p><img src="http://www.skjegstad.com/images/blog/mirage_dev/ubuntu_in_vm_overview.jpg" class="center"></p>
 <p>We are now going to install the Xen hypervisor, which will become a thin layer between Virtualbox and the Ubuntu Server installation. The Xen hypervisor will be able to run VMs within the Virtualbox VM and we can use the Ubuntu installation to control Xen. This is the new configuration with Xen:</p>
-<p><img src="http://www.skjegstad.com/images/blog/mirage_dev/xen_in_vm_overview.jpg" class="center"/></p>
+<p><img src="http://www.skjegstad.com/images/blog/mirage_dev/xen_in_vm_overview.jpg" class="center"></p>
 <p><a href="http://wiki.xen.org/wiki/Dom0">Dom0</a> is the original Ubuntu Server installation and the <a href="http://wiki.xen.org/wiki/DomU">DomU</a>'s will be our future Mirage applications.</p>
 <p>To install Xen, log in to Ubuntu and install the Xen hypervisor with the following command. We will also need bridge-utils (for configuring networking), build-essential (development tools) and git (version control):</p>
 <div class="highlight"><pre><span class="c"># install hypervisor and other tools</span>
@@ -52,8 +52,8 @@ Domain-0                                     0  1896     1      r-----         3
 <p>We are now ready to set up networking. </p>
 <h3>Networking</h3>
 <p>Internet access should work out of the box for dom0, but to enable network access from the domU's we have set up a bridge device that they can connect to. We will call this device br0. Since this is a development environment we also want the unikernels to be accessible from the host operating system (so we can test them), but not from the local network. Virtualbox has a feature that allows this called a host-only network. </p>
-<p>To set up the host-only network in Virtualbox we have to shutdown the VM (<code>sudo shutdown -h now</code>). Then go to Preferences in Virtualbox and select the &quot;Network&quot; tab and &quot;Host-only Networks&quot;. Create a new network. Make sure that the built-in DHCP server is disabled - I have not managed to get the built-in DHCP server to work with Mirage, so we will install a DHCP server in dom0 instead. If you already have an existing host-only network and you disabled the DHCP server in this step, remember to restart Virtualbox to make sure that the DHCP server is not running. </p>
-<p>After setting up the host-only network, exit preferences and open the settings for the VM. Under the &quot;Network&quot; tab, go to &quot;Adapter 2&quot;, enable it and choose to attach to &quot;Host-only Adapter&quot;. Select the name of the network that you just created in Preferences. Under advanced, select &quot;Allow All&quot; for &quot;Promiscuous mode&quot;. Exit and save.</p>
+<p>To set up the host-only network in Virtualbox we have to shutdown the VM (<code>sudo shutdown -h now</code>). Then go to Preferences in Virtualbox and select the "Network" tab and "Host-only Networks". Create a new network. Make sure that the built-in DHCP server is disabled - I have not managed to get the built-in DHCP server to work with Mirage, so we will install a DHCP server in dom0 instead. If you already have an existing host-only network and you disabled the DHCP server in this step, remember to restart Virtualbox to make sure that the DHCP server is not running. </p>
+<p>After setting up the host-only network, exit preferences and open the settings for the VM. Under the "Network" tab, go to "Adapter 2", enable it and choose to attach to "Host-only Adapter". Select the name of the network that you just created in Preferences. Under advanced, select "Allow All" for "Promiscuous mode". Exit and save.</p>
 <p>You can now start the VM with the new network configuration. After booting, edit /etc/network/interfaces to setup up the host-only adapter (eth1) and add it to the bridge (br0). The configuration below is based on the default IP range (192.168.56.x) for host-only networking in Virtualbox - if you have made changes to the default network configuration you may have to update the configuration here as well. </p>
 <div class="highlight"><pre><span class="c"># /etc/network/interfaces</span>
 auto lo
@@ -92,7 +92,7 @@ iface br0 inet static
 
 
 <p>This configures the DHCP server to run on br0 and to dynamically assign IP addresses in the range 192.168.56.150 to 192.168.56.200 with a lease time of 1 hour. </p>
-<p>To be able to access dom0 via SSH from the host operating system (outside Virtualbox) we install avahi-daemon. Avahi-daemon enables mDNS, which will allow you to connect to &quot;virtualxen.local&quot; from the host operating system:</p>
+<p>To be able to access dom0 via SSH from the host operating system (outside Virtualbox) we install avahi-daemon. Avahi-daemon enables mDNS, which will allow you to connect to "virtualxen.local" from the host operating system:</p>
 <div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install avahi-daemon
 </pre></div>
 
@@ -143,7 +143,7 @@ opam install mirage -v
 
 <p>If you use emacs or vim I also recommend installing <a href="https://github.com/the-lambda-church/merlin/wiki">Merlin</a>, which provides tab completion, type lookup and many other useful IDE features for OCaml. </p>
 <h3>Creating a Mirage VM</h3>
-<p>To verify that everything works, we will now download the <a href="https://github.com/mirage/mirage-skeleton">Mirage examples</a> and compile the static website example. This example will start a web server hosting a &quot;Hello world&quot; page that we should be able to access from the host OS. The IP-address will be assigned with DHCP. </p>
+<p>To verify that everything works, we will now download the <a href="https://github.com/mirage/mirage-skeleton">Mirage examples</a> and compile the static website example. This example will start a web server hosting a "Hello world" page that we should be able to access from the host OS. The IP-address will be assigned with DHCP. </p>
 <p>First, clone the Mirage examples:</p>
 <div class="highlight"><pre><span class="c"># clone mirage-skeleton</span>
 git clone http://github.com/mirage/mirage-skeleton.git
@@ -249,8 +249,8 @@ git clone http://github.com/mirage/mirage-skeleton.git
 </pre></div>
 
 
-<p>The console output shows the IP address that was assigned to the unikernel (&quot;DHCP offer received and bound...&quot;). In the example above the IP is 192.168.56.178. From the host operating system you should now be able to open this IP in a web browser to see the &quot;Hello Mirage World!&quot; message.</p>
-<p>If you login to dom0 in a new terminal <code>xl list</code> will show the running domains, which now includes &quot;www&quot;:</p>
+<p>The console output shows the IP address that was assigned to the unikernel ("DHCP offer received and bound..."). In the example above the IP is 192.168.56.178. From the host operating system you should now be able to open this IP in a web browser to see the "Hello Mirage World!" message.</p>
+<p>If you login to dom0 in a new terminal <code>xl list</code> will show the running domains, which now includes "www":</p>
 <div class="highlight"><pre><span class="err">$</span> <span class="n">sudo</span> <span class="n">xl</span> <span class="n">list</span>
 <span class="n">Name</span>                                        <span class="n">ID</span>   <span class="n">Mem</span> <span class="n">VCPUsStateTime</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 <span class="n">Domain</span><span class="o">-</span><span class="mi">0</span>                                     <span class="mi">0</span>  <span class="mi">1355</span>     <span class="mi">1</span>     <span class="n">r</span><span class="o">-----</span>    <span class="mf">6691.4</span>

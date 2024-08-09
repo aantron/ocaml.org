@@ -4,7 +4,7 @@ description: 'Update:  Here is the PNGPack  source-code archive:  Per second.  Y
   it''s benchmark time. I pitted Prof. Perlin''s original implementation  ...'
 url: https://alaska-kamtchatka.blogspot.com/2012/01/eighteen-million-noises.html
 date: 2012-01-11T13:02:00-00:00
-preview_image: //4.bp.blogspot.com/-_jkIeBdxFl4/Tw8a0gbM0aI/AAAAAAAAASc/0yOcfsLJ_M8/w1200-h630-p-k-no-nu/noise.tgz.png
+preview_image: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2gRmfsMSY-suqOv5P5jHrei87CiI4cmiVTbyxczz0SCSo4-MKZd71xDGheqacebupXXrQsObZDO3twhICQ6cRxjW2q3-jgwOTPKab6-vJHo8rNintFEpBk2wixIRSSfWhoVxQRnOx2CU/w1200-h630-p-k-no-nu/noise.tgz.png
 authors:
 - "Mat\xEDas Giovannini"
 source:

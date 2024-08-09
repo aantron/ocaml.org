@@ -13,7 +13,7 @@ source:
 <p>The <a href="https://github.com/coq/coq/releases/tag/V8.10+beta2">second
 beta release of Coq 8.10</a> is available for testing.</p>
 
-<p>This second &beta; version includes many bug fixes and documentation
+<p>This second β version includes many bug fixes and documentation
 improvements; more details are given in the <a href="https://coq.github.io/doc/V8.10+beta2/refman/changes.html#changes-in-8-10-beta2">reference manual</a>.</p>
 
 <p>Feedback and <a href="https://github.com/coq/coq/issues">bug

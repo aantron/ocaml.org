@@ -5,8 +5,8 @@ description: 'The new pinning feature of OPAM 1.2 enables new interesting workfl
   them here: simplifying continuous testing with Travis CI and GitHub. Creating an
   opam file As explained in the previous post, adding an opam file at...'
 url: https://ocamlpro.com/blog/2014_12_18_opam_1.2_and_travis_ci
-date: 2014-12-18T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2014-12-18T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Thomas Gazagnaire\n  "
 source:
@@ -32,13 +32,13 @@ check that is is well-formed.</p>
 <code>{test}</code> constraint, and add a <code>build-test</code> field. For instance, if you use
 <code>oasis</code> and <code>ounit</code>, you can use something like:</p>
 <pre><code class="language-shell-session">build: [
-  [&quot;./configure&quot; &quot;--prefix=%{prefix}%&quot; &quot;--%{ounit:enable}%-tests&quot;]
+  ["./configure" "--prefix=%{prefix}%" "--%{ounit:enable}%-tests"]
   [make]
 ]
-build-test: [make &quot;test&quot;]
+build-test: [make "test"]
 depends: [
   ...
-  &quot;ounit&quot; {test}
+  "ounit" {test}
   ...
 ]
 </code></pre>
@@ -87,7 +87,7 @@ you should write:</p>
 <pre><code class="language-shell-session">env:
    - OCAML_VERSION=latest DEPOPTS=lwt
    - OCAML_VERSION=latest DEPOPTS=async
-   - OCAML_VERSION=4.01   DEPOPTS=&quot;lwt async&quot;
+   - OCAML_VERSION=4.01   DEPOPTS="lwt async"
 </code></pre>
 <p>As usual, your contributions and feedback on this new feature are <a href="https://github.com/ocaml/ocaml-travisci-skeleton/issues/">gladly welcome</a>.</p>
 

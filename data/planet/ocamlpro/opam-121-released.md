@@ -5,8 +5,8 @@ description: 'OPAM 1.2.1 has just been released. This patch version brings a num
   1.2.0 (or earlier) See the normal installation instructions: you should generally
   pick up the packages from the same origin as you did for the last...'
 url: https://ocamlpro.com/blog/2015_03_18_opam_1.2.1_released
-date: 2015-03-18T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2015-03-18T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Louis Gesbert\n  "
 source:
@@ -65,12 +65,12 @@ documenting the specific features enabled in a given build. See the
 <a href="https://github.com/ocaml/opam/blob/master/doc/design/depopts-and-features">original proposal</a>
 and the section in the <a href="https://opam.ocaml.org/doc/Manual.html#opam">new manual</a>
 </li>
-<li>The &quot;filter&quot; language in opam files is now well defined, and documented in the
+<li>The "filter" language in opam files is now well defined, and documented in the
 <a href="https://opam.ocaml.org/doc/Manual.html#Filters">manual</a>. In particular,
 undefined variables are consistently handled, as well as conversions between
 string and boolean values, with new syntax for converting bools to strings.
 </li>
-<li>New package flag &quot;verbose&quot; in opam files, that outputs the package's build
+<li>New package flag "verbose" in opam files, that outputs the package's build
 script to stdout
 </li>
 <li>New field <code>libexec:</code> in <code>&lt;name&gt;.install</code> files, to install into the package's

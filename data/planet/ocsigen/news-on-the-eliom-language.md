@@ -42,7 +42,7 @@ See <a href="https://ocsigen.org/eliom/6.1/manual/ppx-syntax">the documentation<
 
 <p>The language extension is currently implemented using a PPX extension and
 a custom (and a bit sophisticated) compilation scheme. Note here that I used
-the word &ldquo;language&rdquo; extension on purpose: this is not a simple syntax extension,
+the word “language” extension on purpose: this is not a simple syntax extension,
 the Eliom language has its own type system, semantics and compilation
 scheme, which are extensions of the OCaml ones.</p>
 
@@ -112,7 +112,7 @@ website using eliomlang without the complete framework is available in <a href="
 The <a href="https://hal.archives-ouvertes.fr/hal-01349774">APLAS paper</a> is quite formal and is mostly aimed at people
 that want to really understand the minute details of the language. The
 <a href="https://hal.archives-ouvertes.fr/hal-01407898">IFL paper</a>, on the other hand, should be accessible to most OCaml programmers
-(even those who don&rsquo;t know Eliom) and demonstrates how to use the new Eliom
+(even those who don’t know Eliom) and demonstrates how to use the new Eliom
 constructs to build nice, tierless and typesafe libraries for client/server
 web programming.</p>
 

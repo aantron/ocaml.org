@@ -11,7 +11,7 @@ authors:
 source:
 ---
 
-<p><img src="http://typeocaml.com/content/images/2015/11/visual_random-1.jpg#hero" alt="heor"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/11/visual_random-1.jpg#hero" alt="heor"></p>
 
 <p>It has been almost half year since my last blog post on OCaml. Well, actually I haven't even touched OCaml for that long time. My current job (in Python) got much busier. But finally, things <s>camls</s> calms down a bit now. I can at least have time sitting in front of my 2008 macbook pro, opening terminal, doing </p>
 
@@ -30,13 +30,13 @@ eval `opam config env`
 
 <p>Anyway, enough chit-chat, back to the topic.</p>
 
-<hr/>
+<hr>
 
 <p>This post is about visualising the randomness of random number generators. It will be lightweight and is just something I did for fun with OCaml. We will know a good way to test randomness and also learn how to create a <em>jpg</em> picture using an OCaml image library: <strong>camlimages</strong>. I hope it would be tiny cool.</p>
 
 <h1>What is randomness?</h1>
 
-<p>Say, we got a function <code>var ran_gen : int -&gt; int</code> from nowhere. It claims to be a good random integer generator with uniform distribution, which takes a bound and &quot;perfectly&quot; generates a random integer within [0, bound). The usage is simple but the question is <em>can you trust it</em> or <em>will the numbers it generates be really random</em>?</p>
+<p>Say, we got a function <code>var ran_gen : int -&gt; int</code> from nowhere. It claims to be a good random integer generator with uniform distribution, which takes a bound and "perfectly" generates a random integer within [0, bound). The usage is simple but the question is <em>can you trust it</em> or <em>will the numbers it generates be really random</em>?</p>
 
 <p>For example, here is a rather simple <code>ran_gen_via_time</code>:</p>
 
@@ -46,7 +46,7 @@ let ran_via_time bound =
 (*
   Unix.gettimeofday() returns float like 1447920488.92716193 in second. 
   We get the decimal part and then amplify it to be integer like, i.e., 1447920488.92716193 ==&gt; 0.92716193 ==&gt; 92716193.
-  Then we mod it by bound to get the final &quot;random&quot; number.
+  Then we mod it by bound to get the final "random" number.
 *)
 </code></pre>
 
@@ -76,7 +76,7 @@ let ran_via_time bound =
 
 <p>Essentially, the bigger <code>X^2</code> is, the matching is more unlikely. If we really want to see how unlikely or likely they match each other, then we need to check <code>X^2</code> against the <em>chi square distribution table</em> like below:</p>
 
-<p><img src="https://faculty.elgin.edu/dkernler/statistics/ch09/images/chi-square-table.gif" alt="chi square distribution table"/></p>
+<p><img src="https://faculty.elgin.edu/dkernler/statistics/ch09/images/chi-square-table.gif" alt="chi square distribution table"></p>
 
 <ol>
 <li>The <em>Degrees of Freedom</em> is our <code>k-1</code> (if <em>k = 1</em>, then our freedom is <em>0</em>, which means we just have one to choose all the time and don't have any freedom).  </li>
@@ -110,19 +110,19 @@ let ran_via_time bound =
 
 <p>Initially we have such a canvas.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/11/randomness_canvas.jpg" alt="canvas"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/11/randomness_canvas.jpg" alt="canvas"></p>
 
 <p>We use the random generator generating numbers. If a slot get a hit, we put a color on it.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/11/randomness_1.jpg" alt="random_1"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/11/randomness_1.jpg" alt="random_1"></p>
 
 <p>If any slot keeps been hit, we put deeper and deeper color on it.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/11/randomness_2.jpg" alt="random_2"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/11/randomness_2.jpg" alt="random_2"></p>
 
 <p>When the generator finishes, we can get a final image.</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/11/randomness_3.jpg" alt="random_3"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/11/randomness_3.jpg" alt="random_3"></p>
 
 <p>From the resulting image, we can see that several numbers are really much deeper than others, and we can directly get a feeling about the generator. </p>
 
@@ -266,10 +266,10 @@ Random.int bound returns a random integer between 0 (inclusive) and bound (exclu
 
 <p>Let's have a look what it looks like:</p>
 
-<pre><code class="ocaml">let _ = random_plot ~filename:&quot;random_plot_int.jpg&quot; ~ran_f:Random.int ~w:1024 ~h:1024 ~n:5  
+<pre><code class="ocaml">let _ = random_plot ~filename:"random_plot_int.jpg" ~ran_f:Random.int ~w:1024 ~h:1024 ~n:5  
 </code></pre>
 
-<p><img src="https://raw.githubusercontent.com/MassD/typeocaml_code/master/visualise_randomness/random_plot_int.jpg" alt="ran_int"/></p>
+<p><img src="https://raw.githubusercontent.com/MassD/typeocaml_code/master/visualise_randomness/random_plot_int.jpg" alt="ran_int"></p>
 
 <p>Is it satisfying? Well, I guess so.</p>
 
@@ -281,10 +281,10 @@ Random.int bound returns a random integer between 0 (inclusive) and bound (exclu
 let ran_via_time bound =  
   ((Unix.gettimeofday() |&gt; decimal_only) *. 100,000,000. |&gt; int_of_float) mod bound
 
-let _ = random_plot ~filename:&quot;random_plot_time.jpg&quot; ~ran_f:ran_via_time ~w:1024 ~h:1024 ~n:5  
+let _ = random_plot ~filename:"random_plot_time.jpg" ~ran_f:ran_via_time ~w:1024 ~h:1024 ~n:5  
 </code></pre>
 
-<p><img src="https://raw.githubusercontent.com/MassD/typeocaml_code/master/visualise_randomness/random_plot_time.jpg" alt="ran_time"/></p>
+<p><img src="https://raw.githubusercontent.com/MassD/typeocaml_code/master/visualise_randomness/random_plot_time.jpg" alt="ran_time"></p>
 
 <p>Is it satisfying? Sure not.</p>
 
@@ -292,7 +292,7 @@ let _ = random_plot ~filename:&quot;random_plot_time.jpg&quot; ~ran_f:ran_via_ti
 
 <p>For example,</p>
 
-<p><img src="http://typeocaml.com/content/images/2015/11/random_plot_time.jpg" alt="ran_time_patr"/></p>
+<p><img src="http://typeocaml.com/content/images/2015/11/random_plot_time.jpg" alt="ran_time_patr"></p>
 
 <p>One pattern is the diagonal lines there (parrallel to the red lines I've added).</p>
 
@@ -302,7 +302,7 @@ let _ = random_plot ~filename:&quot;random_plot_time.jpg&quot; ~ran_f:ran_via_ti
 
 <p>I hope you enjoy it.</p>
 
-<hr/>
+<hr>
 
 <h1>JPG vs PNG</h1>
 
@@ -312,11 +312,11 @@ let _ = random_plot ~filename:&quot;random_plot_time.jpg&quot; ~ran_f:ran_via_ti
 
 <h2>JPG</h2>
 
-<p><img src="https://raw.githubusercontent.com/MassD/typeocaml_code/master/visualise_randomness/random_plot_time.jpg" alt="jpg"/></p>
+<p><img src="https://raw.githubusercontent.com/MassD/typeocaml_code/master/visualise_randomness/random_plot_time.jpg" alt="jpg"></p>
 
 <h2>PNG</h2>
 
-<p><img src="https://raw.githubusercontent.com/MassD/typeocaml_code/master/visualise_randomness/random_plot_time.png" alt="png"/></p>
+<p><img src="https://raw.githubusercontent.com/MassD/typeocaml_code/master/visualise_randomness/random_plot_time.png" alt="png"></p>
 
 <p>Seems not that different from my eyes. But anyway it was a good point.</p>
 
@@ -332,11 +332,11 @@ let _ = random_plot ~filename:&quot;random_plot_time.jpg&quot; ~ran_f:ran_via_ti
 <p>and</p>
 
 <pre><code>let _ = Nocrypto_entropy_unix.initialize()  
-let _ = random_plot ~filename:&quot;random_plot_fortuna&quot; ~ran_f:Nocrypto.Rng.Int.gen ~w:1024 ~h:1024 ~n:5  
+let _ = random_plot ~filename:"random_plot_fortuna" ~ran_f:Nocrypto.Rng.Int.gen ~w:1024 ~h:1024 ~n:5  
 </code></pre>
 
 <p>and we get</p>
 
-<p><img src="https://raw.githubusercontent.com/MassD/typeocaml_code/master/visualise_randomness/random_plot_fortuna.jpg" alt="fortuna"/></p>
+<p><img src="https://raw.githubusercontent.com/MassD/typeocaml_code/master/visualise_randomness/random_plot_fortuna.jpg" alt="fortuna"></p>
 
 <p>It is a very nice generator, isn't it?</p>

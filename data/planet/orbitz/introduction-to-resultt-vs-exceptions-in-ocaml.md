@@ -128,23 +128,23 @@ Here is a version using exceptions, <a href="https://github.com/orbitz/blog_post
 
 <b><font color="#0000FF">let</font></b> <font color="#990000">()</font> <font color="#990000">=</font>
   <i><font color="#9A1900">(* Pretend input came from user *)</font></i>
-  <b><font color="#0000FF">let</font></b> input <font color="#990000">=</font> <font color="#FF0000">&quot;Joe Mama\t25\t11425&quot;</font> <b><font color="#0000FF">in</font></b>
+  <b><font color="#0000FF">let</font></b> input <font color="#990000">=</font> <font color="#FF0000">"Joe Mama\t25\t11425"</font> <b><font color="#0000FF">in</font></b>
   <b><font color="#0000FF">try</font></b>
     <b><font color="#0000FF">let</font></b> person <font color="#990000">=</font> parse_person input <b><font color="#0000FF">in</font></b>
-    printf <font color="#FF0000">&quot;Name: %s %s\nAge: %d\nZip: %s\n&quot;</font>
+    printf <font color="#FF0000">"Name: %s %s\nAge: %d\nZip: %s\n"</font>
       <font color="#990000">(</font>fst person<font color="#990000">.</font>name<font color="#990000">)</font>
       <font color="#990000">(</font>snd person<font color="#990000">.</font>name<font color="#990000">)</font>
       person<font color="#990000">.</font>age
       person<font color="#990000">.</font>zip
   <b><font color="#0000FF">with</font></b>
     <font color="#990000">|</font> <font color="#009900">Bad_line</font> l <font color="#990000">-&gt;</font>
-      printf <font color="#FF0000">&quot;Bad line: '%s'\n&quot;</font> l
+      printf <font color="#FF0000">"Bad line: '%s'\n"</font> l
     <font color="#990000">|</font> <font color="#009900">Bad_name</font> name <font color="#990000">-&gt;</font>
-      printf <font color="#FF0000">&quot;Bad name: '%s'\n&quot;</font> name
+      printf <font color="#FF0000">"Bad name: '%s'\n"</font> name
     <font color="#990000">|</font> <font color="#009900">Bad_age</font> age <font color="#990000">-&gt;</font>
-      printf <font color="#FF0000">&quot;Bad age: '%s'\n&quot;</font> age
+      printf <font color="#FF0000">"Bad age: '%s'\n"</font> age
     <font color="#990000">|</font> <font color="#009900">Bad_zip</font> zip <font color="#990000">-&gt;</font>
-      printf <font color="#FF0000">&quot;Bad zip: '%s'\n&quot;</font> zip
+      printf <font color="#FF0000">"Bad zip: '%s'\n"</font> zip
 </code></pre>
 
 <p>
@@ -193,7 +193,7 @@ A few points of comparison between ex1 and ex5:
 <li>The rest of the helper functions are a bit of a toss-up between the exception and return-value code.  I think one could argue either direction.</li>
 <li>The return-value code has fulfilled my requirements in terms of handling failures.  The compiler will complain if any failure <code>parse_person</code> could return is not handled.  If I add another error type the code will not compile.  It also fulfilled the requirements without bloating the code.  The return-value code and exception code are roughly the same number of lines.  Their flows are roughly equal.  But the return-value code is much safer.</li>
 </ul>
-
+<p></p>
 
 <h3>Two Points</h3>
 <p>
@@ -205,7 +205,7 @@ It's not all sunshine and lollipops.  There are two issues to consider:
 <li><b>Performance</b> - Exceptions in Ocaml are really, really, fast.  Like any performance issue, I suggest altering code only when needed based on measurements and encapsulating those changes as well as possible.  This also means if you want to provide a safe and an exception version of a function, you should probably implement the safe version in terms of the exception verson.</li>
 <li><b>Discipline</b> - I referred to discipline a few times above.  This whole scheme is very easy to mess up with a single mistake: pattern matching on anything (<code>_</code>).  The power of exhaustive pattern matching means you need to match on every error individually.  This is effectively for the same reason catching the exception base class in other languages is such a bad idea, you lose a lot of information.</li>
 </ul>
-
+<p></p>
 
 
 <h3>Conclusion</h3>

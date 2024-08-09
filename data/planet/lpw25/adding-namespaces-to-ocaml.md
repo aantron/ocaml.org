@@ -1,11 +1,12 @@
 ---
 title: Adding namespaces to OCaml
 description:
-url: http://lpw25.net/2013/03/10/ocaml-namespaces
+url: https://lpw25.net/2013/03/10/ocaml-namespaces
 date: 2013-03-10T00:00:00-00:00
 preview_image:
 authors:
-- lpw25
+- Leo White
+source:
 ---
 
 <div class="well well-small">
@@ -28,8 +29,8 @@ Contents
   <li><a href="http://lpw25.net/rss.xml#proposal">Proposal</a>    <ul>
       <li><a href="http://lpw25.net/rss.xml#simple-namespaces-through-filenames">Simple namespaces through filenames</a></li>
       <li><a href="http://lpw25.net/rss.xml#an-alternative-to-search-paths">An alternative to search paths</a></li>
-      <li><a href="http://lpw25.net/rss.xml#the--name-argument">The &ldquo;-name&rdquo; argument</a></li>
-      <li><a href="http://lpw25.net/rss.xml#the--open-argument">The &ldquo;-open&rdquo; argument</a></li>
+      <li><a href="http://lpw25.net/rss.xml#the--name-argument">The “-name” argument</a></li>
+      <li><a href="http://lpw25.net/rss.xml#the--open-argument">The “-open” argument</a></li>
     </ul>
   </li>
 </ul>
@@ -38,7 +39,7 @@ Contents
 
 <p>Recently there has been a lot of discussion on
 <a href="http://lists.ocaml.org/listinfo/platform">platform@lists.ocaml.org</a> about
-proposals for adding namespaces to OCaml. I&rsquo;ve written this post to summarise
+proposals for adding namespaces to OCaml. I’ve written this post to summarise
 the design decisions for such a proposal and to make my own proposal.</p>
 
 <p>Before discussing what namespaces are and the issues surrounding their
@@ -49,13 +50,13 @@ place.</p>
 grouping the components of a library together. Up to now this has been
 achieved using the OCaml module system. Since the components of an OCaml
 library are modules, a module can be created that contains all the components
-of the library as sub-modules. The &ldquo;-pack&rdquo; option for the compiler was created
+of the library as sub-modules. The “-pack” option for the compiler was created
 to allow this module to be created while still keeping each component of the
 library in its own file.</p>
 
 <h3>Problems with pack</h3>
 
-<p>There are some critical problems with using &ldquo;-pack&rdquo; to create a single module
+<p>There are some critical problems with using “-pack” to create a single module
 containing the whole library:</p>
 
 <ul>
@@ -87,24 +88,24 @@ of an OCaml program is simply the initialisation of all its modules.</p>
 <p>The problems with pack are related to these dynamic semantics. In order to
 be a module pack must create a record to represent this module. This means
 that it must initialise all of its components. It is this (rather than any
-detail of pack&rsquo;s implementation) that causes the problems identified above.</p>
+detail of pack’s implementation) that causes the problems identified above.</p>
 
 <p>Access to the components of a top-level module could proceed without the
-existence of this record. However, the record is required in order to &ldquo;alias&rdquo;
+existence of this record. However, the record is required in order to “alias”
 the module, use the module as a first-class value or use it as the argument to
 a functor.</p>
 
 <p>Any attempt to overcome the problems with pack, whilst still maintaining
-the illusion that the &ldquo;pack&rdquo; is a normal module, would result (at the very
+the illusion that the “pack” is a normal module, would result (at the very
 least) in one of the following unhealthy situations:</p>
 
 <ul>
   <li>
-    <p>The module type of the &ldquo;packed module&rdquo; would depend on which of its
+    <p>The module type of the “packed module” would depend on which of its
 components were accessed by the program.</p>
   </li>
   <li>
-    <p>Any use of the &ldquo;packed module&rdquo; other than as a simple container
+    <p>Any use of the “packed module” other than as a simple container
 (e.g.
 <span class="highlight"><code><span class="k">module</span>
 <span class="nc">CS</span>
@@ -164,14 +165,14 @@ is a namespace containing only those components whose interfaces are stable.</p>
   <li>
     <p><strong>Allow multiple source files to share the same filename.</strong> Each module that
 is linked into an OCaml program must have a unique name. Currently, a
-module&rsquo;s name is completely determined by its filename. This forces library
+module’s name is completely determined by its filename. This forces library
 developers to either use pack (which gives its components new long names) or
-give their source files long names like &ldquo;libName_Foo.ml&rdquo;. A namespaces
+give their source files long names like “libName_Foo.ml”. A namespaces
 proposal may be able to alleviate this problem.</p>
   </li>
   <li>
     <p><strong>Allow libraries to control which modules are open by default.</strong> By default
-OCaml opens the standard library&rsquo;s 
+OCaml opens the standard library’s 
 <span class="highlight"><code><span class="nc">Pervasives</span></code></span>
 module. Libraries that wish to replace the standard library may also wish to
 provide their own
@@ -184,7 +185,7 @@ without namespaces.</strong></p>
   </li>
   <li>
     <p><strong>Require minimal changes to existing build systems.</strong> Since a namespace
-proposal changes how a library&rsquo;s components are named, it may require
+proposal changes how a library’s components are named, it may require
 changes to some build systems. If these changes are too invasive then users
 of some build systems will probably be unable to use namespaces in the near
 future.</p>
@@ -205,13 +206,13 @@ namespaces. We call namespaces that can contain other namespaces
 <ul>
   <li>
     <p>Hierarchical namespaces might lead to arbitrary categorising of components
-(e.g.<br/>
+(e.g.<br>
 <span class="highlight"><code><span class="nc">Data</span><span class="o">#</span><span class="nc">Array</span></code></span>
 ). These add syntactic clutter and do not bring any real benefit.</p>
   </li>
   <li>
     <p>Hierarchical namespaces might lead to deep java-style hierarchies
-(e.g.<br/>
+(e.g.<br>
 <span class="highlight"><code><span class="nc">Com</span><span class="o">#</span><span class="nc">Janestreet</span><span class="o">#</span><span class="nc">Core</span><span class="o">#</span><span class="nc">Std</span></code></span>
 ). These add syntactic clutter without adding any actual information.</p>
   </li>
@@ -246,15 +247,15 @@ In such situations it is useful to be able to write both
 
 
 <figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">open</span> <span class="nc">Core</span>
-<span class="o">[...]</span>
-<span class="nc">Testing</span><span class="p">#</span><span class="nn">Mutex</span><span class="p">.</span><span class="n">lock</span> <span class="n">x</span></code></pre></figure>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="nc">Testing</span><span class="o">#</span><span class="nn">Mutex</span><span class="p">.</span><span class="n">lock</span> <span class="n">x</span></code></pre></figure>
 
 
 and
 
 
-<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">open</span> <span class="nc">Core</span><span class="p">#</span><span class="nc">Testing</span>
-<span class="o">[...]</span>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">open</span> <span class="nc">Core</span><span class="o">#</span><span class="nc">Testing</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
 <span class="nn">Mutex</span><span class="p">.</span><span class="n">lock</span> <span class="n">x</span></code></pre></figure>
 
 </li>
@@ -295,8 +296,8 @@ other tools) matters. This is potentially very fragile.</p>
   </li>
   <li>
     <p>Explicit opens in a source file give valuable information about which
-libraries are being used by that source file. If a file contains &ldquo;open
-namespace Core&rdquo; then you know it uses the Core library.</p>
+libraries are being used by that source file. If a file contains “open
+namespace Core” then you know it uses the Core library.</p>
   </li>
   <li>
     <p>Local namespace opens provide users more precise control over their naming
@@ -315,7 +316,7 @@ environment.</p>
 <p>Currently, when looking for a module 
 <span class="highlight"><code><span class="nc">Bar</span></code></span>
 that is not in the current environment, the OCaml compiler will search the
-directories in its search path for a file called &ldquo;bar.cmi&rdquo;.</p>
+directories in its search path for a file called “bar.cmi”.</p>
 
 <p>In the presence of namespaces this becomes more complicated: how does the
 compiler find the module 
@@ -329,10 +330,10 @@ namespaces fall into four categories.</p>
 
 <p>By storing the interface for 
 <span class="highlight"><code><span class="nc">Foo</span><span class="o">#</span><span class="nc">Bar</span></code></span>
-in a file named &ldquo;foo-bar.cmi&rdquo; the compiler can continue to simply look-up
+in a file named “foo-bar.cmi” the compiler can continue to simply look-up
 modules in its search path.</p>
 
-<p>Note that &ldquo;-&ldquo; is an illegal character in module names so there is no risk of
+<p>Note that “-“ is an illegal character in module names so there is no risk of
 <span class="highlight"><code><span class="nc">Foo</span><span class="o">#</span><span class="nc">Bar</span></code></span>
 being confused with a module called 
 <span class="highlight"><code><span class="nc">Foo-bar</span></code></span>.</p>
@@ -340,14 +341,14 @@ being confused with a module called
 <p>This simple scheme does not support placing a module within multiple
 namespaces or allowing users to put existing modules in a new namespace.</p>
 
-<h5>Checking multiple &ldquo;.cmi&rdquo; files</h5>
+<h5>Checking multiple “.cmi” files</h5>
 
 <p>The name of the namespace containing a compilation unit could be included in
-the &ldquo;.cmi&rdquo; file of that unit. Then, when looking for a module 
+the “.cmi” file of that unit. Then, when looking for a module 
 <span class="highlight"><code><span class="nc">Foo</span><span class="o">#</span><span class="nc">Bar</span></code></span>
-, the compiler would try every &ldquo;bar.cmi&rdquo; file in its search path until it
-found one that was part of the &ldquo;Foo&rdquo; namespace. This may require the compiler
-to open all the &ldquo;bar.cmi&rdquo; files on its search path, which could be expensive
+, the compiler would try every “bar.cmi” file in its search path until it
+found one that was part of the “Foo” namespace. This may require the compiler
+to open all the “bar.cmi” files on its search path, which could be expensive
 on certain operating systems.</p>
 
 <p>This scheme does not support allowing users to put existing modules in a new
@@ -373,10 +374,10 @@ describes the members of that namespace.</p>
 
 <p>For example, if namespace 
 <span class="highlight"><code><span class="nc">Foo</span></code></span>
-was described by a file &ldquo;foo.ns&rdquo; that was on the compiler&rsquo;s search path then
+was described by a file “foo.ns” that was on the compiler’s search path then
 the compiler could find
 <span class="highlight"><code><span class="nc">Foo</span><span class="o">#</span><span class="nc">Bar</span></code></span>
-by locating &ldquo;foo.ns&rdquo; and using it to look-up the location of the &ldquo;.cmi&rdquo; file
+by locating “foo.ns” and using it to look-up the location of the “.cmi” file
 for
 <span class="highlight"><code><span class="nc">Bar</span></code></span>.</p>
 
@@ -387,11 +388,11 @@ OCamlDep, which could complicate the build process.</p>
 <h5>Using environment description files</h5>
 
 <p>The compiler could find a member of a namespace by consulting a file that
-describes a mapping between module names and &ldquo;.cmi&rdquo; files.</p>
+describes a mapping between module names and “.cmi” files.</p>
 
-<p>For example, if a file &ldquo;foo.mlpath&rdquo; included the mapping &ldquo;Foo#Bar:
-foo/bar.cmi&rdquo; then that file could be passed as a command-line argument to the
-compiler and used to look up the &ldquo;bar.cmi&rdquo; file directly.</p>
+<p>For example, if a file “foo.mlpath” included the mapping “Foo#Bar:
+foo/bar.cmi” then that file could be passed as a command-line argument to the
+compiler and used to look up the “bar.cmi” file directly.</p>
 
 <p>Looking up modules using this scheme may speed up compilation by avoiding the
 need to scan directories for files.</p>
@@ -428,7 +429,7 @@ compiler. For example,
 <span class="highlight"><code><span class="nc">Foo</span><span class="o">#</span><span class="nc">Bar</span></code></span> 
 could be compiled with the command-line:</p>
 
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh">ocamlc -c -namespace Foo bar.ml </code></pre></figure>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh">ocamlc <span class="nt">-c</span> <span class="nt">-namespace</span> Foo bar.ml </code></pre></figure>
 
 <p>This scheme also means that the full name of a module is specified in two
 locations: partly in the build system and partly in the filename.</p>
@@ -438,7 +439,7 @@ locations: partly in the build system and partly in the filename.</p>
 <p>Namespaces could be specified using the filenames of source files. For
 example, 
 <span class="highlight"><code><span class="nc">Foo</span><span class="o">#</span><span class="nc">Bar</span></code></span> 
-would be created by compiling a file &ldquo;foo-bar.ml&rdquo;</p>
+would be created by compiling a file “foo-bar.ml”</p>
 
 <p>This scheme is simple and very similar to how modules are currently named, but
 it would require all source files to have long unique names.</p>
@@ -447,13 +448,12 @@ it would require all source files to have long unique names.</p>
 
 <p>Namespaces could be specified using namespace description files. The 
 <span class="highlight"><code><span class="nc">Foo</span></code></span>
-namespace would be specified by a file &ldquo;foo.ns&rdquo; that described the members of
+namespace would be specified by a file “foo.ns” that described the members of
 <span class="highlight"><code><span class="nc">Foo</span></code></span>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>module Bar = &quot;foo_bar.cmi&quot;
-namespace Testing = &quot;testing.ns&quot;
-</code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module Bar = "foo_bar.cmi"
+namespace Testing = "testing.ns"
+</code></pre></div></div>
 
 <h5>Through environment description files</h5>
 
@@ -463,11 +463,10 @@ would be defined by passing an environment description file to the compiler
 that included mappings for each of the members of
 <span class="highlight"><code><span class="nc">Foo</span></code></span>. For example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Foo#Bar: &quot;foo_bar.cmi&quot;
-Foo#Testing#Bar: &quot;foo_testing_bar.cmi&quot;
-Baz: &quot;baz.cmi&quot;
-</code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Foo#Bar: "foo_bar.cmi"
+Foo#Testing#Bar: "foo_testing_bar.cmi"
+Baz: "baz.cmi"
+</code></pre></div></div>
 
 <p>In addition to specifying namespaces, this system allows users (or a tool like
 OCamlFind) to have complete control the naming environment of a program.</p>
@@ -494,12 +493,12 @@ some modules within a namespace to be automatically opened when the namespace
 is also opened. This makes it seem that the namespace has values and types as
 members.</p>
 
-<p>This feature is based on the current design of Jane Street&rsquo;s Core
+<p>This feature is based on the current design of Jane Street’s Core
 library. Users of the Core library are expected to open the
 <span class="highlight"><code><span class="nc">Core<span class="p">.</span>Std</span></code></span>
  module before using the library. Opening this module provides access to all
 the other modules of the library (much like opening a namespace), but it also
-provides types and values similar to those provided by the standard library&rsquo;s
+provides types and values similar to those provided by the standard library’s
 <span class="highlight"><code><span class="nc">Pervasives</span></code></span> module.</p>
 
 <p>Supporting auto-opened modules would allow 
@@ -532,15 +531,15 @@ names. For example, to create a module
 <span class="highlight"><code><span class="nc">Bar</span></code></span>
 within the namespace 
 <span class="highlight"><code><span class="nc">Foo</span></code></span>
-developers can simply create an implementation file &ldquo;foo-bar.ml&rdquo; and an
-interface file &ldquo;foo-bar.mli&rdquo;. This interface file would be compiled to a
-&ldquo;foo-bar.cmi&rdquo; file. Hierarchical namespaces would be created by files with
-names like &ldquo;foo-bar-baz.ml&rdquo;.</p>
+developers can simply create an implementation file “foo-bar.ml” and an
+interface file “foo-bar.mli”. This interface file would be compiled to a
+“foo-bar.cmi” file. Hierarchical namespaces would be created by files with
+names like “foo-bar-baz.ml”.</p>
 
 <p>These namespaced modules can be referred to using the syntax 
 <span class="highlight"><code><span class="nc">Foo</span><span class="o">#</span><span class="nc">Bar</span></code></span>. 
 This syntax simply causes the compiler to look in its search path for a
-&ldquo;foo-bar.cmi&rdquo; file.</p>
+“foo-bar.cmi” file.</p>
 
 <p>I also propose supporting a namespace opening syntax like:</p>
 <div class="highlight">
@@ -559,13 +558,12 @@ I propose supporting an alternative look-up mechanism.</p>
 <p>I propose supporting environment description files called <em>search path
 files</em>. These files would have a syntax like:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Foo#Bar : &quot;other_bar.cmi&quot;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Foo#Bar : "other_bar.cmi"
 Foo#Baz : Foo#Bar
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>This file can be given to the &ldquo;-I&rdquo; command-line argument instead of a
-directory and used to look-up the locations of &ldquo;.cmi&rdquo; files for given module
+<p>This file can be given to the “-I” command-line argument instead of a
+directory and used to look-up the locations of “.cmi” files for given module
 names.</p>
 
 <p>These search path files can be used to alias modules and to create new
@@ -575,7 +573,7 @@ namespaces. They also allow a module to be available under multiple namespaces.<
 
 <ul>
   <li>
-    <p>Library authors can write &ldquo;.mlpath&rdquo; files and tell OCamlFind to use that
+    <p>Library authors can write “.mlpath” files and tell OCamlFind to use that
 file as its search path instead of a list of directories.</p>
   </li>
   <li>
@@ -584,61 +582,61 @@ their entire naming environment as they see fit.</p>
   </li>
 </ul>
 
-<h4>The &ldquo;-name&rdquo; argument</h4>
+<h4>The “-name” argument</h4>
 
-<p>While the hard link between a module&rsquo;s name and the name of its source file
-makes life easier for build systems (&ldquo;list.cmi&rdquo; can only be produced by
-compiling &ldquo;list.ml&rdquo;), it forces library authors to give their source files long
+<p>While the hard link between a module’s name and the name of its source file
+makes life easier for build systems (“list.cmi” can only be produced by
+compiling “list.ml”), it forces library authors to give their source files long
 unique names.</p>
 
-<p>I propose adding a &ldquo;-name&rdquo; command-line argument to the OCaml compiler. This
+<p>I propose adding a “-name” command-line argument to the OCaml compiler. This
 would be used as follows:</p>
 
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh">ocamlc -c -name Foo#Bar other.ml</code></pre></figure>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh">ocamlc <span class="nt">-c</span> <span class="nt">-name</span> Foo#Bar other.ml</code></pre></figure>
 
-<p>This command would produce a &ldquo;foo-bar.cmi&rdquo; file defining a module named
+<p>This command would produce a “foo-bar.cmi” file defining a module named
 <span class="highlight"><code><span class="nc">Foo</span><span class="o">#</span><span class="nc">Bar</span></code></span>
-. This means that &ldquo;.cmi&rdquo; files would still be expected to be unique, but
+. This means that “.cmi” files would still be expected to be unique, but
 source files could be named however the developer wants.</p>
 
 <p>Obviously, any tools that assume that a module 
 <span class="highlight"><code><span class="nc">Bar</span></code></span>
-must be compiled from a file called &ldquo;bar.ml&rdquo; will not work in this
+must be compiled from a file called “bar.ml” will not work in this
 situation. However, the only OCaml tool that absolutely relies on this
-assumption is &ldquo;OCamlDep&rdquo; when it is producing makefile formatted output.</p>
+assumption is “OCamlDep” when it is producing makefile formatted output.</p>
 
-<p>Build systems would not be required to support the &ldquo;-name&rdquo; argument, however
+<p>Build systems would not be required to support the “-name” argument, however
 it would make it easy for them to provide features such as:</p>
 
 <ul>
   <li>
-    <p>Creating namespaces to reflect a directory structure (e.g. &ldquo;foo/bar.mli&rdquo; becomes &ldquo;foo-bar.cmi&rdquo;).</p>
+    <p>Creating namespaces to reflect a directory structure (e.g. “foo/bar.mli” becomes “foo-bar.cmi”).</p>
   </li>
   <li>
-    <p>Placing all the modules of a library under a common namespace (e.g. &ldquo;bar.mli&rdquo; becomes &ldquo;foo-bar.cmi&rdquo;)</p>
+    <p>Placing all the modules of a library under a common namespace (e.g. “bar.mli” becomes “foo-bar.cmi”)</p>
   </li>
 </ul>
 
 <p>This would mean that the names of source files could be kept conveniently
 short.</p>
 
-<h4>The &ldquo;-open&rdquo; argument</h4>
+<h4>The “-open” argument</h4>
 
 <p>My proposals do not include support for automatically opened modules within
 namespaces. I feel that this feature conflates two separate issues and it
 would be better to solve the problem of automatically opened modules elsewhere.</p>
 
 <p>Auto-opened modules are meant to allow libraries to provide their own
-equivalent of the standard library&rsquo;s 
+equivalent of the standard library’s 
 <span class="highlight"><code><span class="nc">Pervasives</span></code></span>
-module. I think that it would be more appropriate to have these &ldquo;pervasive&rdquo;
+module. I think that it would be more appropriate to have these “pervasive”
 modules opened by default in any program compiled using one of these
 libraries.</p>
 
-<p>I propose adding a command-line argument &ldquo;-open&rdquo; that could be used to open a
+<p>I propose adding a command-line argument “-open” that could be used to open a
 module by default:</p>
 
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh">ocamlc -c -open core-pervasives.cmi foo.ml</code></pre></figure>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh">ocamlc <span class="nt">-c</span> <span class="nt">-open</span> core-pervasives.cmi foo.ml</code></pre></figure>
 
 <p>By adding support for this feature to OCamlFind, libraries could add this
 argument to every program compiled using them. This amounts to having

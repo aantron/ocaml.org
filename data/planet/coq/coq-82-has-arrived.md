@@ -10,7 +10,7 @@ source:
 ---
 
 
-<p>Coq 8.2 brings Haskell-style type classes, various evolutions of the arithmetic libraries, and many other various improvements and extensions regarding the module system, tactics, syntax, etc. You can download it from <a href="https://coq.inria.fr/download">this page</a>.<br/>
+<p>Coq 8.2 brings Haskell-style type classes, various evolutions of the arithmetic libraries, and many other various improvements and extensions regarding the module system, tactics, syntax, etc. You can download it from <a href="https://coq.inria.fr/download">this page</a>.<br>
 Enjoy!</p>
 <p>The Coq development team</p>
 

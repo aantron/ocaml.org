@@ -13,7 +13,7 @@ source:
 <p>One of the problems we wrestle with at Jane Street is how to
 understand and manage the costs associated with the positions we hold:
 things like margin, financing costs, market risk, regulatory capital
-requirements, and so on.  To that end, we&rsquo;ve built systems that
+requirements, and so on.  To that end, we’ve built systems that
 estimate these costs and propose ways to reduce them. Essentially,
 this is a numerical optimization problem.</p>
 

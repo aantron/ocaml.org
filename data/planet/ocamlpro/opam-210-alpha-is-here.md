@@ -5,8 +5,8 @@ description: We are happy to announce a alpha for opam 2.1.0, one year and a hal
   complete changelog or release note for the details), but here are a few highlights
   of this release. Release highlights The two following features have ...
 url: https://ocamlpro.com/blog/2020_04_22_opam_2.1.0_alpha_is_here
-date: 2020-04-22T13:19:46-00:00
-preview_image: URL_de_votre_image
+date: 2020-04-22T13:31:53-00:00
+preview_image: https://ocamlpro.com/assets/img/og_image_ocp_the_art_of_prog.png
 authors:
 - "\n    Raja Boujbel\n  "
 source:
@@ -22,7 +22,7 @@ but here are a few highlights of this release.</p>
 <p>The two following features have been around for a while as plugins and are now
 completely integrated in the core of opam. No extra installs needed anymore, and
 a more smooth experience.</p>
-<h3>Seamless integration of System dependencies handling (a.k.a. &quot;depexts&quot;)</h3>
+<h3>Seamless integration of System dependencies handling (a.k.a. "depexts")</h3>
 <p>A number of opam packages depend on tools or libraries installed on the system,
 which are out of the scope of opam itself. Previous versions of opam added a
 <a href="http://opam.ocaml.org/doc/Manual.html#opamfield-depexts">specification format</a>,
@@ -49,9 +49,9 @@ OS version, and automatically avoids them.
 you need it (<em>e.g.</em> when you compiled a dependency yourself).</p>
 <h3>Dependency locking</h3>
 <p>To share a project for development, it is often necessary to be able to
-reproduce the exact same environment and dependencies setting &mdash; as opposed to
+reproduce the exact same environment and dependencies setting — as opposed to
 allowing a range of versions as opam encourages you to do for releases.</p>
-<p>For some reason, most other package managers call this feature &quot;lock files&quot;.
+<p>For some reason, most other package managers call this feature "lock files".
 Opam can handle those in the form of <code>[foo.]opam.locked</code> files, and the
 <code>--locked</code> option.</p>
 <p>With 2.1.0, you no longer need a plugin to generate these files: just running
@@ -105,9 +105,9 @@ global variables.</p>
 <li>Either from binaries: run
 </li>
 </ol>
-<pre><code class="language-shell-session">$~ bash -c &quot;sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.1.0~alpha&quot;
+<pre><code class="language-shell-session">$~ bash -c "sh &lt;(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh) --version 2.1.0~alpha"
 </code></pre>
-<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.1.0-alpha">the Github &quot;Releases&quot; page</a> to your PATH.</p>
+<p>or download manually from <a href="https://github.com/ocaml/opam/releases/tag/2.1.0-alpha">the Github "Releases" page</a> to your PATH.</p>
 <ol start="2">
 <li>Or from source, manually: see the instructions in the <a href="https://github.com/ocaml/opam/tree/2.1.0-alpha#compiling-this-repo">README</a>.
 </li>

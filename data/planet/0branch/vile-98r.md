@@ -16,14 +16,14 @@ source:
       <a href="https://blog.0branch.com/index.html">#</a> July 28, 2016
     </div>
   </div>
-  <hr/>
+  <hr>
   <div>
     <p>Tom Dickey has just released <a href="http://invisible-island.net/vile">vile</a> 9.8r; you can browse the changes <a href="http://invisible-island.net/vile/CHANGES.html#index-v9_8r">here</a>.</p>
-<p>This release offers significant improvements and bug fixes; if you&rsquo;re a vile user, I recommend upgrading.</p>
+<p>This release offers significant improvements and bug fixes; if you’re a vile user, I recommend upgrading.</p>
   </div>
 </div>
 
-<hr/>
+<hr>
 
 <div></div>
 

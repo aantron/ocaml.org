@@ -14,7 +14,7 @@ source:
         
         
         
-        <p>I&rsquo;m happy to announce the release of <a href="https://github.com/Drup/pumping">Pumping</a>,
+        <p>I’m happy to announce the release of <a href="https://github.com/Drup/pumping">Pumping</a>,
 a library to leverage the OCaml type system to recognize regular languages.</p>
 
 
